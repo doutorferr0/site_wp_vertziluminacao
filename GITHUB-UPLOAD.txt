@@ -1,0 +1,292 @@
+GUIA: UPLOAD PARA GITHUB
+========================
+
+Data: 4/1/2026
+Repositório: site_wp_vertziluminacao
+Username: doutorferr0
+Tipo: Público
+
+---
+
+## PASSO 1: Criar Repositório no GitHub
+
+1. Acesse https://github.com/new
+2. Preencha:
+   - Owner: doutorferr0
+   - Repository name: site_wp_vertziluminacao
+   - Description: WordPress Theme - Vertz Iluminação
+   - Public (já que escolheu público)
+   - Initialize this repository with: NÃO marque nada
+3. Clique "Create repository"
+4. COPIE a URL do repositório (ex: https://github.com/doutorferr0/site_wp_vertziluminacao.git)
+
+---
+
+## PASSO 2: Configurar Git Local
+
+Abra CMD/PowerShell e execute:
+
+```bash
+cd "c:\Users\henri\Local Sites\vertziluminacaocombr"
+
+# Iniciar git
+git init
+
+# Configurar nome e email (se não configurou antes)
+git config user.name "Henri Ferro"
+git config user.email "seu-email@example.com"
+
+# Ou globalmente (roda uma vez):
+git config --global user.name "Henri Ferro"
+git config --global user.email "seu-email@example.com"
+```
+
+---
+
+## PASSO 3: Adicionar Arquivos ao Git
+
+```bash
+cd "c:\Users\henri\Local Sites\vertziluminacaocombr"
+
+# Adicionar todos os arquivos relevantes
+git add .
+
+# Ver o que vai ser comitado
+git status
+```
+
+Você deve ver:
+- ✅ app/public/wp-content/themes/tema-vertz/
+- ✅ .gitignore
+- ✅ README.md
+- ✅ RESUMO-STATUS.txt
+- ✅ feito-15.txt, feito-16.txt, feito-17.txt, feito-18.txt
+
+NÃO deve ver:
+- ❌ app/public/wp-admin
+- ❌ app/public/wp-includes
+- ❌ app/public/wp-*.php
+- ❌ plugins
+
+---
+
+## PASSO 4: Fazer Primeiro Commit
+
+```bash
+git commit -m "Initial commit: WordPress theme structure and documentation
+
+- tema-vertz theme with 10 homepage sections
+- Complete CSS system (1400+ lines)
+- JavaScript modules (400+ lines)
+- Cards slider with 15 items
+- Mobile-first responsive design
+- Comprehensive documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+```
+
+---
+
+## PASSO 5: Conectar ao Repositório Remoto
+
+```bash
+# Adicionar o remote (substitua pela URL do passo 1)
+git remote add origin https://github.com/doutorferr0/site_wp_vertziluminacao.git
+
+# Verificar
+git remote -v
+```
+
+Deve mostrar:
+```
+origin  https://github.com/doutorferr0/site_wp_vertziluminacao.git (fetch)
+origin  https://github.com/doutorferr0/site_wp_vertziluminacao.git (push)
+```
+
+---
+
+## PASSO 6: Fazer Push para GitHub
+
+```bash
+# Renomear branch padrão (se necessário)
+git branch -M main
+
+# Fazer push
+git push -u origin main
+```
+
+Se pedir autenticação:
+- Use seu GitHub token (Settings → Developer settings → Personal access tokens)
+- Ou use SSH key (se configurou)
+
+---
+
+## PASSO 7: Verificar no GitHub
+
+1. Acesse https://github.com/doutorferr0/site_wp_vertziluminacao
+2. Você deve ver:
+   - ✅ Pasta `app/public/wp-content/themes/tema-vertz`
+   - ✅ Arquivos `.gitignore`, `README.md`, `RESUMO-STATUS.txt`
+   - ✅ Documentação `feito-*.txt`
+3. Clique em "Code" para ver a estrutura completa
+
+---
+
+## PASSO 8: Criar Branches (Opcional)
+
+Para organizar melhor, crie branches para:
+
+```bash
+# Branch de desenvolvimento
+git checkout -b develop
+
+# Branch para novas features
+git checkout -b feature/cards-slider
+
+# Branch para melhorias
+git checkout -b improvement/performance
+```
+
+---
+
+## DÚVIDAS COMUNS
+
+### "Git não reconhecido"
+Instale Git for Windows: https://git-scm.com/download/win
+
+### "Erro de autenticação"
+Use Personal Access Token (não senha):
+1. GitHub → Settings → Developer settings → Personal access tokens
+2. Gere um token
+3. Cole no prompt quando pedir senha
+
+### "Arquivo muito grande"
+Git bloqueia arquivos >100MB. Remova do .gitignore:
+```bash
+git rm --cached nome-do-arquivo
+git commit -m "Remove large file"
+```
+
+### "Quer fazer push + pull depois?"
+```bash
+git pull origin main
+git push origin main
+```
+
+---
+
+## ESTRUTURA QUE SERÁ SUBIDA
+
+```
+site_wp_vertziluminacao/
+├── README.md
+├── .gitignore
+├── RESUMO-STATUS.txt
+├── feito-15.txt
+├── feito-16.txt
+├── feito-17.txt
+├── feito-18.txt
+└── app/
+    └── public/
+        └── wp-content/
+            └── themes/
+                └── tema-vertz/
+                    ├── CONTEXT.md
+                    ├── style.css
+                    ├── functions.php
+                    ├── index.php
+                    ├── header.php
+                    ├── footer.php
+                    ├── front-page.php
+                    └── assets/
+                        ├── css/
+                        │   └── vertz.css
+                        └── js/
+                            └── vertz.js
+```
+
+---
+
+## PRÓXIMOS PASSOS (Após push inicial)
+
+1. **Adicionar .github/workflows** (CI/CD opcional)
+2. **Criar issues** para tasks pendentes
+3. **Setup projects** para rastrear progresso
+4. **Add collaborators** se trabalhar em equipe
+5. **Enable discussions** para comunicação
+
+---
+
+## COMANDOS GIT ÚTEIS
+
+```bash
+# Ver status
+git status
+
+# Ver commits
+git log --oneline
+
+# Editar último commit
+git commit --amend
+
+# Desfazer último commit (manter arquivos)
+git reset --soft HEAD~1
+
+# Ver diferenças
+git diff
+
+# Criar novo branch
+git checkout -b nome-branch
+
+# Mudar de branch
+git checkout main
+
+# Deletar branch local
+git branch -D nome-branch
+
+# Fetch + Pull
+git pull
+
+# Push com novo branch
+git push -u origin nome-branch
+
+# Force push (CUIDADO!)
+git push origin --force
+```
+
+---
+
+## GITIGNORE EXPLICADO
+
+O arquivo `.gitignore` já foi criado para:
+
+✅ **INCLUIR no repo:**
+- tema-vertz/ (nosso tema)
+- README.md, RESUMO-STATUS.txt
+- Documentação (feito-*.txt)
+- .gitignore
+
+❌ **EXCLUIR do repo:**
+- wp-admin/, wp-includes/
+- Plugins
+- wp-config.php
+- Cache e logs
+- .env
+
+---
+
+## PRONTO!
+
+Agora você tem:
+1. ✅ .gitignore
+2. ✅ README.md
+3. ✅ Repositório criado no GitHub
+4. ✅ Arquivos prontos para commit
+
+Próximo: Execute o PASSO 2 em diante.
+
+---
+
+Qualquer dúvida, entre em contato!
+
+EOF

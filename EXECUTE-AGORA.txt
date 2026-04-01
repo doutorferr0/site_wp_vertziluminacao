@@ -1,0 +1,66 @@
+GUIA RÁPIDO: EXECUTE ISSO NO SEU CMD/POWERSHELL
+================================================
+
+Abra CMD ou PowerShell e copie/cole os comandos abaixo na sequência:
+
+---
+
+1. NAVEGUE PARA O DIRETÓRIO
+   cd "c:\Users\henri\Local Sites\vertziluminacaocombr"
+
+---
+
+2. INITIALIZE GIT
+   git init
+
+---
+
+3. CONFIGURE USUÁRIO
+   git config user.name "Henri Ferro"
+   git config user.email "henri@example.com"
+
+---
+
+4. ADICIONE ARQUIVOS
+   git add .
+
+---
+
+5. VER STATUS (opcional)
+   git status
+
+---
+
+6. CRIAR COMMIT
+   git commit -m "Initial commit: WordPress theme for Vertz Iluminacao - tema-vertz theme with 10 homepage sections, 1400+ lines CSS, 400+ lines JS, cards slider, mobile-first responsive design"
+
+---
+
+7. RENOMEAR BRANCH
+   git branch -M main
+
+---
+
+8. ADICIONAR REMOTE
+   git remote add origin https://doutorferr0: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@github.com/doutorferr0/site_wp_vertziluminacao.git
+
+---
+
+9. FAZER PUSH (FINAL!)
+   git push -u origin main
+
+---
+
+PRONTO! Seu repositório está online em:
+https://github.com/doutorferr0/site_wp_vertziluminacao
+
+---
+
+DICAS:
+- Se pedir autenticação, cole o token
+- Se disse "fatal: A branch named 'main' does not exist" no step 7, tudo bem, continue
+- Se sucesso no step 9, vá para GitHub e confirme!
+
+---
+
+Se tiver erro, copie a mensagem e me envie.

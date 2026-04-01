@@ -1,0 +1,55 @@
+# Ignore WordPress core files
+/app/public/wp-admin
+/app/public/wp-includes
+/app/public/wp-*.php
+/app/public/wp-config.php
+/app/public/index.php
+/app/public/.htaccess
+/app/public/wp-content/plugins
+/app/public/wp-content/upgrade
+/app/public/wp-content/backup
+/app/public/wp-content/cache
+
+# Keep wp-content/themes (nosso tema está aí)
+!/app/public/wp-content/themes/tema-vertz
+
+# Ignore WordPress core elsewhere
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/wp-config.php
+.htaccess
+
+# Ignore node modules (se usar npm)
+node_modules/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+.env
+.env.local
+
+# Ignore IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore logs
+/logs
+*.log
+
+# Ignore backups
+*.bak
+*.backup
+.backups/
+
+# Ignore local configurations
+.claude/settings.local.json
+
+# Keep documentation files
+!RESUMO-STATUS.txt
+!CONTEXT.md
+!feito-*.txt
+!README.md
+!.gitignore
