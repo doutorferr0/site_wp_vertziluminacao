@@ -75,3 +75,4 @@ wp-config.php
 package-lock.json
 .claude/
 app/sql/
+app/sql/
