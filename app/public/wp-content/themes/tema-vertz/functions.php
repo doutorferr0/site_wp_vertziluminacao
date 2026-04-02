@@ -83,3 +83,40 @@ function vertz_handle_contato() {
 add_action( 'admin_post_vertz_contato',        'vertz_handle_contato' ); // usuário logado
 add_action( 'admin_post_nopriv_vertz_contato', 'vertz_handle_contato' ); // visitante
 
+/**
+ * Handler do opt-in do lead capture panel
+ */
+function vertz_handle_optin() {
+    if ( ! isset( $_POST['vertz_optin_nonce_field'] ) ||
+         ! wp_verify_nonce( $_POST['vertz_optin_nonce_field'], 'vertz_optin_nonce' ) ) {
+        wp_die( 'Requisição inválida.', 'Erro', array( 'response' => 403 ) );
+    }
+
+    $nome  = sanitize_text_field( $_POST['nome']  ?? '' );
+    $email = sanitize_email(      $_POST['email'] ?? '' );
+    $tipo  = sanitize_text_field( $_POST['tipo']  ?? '' );
+
+    if ( empty( $nome ) || ! is_email( $email ) ) {
+        wp_redirect( add_query_arg( 'lead_erro', '1', wp_get_referer() ) );
+        exit;
+    }
+
+    $destinatario = 'contato@vertziluminacao.com.br';
+    $assunto      = '[Vertz] Novo lead: ' . $nome;
+    $corpo        = "Lead capturado via site\n\n"
+                  . "Nome: {$nome}\n"
+                  . "E-mail: {$email}\n"
+                  . ( $tipo ? "Tipo de projeto: {$tipo}\n" : '' );
+    $headers      = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'Reply-To: ' . $nome . ' <' . $email . '>',
+    );
+
+    wp_mail( $destinatario, $assunto, $corpo, $headers );
+
+    $redirect = add_query_arg( 'lead_ok', '1', wp_get_referer() ?: home_url('/') );
+    wp_redirect( $redirect );
+    exit;
+}
+add_action( 'admin_post_vertz_optin',        'vertz_handle_optin' );
+add_action( 'admin_post_nopriv_vertz_optin', 'vertz_handle_optin' );
