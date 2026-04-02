@@ -399,6 +399,9 @@
     initScrollAnimations();
     initHeroVideo();
     initPartnersTicker();
+    initCookieBanner();
+    initLeadCapture();
+    initFab();
 
     // Swiper pode não estar disponível no DOMContentLoaded se carregado async
     if (typeof Swiper !== 'undefined') {
@@ -420,3 +423,134 @@
   }
 
 })();
+
+
+  /* ============================================================
+     COOKIE BANNER — LGPD
+     Mostra banner se consentimento ainda não foi dado.
+     Armazena escolha em localStorage por 365 dias.
+     ============================================================ */
+  function initCookieBanner() {
+    var banner = qs('#site-cookies');
+    if (!banner) return;
+
+    var STORAGE_KEY = 'vertz_cookie_consent';
+    var consent = localStorage.getItem(STORAGE_KEY);
+
+    if (consent) return; // já decidiu
+
+    // Mostra o banner com pequeno delay (não bloqueia render)
+    setTimeout(function () {
+      banner.removeAttribute('hidden');
+      requestAnimationFrame(function () {
+        banner.classList.add('is-visible');
+      });
+    }, 1200);
+
+    function setConsent(value) {
+      localStorage.setItem(STORAGE_KEY, value);
+      banner.classList.remove('is-visible');
+      banner.addEventListener('transitionend', function () {
+        banner.setAttribute('hidden', '');
+      }, { once: true });
+    }
+
+    var btnAccept = qs('[data-cookie-accept]', banner);
+    var btnReject = qs('[data-cookie-reject]', banner);
+
+    if (btnAccept) btnAccept.addEventListener('click', function () { setConsent('accepted'); });
+    if (btnReject) btnReject.addEventListener('click', function () { setConsent('rejected'); });
+  }
+
+
+  /* ============================================================
+     LEAD CAPTURE — Slide-in panel
+     Dispara em duas situações:
+       1. Usuário scrollou 60% da página
+       2. Exit intent (mouse saiu pelo topo — desktop)
+     Não mostra novamente na mesma sessão.
+     Não mostra na página de contato.
+     ============================================================ */
+  function initLeadCapture() {
+    var panel = qs('#site-lead');
+    if (!panel) return;
+
+    var SESSION_KEY = 'vertz_lead_shown';
+    if (sessionStorage.getItem(SESSION_KEY)) return;
+
+    // Não mostra na página de contato
+    if (document.body.classList.contains('page-contato') ||
+        window.location.pathname.indexOf('/contato') !== -1) return;
+
+    var shown = false;
+
+    function showPanel() {
+      if (shown) return;
+      shown = true;
+      sessionStorage.setItem(SESSION_KEY, '1');
+      panel.removeAttribute('hidden');
+      requestAnimationFrame(function () {
+        panel.classList.add('is-visible');
+        panel.setAttribute('aria-hidden', 'false');
+      });
+    }
+
+    function hidePanel() {
+      panel.classList.remove('is-visible');
+      panel.setAttribute('aria-hidden', 'true');
+      panel.addEventListener('transitionend', function () {
+        panel.setAttribute('hidden', '');
+      }, { once: true });
+    }
+
+    // Trigger 1: scroll 60%
+    var scrollTriggered = false;
+    window.addEventListener('scroll', function () {
+      if (scrollTriggered) return;
+      var scrolled = window.scrollY + window.innerHeight;
+      var total    = document.documentElement.scrollHeight;
+      if (scrolled / total >= 0.60) {
+        scrollTriggered = true;
+        setTimeout(showPanel, 600);
+      }
+    }, { passive: true });
+
+    // Trigger 2: exit intent (desktop)
+    document.addEventListener('mouseleave', function (e) {
+      if (e.clientY <= 0) showPanel();
+    });
+
+    // Fechar
+    var btnClose = qs('[data-lead-close]', panel);
+    if (btnClose) btnClose.addEventListener('click', hidePanel);
+
+    // Fechar ao clicar fora do painel (backdrop)
+    document.addEventListener('click', function (e) {
+      if (shown && panel.classList.contains('is-visible') &&
+          !panel.contains(e.target) && !e.target.closest('.site-fab')) {
+        hidePanel();
+      }
+    });
+
+    // Fechar com Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') hidePanel();
+    });
+  }
+
+
+  /* ============================================================
+     FAB — anima entrada após 2s
+     ============================================================ */
+  function initFab() {
+    var fab = qs('.site-fab');
+    if (!fab) return;
+    // Começa invisível via opacity, entra suave
+    fab.style.opacity = '0';
+    fab.style.transform = 'translateY(20px)';
+    fab.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    setTimeout(function () {
+      fab.style.opacity = '1';
+      fab.style.transform = 'translateY(0)';
+    }, 2000);
+  }
