@@ -70,4 +70,5 @@ wp-config.php
 # ============================================================
 .oxlintrc.json   # não ignorar — queremos versionar a config
 # mas ignorar cache se existir:
-.oxc_cache/
+.oxc_cache/.claude/
+*.bak
