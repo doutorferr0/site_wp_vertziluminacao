@@ -61,7 +61,7 @@ function vertz_handle_contato() {
     }
 
     // Monta e-mail
-    $destinatario = get_option('admin_email'); // Trocar pelo e-mail real: 'contato@vertziluminacao.com.br'
+    $destinatario = 'contato@vertziluminacao.com.br';
     $assunto      = '[Vertz] Nova mensagem de ' . $nome;
     $corpo        = "Nome: {$nome}\n"
                   . "E-mail: {$email}\n"
@@ -82,3 +82,4 @@ function vertz_handle_contato() {
 }
 add_action( 'admin_post_vertz_contato',        'vertz_handle_contato' ); // usuário logado
 add_action( 'admin_post_nopriv_vertz_contato', 'vertz_handle_contato' ); // visitante
+
