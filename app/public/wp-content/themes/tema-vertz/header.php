@@ -16,7 +16,7 @@
   <div class="site-header__wrap container-fluid d-flex justify-content-between align-items-start w-100 pt-20 pt-xl-40">
     <figure class="site-header__logo m-0 p-0 pointer-events-all color-red" role="banner">
       <a class="site-header__logoLink d-block w-100 color-current td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php bloginfo('name'); ?>">
-        <div style="width:157px;height:53px;background:#ccc;display:flex;align-items:center;justify-content:center;font-size:12px;color:#666;">LOGO</div>
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Vertz Iluminação" width="157" height="53" loading="eager" decoding="async" style="display:block;width:157px;height:53px;object-fit:contain;">
       </a>
     </figure>
     <nav class="site-header__rightNav pointer-events-all">
