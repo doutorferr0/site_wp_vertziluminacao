@@ -73,3 +73,4 @@ wp-config.php
 .oxc_cache/.claude/
 *.bak
 package-lock.json
+.claude/
