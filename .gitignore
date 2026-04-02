@@ -72,3 +72,4 @@ wp-config.php
 # mas ignorar cache se existir:
 .oxc_cache/.claude/
 *.bak
+package-lock.json
