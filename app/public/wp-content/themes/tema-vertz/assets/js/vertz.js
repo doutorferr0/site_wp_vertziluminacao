@@ -346,7 +346,7 @@
     if (!cardsSliders.length) return;
 
     cardsSliders.forEach(function (sliderEl) {
-      var swiper = new Swiper(sliderEl, {
+      var _swiper = new Swiper(sliderEl, {
         slidesPerView: 1.2,
         spaceBetween: 12,
         loop: true,

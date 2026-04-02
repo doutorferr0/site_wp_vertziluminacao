@@ -1,9 +1,10 @@
 <?php
 /**
  * front-page.php — Vertz Iluminação
- * Clone estrutural do Base Habitation com Lorem Ipsum e placeholders de imagem.
  */
 get_header();
+
+$theme_uri = get_template_directory_uri();
 ?>
 
 <div class="single single-page" id="page-home">
@@ -20,10 +21,16 @@ get_header();
             data-scroll
             data-scroll-target="#pb-row-hero-1"
             data-scroll-progress="easeInCubic">
-            <!-- PLACEHOLDER: Substituir pelo vídeo da Vertz -->
-            <div class="w-100 pb-row-hero__video" style="aspect-ratio:16/9;background:#1a1a1a;display:flex;align-items:center;justify-content:center;">
-              <span style="color:#fff;font-size:14px;opacity:.5;">VÍDEO HERO — 1920×1080</span>
-            </div>
+            <video
+              class="w-100 pb-row-hero__video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="none"
+              style="aspect-ratio:16/9;object-fit:cover;display:block;">
+              <source src="<?php echo esc_url( $theme_uri ); ?>/assets/images/hero-video.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
       </figure>
@@ -103,16 +110,24 @@ get_header();
             <div class="swiper-wrapper">
 
               <figure class="pb-row-medias-gallery__media swiper-slide position-relative">
-                <div class="pb-row-medias-gallery__mediaWrap position-absolute t-0 l-0 w-100 h-100"
-                  style="background:#b0b0b0;display:flex;align-items:center;justify-content:center;">
-                  <span style="color:#fff;font-size:13px;opacity:.7;">FOTO 1 — Projeto residencial (widescreen)</span>
+                <div class="pb-row-medias-gallery__mediaWrap position-absolute t-0 l-0 w-100 h-100">
+                  <img
+                    src="<?php echo esc_url( $theme_uri ); ?>/assets/images/gallery-01.jpg"
+                    alt="Projeto residencial Vertz Iluminação"
+                    loading="lazy"
+                    decoding="async"
+                    style="width:100%;height:100%;object-fit:cover;display:block;">
                 </div>
               </figure>
 
               <figure class="pb-row-medias-gallery__media swiper-slide position-relative">
-                <div class="pb-row-medias-gallery__mediaWrap position-absolute t-0 l-0 w-100 h-100"
-                  style="background:#888;display:flex;align-items:center;justify-content:center;">
-                  <span style="color:#fff;font-size:13px;opacity:.7;">FOTO 2 — Projeto comercial (widescreen)</span>
+                <div class="pb-row-medias-gallery__mediaWrap position-absolute t-0 l-0 w-100 h-100">
+                  <img
+                    src="<?php echo esc_url( $theme_uri ); ?>/assets/images/gallery-02.jpg"
+                    alt="Projeto comercial Vertz Iluminação"
+                    loading="lazy"
+                    decoding="async"
+                    style="width:100%;height:100%;object-fit:cover;display:block;">
                 </div>
               </figure>
 
@@ -155,9 +170,12 @@ get_header();
       data-module="pb-row-house-models">
 
       <aside class="pb-row-house-models__house col-start-xl-1 col-span-xl-11 d-grid grid-gap-15 grid-gap-xl-20 position-relative">
-        <div style="aspect-ratio:3/2;background:#d0d0d0;display:flex;align-items:center;justify-content:center;">
-          <span style="color:#555;font-size:13px;">FOTO 3 — Linha residencial</span>
-        </div>
+        <img
+          src="<?php echo esc_url( $theme_uri ); ?>/assets/images/produto-residencial.jpg"
+          alt="Linha Residencial Vertz — Spots, Pendentes e Perfis LED"
+          loading="lazy"
+          decoding="async"
+          style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
         <div class="d-grid grid-gap-10">
           <h3 class="fz-20 fz-xl-28 fw-400 m-0">Linha Residencial</h3>
           <p class="fz-14 fz-xl-16 lh-142 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Iluminação elegante para ambientes residenciais internos e externos.</p>
@@ -166,9 +184,12 @@ get_header();
       </aside>
 
       <aside class="pb-row-house-models__house col-start-xl-13 col-span-xl-11 d-grid grid-gap-15 grid-gap-xl-20 position-relative">
-        <div style="aspect-ratio:3/2;background:#a8a8a8;display:flex;align-items:center;justify-content:center;">
-          <span style="color:#fff;font-size:13px;">FOTO 4 — Linha comercial</span>
-        </div>
+        <img
+          src="<?php echo esc_url( $theme_uri ); ?>/assets/images/produto-comercial.jpg"
+          alt="Linha Comercial Vertz — Trilhos, Luminárias embutidas e Painéis"
+          loading="lazy"
+          decoding="async"
+          style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
         <div class="d-grid grid-gap-10">
           <h3 class="fz-20 fz-xl-28 fw-400 m-0">Linha Comercial</h3>
           <p class="fz-14 fz-xl-16 lh-142 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Soluções de iluminação para lojas, escritórios e espaços públicos.</p>
@@ -195,46 +216,52 @@ get_header();
         <div class="pb-row-cards-slider__sliderWrap swiper-wrapper order-xl-2">
 
           <?php
-          // Array de dados dos cards - fácil manutenção
           $cards_data = [
-            ['title' => 'Iluminação Inteligente', 'subtitle' => 'Automação residencial', 'desc' => 'Soluções inteligentes que permitem controlar a iluminação de forma prática e eficiente em sua residência.'],
-            ['title' => 'Eficiência Energética', 'subtitle' => 'Tecnologia LED avançada', 'desc' => 'Redução de até 80% no consumo de energia com tecnologia LED de última geração para seus ambientes.'],
-            ['title' => 'Design Moderno', 'subtitle' => 'Estética contemporânea', 'desc' => 'Luminárias elegantes que se adaptam perfeitamente ao seu estilo e ambiente.'],
-            ['title' => 'Comercial Premium', 'subtitle' => 'Soluções para lojas', 'desc' => 'Iluminação estratégica que destaca seus produtos e cria uma experiência visual única.'],
-            ['title' => 'Ambientes Corporativos', 'subtitle' => 'Escritórios modernos', 'desc' => 'Ambientes corporativos com iluminação que aumenta a produtividade e bem-estar.'],
-            ['title' => 'Espaços Externos', 'subtitle' => 'Iluminação externa', 'desc' => 'Soluções robustas para fachadas, jardins e áreas externas com durabilidade garantida.'],
-            ['title' => 'Hospitais e Clínicas', 'subtitle' => 'Ambientes de saúde', 'desc' => 'Iluminação especializada que auxilia diagnóstico e proporciona conforto aos pacientes.'],
-            ['title' => 'Espaços de Lazer', 'subtitle' => 'Restaurantes e bares', 'desc' => 'Atmosfera perfeita com iluminação que realça a decoração e cria ambiance elegante.'],
-            ['title' => 'Educação', 'subtitle' => 'Escolas e universidades', 'desc' => 'Ambientes de aprendizado com iluminação ideal para reduzir fadiga visual e melhorar concentração.'],
-            ['title' => 'Indústria', 'subtitle' => 'Ambiente industrial', 'desc' => 'Soluções de iluminação profissional para ambientes industriais com segurança garantida.'],
-            ['title' => 'Museus e Galerias', 'subtitle' => 'Arte e cultura', 'desc' => 'Iluminação de museus que preserva obras de arte com precisão cromática perfeita.'],
-            ['title' => 'Hotelaria', 'subtitle' => 'Hotéis e resorts', 'desc' => 'Iluminação de luxo que cria uma experiência memorável para seus hospedes.'],
-            ['title' => 'Esportes', 'subtitle' => 'Ginásios e estádios', 'desc' => 'Iluminação de alto desempenho para ambientes esportivos profissionais e amadores.'],
-            ['title' => 'Residências Luxo', 'subtitle' => 'Premium residencial', 'desc' => 'Sistemas de iluminação de luxo que transformam residências em ambientes sofisticados.'],
-            ['title' => 'Soluções Personalizadas', 'subtitle' => 'Personalizadas', 'desc' => 'Cada projeto é único. Desenvolvemos soluções customizadas conforme suas necessidades.'],
+            [ 'title' => 'Iluminação Inteligente',   'subtitle' => 'Automação residencial',    'desc' => 'Soluções inteligentes que permitem controlar a iluminação de forma prática e eficiente em sua residência.',    'img' => 'card-01.jpg' ],
+            [ 'title' => 'Eficiência Energética',    'subtitle' => 'Tecnologia LED avançada',  'desc' => 'Redução de até 80% no consumo de energia com tecnologia LED de última geração para seus ambientes.',          'img' => 'card-02.jpg' ],
+            [ 'title' => 'Design Moderno',           'subtitle' => 'Estética contemporânea',   'desc' => 'Luminárias elegantes que se adaptam perfeitamente ao seu estilo e ambiente.',                                  'img' => 'card-03.jpg' ],
+            [ 'title' => 'Comercial Premium',        'subtitle' => 'Soluções para lojas',      'desc' => 'Iluminação estratégica que destaca seus produtos e cria uma experiência visual única.',                        'img' => 'card-04.jpg' ],
+            [ 'title' => 'Ambientes Corporativos',   'subtitle' => 'Escritórios modernos',     'desc' => 'Ambientes corporativos com iluminação que aumenta a produtividade e bem-estar.',                               'img' => 'card-05.jpg' ],
+            [ 'title' => 'Espaços Externos',         'subtitle' => 'Iluminação externa',       'desc' => 'Soluções robustas para fachadas, jardins e áreas externas com durabilidade garantida.',                       'img' => 'card-06.jpg' ],
+            [ 'title' => 'Hospitais e Clínicas',     'subtitle' => 'Ambientes de saúde',       'desc' => 'Iluminação especializada que auxilia diagnóstico e proporciona conforto aos pacientes.',                       'img' => 'card-07.jpg' ],
+            [ 'title' => 'Espaços de Lazer',         'subtitle' => 'Restaurantes e bares',     'desc' => 'Atmosfera perfeita com iluminação que realça a decoração e cria ambiance elegante.',                          'img' => 'card-08.jpg' ],
+            [ 'title' => 'Educação',                 'subtitle' => 'Escolas e universidades',  'desc' => 'Ambientes de aprendizado com iluminação ideal para reduzir fadiga visual e melhorar concentração.',            'img' => 'card-09.jpg' ],
+            [ 'title' => 'Indústria',                'subtitle' => 'Ambiente industrial',      'desc' => 'Soluções de iluminação profissional para ambientes industriais com segurança garantida.',                      'img' => 'card-10.jpg' ],
+            [ 'title' => 'Museus e Galerias',        'subtitle' => 'Arte e cultura',           'desc' => 'Iluminação de museus que preserva obras de arte com precisão cromática perfeita.',                             'img' => 'card-11.jpg' ],
+            [ 'title' => 'Hotelaria',                'subtitle' => 'Hotéis e resorts',         'desc' => 'Iluminação de luxo que cria uma experiência memorável para seus hóspedes.',                                   'img' => 'card-12.jpg' ],
+            [ 'title' => 'Esportes',                 'subtitle' => 'Ginásios e estádios',      'desc' => 'Iluminação de alto desempenho para ambientes esportivos profissionais e amadores.',                           'img' => 'card-13.jpg' ],
+            [ 'title' => 'Residências Luxo',         'subtitle' => 'Premium residencial',      'desc' => 'Sistemas de iluminação de luxo que transformam residências em ambientes sofisticados.',                        'img' => 'card-14.jpg' ],
+            [ 'title' => 'Soluções Personalizadas',  'subtitle' => 'Personalizadas',           'desc' => 'Cada projeto é único. Desenvolvemos soluções customizadas conforme suas necessidades.',                        'img' => 'card-15.jpg' ],
           ];
 
-          // Gera dinamicamente cada card
-          foreach ($cards_data as $index => $card): ?>
-            <div class="pb-row-cards-slider__slide swiper-slide" style="--index:<?php echo $index; ?>;--rev-index:<?php echo count($cards_data) - 1 - $index; ?>">
+          $cards_total = count( $cards_data );
+
+          foreach ( $cards_data as $index => $card ) : ?>
+            <div class="pb-row-cards-slider__slide swiper-slide"
+              style="--index:<?php echo $index; ?>;--rev-index:<?php echo $cards_total - 1 - $index; ?>">
               <div class="pb-row-cards-slider__slideBox">
-                <h3 class="pb-row-cards-slider__title"><?php echo $card['title']; ?></h3>
+                <h3 class="pb-row-cards-slider__title"><?php echo esc_html( $card['title'] ); ?></h3>
                 <figure class="pb-row-cards-slider__imgBox">
-                  <div class="pb-row-cards-slider__imgPlaceholder"></div>
+                  <img
+                    src="<?php echo esc_url( $theme_uri ); ?>/assets/images/<?php echo esc_attr( $card['img'] ); ?>"
+                    alt="<?php echo esc_attr( $card['title'] ); ?> — Vertz Iluminação"
+                    loading="lazy"
+                    decoding="async"
+                    style="width:100%;height:100%;object-fit:cover;display:block;">
                 </figure>
                 <div class="pb-row-cards-slider__textWrap">
-                  <p class="pb-row-cards-slider__subtitle"><?php echo $card['subtitle']; ?></p>
-                  <p class="pb-row-cards-slider__text"><?php echo $card['desc']; ?></p>
+                  <p class="pb-row-cards-slider__subtitle"><?php echo esc_html( $card['subtitle'] ); ?></p>
+                  <p class="pb-row-cards-slider__text"><?php echo esc_html( $card['desc'] ); ?></p>
                 </div>
               </div>
             </div>
           <?php endforeach; ?>
 
-        </div> <!-- /.pb-row-cards-slider__sliderWrap -->
-      </div> <!-- /.pb-row-cards-slider__slider -->
+        </div><!-- /.pb-row-cards-slider__sliderWrap -->
+      </div><!-- /.pb-row-cards-slider__slider -->
 
-    </div> <!-- /.pb-row pb-row-cards-slider -->
-  </div> <!-- /.pb-row-wrapper -->
+    </div><!-- /.pb-row pb-row-cards-slider -->
+  </div><!-- /.pb-row-wrapper -->
 
 
   <!-- ============================================================
@@ -266,9 +293,12 @@ get_header();
       data-module="pb-row-features">
 
       <div class="pb-row-features__mediasContainer col-start-1 col-span-md-6 col-span-xl-12 row-start-md-1">
-        <div style="aspect-ratio:3/4;background:#c8c8c8;display:flex;align-items:center;justify-content:center;">
-          <span style="color:#555;font-size:13px;">FOTO 5 — Destaque feature (retrato)</span>
-        </div>
+        <img
+          src="<?php echo esc_url( $theme_uri ); ?>/assets/images/features-destaque.jpg"
+          alt="Diferenciais Vertz Iluminação"
+          loading="lazy"
+          decoding="async"
+          style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;">
       </div>
 
       <div class="pb-row-features__list col-start-1 col-start-md-7 col-span-md-6 col-span-xl-11 d-grid align-content-start grid-gap-30 grid-gap-xl-40 pt-md-40">
@@ -315,9 +345,14 @@ get_header();
         <div class="pb-row-partners__ticker d-flex align-items-center grid-gap-40 grid-gap-xl-60">
           <?php for ( $i = 1; $i <= 5; $i++ ) : ?>
           <div class="pb-row-partners__partner flex-shrink-0" style="--index:<?php echo $i - 1; ?>">
-            <div style="width:120px;height:40px;background:#e0e0e0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#999;">
-              PARCEIRO <?php echo $i; ?>
-            </div>
+            <img
+              src="<?php echo esc_url( $theme_uri ); ?>/assets/images/logo-parceiro-0<?php echo $i; ?>.svg"
+              alt="Parceiro <?php echo $i; ?>"
+              loading="lazy"
+              decoding="async"
+              width="120"
+              height="40"
+              style="width:120px;height:40px;object-fit:contain;display:block;">
           </div>
           <?php endfor; ?>
         </div>
@@ -344,26 +379,26 @@ get_header();
 
       <div class="pb-row-faqs__faqs col-start-1 col-span-md-12 col-span-xl-18 col-start-xl-4 d-grid grid-gap-0">
         <?php
-        $faqs = array(
-          array(
+        $faqs = [
+          [
             'q' => 'Quais tipos de projetos a Vertz atende?',
             'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Atendemos projetos residenciais, comerciais, industriais e de arquitetura de luz para eventos e espaços públicos.',
-          ),
-          array(
+          ],
+          [
             'q' => 'Vocês fazem projetos personalizados?',
             'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sim, trabalhamos com projetos sob medida, adaptando nossa linha de produtos às necessidades específicas de cada cliente e arquiteto.',
-          ),
-          array(
+          ],
+          [
             'q' => 'Qual o prazo médio de entrega dos produtos?',
             'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. O prazo varia conforme o projeto, mas nossa linha padrão tem entrega de 5 a 10 dias úteis para todo o Brasil.',
-          ),
-          array(
+          ],
+          [
             'q' => 'Os produtos possuem garantia?',
             'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Todos os nossos produtos possuem garantia de 2 anos contra defeitos de fabricação, com suporte técnico especializado.',
-          ),
-        );
-        foreach ( $faqs as $index => $faq ) :
-        ?>
+          ],
+        ];
+
+        foreach ( $faqs as $index => $faq ) : ?>
         <div class="pb-row-faqs__accordion" style="--index:<?php echo $index; ?>">
           <button class="pb-row-faqs__accordionBtn d-flex justify-content-between align-items-center w-100 fz-16 fz-xl-20 fw-400 m-0 py-20 py-xl-30" aria-expanded="false">
             <span><?php echo esc_html( $faq['q'] ); ?></span>
@@ -389,9 +424,12 @@ get_header();
       data-scroll data-scroll-offset="50px,0" data-module-delay>
 
       <div class="pb-row-contact__imgWrap col-start-1 col-span-md-5 col-span-xl-10 position-relative overflow-clip">
-        <div style="aspect-ratio:4/5;background:#b8b8b8;display:flex;align-items:center;justify-content:center;">
-          <span style="color:#fff;font-size:13px;">FOTO 6 — Imagem contato (retrato)</span>
-        </div>
+        <img
+          src="<?php echo esc_url( $theme_uri ); ?>/assets/images/contato-foto.jpg"
+          alt="Fale com a Vertz Iluminação"
+          loading="lazy"
+          decoding="async"
+          style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
       </div>
 
       <div class="pb-row-contact__wrapper col-start-1 col-start-md-7 col-span-md-6 col-span-xl-12 d-flex flex-column justify-content-center grid-gap-30 grid-gap-xl-40 pt-40 pt-md-0">
@@ -407,9 +445,16 @@ get_header();
         <p class="fz-14 fz-xl-16 lh-142 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Entre em contato e um de nossos consultores retornará em até 24 horas úteis.</p>
 
         <div class="pb-row-contact__form">
-          <!-- PLACEHOLDER: Substituir pelo shortcode do Contact Form 7 ou WPForms -->
+          <?php
+          // Substituir pelo shortcode do seu plugin de formulário:
+          // echo do_shortcode('[contact-form-7 id="SEU_ID"]');
+          // echo do_shortcode('[wpforms id="SEU_ID"]');
+          ?>
           <div style="padding:30px;background:#f5f5f5;border-radius:4px;">
-            <p style="font-size:13px;color:#999;margin:0;text-align:center;">FORMULÁRIO DE CONTATO<br><small>Instalar Contact Form 7 e substituir este bloco pelo shortcode</small></p>
+            <p style="font-size:13px;color:#999;margin:0;text-align:center;">
+              FORMULÁRIO DE CONTATO<br>
+              <small>Instalar Contact Form 7 e substituir este bloco pelo <code>do_shortcode()</code></small>
+            </p>
           </div>
         </div>
 

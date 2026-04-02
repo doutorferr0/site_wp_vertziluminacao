@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"C:\\\\Users\\\\henri\\\\Local Sites\\\\vertziluminacaocombr\\\\app\\\\public\\\\wp-content\\\\themes\\\\tema-vertz\\\\assets\\\\css\"\" 2>/dev/null; ls \"C:UsershenriLocal Sitesvertziluminacaocombrapppublicwp-contentthemestema-vertzassetsjs\"\")",
+      "Bash(cmd.exe /c \"dir \"\"C:\\\\Users\\\\henri\\\\Local Sites\\\\vertziluminacaocombr\\\\app\\\\public\\\\wp-content\\\\themes\\\\tema-vertz\\\\assets\"\" 2>&1\")",
+      "Bash(cmd.exe /c \"dir \"\"C:\\\\Users\\\\henri\\\\Local Sites\\\\vertziluminacaocombr\\\\app\\\\public\\\\wp-content\\\\themes\\\\tema-vertz\"\"\")",
+      "Bash(powershell -Command \"New-Item -ItemType Directory -Force -Path ''C:\\\\Users\\\\henri\\\\Local Sites\\\\vertziluminacaocombr\\\\app\\\\public\\\\wp-content\\\\themes\\\\tema-vertz\\\\assets\\\\css''; New-Item -ItemType Directory -Force -Path ''C:\\\\Users\\\\henri\\\\Local Sites\\\\vertziluminacaocombr\\\\app\\\\public\\\\wp-content\\\\themes\\\\tema-vertz\\\\assets\\\\js''\")"
+    ]
+  }
+}

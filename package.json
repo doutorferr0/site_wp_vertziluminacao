@@ -1,0 +1,24 @@
+{
+  "name": "vertziluminacaocombr",
+  "version": "1.0.0",
+  "description": "Site WordPress customizado para Vertz Iluminação com design inspirado em Base Habitation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://doutorferr0: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@github.com/doutorferr0/site_wp_vertziluminacao.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/doutorferr0/site_wp_vertziluminacao/issues"
+  },
+  "homepage": "https://github.com/doutorferr0/site_wp_vertziluminacao#readme",
+  "devDependencies": {
+    "oxlint": "^1.58.0"
+  }
+}

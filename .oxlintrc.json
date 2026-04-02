@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "Swiper": "readonly"
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-undef": "error",
+    "eqeqeq": "warn",
+    "no-console": "off"
+  },
+  "ignorePatterns": [
+    "app/public/wp-content/themes/tema-vertz/dist/**",
+    "app/public/wp-admin/**",
+    "app/public/wp-includes/**",
+    "node_modules/**"
+  ]
+}

@@ -1,55 +1,73 @@
-# Ignore WordPress core files
-/app/public/wp-admin
-/app/public/wp-includes
+# ============================================================
+# WordPress Core — nunca versionar
+# ============================================================
+/app/public/wp-admin/
+/app/public/wp-includes/
 /app/public/wp-*.php
 /app/public/wp-config.php
 /app/public/index.php
 /app/public/.htaccess
-/app/public/wp-content/plugins
-/app/public/wp-content/upgrade
-/app/public/wp-content/backup
-/app/public/wp-content/cache
+/app/public/xmlrpc.php
+/app/public/license.txt
+/app/public/readme.html
+/app/public/local-xdebuginfo.php
 
-# Keep wp-content/themes (nosso tema está aí)
-!/app/public/wp-content/themes/tema-vertz
+# ============================================================
+# wp-content — só manter o nosso tema
+# ============================================================
+/app/public/wp-content/plugins/
+/app/public/wp-content/upgrade/
+/app/public/wp-content/backup/
+/app/public/wp-content/cache/
+/app/public/wp-content/uploads/
+/app/public/wp-content/languages/
+/app/public/wp-content/themes/twentytwenty*/
+/app/public/wp-content/themes/twentytwenty*/
 
-# Ignore WordPress core elsewhere
-/wp-admin/
-/wp-includes/
-/wp-*.php
-/wp-config.php
-.htaccess
+# ============================================================
+# Dentro do tema — ignorar dist/ e imagens pesadas
+# ============================================================
+/app/public/wp-content/themes/tema-vertz/dist/
+/app/public/wp-content/themes/tema-vertz/assets/images/
 
-# Ignore node modules (se usar npm)
+# ============================================================
+# SQL — manter só para referência mas pesado, ignorar se quiser
+# ============================================================
+# /app/sql/
+
+# ============================================================
+# Node / Build
+# ============================================================
 node_modules/
+.npm/
+*.log
+npm-debug.log*
 
-# Ignore OS files
+# ============================================================
+# OS
+# ============================================================
 .DS_Store
 Thumbs.db
-.env
-.env.local
+desktop.ini
 
-# Ignore IDE
+# ============================================================
+# IDE
+# ============================================================
 .vscode/
 .idea/
 *.sublime-workspace
-*.sublime-project
 
-# Ignore logs
-/logs
-*.log
+# ============================================================
+# Env / Secrets
+# ============================================================
+.env
+.env.local
+.env.*.local
+wp-config.php
 
-# Ignore backups
-*.bak
-*.backup
-.backups/
-
-# Ignore local configurations
-.claude/settings.local.json
-
-# Keep documentation files
-!RESUMO-STATUS.txt
-!CONTEXT.md
-!feito-*.txt
-!README.md
-!.gitignore
+# ============================================================
+# Oxc / Linting
+# ============================================================
+.oxlintrc.json   # não ignorar — queremos versionar a config
+# mas ignorar cache se existir:
+.oxc_cache/
