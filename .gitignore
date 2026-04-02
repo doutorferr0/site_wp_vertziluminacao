@@ -74,3 +74,4 @@ wp-config.php
 *.bak
 package-lock.json
 .claude/
+app/sql/
