@@ -44,16 +44,22 @@ $theme_uri = get_template_directory_uri();
 
         <div class="d-flex flex-column grid-gap-15">
           <p class="fz-12 tt-uppercase m-0">Telefone / WhatsApp</p>
-          <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="fz-18 fz-xl-22 fw-400 lh-120 td-none color-current">
-            (11) 99999-9999
+          <a href="https://wa.me/5519999778710?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" class="fz-18 fz-xl-22 fw-400 lh-120 td-none color-current">
+            (19) 9 9977-8710 — WhatsApp
+          </a>
+        </div>
+
+        <div class="d-flex flex-column grid-gap-15">
+          <p class="fz-12 tt-uppercase m-0">Telefone fixo</p>
+          <a href="tel:+551932510501" class="fz-18 fz-xl-22 fw-400 lh-120 td-none color-current">
+            (19) 3251-0501
           </a>
         </div>
 
         <div class="d-flex flex-column grid-gap-15">
           <p class="fz-12 tt-uppercase m-0">Endereço</p>
           <address class="fz-16 fz-xl-18 lh-150 not-italic m-0">
-            Lorem ipsum, 123 — Sala 45<br>
-            São Paulo, SP — 01310-100
+            Campinas: R. Antônio Lapa, 328 — Cambuí<br>Campinas, SP — 13025-242<br><br>São Paulo: Alameda Casa Branca, 806 — Jardim Paulista<br>São Paulo, SP
           </address>
         </div>
 
@@ -61,12 +67,12 @@ $theme_uri = get_template_directory_uri();
           <p class="fz-12 tt-uppercase m-0">Siga-nos</p>
           <ul class="list-none m-0 p-0 d-flex flex-column grid-gap-8">
             <li>
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="fz-16 fz-xl-18 td-none color-current d-flex align-items-center grid-gap-10">
-                Instagram →
+              <a href="https://www.instagram.com/vertziluminacao/" target="_blank" rel="noopener" class="fz-16 fz-xl-18 td-none color-current d-flex align-items-center grid-gap-10">
+                @vertziluminacao →
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="fz-16 fz-xl-18 td-none color-current d-flex align-items-center grid-gap-10">
+              <a href="https://www.linkedin.com/company/vertziluminacao/" target="_blank" rel="noopener" class="fz-16 fz-xl-18 td-none color-current d-flex align-items-center grid-gap-10">
                 LinkedIn →
               </a>
             </li>
@@ -76,8 +82,9 @@ $theme_uri = get_template_directory_uri();
         <div class="d-flex flex-column grid-gap-15">
           <p class="fz-12 tt-uppercase m-0">Horário de atendimento</p>
           <p class="fz-14 fz-xl-16 lh-150 m-0">
-            Segunda a Sexta<br>
-            08h às 18h
+            Seg–Sex: 9h às 18h<br>
+            Sáb: 9h às 13h<br>
+            Dom: Fechado
           </p>
         </div>
 
