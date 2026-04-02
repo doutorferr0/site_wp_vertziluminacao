@@ -1684,3 +1684,286 @@ figure {
 .pb-row-servico .border-bottom {
   padding-bottom: var(--sp-30);
 }
+
+
+/* ============================================================
+   FAB — Floating Action Buttons
+   ============================================================ */
+.site-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  z-index: 8000;
+}
+
+.site-fab__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: var(--color-white);
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  flex-shrink: 0;
+}
+
+.site-fab__btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  fill: currentColor;
+}
+
+.site-fab__btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.24);
+  text-decoration: none;
+}
+
+.site-fab__btn--wa  { background: #25D366; }
+.site-fab__btn--wa:hover  { background: #1ebe5d; }
+
+.site-fab__btn--tel { background: var(--color-dark); }
+.site-fab__btn--tel:hover { background: var(--color-primary); }
+
+/* Label tooltip no hover — desktop */
+.site-fab__btn::before {
+  content: attr(data-label);
+  position: absolute;
+  right: calc(100% + 0.6rem);
+  background: var(--color-dark);
+  color: var(--color-white);
+  font-size: var(--fz-11);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  padding: 0.3em 0.7em;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .site-fab__btn:hover::before { opacity: 1; }
+  .site-fab__btn { width: 52px; height: 52px; }
+  .site-fab__btn svg { width: 22px; height: 22px; }
+}
+
+
+/* ============================================================
+   COOKIE BANNER — LGPD
+   ============================================================ */
+.site-cookies {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-dark);
+  color: var(--color-white);
+  z-index: 9500;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.site-cookies.is-visible {
+  transform: translateY(0);
+}
+
+.site-cookies__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .site-cookies__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+}
+
+.site-cookies__text {
+  flex: 1;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.8);
+}
+
+.site-cookies__text a {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+.site-cookies__text a:hover { opacity: 0.7; text-decoration: none; }
+
+.site-cookies__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.site-cookies__reject,
+.site-cookies__accept {
+  padding: 0.6em 1.2em;
+  font-family: var(--font-body);
+  font-size: var(--fz-11);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  border-radius: 0;
+}
+
+.site-cookies__reject {
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+}
+
+.site-cookies__reject:hover {
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+
+.site-cookies__accept {
+  background: var(--color-white);
+  color: var(--color-dark);
+  border-color: var(--color-white);
+}
+
+.site-cookies__accept:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+
+/* ============================================================
+   LEAD CAPTURE — Painel slide-in
+   ============================================================ */
+.site-lead {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  max-width: 380px;
+  background: var(--color-white);
+  box-shadow: -4px 0 40px rgba(0,0,0,0.14);
+  z-index: 8500;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.site-lead.is-visible {
+  transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+  .site-lead { max-width: 100%; }
+}
+
+.site-lead__inner {
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .site-lead__inner { padding: 2.5rem 2rem; }
+}
+
+.site-lead__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--color-gray-600);
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: color 0.2s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.site-lead__close:hover { color: var(--color-dark); }
+
+.site-lead__accent {
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--color-primary);
+  margin-bottom: 1.25rem;
+}
+
+.site-lead__form {
+  margin-top: 1.25rem;
+}
+
+.site-lead__lgpd {
+  font-size: var(--fz-11);
+  color: var(--color-gray-600);
+  line-height: 1.4;
+  margin: 0;
+}
+
+
+/* ============================================================
+   MOBILE — ajustes gerais de touch e legibilidade
+   ============================================================ */
+
+/* Touch targets mínimos 44px */
+a, button, [role="button"] {
+  min-height: 0; /* não força altura, mas os componentes respeitam */
+}
+
+/* Nav mobile — links com área de toque maior */
+.site-nav__menu a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* Inputs mobile — evita zoom automático no iOS (font-size >= 16px) */
+.pb-row-contato__input,
+.pb-row-contato__select,
+.pb-row-contato__textarea {
+  font-size: 1rem; /* 16px — abaixo disso iOS faz zoom no foco */
+}
+
+/* Botão submit mobile — largura total */
+@media (max-width: 767px) {
+  .pb-row-contato__field button[type="submit"],
+  .pb-row-contato__field .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  /* FAB mais próximo da borda no mobile */
+  .site-fab {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+/* Espaçamento extra no final do body para o FAB não cobrir conteúdo */
+@media (max-width: 767px) {
+  body { padding-bottom: 0; }
+}
