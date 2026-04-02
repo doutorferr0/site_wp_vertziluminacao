@@ -16,13 +16,13 @@
   <div class="site-header__wrap container-fluid d-flex justify-content-between align-items-start w-100 pt-20 pt-xl-40">
     <figure class="site-header__logo m-0 p-0 pointer-events-all color-red" role="banner">
       <a class="site-header__logoLink d-block w-100 color-current td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php bloginfo('name'); ?>">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Vertz Iluminação" width="157" height="53" loading="eager" decoding="async" style="display:block;width:157px;height:53px;object-fit:contain;">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Vertz Iluminação" width="180" height="61" loading="eager" decoding="async" style="display:block;width:180px;height:61px;object-fit:contain;">
       </a>
     </figure>
     <nav class="site-header__rightNav pointer-events-all">
       <ul class="site-header__rightMenu list-none m-0 p-0 d-flex align-items-center grid-gap-15 grid-gap-xl-20">
         <li>
-          <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default" aria-label="Fale Conosco">
+          <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default fw-500" aria-label="Fale Conosco">
             <span class="btn__bg" aria-hidden="true"></span>
             <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fale Conosco</span></span>
           </a>
