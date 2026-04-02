@@ -66,15 +66,33 @@
     var header = qs('.site-header');
     if (!header) return;
 
-    var scrollThreshold = 80;
-    var ticking = false;
+    var lastScrollY   = window.scrollY;
+    var ticking       = false;
+    var TOP_THRESHOLD = 60;   // px — abaixo disso considera "no topo"
+    var HIDE_DELAY    = 8;    // px mínimos de scroll para baixo antes de esconder
 
     function updateHeader() {
-      if (window.scrollY > scrollThreshold) {
-        header.classList.add('is-scrolled');
-      } else {
-        header.classList.remove('is-scrolled');
+      var currentY = window.scrollY;
+      var diff     = currentY - lastScrollY;
+
+      // No topo da página
+      if (currentY <= TOP_THRESHOLD) {
+        header.classList.add('is-top');
+        header.classList.remove('is-scrolled', 'is-hidden');
+        header.classList.add('is-visible');
+
+      // Scrollou para baixo além do threshold → esconde
+      } else if (diff > HIDE_DELAY) {
+        header.classList.remove('is-top', 'is-visible');
+        header.classList.add('is-scrolled', 'is-hidden');
+
+      // Scrollou para cima → aparece
+      } else if (diff < -HIDE_DELAY) {
+        header.classList.remove('is-top', 'is-hidden');
+        header.classList.add('is-scrolled', 'is-visible');
       }
+
+      lastScrollY = currentY <= 0 ? 0 : currentY;
       ticking = false;
     }
 
@@ -85,7 +103,7 @@
       }
     }, { passive: true });
 
-    // Estado inicial (ex: reload com página já scrollada)
+    // Estado inicial
     updateHeader();
   }
 
