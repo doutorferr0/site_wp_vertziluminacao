@@ -28,7 +28,7 @@
         </nav>
       </div>
       <a href="<?php echo esc_url(home_url('/')); ?>" class="site-footer__logo row-start-md-2 col-span-4 col-span-md-4 col-span-xl-10 d-block mt-30 mt-md-0" data-scroll data-scroll-offset="20%,100%" data-scroll-progress data-scroll-target=".site-footer">
-        <div style="width:157px;height:53px;background:#ccc;display:flex;align-items:center;justify-content:center;font-size:12px;color:#666;">LOGO</div>
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Vertz Iluminação" width="157" height="53" loading="eager" decoding="async" style="display:block;width:157px;height:53px;object-fit:contain;">
       </a>
       <p class="site-footer__copyright d-block d-md-none m-0 fz-13 lh-137 row-start-md-2 col-start-xl-13 col-span-2 col-span-xl-4 mt-15 mt-md-0">© <?php echo date('Y'); ?> <?php bloginfo('name'); ?></p>
     </div>
