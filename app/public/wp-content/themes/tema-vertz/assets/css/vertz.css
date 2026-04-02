@@ -649,8 +649,8 @@ figure {
 }
 
 .site-header__wrap {
-  padding-top: var(--sp-20);
-  padding-bottom: var(--sp-20);
+  padding-top: var(--sp-30);
+  padding-bottom: var(--sp-30);
   transition: padding 0.35s ease;
 }
 
@@ -658,6 +658,28 @@ figure {
 .site-header.is-top {
   background: transparent;
   box-shadow: none;
+}
+
+/* Texto branco quando header transparente (sobre hero escuro) */
+.site-header.is-top .site-header__rightMenuItems a {
+  color: var(--color-white);
+}
+.site-header.is-top .site-header__rightMenuItems a:hover {
+  color: rgba(255,255,255,0.6);
+}
+.site-header.is-top .btn.--cta.--cta-default {
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+.site-header.is-top .btn.--cta.--cta-default:hover {
+  background: var(--color-white);
+  color: var(--color-dark);
+}
+.site-header.is-top .btn.--cta.--cta-default .btn__bg {
+  background: var(--color-white);
+}
+.site-header.is-top .site-header__burger span {
+  background: var(--color-white);
 }
 
 /* Scrolled (saiu do topo): fundo branco + sombra */
@@ -668,8 +690,8 @@ figure {
 }
 
 .site-header.is-scrolled .site-header__wrap {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 /* Scroll para baixo: esconde o header (sobe fora da tela) */
@@ -684,12 +706,12 @@ figure {
 
 @media (min-width: 1280px) {
   .site-header__wrap {
-    padding-top: var(--sp-40);
-    padding-bottom: var(--sp-40);
+    padding-top: var(--sp-50);
+    padding-bottom: var(--sp-50);
   }
   .site-header.is-scrolled .site-header__wrap {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
   }
 }
 
@@ -710,9 +732,10 @@ figure {
 }
 
 .site-header__rightMenuItems a {
-  font-size: var(--fz-12);
+  font-size: var(--fz-13);
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: var(--color-dark);
   text-decoration: none;
   transition: color var(--transition-base);
@@ -779,7 +802,10 @@ figure {
 
 .btn.--cta.--cta-default {
   border: 1px solid var(--color-dark);
-  padding: 0.6em 1.4em;
+  padding: 0.7em 1.6em;
+  font-size: var(--fz-13);
+  font-weight: 500;
+  letter-spacing: 0.08em;
 }
 
 
