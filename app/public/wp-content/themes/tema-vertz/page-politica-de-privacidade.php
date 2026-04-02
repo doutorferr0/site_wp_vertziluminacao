@@ -26,7 +26,7 @@ get_header();
         <p class="fz-12 tt-uppercase" style="color:var(--color-gray-600)">Última atualização: <?php echo date('d/m/Y'); ?></p>
 
         <h2>1. Quem somos</h2>
-        <p>A <strong>Vertz Iluminação</strong>, inscrita no CNPJ sob nº [CNPJ], com sede na R. Antônio Lapa, 328 — Cambuí, Campinas — SP, é a controladora dos dados pessoais tratados por meio deste site, nos termos da Lei nº 13.709/2018 (Lei Geral de Proteção de Dados — LGPD).</p>
+        <p>A <strong>Vertz Iluminação</strong>, inscrita no CNPJ sob nº 07.002.210/0001-68, com sede na R. Antônio Lapa, 328 — Cambuí, Campinas — SP, é a controladora dos dados pessoais tratados por meio deste site, nos termos da Lei nº 13.709/2018 (Lei Geral de Proteção de Dados — LGPD).</p>
         <p>Contato do responsável pelo tratamento de dados: <a href="mailto:contato@vertziluminacao.com.br">contato@vertziluminacao.com.br</a></p>
 
         <h2>2. Quais dados coletamos</h2>
