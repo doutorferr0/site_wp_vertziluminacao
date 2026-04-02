@@ -22,10 +22,10 @@
     <nav class="site-header__rightNav pointer-events-all">
       <ul class="site-header__rightMenu list-none m-0 p-0 d-flex align-items-center grid-gap-15 grid-gap-xl-20">
         <li>
-          <button class="btn site-header__signupBtn --cta --cta-default" aria-label="Fale Conosco">
+          <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default" aria-label="Fale Conosco">
             <span class="btn__bg" aria-hidden="true"></span>
-            <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fechar</span></span>
-          </button>
+            <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fale Conosco</span></span>
+          </a>
         </li>
         <li class="d-none d-md-block">
           <?php wp_nav_menu(array('theme_location'=>'primary','container'=>false,'menu_class'=>'site-header__rightMenuItems d-flex align-items-center fz-12 tt-uppercase list-none m-0 p-0')); ?>
@@ -49,3 +49,4 @@
   </div>
 </div>
 <main class="flex-grow-1" role="main">
+
