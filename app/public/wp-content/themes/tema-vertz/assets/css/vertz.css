@@ -641,16 +641,26 @@ figure {
   left: 0;
   width: 100%;
   z-index: var(--z-header);
-  transition: background var(--transition-base), box-shadow var(--transition-base);
+  /* transform controla show/hide; background e shadow via classes */
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background 0.35s ease,
+              box-shadow 0.35s ease,
+              padding 0.35s ease;
 }
 
 .site-header__wrap {
   padding-top: var(--sp-20);
   padding-bottom: var(--sp-20);
-  transition: padding var(--transition-base);
+  transition: padding 0.35s ease;
 }
 
-/* Estado scrolled */
+/* No topo: transparente, fundido com background */
+.site-header.is-top {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Scrolled (saiu do topo): fundo branco + sombra */
 .site-header.is-scrolled {
   background: var(--color-white);
   box-shadow: 0 1px 20px rgba(0,0,0,0.08);
@@ -660,6 +670,16 @@ figure {
 .site-header.is-scrolled .site-header__wrap {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+/* Scroll para baixo: esconde o header (sobe fora da tela) */
+.site-header.is-hidden {
+  transform: translateY(-100%);
+}
+
+/* Scroll para cima: mostra o header */
+.site-header.is-visible {
+  transform: translateY(0);
 }
 
 @media (min-width: 1280px) {
