@@ -33,6 +33,9 @@
   --color-copper:      #8A3B02;   /* materialidade — Coleção Cobre, peças assinadas */
   --color-gray-100:    #E3DDD6;   /* alias para surface (usado em templates) */
 
+  /* Cor adicional de destaque — brown-red, usado junto aos amarelos */
+  --color-accent:      #A52A2A;   /* destaque quente — títulos de seção, separadores, ícones premium */
+
   /* Tipografia */
   --font-heading:      'Playfair Display', Georgia, serif;
   --font-body:         'Inter', system-ui, sans-serif;
@@ -420,6 +423,8 @@ figure {
 .bg-color-primary { background-color: var(--color-primary); }
 .bg-color-premium { background-color: var(--color-premium); }
 .bg-color-copper  { background-color: var(--color-copper); }
+.color-accent     { color: var(--color-accent); }
+.bg-color-accent  { background-color: var(--color-accent); }
 
 
 /* ============================================================
@@ -510,9 +515,11 @@ figure {
 .td-none { text-decoration: none; }
 
 /* Font style via modificadores */
-.title-highlight.--font-heading { font-family: var(--font-heading); }
-.title-highlight.--fs-italic    { font-style: italic; }
-.title-highlight                { color: var(--color-primary); }
+.title-highlight.--font-heading  { font-family: var(--font-heading); }
+.title-highlight.--fs-italic     { font-style: italic; }
+.title-highlight                 { color: var(--color-primary); }
+.title-highlight.--color-accent  { color: var(--color-accent); }
+.title-highlight.--color-premium { color: var(--color-premium); }
 
 
 /* ============================================================
@@ -664,8 +671,8 @@ figure {
 }
 
 .site-header__wrap {
-  padding-top: var(--sp-30);
-  padding-bottom: var(--sp-30);
+  padding-top: var(--sp-20);
+  padding-bottom: var(--sp-20);
   transition: padding 0.35s ease;
 }
 
@@ -705,8 +712,8 @@ figure {
 }
 
 .site-header.is-scrolled .site-header__wrap {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: var(--sp-15);
+  padding-bottom: var(--sp-15);
 }
 
 /* Nav links brancos sobre header escuro */
@@ -740,12 +747,12 @@ figure {
 
 @media (min-width: 1280px) {
   .site-header__wrap {
-    padding-top: var(--sp-50);
-    padding-bottom: var(--sp-50);
+    padding-top: var(--sp-24);
+    padding-bottom: var(--sp-24);
   }
   .site-header.is-scrolled .site-header__wrap {
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+    padding-top: var(--sp-15);
+    padding-bottom: var(--sp-15);
   }
 }
 
