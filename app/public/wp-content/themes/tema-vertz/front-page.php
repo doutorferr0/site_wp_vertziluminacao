@@ -21,16 +21,23 @@ $theme_uri = get_template_directory_uri();
             data-scroll
             data-scroll-target="#pb-row-hero-1"
             data-scroll-progress="easeInCubic">
+            <?php
+            $video_path = get_template_directory() . '/assets/images/hero-video.mp4';
+            $poster_path = get_template_directory() . '/assets/images/hero-poster.jpg';
+            $poster_attr = file_exists( $poster_path )
+              ? 'poster="' . esc_url( $theme_uri ) . '/assets/images/hero-poster.jpg"'
+              : '';
+            if ( file_exists( $video_path ) ) : ?>
             <video
               class="w-100 pb-row-hero__video"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
+              autoplay muted loop playsinline preload="none"
+              <?php echo $poster_attr; ?>
               style="aspect-ratio:16/9;object-fit:cover;display:block;">
               <source src="<?php echo esc_url( $theme_uri ); ?>/assets/images/hero-video.mp4" type="video/mp4">
             </video>
+            <?php else : ?>
+            <div class="pb-row-hero__videoFallback" style="width:100%;aspect-ratio:16/9;background:var(--color-header-bg);display:block;"></div>
+            <?php endif; ?>
           </div>
         </div>
       </figure>
