@@ -69,6 +69,7 @@ $theme_uri = get_template_directory_uri();
       <h2 class="page-heading__title ff-body fz-28 fz-md-44 fz-xl-64 fw-400 lh-107 lh-md-none lh-xl-93 ls--4 ta-center m-0 mt-20 mt-md-30 mt-xl-40"
         data-splitting="wordsMask"
         data-scroll
+        data-reveal
         data-text-animation="slidein-by-lines"
         data-scroll-target="#pb-row-page-heading-1"
         data-scroll-offset="80px,0"
