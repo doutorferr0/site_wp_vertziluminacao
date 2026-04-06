@@ -357,30 +357,45 @@
      Cards menores e mais eficientes.
   ============================================================ */
   function initCardsSlider() {
-    // Aguarda Swiper estar disponível
     if (typeof Swiper === 'undefined') return;
 
-    var cardsSliders = qsa('.pb-row-cards-slider__slider.swiper');
+    var cardsSliders = qsa('.pb-row-cards-slider__slider');
     if (!cardsSliders.length) return;
 
     cardsSliders.forEach(function (sliderEl) {
-      var _swiper = new Swiper(sliderEl, {
+      // Garantir que o elemento tem a classe .swiper antes de inicializar
+      if (!sliderEl.classList.contains('swiper')) {
+        sliderEl.classList.add('swiper');
+      }
+
+      // Destruir instância anterior se existir
+      if (sliderEl.swiper) {
+        sliderEl.swiper.destroy(true, true);
+      }
+
+      new Swiper(sliderEl, {
         slidesPerView: 1.2,
-        spaceBetween: 12,
+        spaceBetween: 16,
         loop: true,
-        speed: 700,
+        speed: 600,
+        grabCursor: true,
         autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
+          delay: 4000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
         },
         breakpoints: {
           768: {
             slidesPerView: 2.2,
-            spaceBetween: 12
+            spaceBetween: 16
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 20
           },
           1280: {
             slidesPerView: 4,
-            spaceBetween: 12
+            spaceBetween: 20
           }
         }
       });
