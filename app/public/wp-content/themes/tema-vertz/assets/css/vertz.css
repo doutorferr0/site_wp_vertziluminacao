@@ -1403,47 +1403,22 @@ figure {
 
 
 /* ============================================================
-   CARDS SLIDER (Otimizado - Cards Menores)
+   CARDS SLIDER
    ============================================================ */
 
 .pb-row-cards-slider {
   position: relative;
 }
 
+/* Não definir overflow ou flex no slider — Swiper gerencia */
 .pb-row-cards-slider__slider {
   width: 100%;
-  overflow: hidden;
 }
 
-.pb-row-cards-slider__sliderWrap {
-  display: flex;
-  width: 100%;
-  gap: 0;
-}
-
-/* Slide individual */
+/* Slide individual — NÃO sobrescrever flex-basis (Swiper gerencia width inline) */
 .pb-row-cards-slider__slide {
-  flex: 0 0 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 12px;
-}
-
-/* Breakpoints para mostrar múltiplos cards */
-@media (min-width: 768px) {
-  .pb-row-cards-slider__slide {
-    flex: 0 0 50%;
-    padding: 0 12px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .pb-row-cards-slider__slide {
-    flex: 0 0 calc(25% - 12px);
-    padding: 0 6px;
-  }
+  height: auto;
+  box-sizing: border-box;
 }
 
 /* Caixa do slide - compacta */
