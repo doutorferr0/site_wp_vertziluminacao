@@ -209,7 +209,7 @@ $theme_uri = get_template_directory_uri();
       class="pb-row pb-row-razoes"
       data-scroll data-scroll-offset="100px,0" data-module-delay>
 
-      <!-- Cabeçalho da seção -->
+      <!-- Cabeçalho -->
       <header class="container-fluid mb-40 mb-md-60" data-scroll data-scroll-offset="80px,0" data-module-delay>
         <p class="fz-12 tt-uppercase m-0 mb-15" style="color:var(--color-gray-600)">Por que escolher a Vertz</p>
         <h2 class="ff-body fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0">
@@ -223,89 +223,24 @@ $theme_uri = get_template_directory_uri();
 
           <?php
           $razoes = [
-            [
-              'num'    => '01',
-              'titulo' => 'Experiência comprovada',
-              'gif'    => 'razoes-01.gif',
-              'acento' => 'Mais de 20 anos no mercado,',
-              'texto'  => 'iluminando projetos residenciais e comerciais de alto padrão em todo o Brasil.',
-            ],
-            [
-              'num'    => '02',
-              'titulo' => 'Projeto luminotécnico completo',
-              'gif'    => 'razoes-02.gif',
-              'acento' => 'Do briefing ao memorial descritivo,',
-              'texto'  => 'desenvolvemos o projeto técnico executivo com cálculo de iluminância e renderização 3D.',
-            ],
-            [
-              'num'    => '03',
-              'titulo' => 'Marcas exclusivas',
-              'gif'    => 'razoes-03.gif',
-              'acento' => 'Revendedor exclusivo de marcas premium,',
-              'texto'  => 'como Iluminar, Fillamento, DsgnSelo, Wentz e Aver Design — curadoria que você não encontra em qualquer lugar.',
-            ],
-            [
-              'num'    => '04',
-              'titulo' => 'Eficiência energética real',
-              'gif'    => 'razoes-04.gif',
-              'acento' => 'Redução de até 80% no consumo',
-              'texto'  => 'com tecnologia LED certificada — menos conta de luz, mais impacto visual e sustentabilidade comprovada.',
-            ],
-            [
-              'num'    => '05',
-              'titulo' => 'Soluções sob medida',
-              'gif'    => 'razoes-05.gif',
-              'acento' => 'Cada projeto é único,',
-              'texto'  => 'desenvolvido exclusivamente para o seu espaço, estilo e orçamento — sem soluções genéricas ou prontas.',
-            ],
-            [
-              'num'    => '06',
-              'titulo' => 'Acompanhamento de obra',
-              'gif'    => 'razoes-06.gif',
-              'acento' => 'Nossa equipe técnica acompanha',
-              'texto'  => 'todas as etapas da instalação, garantindo que o resultado final seja exatamente o que foi projetado.',
-            ],
-            [
-              'num'    => '07',
-              'titulo' => 'Parceria com arquitetos',
-              'gif'    => 'razoes-07.gif',
-              'acento' => 'Trabalhamos lado a lado com',
-              'texto'  => 'arquitetos e designers de interiores, oferecendo especificação técnica, amostras e suporte completo ao projeto.',
-            ],
-            [
-              'num'    => '08',
-              'titulo' => 'Showrooms em SP e Campinas',
-              'gif'    => 'razoes-08.gif',
-              'acento' => 'Visite nossos showrooms modernos',
-              'texto'  => 'em São Paulo e Campinas — espaços projetados para você ver, testar e sentir cada solução de iluminação ao vivo.',
-            ],
-            [
-              'num'    => '09',
-              'titulo' => 'Tecnologia e design juntos',
-              'gif'    => 'razoes-09.gif',
-              'acento' => 'Unimos alta performance técnica',
-              'texto'  => 'com estética contemporânea — luminárias que funcionam perfeitamente e valorizam qualquer ambiente.',
-            ],
-            [
-              'num'    => '10',
-              'titulo' => 'Garantia e suporte técnico',
-              'gif'    => 'razoes-10.gif',
-              'acento' => 'Dois anos de garantia',
-              'texto'  => 'em todos os produtos e suporte técnico especializado para dúvidas, manutenção ou substituição quando necessário.',
-            ],
+            [ 'titulo' => 'Experiência comprovada',          'gif' => 'razoes-01.gif', 'acento' => 'Mais de 20 anos no mercado,',           'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
+            [ 'titulo' => 'Projeto luminotécnico completo',  'gif' => 'razoes-02.gif', 'acento' => 'Do briefing ao memorial descritivo,',   'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
+            [ 'titulo' => 'Marcas exclusivas',               'gif' => 'razoes-03.gif', 'acento' => 'Revendedor exclusivo de marcas premium,','texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
+            [ 'titulo' => 'Eficiência energética real',      'gif' => 'razoes-04.gif', 'acento' => 'Redução de até 80% no consumo,',         'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
+            [ 'titulo' => 'Soluções sob medida',             'gif' => 'razoes-05.gif', 'acento' => 'Cada projeto é único,',                 'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
+            [ 'titulo' => 'Acompanhamento de obra',          'gif' => 'razoes-06.gif', 'acento' => 'Nossa equipe técnica acompanha',        'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
+            [ 'titulo' => 'Parceria com arquitetos',         'gif' => 'razoes-07.gif', 'acento' => 'Trabalhamos lado a lado com',           'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
+            [ 'titulo' => 'Showrooms em SP e Campinas',      'gif' => 'razoes-08.gif', 'acento' => 'Visite nossos showrooms modernos',      'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
+            [ 'titulo' => 'Tecnologia e design juntos',      'gif' => 'razoes-09.gif', 'acento' => 'Unimos alta performance técnica',       'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
+            [ 'titulo' => 'Garantia e suporte técnico',      'gif' => 'razoes-10.gif', 'acento' => 'Dois anos de garantia',                 'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
           ];
           foreach ( $razoes as $index => $razao ) : ?>
 
           <div class="pb-row-razoes__slide swiper-slide" style="--index:<?php echo $index; ?>">
             <div class="pb-row-razoes__card">
 
-              <!-- Número -->
-              <span class="pb-row-razoes__num fz-11 tt-uppercase fw-500" style="color:var(--color-gray-600)">
-                <?php echo esc_html( $razao['num'] ); ?>
-              </span>
-
               <!-- Título em itálico -->
-              <h3 class="pb-row-razoes__titulo ff-heading fs-italic fw-400">
+              <h3 class="pb-row-razoes__titulo ff-heading fs-italic fw-400 m-0">
                 <?php echo esc_html( $razao['titulo'] ); ?>
               </h3>
 
@@ -319,7 +254,7 @@ $theme_uri = get_template_directory_uri();
                   style="width:100%;aspect-ratio:1/1;object-fit:contain;display:block;">
               </figure>
 
-              <!-- Texto — primeiras palavras em accent, resto em dark -->
+              <!-- Texto -->
               <p class="pb-row-razoes__texto m-0">
                 <span class="pb-row-razoes__acento"><?php echo esc_html( $razao['acento'] ); ?></span>
                 <?php echo esc_html( ' ' . $razao['texto'] ); ?>
@@ -330,8 +265,8 @@ $theme_uri = get_template_directory_uri();
 
           <?php endforeach; ?>
 
-        </div><!-- /.swiper-wrapper -->
-      </div><!-- /.swiper -->
+        </div>
+      </div>
 
     </div>
   </div>
