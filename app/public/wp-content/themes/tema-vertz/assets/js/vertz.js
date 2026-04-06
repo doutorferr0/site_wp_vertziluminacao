@@ -292,7 +292,29 @@
   }
 
   /* INIT */
-  function init() {
+
+  /* ============================================================
+     10 RAZÕES PARA VERTZ — Slider
+     ============================================================ */
+  function initRazoesSlider() {
+    if (typeof Swiper === 'undefined') return;
+    var sliders = qsa('.pb-row-razoes__slider.swiper');
+    if (!sliders.length) return;
+    sliders.forEach(function (el) {
+      new Swiper(el, {
+        slidesPerView: 1.15,
+        spaceBetween: 0,
+        loop: false,
+        speed: 600,
+        breakpoints: {
+          768:  { slidesPerView: 2.2 },
+          1280: { slidesPerView: 4.3 }
+        }
+      });
+    });
+  }
+
+    function init() {
     initLoader();
     initStickyHeader();
     initBurgerMenu();
@@ -300,6 +322,8 @@
     initScrollAnimations();
     initHeroVideo();
     initPartnersTicker();
+    initRazoesSlider();
+    initRazoesSlider();
     initCookieBanner();
     initLeadCapture();
     initFab();
