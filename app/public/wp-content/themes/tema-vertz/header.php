@@ -13,7 +13,7 @@
 <div data-windmill="wrapper">
 <div data-windmill="container" data-ui="gform">
 <header class="site-header position-fixed z-9000 t-0 l-0 w-100 pointer-events-none">
-  <div class="site-header__wrap container-fluid d-flex justify-content-between align-items-start w-100 pt-20 pt-xl-40">
+  <div class="site-header__wrap container-fluid d-flex justify-content-between align-items-center w-100">
     <figure class="site-header__logo m-0 p-0 pointer-events-all color-red" role="banner">
       <a class="site-header__logoLink d-block w-100 color-current td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php bloginfo('name'); ?>">
         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Vertz Iluminação" width="180" height="61" loading="eager" decoding="async" style="display:block;width:180px;height:61px;object-fit:contain;">
