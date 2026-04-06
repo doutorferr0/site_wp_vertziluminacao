@@ -302,14 +302,11 @@
     if (!sliders.length) return;
     sliders.forEach(function (el) {
       new Swiper(el, {
-        slidesPerView: 1.15,
-        spaceBetween: 0,
-        loop: false,
-        speed: 600,
-        breakpoints: {
-          768:  { slidesPerView: 2.2 },
-          1280: { slidesPerView: 4.3 }
-        }
+        slidesPerView: 'auto',  /* respeita width do CSS */
+        spaceBetween: 0,        /* espaço via padding-right no CSS */
+        loop: true,
+        speed: 700,
+        loopAdditionalSlides: 3,
       });
     });
   }
