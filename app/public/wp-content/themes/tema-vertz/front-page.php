@@ -202,66 +202,139 @@ $theme_uri = get_template_directory_uri();
 
 
   <!-- ============================================================
-    SEÇÃO 4.5: CARDS SLIDER — Projetos / Cases
+    SEÇÃO 4.5: 10 RAZÕES PARA VERTZ — Cards slider
   ============================================================ -->
-  <div class="pb-row-wrapper position-relative pt-50 pb-50 pt-md-80 pb-md-80 pt-xl-110 pb-xl-110 mt-0 mb-0 --layout-pb-row-cards-slider" style="--zindex:4.5">
-    <div id="pb-row-cards-slider-1"
-      class="pb-row pb-row-cards-slider"
-      data-scroll
-      data-scroll-offset="100px,0"
-      data-module-delay
-      data-module="pb-row-cards-slider">
+  <div class="pb-row-wrapper position-relative pt-50 pb-50 pt-md-80 pb-md-80 pt-xl-110 pb-xl-110 mt-0 mb-0" style="--zindex:4.5;background:var(--color-surface);">
+    <div id="pb-row-razoes-1"
+      class="pb-row pb-row-razoes"
+      data-scroll data-scroll-offset="100px,0" data-module-delay>
 
-      <div class="pb-row-cards-slider__slider swiper">
-        <div class="pb-row-cards-slider__sliderWrap swiper-wrapper order-xl-2">
+      <!-- Cabeçalho da seção -->
+      <header class="container-fluid mb-40 mb-md-60" data-scroll data-scroll-offset="80px,0" data-module-delay>
+        <p class="fz-12 tt-uppercase m-0 mb-15" style="color:var(--color-gray-600)">Por que escolher a Vertz</p>
+        <h2 class="ff-body fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0">
+          10 razões para <span class="title-highlight --font-heading --fs-italic">iluminar</span> com a Vertz.
+        </h2>
+      </header>
+
+      <!-- Slider -->
+      <div class="pb-row-razoes__slider swiper">
+        <div class="pb-row-razoes__sliderWrap swiper-wrapper">
 
           <?php
-          $cards_data = [
-            [ 'title' => 'Iluminação Inteligente',   'subtitle' => 'Automação residencial',    'desc' => 'Soluções inteligentes que permitem controlar a iluminação de forma prática e eficiente em sua residência.',    'img' => 'card-01.jpg' ],
-            [ 'title' => 'Eficiência Energética',    'subtitle' => 'Tecnologia LED avançada',  'desc' => 'Redução de até 80% no consumo de energia com tecnologia LED de última geração para seus ambientes.',          'img' => 'card-02.jpg' ],
-            [ 'title' => 'Design Moderno',           'subtitle' => 'Estética contemporânea',   'desc' => 'Luminárias elegantes que se adaptam perfeitamente ao seu estilo e ambiente.',                                  'img' => 'card-03.jpg' ],
-            [ 'title' => 'Comercial Premium',        'subtitle' => 'Soluções para lojas',      'desc' => 'Iluminação estratégica que destaca seus produtos e cria uma experiência visual única.',                        'img' => 'card-04.jpg' ],
-            [ 'title' => 'Ambientes Corporativos',   'subtitle' => 'Escritórios modernos',     'desc' => 'Ambientes corporativos com iluminação que aumenta a produtividade e bem-estar.',                               'img' => 'card-05.jpg' ],
-            [ 'title' => 'Espaços Externos',         'subtitle' => 'Iluminação externa',       'desc' => 'Soluções robustas para fachadas, jardins e áreas externas com durabilidade garantida.',                       'img' => 'card-06.jpg' ],
-            [ 'title' => 'Hospitais e Clínicas',     'subtitle' => 'Ambientes de saúde',       'desc' => 'Iluminação especializada que auxilia diagnóstico e proporciona conforto aos pacientes.',                       'img' => 'card-07.jpg' ],
-            [ 'title' => 'Espaços de Lazer',         'subtitle' => 'Restaurantes e bares',     'desc' => 'Atmosfera perfeita com iluminação que realça a decoração e cria ambiance elegante.',                          'img' => 'card-08.jpg' ],
-            [ 'title' => 'Educação',                 'subtitle' => 'Escolas e universidades',  'desc' => 'Ambientes de aprendizado com iluminação ideal para reduzir fadiga visual e melhorar concentração.',            'img' => 'card-09.jpg' ],
-            [ 'title' => 'Indústria',                'subtitle' => 'Ambiente industrial',      'desc' => 'Soluções de iluminação profissional para ambientes industriais com segurança garantida.',                      'img' => 'card-10.jpg' ],
-            [ 'title' => 'Museus e Galerias',        'subtitle' => 'Arte e cultura',           'desc' => 'Iluminação de museus que preserva obras de arte com precisão cromática perfeita.',                             'img' => 'card-11.jpg' ],
-            [ 'title' => 'Hotelaria',                'subtitle' => 'Hotéis e resorts',         'desc' => 'Iluminação de luxo que cria uma experiência memorável para seus hóspedes.',                                   'img' => 'card-12.jpg' ],
-            [ 'title' => 'Esportes',                 'subtitle' => 'Ginásios e estádios',      'desc' => 'Iluminação de alto desempenho para ambientes esportivos profissionais e amadores.',                           'img' => 'card-13.jpg' ],
-            [ 'title' => 'Residências Luxo',         'subtitle' => 'Premium residencial',      'desc' => 'Sistemas de iluminação de luxo que transformam residências em ambientes sofisticados.',                        'img' => 'card-14.jpg' ],
-            [ 'title' => 'Soluções Personalizadas',  'subtitle' => 'Personalizadas',           'desc' => 'Cada projeto é único. Desenvolvemos soluções customizadas conforme suas necessidades.',                        'img' => 'card-15.jpg' ],
+          $razoes = [
+            [
+              'num'    => '01',
+              'titulo' => 'Experiência comprovada',
+              'gif'    => 'razoes-01.gif',
+              'acento' => 'Mais de 20 anos no mercado,',
+              'texto'  => 'iluminando projetos residenciais e comerciais de alto padrão em todo o Brasil.',
+            ],
+            [
+              'num'    => '02',
+              'titulo' => 'Projeto luminotécnico completo',
+              'gif'    => 'razoes-02.gif',
+              'acento' => 'Do briefing ao memorial descritivo,',
+              'texto'  => 'desenvolvemos o projeto técnico executivo com cálculo de iluminância e renderização 3D.',
+            ],
+            [
+              'num'    => '03',
+              'titulo' => 'Marcas exclusivas',
+              'gif'    => 'razoes-03.gif',
+              'acento' => 'Revendedor exclusivo de marcas premium,',
+              'texto'  => 'como Iluminar, Fillamento, DsgnSelo, Wentz e Aver Design — curadoria que você não encontra em qualquer lugar.',
+            ],
+            [
+              'num'    => '04',
+              'titulo' => 'Eficiência energética real',
+              'gif'    => 'razoes-04.gif',
+              'acento' => 'Redução de até 80% no consumo',
+              'texto'  => 'com tecnologia LED certificada — menos conta de luz, mais impacto visual e sustentabilidade comprovada.',
+            ],
+            [
+              'num'    => '05',
+              'titulo' => 'Soluções sob medida',
+              'gif'    => 'razoes-05.gif',
+              'acento' => 'Cada projeto é único,',
+              'texto'  => 'desenvolvido exclusivamente para o seu espaço, estilo e orçamento — sem soluções genéricas ou prontas.',
+            ],
+            [
+              'num'    => '06',
+              'titulo' => 'Acompanhamento de obra',
+              'gif'    => 'razoes-06.gif',
+              'acento' => 'Nossa equipe técnica acompanha',
+              'texto'  => 'todas as etapas da instalação, garantindo que o resultado final seja exatamente o que foi projetado.',
+            ],
+            [
+              'num'    => '07',
+              'titulo' => 'Parceria com arquitetos',
+              'gif'    => 'razoes-07.gif',
+              'acento' => 'Trabalhamos lado a lado com',
+              'texto'  => 'arquitetos e designers de interiores, oferecendo especificação técnica, amostras e suporte completo ao projeto.',
+            ],
+            [
+              'num'    => '08',
+              'titulo' => 'Showrooms em SP e Campinas',
+              'gif'    => 'razoes-08.gif',
+              'acento' => 'Visite nossos showrooms modernos',
+              'texto'  => 'em São Paulo e Campinas — espaços projetados para você ver, testar e sentir cada solução de iluminação ao vivo.',
+            ],
+            [
+              'num'    => '09',
+              'titulo' => 'Tecnologia e design juntos',
+              'gif'    => 'razoes-09.gif',
+              'acento' => 'Unimos alta performance técnica',
+              'texto'  => 'com estética contemporânea — luminárias que funcionam perfeitamente e valorizam qualquer ambiente.',
+            ],
+            [
+              'num'    => '10',
+              'titulo' => 'Garantia e suporte técnico',
+              'gif'    => 'razoes-10.gif',
+              'acento' => 'Dois anos de garantia',
+              'texto'  => 'em todos os produtos e suporte técnico especializado para dúvidas, manutenção ou substituição quando necessário.',
+            ],
           ];
+          foreach ( $razoes as $index => $razao ) : ?>
 
-          $cards_total = count( $cards_data );
+          <div class="pb-row-razoes__slide swiper-slide" style="--index:<?php echo $index; ?>">
+            <div class="pb-row-razoes__card">
 
-          foreach ( $cards_data as $index => $card ) : ?>
-            <div class="pb-row-cards-slider__slide swiper-slide"
-              style="--index:<?php echo $index; ?>;--rev-index:<?php echo $cards_total - 1 - $index; ?>">
-              <div class="pb-row-cards-slider__slideBox">
-                <h3 class="pb-row-cards-slider__title"><?php echo esc_html( $card['title'] ); ?></h3>
-                <figure class="pb-row-cards-slider__imgBox">
-                  <img
-                    src="<?php echo esc_url( $theme_uri ); ?>/assets/images/<?php echo esc_attr( $card['img'] ); ?>"
-                    alt="<?php echo esc_attr( $card['title'] ); ?> — Vertz Iluminação"
-                    loading="lazy"
-                    decoding="async"
-                    style="width:100%;height:100%;object-fit:cover;display:block;">
-                </figure>
-                <div class="pb-row-cards-slider__textWrap">
-                  <p class="pb-row-cards-slider__subtitle"><?php echo esc_html( $card['subtitle'] ); ?></p>
-                  <p class="pb-row-cards-slider__text"><?php echo esc_html( $card['desc'] ); ?></p>
-                </div>
-              </div>
+              <!-- Número -->
+              <span class="pb-row-razoes__num fz-11 tt-uppercase fw-500" style="color:var(--color-gray-600)">
+                <?php echo esc_html( $razao['num'] ); ?>
+              </span>
+
+              <!-- Título em itálico -->
+              <h3 class="pb-row-razoes__titulo ff-heading fs-italic fw-400">
+                <?php echo esc_html( $razao['titulo'] ); ?>
+              </h3>
+
+              <!-- GIF central -->
+              <figure class="pb-row-razoes__gif m-0">
+                <img
+                  src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/<?php echo esc_attr( $razao['gif'] ); ?>"
+                  alt="<?php echo esc_attr( $razao['titulo'] ); ?>"
+                  loading="lazy"
+                  decoding="async"
+                  style="width:100%;aspect-ratio:1/1;object-fit:contain;display:block;">
+              </figure>
+
+              <!-- Texto — primeiras palavras em accent, resto em dark -->
+              <p class="pb-row-razoes__texto m-0">
+                <span class="pb-row-razoes__acento"><?php echo esc_html( $razao['acento'] ); ?></span>
+                <?php echo esc_html( ' ' . $razao['texto'] ); ?>
+              </p>
+
             </div>
+          </div>
+
           <?php endforeach; ?>
 
-        </div><!-- /.pb-row-cards-slider__sliderWrap -->
-      </div><!-- /.pb-row-cards-slider__slider -->
+        </div><!-- /.swiper-wrapper -->
+      </div><!-- /.swiper -->
 
-    </div><!-- /.pb-row pb-row-cards-slider -->
-  </div><!-- /.pb-row-wrapper -->
+    </div>
+  </div>
 
 
   <!-- ============================================================
