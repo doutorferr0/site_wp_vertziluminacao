@@ -30,24 +30,41 @@
     var header = qs('.site-header');
     if (!header) return;
     var lastScrollY = window.scrollY, ticking = false;
-    var TOP_THRESHOLD = 60, HIDE_DELAY = 8;
+    var TOP_THRESHOLD = 80, HIDE_DELAY = 6;
+    var wasAtTop = true;
+
+    function triggerLogoAnimation() {
+      var logo = qs('.site-header__logo img', header);
+      if (!logo) return;
+      logo.style.animation = 'none';
+      logo.offsetHeight; // force reflow
+      logo.style.animation = '';
+    }
+
     function updateHeader() {
       var currentY = window.scrollY;
       var diff = currentY - lastScrollY;
-      if (currentY <= TOP_THRESHOLD) {
+      var isAtTop = currentY <= TOP_THRESHOLD;
+
+      if (isAtTop) {
+        if (!wasAtTop) triggerLogoAnimation(); // voltou ao topo — anima logo
         header.classList.add('is-top');
         header.classList.remove('is-scrolled', 'is-hidden');
         header.classList.add('is-visible');
+        wasAtTop = true;
       } else if (diff > HIDE_DELAY) {
         header.classList.remove('is-top', 'is-visible');
         header.classList.add('is-scrolled', 'is-hidden');
+        wasAtTop = false;
       } else if (diff < -HIDE_DELAY) {
         header.classList.remove('is-top', 'is-hidden');
         header.classList.add('is-scrolled', 'is-visible');
+        wasAtTop = false;
       }
       lastScrollY = currentY <= 0 ? 0 : currentY;
       ticking = false;
     }
+
     window.addEventListener('scroll', function () {
       if (!ticking) { window.requestAnimationFrame(updateHeader); ticking = true; }
     }, { passive: true });
