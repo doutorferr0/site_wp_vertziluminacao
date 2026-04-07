@@ -313,47 +313,101 @@
 
   
 
+
+
+
   /* ============================================================
-     CURSOR CUSTOMIZADO — segue o mouse suavemente
+     COUNTER ANIMADO — números que contam ao entrar no viewport
      ============================================================ */
-  function initCustomCursor() {
-    // Só desktop com hover
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  function initCounters() {
+    var counters = qsa('[data-count]');
+    if (!counters.length || !('IntersectionObserver' in window)) return;
 
-    var cursor = document.createElement('div');
-    cursor.className = 'site-cursor';
-    document.body.appendChild(cursor);
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el     = entry.target;
+        var target = parseFloat(el.getAttribute('data-count'));
+        var prefix = el.getAttribute('data-count-prefix') || '';
+        var suffix = el.getAttribute('data-count-suffix') || '';
+        var dur    = 1800;
+        var start  = null;
+        var isFloat = String(target).includes('.');
 
-    var cx = 0, cy = 0, tx = 0, ty = 0;
-    var raf;
+        function step(ts) {
+          if (!start) start = ts;
+          var prog = Math.min((ts - start) / dur, 1);
+          var ease = 1 - Math.pow(1 - prog, 4); // easeOutQuart
+          var val  = target * ease;
+          el.textContent = prefix + (isFloat ? val.toFixed(1) : Math.round(val)) + suffix;
+          if (prog < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        obs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
 
-    document.addEventListener('mousemove', function (e) {
-      tx = e.clientX;
-      ty = e.clientY;
-    });
-
-    function loop() {
-      cx += (tx - cx) * 0.15;
-      cy += (ty - cy) * 0.15;
-      cursor.style.left = cx + 'px';
-      cursor.style.top  = cy + 'px';
-      raf = requestAnimationFrame(loop);
-    }
-    loop();
-
-    // Expand em elementos interativos
-    var interactives = 'a, button, [role="button"], .swiper-slide, .pb-row-razoes__card';
-    document.addEventListener('mouseover', function (e) {
-      if (e.target.closest(interactives)) cursor.classList.add('is-hovering');
-    });
-    document.addEventListener('mouseout', function (e) {
-      if (e.target.closest(interactives)) cursor.classList.remove('is-hovering');
-    });
-
-    // Esconde ao sair da janela
-    document.addEventListener('mouseleave', function () { cursor.style.opacity = '0'; });
-    document.addEventListener('mouseenter', function () { cursor.style.opacity = '1'; });
+    counters.forEach(function (el) { obs.observe(el); });
   }
+
+
+  /* ============================================================
+     PARALLAX LEVE EM IMAGENS — hero e seções de destaque
+     ============================================================ */
+  function initParallax() {
+    var els = qsa('[data-parallax]');
+    if (!els.length) return;
+
+    var ticking = false;
+
+    function update() {
+      var scrollY = window.scrollY;
+      els.forEach(function (el) {
+        var speed  = parseFloat(el.getAttribute('data-parallax') || '0.15');
+        var rect   = el.parentElement.getBoundingClientRect();
+        var center = rect.top + rect.height / 2;
+        var offset = (window.innerHeight / 2 - center) * speed;
+        el.style.transform = 'translateY(' + offset + 'px)';
+      });
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    update();
+  }
+
+
+  /* ============================================================
+     HOVER TILT SUAVE EM CARDS
+     ============================================================ */
+  function initCardTilt() {
+    var cards = qsa('.pb-row-razoes__card, .pb-row-house-models__house');
+    if (!window.matchMedia('(hover: hover)').matches) return;
+
+    cards.forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var rect   = card.getBoundingClientRect();
+        var cx     = rect.left + rect.width / 2;
+        var cy     = rect.top + rect.height / 2;
+        var rx     = (e.clientY - cy) / (rect.height / 2) * 3;
+        var ry     = (cx - e.clientX) / (rect.width / 2) * 3;
+        card.style.transform = 'perspective(600px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-2px)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = '';
+      });
+    });
+  }
+
+
+
+
 
 
   /* ============================================================
@@ -449,35 +503,6 @@
   /* ============================================================
      TEXTO REVEAL — words slide up ao entrar no viewport
      ============================================================ */
-  function initTextReveal() {
-    var els = qsa('[data-reveal]');
-    if (!els.length || !('IntersectionObserver' in window)) return;
-
-    els.forEach(function (el) {
-      // Quebrar em palavras e embrulhar cada uma
-      var html = el.innerHTML;
-      var words = html.split(/(\s+)/);
-      el.innerHTML = words.map(function (w) {
-        if (w.trim() === '' || w.startsWith('<')) return w;
-        return '<span class="reveal-word" style="display:inline-block;overflow:hidden;vertical-align:bottom;">' +
-               '<span class="reveal-inner" style="display:block;transform:translateY(110%);">' + w + '</span></span>';
-      }).join('');
-
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          var inners = qsa('.reveal-inner', entry.target);
-          inners.forEach(function (inner, i) {
-            inner.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ' + (i * 0.05) + 's';
-            inner.style.transform = 'translateY(0)';
-          });
-          obs.unobserve(entry.target);
-        });
-      }, { threshold: 0.2 });
-
-      obs.observe(el);
-    });
-  }
 
 
   function init() {
@@ -489,11 +514,9 @@
     initHeroVideo();
     initPartnersTicker();
     initRazoesSlider();
-    initCustomCursor();
     initCounters();
     initParallax();
     initCardTilt();
-    initTextReveal();
     initRazoesSlider();
     initCookieBanner();
     initLeadCapture();
