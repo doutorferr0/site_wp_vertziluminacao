@@ -1,14 +1,14 @@
 /**
  * vertz.css — Vertz Iluminação
  * Sistema CSS próprio: grid 24 colunas, variáveis, componentes e utilitários.
- * Fontes via Google Fonts (Playfair Display + Inter).
+ * Fontes via Google Fonts (Playfair Display + Inter + Cutive Mono).
  * Sem dependências externas de copyright.
  */
 
 /* ============================================================
    GOOGLE FONTS
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cutive+Mono&display=swap');
 
 
 /* ============================================================
@@ -39,6 +39,18 @@
   /* Tipografia */
   --font-heading:      'Playfair Display', Georgia, serif;
   --font-body:         'Inter', system-ui, sans-serif;
+  --font-mono:         'Cutive Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Header modular */
+  --header-max-width: min(1200px, calc(100vw - 4rem));
+  --header-padding-y: clamp(1.2rem, 2.5vw, 2.75rem);
+  --header-padding-y-scrolled: clamp(0.75rem, 1.5vw, 1.5rem);
+  --header-gutter: clamp(1rem, 2vw, 1.8rem);
+  --header-nav-font-size: clamp(0.85rem, 1.1vw, 1rem);
+  --header-cta-padding: clamp(0.85rem, 1.2vw, 1.1rem) clamp(1rem, 1.5vw, 1.4rem);
+  --header-logo-size-top: clamp(280px, 20vw, 340px);
+  --header-logo-size-scrolled: clamp(180px, 14vw, 220px);
+  --header-logo-margin-left: clamp(0.5rem, 1.5vw, 1.5rem);
 
   /* Tamanhos de fonte */
   --fz-10:  0.625rem;
@@ -679,8 +691,15 @@ figure {
 }
 
 .site-header__wrap {
-  padding-top: var(--sp-40);
-  padding-bottom: var(--sp-40);
+  padding-top: var(--header-padding-y);
+  padding-bottom: var(--header-padding-y);
+  max-width: var(--header-max-width);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--header-gutter);
   transition: padding 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -743,8 +762,8 @@ figure {
 }
 
 .site-header.is-scrolled .site-header__wrap {
-  padding-top: var(--sp-20);
-  padding-bottom: var(--sp-20);
+  padding-top: var(--header-padding-y-scrolled);
+  padding-bottom: var(--header-padding-y-scrolled);
 }
 
 
@@ -790,34 +809,79 @@ figure {
   }
 }
 
-.site-header__logo { margin: 0; padding: 0; }
+.site-header__logo {
+  margin: 0;
+  padding: 0;
+  margin-right: auto;
+}
 
 /* Logo — sem animação, transição simples de tamanho */
 .site-header__logo img {
-  width: 180px;
+  width: var(--header-logo-size-top);
   height: auto;
+  max-width: 100%;
   display: block;
+  object-fit: contain;
   transform-origin: left center;
-  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              filter 0.5s ease;
+  transition: width 0.8s ease, transform 0.8s ease, filter 0.5s ease;
 }
 
 /* No topo: logo maior */
 .site-header.is-top .site-header__logo img {
-  width: 360px;
+  width: var(--header-logo-size-top);
   filter: drop-shadow(0 4px 20px rgba(0,0,0,0.35));
 }
 
 /* Scrollado: compacto */
 .site-header.is-scrolled .site-header__logo img {
-  width: 180px;
+  width: var(--header-logo-size-scrolled);
   filter: none;
 }
 
+.site-header__rightNav {
+  display: flex;
+  align-items: center;
+  gap: var(--header-gutter);
+}
+
+.site-header__rightMenuItems a {
+  font-size: var(--header-nav-font-size);
+}
+
+.site-header__rightMenuItems a:hover {
+  letter-spacing: 0.22em;
+}
+
+.site-header.is-scrolled .site-header__wrap {
+  padding-top: var(--header-padding-y-scrolled);
+  padding-bottom: var(--header-padding-y-scrolled);
+}
+
+.btn.--cta.--cta-default {
+  padding: var(--header-cta-padding);
+}
+
+
 @media (max-width: 767px) {
-  .site-header.is-top .site-header__logo img      { width: 200px; }
-  .site-header.is-scrolled .site-header__logo img { width: 130px; }
-  .site-header__logo img                          { width: 130px; }
+  :root {
+    --header-logo-size-scrolled: clamp(120px, 18vw, 150px);
+    --header-logo-size-top: clamp(160px, 25vw, 190px);
+    --header-padding-y: clamp(0.8rem, 2.5vw, 1.5rem);
+    --header-padding-y-scrolled: clamp(0.5rem, 1.2vw, 1rem);
+    --header-gutter: clamp(0.8rem, 2vw, 1.2rem);
+    --header-nav-font-size: clamp(0.8rem, 2.5vw, 0.92rem);
+  }
+
+  .site-header__wrap {
+    justify-content: center;
+    gap: var(--header-gutter);
+    padding-left: var(--header-gutter);
+    padding-right: var(--header-gutter);
+  }
+
+  .site-header__logo {
+    margin-right: 0;
+  }
 }
 
 .site-header__rightMenu {
@@ -839,11 +903,20 @@ figure {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.95);
   text-decoration: none;
   position: relative;
   padding-bottom: 3px;
   transition: color 0.3s ease, letter-spacing 0.4s ease;
+  text-shadow: 
+    -0.6px -0.6px 0 rgba(0,0,0,0.08),
+    0.6px -0.6px 0 rgba(0,0,0,0.08),
+    -0.6px 0.6px 0 rgba(0,0,0,0.08),
+    0.6px 0.6px 0 rgba(0,0,0,0.08),
+    0px -1px 0 rgba(0,0,0,0.05),
+    0px 1px 0 rgba(0,0,0,0.05),
+    -1px 0px 0 rgba(0,0,0,0.05),
+    1px 0px 0 rgba(0,0,0,0.05);
 }
 
 /* Underline animado crescendo do centro */
@@ -1178,6 +1251,11 @@ figure {
 /* ============================================================
    GALERIA / SWIPER
    ============================================================ */
+.pb-row-medias-gallery {
+  max-width: 64vw;
+  margin: 0 auto;
+}
+
 .pb-row-medias-gallery__clip {
   position: relative;
 }
@@ -1193,6 +1271,16 @@ figure {
 .pb-row-medias-gallery__media {
   width: 100%;
   overflow: clip;
+  padding: 0 var(--gallery-padding);
+  aspect-ratio: var(--gallery-aspect);
+}
+
+.pb-row-medias-gallery__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--gallery-border-radius);
 }
 
 .pb-row-medias-gallery__mediaWrap {
@@ -2452,6 +2540,11 @@ figure {
   to   { transform: rotate(360deg); }
 }
 
+@keyframes circle-spin-reverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
 /* Versão no hero — sobre fundo escuro */
 .vertz-circle--light .vertz-circle__time  { color: var(--color-white); }
 .vertz-circle--light .vertz-circle__label { color: rgba(255,255,255,0.5); }
@@ -2476,7 +2569,7 @@ figure {
 }
 
 @media (max-width: 767px) {
-  .vertz-circle { width: 140px; height: 140px; }
+  .vertz-circle { width: 160px; height: 160px; }
   .vertz-circle__time { font-size: 1.1rem; }
   .vertz-circle-hero  { bottom: 1.5rem; right: 1.5rem; }
 }
@@ -2572,6 +2665,16 @@ figure {
   position: absolute;
   inset: 18%;
   animation: circle-spin-reverse 18s linear infinite;
+}
+
+.vertz-circle__outer text,
+.vertz-circle__inner-ring text {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 8px;
+  line-height: 2.0;
+  font-stretch: expanded;
 }
 
 @keyframes circle-spin-reverse {

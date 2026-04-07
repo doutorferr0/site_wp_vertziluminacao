@@ -49,7 +49,7 @@ $theme_uri = get_template_directory_uri();
           <defs>
             <path id="vertz-outer-path" d="M120,120 m-108,0 a108,108 0 1,1 216,0 a108,108 0 1,1 -216,0"/>
           </defs>
-          <text font-size="9" font-family="inherit" fill="rgba(255,255,255,0.7)" font-weight="500" letter-spacing="4.5">
+          <text font-size="12" font-family="inherit" fill="rgba(255,255,255,0.9)" font-weight="500" letter-spacing="4.5" stroke="rgba(0,0,0,0.4)" stroke-width="1.2" paint-order="stroke fill">
             <textPath href="#vertz-outer-path">
               VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  
             </textPath>
@@ -62,18 +62,12 @@ $theme_uri = get_template_directory_uri();
             <defs>
               <path id="vertz-inner-path" d="M120,120 m-80,0 a80,80 0 1,0 160,0 a80,80 0 1,0 -160,0"/>
             </defs>
-            <text id="vertz-date-text" font-size="8.5" font-family="inherit" fill="rgba(255,255,255,0.5)" font-weight="400" letter-spacing="3">
+            <text id="vertz-date-text" font-size="11.5" font-family="inherit" fill="rgba(255,255,255,0.8)" font-weight="400" letter-spacing="3" stroke="rgba(0,0,0,0.35)" stroke-width="1.1" paint-order="stroke fill">
               <textPath href="#vertz-inner-path">
-                --/-- ✦ --:-- ✦ --/-- ✦ --:-- ✦ --/-- ✦ --:-- ✦ 
+                --:-- ✦ --/--/----
               </textPath>
             </text>
           </svg>
-        </div>
-
-        <!-- Centro: horário -->
-        <div class="vertz-circle__inner" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;">
-          <span class="vertz-circle__time" id="vertz-clock" style="font-size:1.5rem;font-weight:300;letter-spacing:-0.03em;line-height:1;color:rgba(255,255,255,0.95);">--:--</span>
-          <span class="vertz-circle__label" style="font-size:0.5rem;text-transform:uppercase;letter-spacing:0.18em;color:rgba(255,255,255,0.4);margin-top:0.25rem;">HORÁRIO LOCAL</span>
         </div>
 
       </div>
@@ -153,7 +147,7 @@ $theme_uri = get_template_directory_uri();
             data-scroll data-scroll-call="pb-row-medias-gallery" data-scroll-repeat="true">
             <div class="swiper-wrapper">
 
-              <figure class="pb-row-medias-gallery__media swiper-slide position-relative">
+              <figure class="pb-row-medias-gallery__media swiper-slide position-relative" style="aspect-ratio: 16 / 10;">
                 <div class="pb-row-medias-gallery__mediaWrap position-absolute t-0 l-0 w-100 h-100">
                   <img
                     src="<?php echo esc_url( $theme_uri ); ?>/assets/images/gallery-01.jpg"
@@ -164,7 +158,7 @@ $theme_uri = get_template_directory_uri();
                 </div>
               </figure>
 
-              <figure class="pb-row-medias-gallery__media swiper-slide position-relative">
+              <figure class="pb-row-medias-gallery__media swiper-slide position-relative" style="aspect-ratio: 16 / 10;">
                 <div class="pb-row-medias-gallery__mediaWrap position-absolute t-0 l-0 w-100 h-100">
                   <img
                     src="<?php echo esc_url( $theme_uri ); ?>/assets/images/gallery-02.jpg"
