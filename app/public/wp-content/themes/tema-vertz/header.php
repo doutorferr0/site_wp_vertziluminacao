@@ -22,7 +22,7 @@
     <nav class="site-header__rightNav pointer-events-all">
       <ul class="site-header__rightMenu list-none m-0 p-0 d-flex align-items-center grid-gap-15 grid-gap-xl-20">
         <li>
-          <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default fw-500" style="border-color:var(--color-primary);color:var(--color-primary);" aria-label="Fale Conosco">
+          <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default fw-500" aria-label="Fale Conosco">
             <span class="btn__bg" aria-hidden="true"></span>
             <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fale Conosco</span></span>
           </a>
