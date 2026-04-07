@@ -519,16 +519,32 @@
      RELÓGIO EM TEMPO REAL — atualiza o círculo do hero
      ============================================================ */
   function initClock() {
-    var el = qs('#vertz-clock');
-    if (!el) return;
+    var clockEl = qs('#vertz-clock');
+    var dateEl  = qs('#vertz-date-text textPath');
+    if (!clockEl) return;
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
     function update() {
       var now = new Date();
-      var h = String(now.getHours()).padStart(2, '0');
-      var m = String(now.getMinutes()).padStart(2, '0');
-      el.textContent = h + ':' + m;
+      var h   = pad(now.getHours());
+      var m   = pad(now.getMinutes());
+      var d   = pad(now.getDate());
+      var mo  = pad(now.getMonth() + 1);
+      var yr  = now.getFullYear();
+
+      // Horário no centro
+      clockEl.textContent = h + ':' + m;
+
+      // Data/hora no anel interno (repetido para preencher o arco)
+      if (dateEl) {
+        var str = d + '/' + mo + '/' + yr + '  ✦  ' + h + ':' + m + '  ✦  ';
+        dateEl.textContent = str + str + str;
+      }
     }
+
     update();
-    setInterval(update, 30000); // atualiza a cada 30s
+    setInterval(update, 30000);
   }
 
   function init() {
