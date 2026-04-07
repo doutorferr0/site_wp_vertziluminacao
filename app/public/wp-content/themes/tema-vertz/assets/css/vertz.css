@@ -780,23 +780,20 @@ figure {
 
 .site-header__logo { margin: 0; padding: 0; }
 
-/* Logo — transição lenta e elegante */
+/* Logo — sem animação, transição simples de tamanho */
 .site-header__logo img {
   width: 180px;
   height: auto;
   display: block;
   transform-origin: left center;
-  transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              filter 1s ease,
-              opacity 0.8s ease;
-  will-change: width, filter;
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.5s ease;
 }
 
-/* No topo: logo grande e destaque — animação devagar */
+/* No topo: logo maior */
 .site-header.is-top .site-header__logo img {
-  width: 400px;
-  filter: drop-shadow(0 6px 32px rgba(0,0,0,0.4));
-  animation: logo-float-in 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  width: 360px;
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.35));
 }
 
 /* Scrollado: compacto */
@@ -805,17 +802,10 @@ figure {
   filter: none;
 }
 
-/* Animação suave de entrada — sem bounce, só deslize e fade */
-@keyframes logo-float-in {
-  0%   { opacity: 0; transform: translateY(-12px) scale(0.85); }
-  40%  { opacity: 0.7; }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-
 @media (max-width: 767px) {
-  .site-header.is-top .site-header__logo img    { width: 220px; }
-  .site-header.is-scrolled .site-header__logo img { width: 140px; }
-  .site-header__logo img                        { width: 140px; }
+  .site-header.is-top .site-header__logo img      { width: 200px; }
+  .site-header.is-scrolled .site-header__logo img { width: 130px; }
+  .site-header__logo img                          { width: 130px; }
 }
 
 .site-header__rightMenu {
@@ -2379,4 +2369,159 @@ figure {
 
 [data-scroll].is-visible .line-accent {
   transform: scaleX(1);
+}
+
+/* ============================================================
+   CÍRCULO GIRATÓRIO — inspirado em timeplace.com.au
+   Texto em arco rotacionando + horário de atendimento no centro
+   ============================================================ */
+.vertz-circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.vertz-circle__outer {
+  width: 100%;
+  height: 100%;
+  animation: circle-spin 22s linear infinite;
+}
+
+.vertz-circle__inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.vertz-circle__time {
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--color-dark);
+}
+
+.vertz-circle__label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-gray-600);
+  margin-top: 0.3rem;
+}
+
+@keyframes circle-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Versão no hero — sobre fundo escuro */
+.vertz-circle--light .vertz-circle__time  { color: var(--color-white); }
+.vertz-circle--light .vertz-circle__label { color: rgba(255,255,255,0.5); }
+
+/* Versão flutuante canto hero */
+.vertz-circle-hero {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  z-index: 3;
+  opacity: 0.85;
+}
+
+@media (max-width: 767px) {
+  .vertz-circle { width: 140px; height: 140px; }
+  .vertz-circle__time { font-size: 1.1rem; }
+  .vertz-circle-hero  { bottom: 1.5rem; right: 1.5rem; }
+}
+
+/* ============================================================
+   MARQUEE / TICKER HORIZONTAL — texto rolando suavemente
+   ============================================================ */
+.vertz-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+}
+
+.vertz-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  animation: marquee-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.vertz-marquee__track:hover {
+  animation-play-state: paused;
+}
+
+.vertz-marquee__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.vertz-marquee__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  flex-shrink: 0;
+}
+
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   LINHA HORIZONTAL ANIMADA — separador elegante
+   ============================================================ */
+.vertz-divider {
+  width: 0;
+  height: 1px;
+  background: linear-gradient(to right, var(--color-primary), var(--color-accent), transparent);
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-scroll].is-visible .vertz-divider {
+  width: 100%;
+}
+
+/* ============================================================
+   NÚMERO GRANDE DECORATIVO — estilo editorial timeplace
+   ============================================================ */
+.vertz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vertz-stat__num {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--color-dark);
+}
+
+.vertz-stat__num span {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+.vertz-stat__label {
+  font-size: var(--fz-12);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gray-600);
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-gray-300);
 }
