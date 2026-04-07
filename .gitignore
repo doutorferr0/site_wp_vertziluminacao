@@ -76,3 +76,4 @@ package-lock.json
 .claude/
 app/sql/
 app/sql/
+app/public/wp-content/themes/tema-vertz/fiveserver.config.js
