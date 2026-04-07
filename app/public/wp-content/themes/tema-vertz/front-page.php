@@ -42,8 +42,8 @@ $theme_uri = get_template_directory_uri();
         </div>
       </figure>
 
-      <div class="pb-row-hero__titleWrap col-start-1 row-start-1 align-self-end container-fluid pb-30 pb-md-40 color-white position-relative overflow-clip">
-        <h1 class="pb-row-hero__title ff-body fz-32 fz-md-44 fz-xl-64 fw-400 lh-none ls--3 m-0"
+      <div class="pb-row-hero__titleWrap col-start-1 row-start-1 align-self-end container-fluid color-white position-relative overflow-clip ta-center">
+        <h1 class="pb-row-hero__title ff-body fz-44 fz-md-64 fz-xl-96 fw-400 lh-none ls--4 m-0 ta-center"
           data-scroll
           data-scroll-target="#pb-row-hero-1"
           data-scroll-progress
