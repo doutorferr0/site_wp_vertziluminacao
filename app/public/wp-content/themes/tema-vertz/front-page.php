@@ -114,85 +114,50 @@ $theme_uri = get_template_directory_uri();
 
 
   <!-- ============================================================
-    SEÇÃO 3: GALERIA DE MÍDIAS — Slider de imagens
+    SEÇÃO 3: GALERIA — Troca por botão, sem swipe
   ============================================================ -->
-  <div class="pb-row-wrapper position-relative pt-0 pb-0 mt-0 mb-0 --layout-pb-row-medias-gallery" style="--zindex:3">
-    <div id="pb-row-medias-gallery-1"
-      class="pb-row pb-row-medias-gallery container-fluid d-grid grid-column-md-12 grid-column-xl-24 column-gap-12 column-gap-xl-20 row-gap-12 row-gap-md-20 --layout-bottom"
-      data-scroll data-module="pb-row-medias-gallery">
+  <div class="pb-row-wrapper position-relative pt-0 pb-0 mt-0 mb-0" style="--zindex:3">
+    <div class="pb-row pb-row-gallery-btn container-fluid" data-scroll data-scroll-offset="80px,0" data-module-delay>
 
-      <header class="pb-row-medias-gallery__header col-start-1 col-span-md-6 col-span-xl-18 d-grid grid-column-xl-18 grid-gap-12 grid-gap-md-20"
-        data-scroll data-scroll-offset="100px,0" data-module-delay data-module-delay-increment="250">
-
-        <h2 class="pb-row-medias-gallery__title col-start-1 col-span-xl-11 ff-body fz-20 fz-md-32 fz-xl-48 fw-400 lh-110 lh-md-none ls--3 m-0"
-          data-splitting="wordsMask" data-scroll data-text-animation="slidein-by-lines"
-          data-scroll-target="#pb-row-medias-gallery-1 .pb-row-medias-gallery__header"
-          data-scroll-offset="100px,0"
-        >Iluminação para<br>cada <span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0" data-splitting="chars">ambiente</span>.</h2>
-
-        <div class="pb-row-medias-gallery__text col-start-1 col-start-xl-13 col-span-xl-6 fz-14 lh-142 gray-600 wysiwyg">
-          <p>Desenvolvida para se adaptar a qualquer projeto, nossa linha de produtos ilumina do residencial ao comercial com eficiência e elegância.</p>
+      <!-- Header -->
+      <header class="pb-row-gallery-btn__header d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20 mb-30 mb-md-40" data-scroll data-scroll-offset="80px,0" data-module-delay>
+        <h2 class="col-start-1 col-span-md-8 col-span-xl-14 ff-body fz-20 fz-md-32 fz-xl-48 fw-400 lh-110 ls--3 m-0">
+          Iluminação para cada <span class="title-highlight --font-heading --fs-italic">ambiente</span>.
+        </h2>
+        <div class="col-start-1 col-start-md-9 col-span-md-4 col-start-xl-17 col-span-xl-8 fz-14 lh-142 d-flex align-items-md-end" style="color:var(--color-gray-600)">
+          <p class="m-0">Desenvolvida para se adaptar a qualquer projeto, nossa linha ilumina do residencial ao comercial com eficiência e elegância.</p>
         </div>
-
       </header>
 
-      <div class="pb-row-medias-gallery__wrapper col-start-1 col-span-md-12 col-span-xl-24 row-start-2"
-        data-scroll data-module-delay data-module-delay-increment="250" data-scroll-offset="100px,0">
+      <!-- Área da imagem — proporções em % -->
+      <div class="pb-row-gallery-btn__stage" id="gallery-stage">
 
-        <div class="pb-row-medias-gallery__clip w-100 d-grid"
-          data-scroll data-scroll-call="pb-row-medias-gallery__clip"
-          data-scroll-repeat="true" data-scroll-progress data-scroll-offset="0,100%">
+        <!-- Imagem 1 — Residencial -->
+        <figure class="pb-row-gallery-btn__slide" id="gallery-slide-0" aria-hidden="false">
+          <img
+            src="<?php echo esc_url( $theme_uri ); ?>/assets/images/gallery-01.jpg"
+            alt="Projeto residencial Vertz Iluminação"
+            loading="lazy" decoding="async">
+        </figure>
 
-          <div class="pb-row-medias-gallery__medias col-start-1 row-start-1 w-100 swiper box-widescreen z-1"
-            data-scroll data-scroll-call="pb-row-medias-gallery" data-scroll-repeat="true">
-            <div class="swiper-wrapper">
+        <!-- Imagem 2 — Comercial -->
+        <figure class="pb-row-gallery-btn__slide" id="gallery-slide-1" aria-hidden="true">
+          <img
+            src="<?php echo esc_url( $theme_uri ); ?>/assets/images/gallery-02.jpg"
+            alt="Projeto comercial Vertz Iluminação"
+            loading="lazy" decoding="async">
+        </figure>
 
-              <figure class="pb-row-medias-gallery__media swiper-slide position-relative" style="aspect-ratio: 16 / 10;">
-                <div class="pb-row-medias-gallery__mediaWrap position-absolute t-0 l-0 w-100 h-100">
-                  <img
-                    src="<?php echo esc_url( $theme_uri ); ?>/assets/images/gallery-01.jpg"
-                    alt="Projeto residencial Vertz Iluminação"
-                    loading="lazy"
-                    decoding="async"
-                    style="width:100%;height:100%;object-fit:cover;display:block;">
-                </div>
-              </figure>
+        <!-- Botões sobrepostos na imagem -->
+        <nav class="pb-row-gallery-btn__nav" aria-label="Categoria de projeto">
+          <button class="pb-row-gallery-btn__pill is-active" data-gallery-target="0" aria-pressed="true">
+            Residencial
+          </button>
+          <button class="pb-row-gallery-btn__pill" data-gallery-target="1" aria-pressed="false">
+            Comercial
+          </button>
+        </nav>
 
-              <figure class="pb-row-medias-gallery__media swiper-slide position-relative" style="aspect-ratio: 16 / 10;">
-                <div class="pb-row-medias-gallery__mediaWrap position-absolute t-0 l-0 w-100 h-100">
-                  <img
-                    src="<?php echo esc_url( $theme_uri ); ?>/assets/images/gallery-02.jpg"
-                    alt="Projeto comercial Vertz Iluminação"
-                    loading="lazy"
-                    decoding="async"
-                    style="width:100%;height:100%;object-fit:cover;display:block;">
-                </div>
-              </figure>
-
-            </div>
-          </div>
-
-          <nav class="pb-row-medias-gallery__tags col-start-1 row-start-1 align-self-end justify-self-start justify-self-md-center d-flex align-items-center position-relative z-2 p-12 p-md-20">
-            <button class="btn pb-row-medias-gallery__tag --tag" aria-current="true" style="--index:0" aria-label="Residencial">
-              <span class="btn__bg" aria-hidden="true"></span>
-              <span class="btn__label" aria-hidden="true" data-title="Residencial">Residencial</span>
-            </button>
-            <button class="btn pb-row-medias-gallery__tag --tag" aria-current="false" style="--index:1" aria-label="Comercial">
-              <span class="btn__bg" aria-hidden="true"></span>
-              <span class="btn__label" aria-hidden="true" data-title="Comercial">Comercial</span>
-            </button>
-          </nav>
-
-        </div>
-      </div>
-
-      <div class="pb-row-medias-gallery__pagination col-start-1 row-start-3 align-self-start justify-self-end d-flex align-items-center grid-gap-12 d-md-none"
-        data-scroll data-module-delay data-module-delay-increment="150">
-        <div class="pb-row-medias-gallery__bullets d-flex align-items-center">
-          <button class="pb-row-medias-gallery__bullet swiper-pagination-bullet swiper-pagination-bullet-active" aria-label="Slide 1" style="--index:0"></button>
-          <button class="pb-row-medias-gallery__bullet swiper-pagination-bullet" aria-label="Slide 2" style="--index:1"></button>
-        </div>
-        <span class="pb-row-medias-gallery__counter d-block fz-10 lh-none color-red" data-label="%/2" style="--index:2">1/2</span>
       </div>
 
     </div>
