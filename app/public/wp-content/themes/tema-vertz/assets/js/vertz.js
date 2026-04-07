@@ -30,7 +30,7 @@
     var header = qs('.site-header');
     if (!header) return;
     var lastScrollY = window.scrollY, ticking = false;
-    var TOP_THRESHOLD = 80, HIDE_DELAY = 6;
+    var TOP_THRESHOLD = 100, HIDE_DELAY = 12;
     var wasAtTop = true;
 
     function triggerLogoAnimation() {
