@@ -546,6 +546,45 @@
     setInterval(update, 30000);
   }
 
+
+
+  /* ============================================================
+     GALERIA COM BOTÕES — troca imagens por clique, sem swipe
+     ============================================================ */
+  function initGalleryButtons() {
+    var pills = qsa('[data-gallery-target]');
+    if (!pills.length) return;
+
+    pills.forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        var target = pill.getAttribute('data-gallery-target');
+
+        // Atualiza slides
+        qsa('.pb-row-gallery-btn__slide').forEach(function (slide, i) {
+          var active = String(i) === target;
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+          // Re-trigger zoom animation
+          if (active) {
+            var img = slide.querySelector('img');
+            if (img) {
+              img.style.animation = 'none';
+              img.offsetHeight; // reflow
+              img.style.animation = '';
+            }
+          }
+        });
+
+        // Atualiza botões
+        pills.forEach(function (p) {
+          var isThis = p === pill;
+          p.classList.toggle('is-active', isThis);
+          p.setAttribute('aria-pressed', isThis ? 'true' : 'false');
+        });
+      });
+    });
+  }
+
+
   function init() {
     initLoader();
     initStickyHeader();
@@ -555,6 +594,7 @@
     initHeroVideo();
     initPartnersTicker();
     initRazoesSlider();
+    initGalleryButtons();
     initClock();
     initCounters();
     initParallax();
