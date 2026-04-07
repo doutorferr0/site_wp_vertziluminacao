@@ -43,20 +43,39 @@ $theme_uri = get_template_directory_uri();
       </figure>
 
       <div class="vertz-circle-hero vertz-circle vertz-circle--light" aria-hidden="true">
-        <svg class="vertz-circle__outer" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Anel externo: texto Vertz girando no sentido horário -->
+        <svg class="vertz-circle__outer" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;">
           <defs>
-            <path id="vertz-circle-path" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0"/>
+            <path id="vertz-outer-path" d="M120,120 m-108,0 a108,108 0 1,1 216,0 a108,108 0 1,1 -216,0"/>
           </defs>
-          <text font-size="9.5" font-family="inherit" fill="rgba(255,255,255,0.75)" font-weight="500" letter-spacing="3.8" text-transform="uppercase">
-            <textPath href="#vertz-circle-path">
+          <text font-size="9" font-family="inherit" fill="rgba(255,255,255,0.7)" font-weight="500" letter-spacing="4.5">
+            <textPath href="#vertz-outer-path">
               VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  
             </textPath>
           </text>
         </svg>
-        <div class="vertz-circle__inner">
-          <span class="vertz-circle__time" id="vertz-clock">--:--</span>
-          <span class="vertz-circle__label">Horário local</span>
+
+        <!-- Anel interno: data/hora girando no sentido anti-horário -->
+        <div class="vertz-circle__inner-ring" style="position:absolute;inset:0;width:100%;height:100%;">
+          <svg id="vertz-inner-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+            <defs>
+              <path id="vertz-inner-path" d="M120,120 m-80,0 a80,80 0 1,0 160,0 a80,80 0 1,0 -160,0"/>
+            </defs>
+            <text id="vertz-date-text" font-size="8.5" font-family="inherit" fill="rgba(255,255,255,0.5)" font-weight="400" letter-spacing="3">
+              <textPath href="#vertz-inner-path">
+                --/-- ✦ --:-- ✦ --/-- ✦ --:-- ✦ --/-- ✦ --:-- ✦ 
+              </textPath>
+            </text>
+          </svg>
         </div>
+
+        <!-- Centro: horário -->
+        <div class="vertz-circle__inner" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;">
+          <span class="vertz-circle__time" id="vertz-clock" style="font-size:1.5rem;font-weight:300;letter-spacing:-0.03em;line-height:1;color:rgba(255,255,255,0.95);">--:--</span>
+          <span class="vertz-circle__label" style="font-size:0.5rem;text-transform:uppercase;letter-spacing:0.18em;color:rgba(255,255,255,0.4);margin-top:0.25rem;">HORÁRIO LOCAL</span>
+        </div>
+
       </div>
 
       <div class="pb-row-hero__titleWrap col-start-1 row-start-1 align-self-end container-fluid color-white position-relative overflow-clip ta-center">
