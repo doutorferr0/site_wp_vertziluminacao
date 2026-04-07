@@ -42,6 +42,23 @@ $theme_uri = get_template_directory_uri();
         </div>
       </figure>
 
+      <div class="vertz-circle-hero vertz-circle vertz-circle--light" aria-hidden="true">
+        <svg class="vertz-circle__outer" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="vertz-circle-path" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0"/>
+          </defs>
+          <text font-size="9.5" font-family="inherit" fill="rgba(255,255,255,0.75)" font-weight="500" letter-spacing="3.8" text-transform="uppercase">
+            <textPath href="#vertz-circle-path">
+              VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  
+            </textPath>
+          </text>
+        </svg>
+        <div class="vertz-circle__inner">
+          <span class="vertz-circle__time" id="vertz-clock">--:--</span>
+          <span class="vertz-circle__label">Horário local</span>
+        </div>
+      </div>
+
       <div class="pb-row-hero__titleWrap col-start-1 row-start-1 align-self-end container-fluid color-white position-relative overflow-clip ta-center">
         <h1 class="pb-row-hero__title ff-body fz-44 fz-md-64 fz-xl-96 fw-400 lh-none ls--4 m-0 ta-center"
           data-scroll
@@ -427,6 +444,50 @@ $theme_uri = get_template_directory_uri();
         <?php endforeach; ?>
       </div>
 
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+    SEÇÃO 8.5: NÚMEROS — Estilo editorial com stats grandes
+  ============================================================ -->
+  <div class="pb-row-wrapper position-relative pt-60 pb-60 pt-md-80 pb-md-80 mt-0 mb-0" style="--zindex:8.5;background:var(--color-header-bg);">
+    <div class="pb-row container-fluid" data-scroll data-scroll-offset="80px,0" data-module-delay>
+
+      <!-- Divisor animado -->
+      <div class="vertz-divider mb-40 mb-md-60" data-scroll></div>
+
+      <div class="d-grid grid-column-2 grid-column-md-4 grid-gap-30 grid-gap-xl-40" style="color:var(--color-white);">
+
+        <div class="vertz-stat" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:0">
+          <div class="vertz-stat__num" data-count="20" data-count-prefix="+" data-count-suffix=" anos">
+            <span>+20</span> anos
+          </div>
+          <p class="vertz-stat__label m-0" style="color:rgba(255,255,255,0.4);">de mercado</p>
+        </div>
+
+        <div class="vertz-stat" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:1">
+          <div class="vertz-stat__num" data-count="500" data-count-prefix="+">
+            <span>+500</span>
+          </div>
+          <p class="vertz-stat__label m-0" style="color:rgba(255,255,255,0.4);">projetos entregues</p>
+        </div>
+
+        <div class="vertz-stat" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:2">
+          <div class="vertz-stat__num" data-count="80" data-count-suffix="%">
+            <span>80%</span>
+          </div>
+          <p class="vertz-stat__label m-0" style="color:rgba(255,255,255,0.4);">menos energia consumida</p>
+        </div>
+
+        <div class="vertz-stat" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:3">
+          <div class="vertz-stat__num">
+            <span>2</span>
+          </div>
+          <p class="vertz-stat__label m-0" style="color:rgba(255,255,255,0.4);">showrooms — SP e Campinas</p>
+        </div>
+
+      </div>
     </div>
   </div>
 
