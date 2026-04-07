@@ -33,21 +33,12 @@
     var TOP_THRESHOLD = 100, HIDE_DELAY = 12;
     var wasAtTop = true;
 
-    function triggerLogoAnimation() {
-      var logo = qs('.site-header__logo img', header);
-      if (!logo) return;
-      logo.style.animation = 'none';
-      logo.offsetHeight; // force reflow
-      logo.style.animation = '';
-    }
-
     function updateHeader() {
       var currentY = window.scrollY;
       var diff = currentY - lastScrollY;
       var isAtTop = currentY <= TOP_THRESHOLD;
 
       if (isAtTop) {
-        if (!wasAtTop) triggerLogoAnimation(); // voltou ao topo — anima logo
         header.classList.add('is-top');
         header.classList.remove('is-scrolled', 'is-hidden');
         header.classList.add('is-visible');
@@ -522,6 +513,24 @@
      ============================================================ */
 
 
+
+
+  /* ============================================================
+     RELÓGIO EM TEMPO REAL — atualiza o círculo do hero
+     ============================================================ */
+  function initClock() {
+    var el = qs('#vertz-clock');
+    if (!el) return;
+    function update() {
+      var now = new Date();
+      var h = String(now.getHours()).padStart(2, '0');
+      var m = String(now.getMinutes()).padStart(2, '0');
+      el.textContent = h + ':' + m;
+    }
+    update();
+    setInterval(update, 30000); // atualiza a cada 30s
+  }
+
   function init() {
     initLoader();
     initStickyHeader();
@@ -531,6 +540,7 @@
     initHeroVideo();
     initPartnersTicker();
     initRazoesSlider();
+    initClock();
     initCounters();
     initParallax();
     initCardTilt();
