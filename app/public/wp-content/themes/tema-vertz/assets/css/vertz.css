@@ -679,17 +679,25 @@ figure {
 }
 
 .site-header__wrap {
-  padding-top: var(--sp-50);
-  padding-bottom: var(--sp-50);
-  transition: padding 0.35s ease;
+  padding-top: var(--sp-40);
+  padding-bottom: var(--sp-40);
+  transition: padding 0.4s ease;
 }
 
-/* No topo: semi-transparente com blur — efeito glass */
+/* No topo: header completamente invisível */
 .site-header.is-top {
-  background: rgba(24, 24, 26, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   box-shadow: none;
+}
+
+/* Nav e botão somem no topo — só o logo fica */
+.site-header.is-top .site-header__rightNav {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 /* Texto branco quando header transparente */
@@ -728,6 +736,14 @@ figure {
   padding-bottom: var(--sp-20);
 }
 
+/* Nav reaparece quando scrolled */
+.site-header.is-scrolled .site-header__rightNav {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
 /* Nav links brancos sobre header escuro */
 .site-header.is-scrolled .site-header__rightMenuItems a {
   color: var(--color-white);
@@ -759,20 +775,60 @@ figure {
 
 @media (min-width: 1280px) {
   .site-header__wrap {
-    padding-top: var(--sp-70);
-    padding-bottom: var(--sp-70);
+    padding-top: var(--sp-60);
+    padding-bottom: var(--sp-60);
   }
   .site-header.is-scrolled .site-header__wrap {
-    padding-top: var(--sp-24);
-    padding-bottom: var(--sp-24);
+    padding-top: var(--sp-20);
+    padding-bottom: var(--sp-20);
   }
 }
 
 .site-header__logo { margin: 0; padding: 0; }
 
+/* Logo — transição suave entre tamanhos */
 .site-header__logo img {
-  width: 220px !important;
-  height: auto !important;
+  width: 160px;
+  height: auto;
+  display: block;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.4s ease;
+  transform-origin: left center;
+}
+
+/* No topo: logo grande (4x do tamanho scrolled = 320px) */
+.site-header.is-top .site-header__logo img {
+  width: 320px;
+  filter: drop-shadow(0 4px 24px rgba(0,0,0,0.35));
+  animation: logo-arrive 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Ao scrollar: logo menor e compacto */
+.site-header.is-scrolled .site-header__logo img {
+  width: 160px;
+  filter: none;
+}
+
+/* Animação de "chegada" do logo ao topo */
+@keyframes logo-arrive {
+  0%   { transform: scale(0.6) translateY(-10px); opacity: 0; }
+  60%  { transform: scale(1.06) translateY(2px); opacity: 1; }
+  80%  { transform: scale(0.97); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Mobile — tamanhos menores */
+@media (max-width: 767px) {
+  .site-header.is-top .site-header__logo img {
+    width: 200px;
+  }
+  .site-header.is-scrolled .site-header__logo img {
+    width: 120px;
+  }
+  .site-header__logo img {
+    width: 120px;
+  }
 }
 
 .site-header__rightMenu {
