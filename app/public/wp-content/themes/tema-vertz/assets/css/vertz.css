@@ -2689,19 +2689,34 @@ figure {
 
 .pb-row-gallery-btn {
   padding-bottom: 0;
+  /* padding lateral de 18% em cada lado no desktop */
+  padding-left: 18%;
+  padding-right: 18%;
+}
+
+@media (max-width: 767px) {
+  .pb-row-gallery-btn {
+    padding-left: var(--container-px);
+    padding-right: var(--container-px);
+  }
+}
+
+/* Header sem padding extra — já herdou do container */
+.pb-row-gallery-btn__header {
+  padding: 0;
 }
 
 /* Stage — container da imagem, altura em % da largura */
 .pb-row-gallery-btn__stage {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 em % */
+  padding-bottom: 62%; /* altura relativa à largura do stage (já com 18% de margem) */
   overflow: hidden;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .pb-row-gallery-btn__stage {
-    padding-bottom: 52%; /* ligeiramente mais horizontal no desktop */
+    padding-bottom: 60%;
   }
 }
 
