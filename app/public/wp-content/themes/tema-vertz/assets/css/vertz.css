@@ -2364,22 +2364,7 @@ a, button, [role="button"] {
   font-weight: 500;
 }
 
-/* Zoom suave em imagens clicáveis / dentro de figure */
-figure img,
-figure video {
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-a figure:hover img,
-a figure:hover video,
-.pb-row-house-models__house:hover img {
-  transform: scale(1.04);
-}
-
-/* Overflow clip nas figures para o zoom não vazar */
-figure {
-  overflow: hidden;
-}
+/* zoom genérico removido — zoom específico por componente abaixo */
 
 /* Pulso no FAB WhatsApp — chama atenção sutilmente */
 @keyframes fab-pulse {
@@ -2710,8 +2695,9 @@ figure {
 .pb-row-gallery-btn__stage {
   position: relative;
   width: 100%;
-  padding-bottom: 62%; /* altura relativa à largura do stage (já com 18% de margem) */
+  padding-bottom: 62%;
   overflow: hidden;
+  border-radius: 16px;
 }
 
 @media (max-width: 767px) {
@@ -2814,4 +2800,105 @@ figure {
   border-color: var(--color-primary);
   color: var(--color-dark);
   transform: translateY(-1px);
+}
+
+/* ============================================================
+   BORDAS ARREDONDADAS — imagens do site
+   ============================================================ */
+
+/* Galeria home */
+.pb-row-gallery-btn__stage       { border-radius: 16px; }
+
+/* Produtos home */
+.pb-row-house-models__house img  { border-radius: 12px; }
+
+/* Cards de serviços */
+.pb-row-servico figure           { border-radius: 12px; }
+
+/* Features */
+.pb-row-features__mediasContainer img { border-radius: 12px; }
+
+/* Sobre — hero, missão, galeria */
+.pb-row-hero .pb-row-hero__mediaSticky { border-radius: 0; } /* hero fica sem borda */
+.page-sobre figure img,
+.page-sobre .pb-row-hero__mediaSticky img { border-radius: 12px; }
+
+/* Cards slider 10 Razões */
+.pb-row-razoes__gif              { border-radius: 10px; }
+
+/* Seção contato home */
+.pb-row-contact__imgWrap         { border-radius: 12px; overflow: hidden; }
+
+/* ============================================================
+   ZOOM HOVER — apenas imagens de projetos
+   Estilo Nine-to-Five: zoom suave + leve escurecimento
+   ============================================================ */
+
+/* Container precisa de overflow hidden para o zoom não vazar */
+.pb-row-house-models__house,
+.pb-row-servico figure,
+.pb-row-gallery-btn__stage,
+.pb-row-contact__imgWrap,
+.page-sobre .pb-row-hero__mediaSticky {
+  overflow: hidden;
+}
+
+/* As imagens iniciam com scale normal */
+.pb-row-house-models__house img,
+.pb-row-servico figure img,
+.pb-row-gallery-btn__stage img,
+.pb-row-contact__imgWrap img {
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.6s ease;
+  transform: scale(1);
+  filter: brightness(1);
+  will-change: transform;
+}
+
+/* Hover: zoom 1.08 + leve escurecimento — igual nine-to-five */
+.pb-row-house-models__house:hover img,
+.pb-row-servico figure:hover img,
+.pb-row-gallery-btn__stage:hover img,
+.pb-row-contact__imgWrap:hover img {
+  transform: scale(1.08);
+  filter: brightness(0.88);
+}
+
+/* Overlay escuro sutil aparece no hover — efeito nine-to-five */
+.pb-row-house-models__house,
+.pb-row-servico figure,
+.pb-row-contact__imgWrap {
+  position: relative;
+}
+
+.pb-row-house-models__house::after,
+.pb-row-servico figure::after,
+.pb-row-contact__imgWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  transition: background 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.pb-row-house-models__house:hover::after,
+.pb-row-servico figure:hover::after,
+.pb-row-contact__imgWrap:hover::after {
+  background: rgba(0,0,0,0.12);
+}
+
+/* Remover o zoom antigo que estava no CSS global (era aplicado em tudo) */
+a figure:hover img,
+a figure:hover video,
+.pb-row-house-models__house:hover img {
+  transform: none; /* override — o novo zoom acima é mais específico */
+}
+
+/* Corrigir o override acima para house-models */
+.pb-row-house-models__house:hover > img,
+.pb-row-house-models__house:hover img {
+  transform: scale(1.08) !important;
 }
