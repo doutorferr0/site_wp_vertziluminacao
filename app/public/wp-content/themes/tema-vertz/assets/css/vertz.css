@@ -2855,7 +2855,7 @@ a, button, [role="button"] {
 /* Hover: zoom limpo, sem filtro, sem overlay */
 .pb-row-house-models__house:hover img,
 .pb-row-servico figure:hover img,
-.pb-row-gallery-btn__stage:hover .pb-row-gallery-btn__slide[aria-hidden="false"] img,
+.pb-row-gallery-btn__stage:hover img,
 .pb-row-contact__imgWrap:hover img {
   transform: scale(1.07);
 }
