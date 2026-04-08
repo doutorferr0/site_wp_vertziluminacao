@@ -2830,75 +2830,32 @@ a, button, [role="button"] {
 .pb-row-contact__imgWrap         { border-radius: 12px; overflow: hidden; }
 
 /* ============================================================
-   ZOOM HOVER — apenas imagens de projetos
-   Estilo Nine-to-Five: zoom suave + leve escurecimento
+   ZOOM HOVER — estilo fluid.glass
+   Zoom limpo, sem escurecimento, sem overlay
    ============================================================ */
 
-/* Container precisa de overflow hidden para o zoom não vazar */
+/* Todos os containers de projeto: overflow hidden para o zoom não vazar */
 .pb-row-house-models__house,
 .pb-row-servico figure,
 .pb-row-gallery-btn__stage,
-.pb-row-contact__imgWrap,
-.page-sobre .pb-row-hero__mediaSticky {
+.pb-row-contact__imgWrap {
   overflow: hidden;
 }
 
-/* As imagens iniciam com scale normal */
+/* Imagens: zoom suave e limpo — transição longa e fluida */
 .pb-row-house-models__house img,
 .pb-row-servico figure img,
-.pb-row-gallery-btn__stage img,
+.pb-row-gallery-btn__stage .pb-row-gallery-btn__slide img,
 .pb-row-contact__imgWrap img {
-  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              filter 0.6s ease;
   transform: scale(1);
-  filter: brightness(1);
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
-/* Hover: zoom 1.08 + leve escurecimento — igual nine-to-five */
+/* Hover: zoom limpo, sem filtro, sem overlay */
 .pb-row-house-models__house:hover img,
 .pb-row-servico figure:hover img,
-.pb-row-gallery-btn__stage:hover img,
+.pb-row-gallery-btn__stage:hover .pb-row-gallery-btn__slide[aria-hidden="false"] img,
 .pb-row-contact__imgWrap:hover img {
-  transform: scale(1.08);
-  filter: brightness(0.88);
-}
-
-/* Overlay escuro sutil aparece no hover — efeito nine-to-five */
-.pb-row-house-models__house,
-.pb-row-servico figure,
-.pb-row-contact__imgWrap {
-  position: relative;
-}
-
-.pb-row-house-models__house::after,
-.pb-row-servico figure::after,
-.pb-row-contact__imgWrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0);
-  transition: background 0.6s ease;
-  pointer-events: none;
-  z-index: 1;
-  border-radius: inherit;
-}
-
-.pb-row-house-models__house:hover::after,
-.pb-row-servico figure:hover::after,
-.pb-row-contact__imgWrap:hover::after {
-  background: rgba(0,0,0,0.12);
-}
-
-/* Remover o zoom antigo que estava no CSS global (era aplicado em tudo) */
-a figure:hover img,
-a figure:hover video,
-.pb-row-house-models__house:hover img {
-  transform: none; /* override — o novo zoom acima é mais específico */
-}
-
-/* Corrigir o override acima para house-models */
-.pb-row-house-models__house:hover > img,
-.pb-row-house-models__house:hover img {
-  transform: scale(1.08) !important;
+  transform: scale(1.07);
 }
