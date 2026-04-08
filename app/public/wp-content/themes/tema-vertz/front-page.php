@@ -79,6 +79,19 @@ $theme_uri = get_template_directory_uri();
           data-scroll-progress
           data-splitting="charsWrapped"
         >Lorem ipsum, lux semper.</h1>
+
+        <!-- CTAs hero -->
+        <div class="mt-30 mt-md-40 d-flex flex-column flex-md-row justify-content-center align-items-center grid-gap-15" style="position:relative;z-index:2;">
+          <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark);">
+            <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary-hover);"></span>
+            <span class="btn__label" aria-hidden="true"><span>Solicitar orçamento</span><span>Solicitar orçamento</span></span>
+          </a>
+          <a href="<?php echo esc_url( home_url('/servicos') ); ?>" class="btn --cta --cta-default" style="border-color:rgba(255,255,255,0.6);color:var(--color-white);">
+            <span class="btn__bg" aria-hidden="true" style="background:rgba(255,255,255,0.15);"></span>
+            <span class="btn__label" aria-hidden="true"><span>Nossos serviços</span><span>Nossos serviços</span></span>
+          </a>
+        </div>
+
       </div>
 
     </div>
@@ -160,6 +173,15 @@ $theme_uri = get_template_directory_uri();
 
       </div>
 
+    </div>
+  </div>
+
+  <!-- Mini CTA após galeria -->
+  <div class="pb-row-wrapper position-relative pt-0 pb-0" style="--zindex:3.5">
+    <div class="pb-row container-fluid d-flex justify-content-center" style="padding-left:18%;padding-right:18%;padding-top:1.5rem;padding-bottom:0;">
+      <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="fz-12 tt-uppercase fw-500 d-flex align-items-center grid-gap-10" style="color:var(--color-dark);text-decoration:none;letter-spacing:0.12em;border-bottom:1px solid var(--color-dark);">
+        Solicitar projeto para este tipo de ambiente →
+      </a>
     </div>
   </div>
 
