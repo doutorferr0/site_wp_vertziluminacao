@@ -40,19 +40,35 @@ $theme_uri = get_template_directory_uri();
 
 
   <!-- ============================================================
-    SEÇÃO 2: DECLARAÇÃO — Tom editorial forte
+    SEÇÃO 2: DECLARAÇÃO — Editorial split (Awwwards-level)
   ============================================================ -->
-  <div class="pb-row-wrapper position-relative pt-80 pb-80 pt-md-100 pb-md-100 pt-xl-130 pb-xl-130 mt-0 mb-0" style="--zindex:2">
-    <div class="pb-row container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20"
-      data-scroll id="pb-row-servicos-intro" data-scroll-offset="80px,0" data-module-delay>
+  <div class="pb-row-wrapper servicos-decl position-relative mt-0 mb-0" style="--zindex:2">
+    <div class="pb-row container-fluid" data-scroll id="pb-row-servicos-intro" data-scroll-offset="60px,0" data-module-delay>
 
-      <div class="col-start-1 col-span-md-10 col-span-xl-18 col-start-xl-4 ta-center">
-        <h2 class="ff-body fz-28 fz-md-44 fz-xl-56 fw-400 lh-107 ls--3 m-0 mb-30">
-          A maioria das lojas vende luminárias.<br>Nós projetamos o <span class="title-highlight --font-heading --fs-italic">ambiente que você vai habitar.</span>
+      <!-- Eyebrow com linha crescendo -->
+      <div class="servicos-decl__eyebrow">
+        <span class="servicos-decl__eyebrow-label">Nossas soluções</span>
+        <span class="servicos-decl__eyebrow-rule" aria-hidden="true"></span>
+      </div>
+
+      <!-- Bloco editorial: headline (esq) + aside (dir, alinhado na base) -->
+      <div class="servicos-decl__body">
+
+        <h2 class="servicos-decl__headline">
+          A maioria das<br>lojas vende<br>luminárias.<br>
+          Nós projetamos o<br><span class="title-highlight --font-heading --fs-italic">ambiente que você<br>vai habitar.</span>
         </h2>
-        <p class="fz-15 fz-xl-17 lh-155 m-0" style="color:var(--color-gray-600);max-width:680px;margin:0 auto;">
-          Cada espaço tem uma função. Cada função exige uma luz específica. Combinamos projeto técnico rigoroso com curadoria estética de marcas exclusivas — para entregar ambientes que funcionam, impressionam e duram.
-        </p>
+
+        <div class="servicos-decl__aside">
+          <p class="servicos-decl__copy">
+            Cada espaço tem uma função. Cada função exige uma luz específica. Combinamos projeto técnico rigoroso com curadoria estética de marcas exclusivas — para entregar ambientes que funcionam, impressionam e duram.
+          </p>
+          <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="servicos-decl__cta">
+            <span>Solicitar projeto</span>
+            <span class="servicos-decl__cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
       </div>
 
     </div>
@@ -60,73 +76,82 @@ $theme_uri = get_template_directory_uri();
 
 
   <!-- ============================================================
-    SEÇÃO 3: TÉCNICA vs DECORATIVA — Definição clara
+    SEÇÃO 3: TÉCNICA vs DECORATIVA — Editorial split full-bleed
   ============================================================ -->
-  <div class="pb-row-wrapper position-relative pt-0 pb-80 pb-md-100 pb-xl-130 mt-0 mb-0" style="--zindex:3;background:var(--color-surface);">
-    <div class="pb-row container-fluid d-grid grid-column-1 grid-column-md-2 grid-gap-0"
-      data-scroll data-scroll-offset="60px,0" data-module-delay>
+  <div class="pb-row-wrapper servicos-split position-relative mt-0 mb-0" style="--zindex:3">
+    <div class="servicos-split__grid">
 
-      <!-- Técnica -->
-      <div class="d-grid grid-gap-20 pt-60 pr-md-40 pr-xl-80" style="border-right:0;<?php /* borda apenas no desktop */ ?>">
-        <p class="fz-11 tt-uppercase fw-700 m-0" style="color:var(--color-accent);letter-spacing:0.18em;">Iluminação Técnica</p>
-        <h3 class="fz-28 fz-md-36 fz-xl-44 fw-400 ls--2 m-0">
-          A base que ninguém vê —<br>e todo mundo sente.
-        </h3>
-        <p class="fz-14 fz-xl-16 lh-155 m-0" style="color:var(--color-gray-600)">
-          Projetada para ser eficiente e precisa. Calculamos watts, fluxo luminoso, IRC, ângulo de facho e temperatura de cor para que cada ambiente funcione exatamente como precisa. Design clean e discreto — o protagonista aqui é a luz, não a luminária.
-        </p>
-        <div class="d-grid grid-gap-12 pt-10">
-          <?php foreach([
-            'Spots e downlights de embutir (residencial e comercial)',
-            'Perfis LED para sancas, marcenaria e forro',
-            'Luminárias de escritório com controle de ofuscamento',
-            'Sistemas de dimmer e automação (tunable white)',
-            'Projeto luminotécnico com cálculo de iluminância',
-            'Acompanhamento técnico de instalação e comissionamento',
-          ] as $item): ?>
-          <div class="d-flex align-items-start grid-gap-12">
-            <span style="width:6px;height:6px;border-radius:50%;background:var(--color-primary);flex-shrink:0;margin-top:7px;"></span>
-            <p class="fz-13 fz-xl-14 lh-142 m-0"><?php echo esc_html($item); ?></p>
+      <!-- PAINEL 01: Técnica -->
+      <div class="servicos-split__panel" data-num="01" data-scroll data-scroll-offset="60px,0" data-module-delay>
+        <div class="servicos-split__inner">
+
+          <p class="servicos-split__tag">Iluminação Técnica</p>
+
+          <h3 class="servicos-split__title">
+            A base que ninguém vê —<br>e todo mundo sente.
+          </h3>
+
+          <p class="servicos-split__desc">
+            Projetada para ser eficiente e precisa. Calculamos watts, fluxo luminoso, IRC, ângulo de facho e temperatura de cor para que cada ambiente funcione exatamente como precisa. O protagonista aqui é a luz, não a luminária.
+          </p>
+
+          <ul class="servicos-split__list">
+            <?php foreach([
+              'Spots e downlights de embutir (residencial e comercial)',
+              'Perfis LED para sancas, marcenaria e forro',
+              'Luminárias de escritório com controle de ofuscamento',
+              'Sistemas de dimmer e automação (tunable white)',
+              'Projeto luminotécnico com cálculo de iluminância',
+              'Acompanhamento técnico de instalação e comissionamento',
+            ] as $item): ?>
+            <li><?php echo esc_html($item); ?></li>
+            <?php endforeach; ?>
+          </ul>
+
+          <div>
+            <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default">
+              <span class="btn__bg" aria-hidden="true"></span>
+              <span class="btn__label" aria-hidden="true"><span>Solicitar projeto técnico</span><span>Solicitar projeto técnico</span></span>
+            </a>
           </div>
-          <?php endforeach; ?>
-        </div>
-        <div class="mt-20">
-          <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default">
-            <span class="btn__bg" aria-hidden="true"></span>
-            <span class="btn__label" aria-hidden="true"><span>Solicitar projeto técnico</span><span>Solicitar projeto técnico</span></span>
-          </a>
+
         </div>
       </div>
 
-      <!-- Decorativa -->
-      <div class="d-grid grid-gap-20 pt-60 pl-md-40 pl-xl-80" style="border-top:1px solid var(--color-gray-300);" data-scroll data-scroll-offset="60px,0" data-module-delay style="--index:1">
-        <p class="fz-11 tt-uppercase fw-700 m-0" style="color:var(--color-accent);letter-spacing:0.18em;">Iluminação Decorativa</p>
-        <h3 class="fz-28 fz-md-36 fz-xl-44 fw-400 ls--2 m-0">
-          O elemento que transforma<br>espaço em memória.
-        </h3>
-        <p class="fz-14 fz-xl-16 lh-155 m-0" style="color:var(--color-gray-600)">
-          Pendentes, arandelas e spots de destaque que não precisam apenas iluminar — precisam ser lembrados. Curadoria rigorosa de marcas nacionais e internacionais, disponíveis nos nossos showrooms para você ver, tocar e especificar com segurança.
-        </p>
-        <div class="d-grid grid-gap-12 pt-10">
-          <?php foreach([
-            'Pendentes e lustres de design nacional e importado',
-            'Arandelas, spots e luminárias de parede',
-            'Iluminação de quadros, esculturas e peças de arte',
-            'Perfis LED decorativos e fitas para ambientação',
-            'Peças exclusivas de marcas internacionais',
-            'Consultoria de especificação com amostras físicas',
-          ] as $item): ?>
-          <div class="d-flex align-items-start grid-gap-12">
-            <span style="width:6px;height:6px;border-radius:50%;background:var(--color-primary);flex-shrink:0;margin-top:7px;"></span>
-            <p class="fz-13 fz-xl-14 lh-142 m-0"><?php echo esc_html($item); ?></p>
+      <!-- PAINEL 02: Decorativa -->
+      <div class="servicos-split__panel" data-num="02" data-scroll data-scroll-offset="60px,0" data-module-delay style="--index:1">
+        <div class="servicos-split__inner">
+
+          <p class="servicos-split__tag">Iluminação Decorativa</p>
+
+          <h3 class="servicos-split__title">
+            O elemento que transforma<br>espaço em memória.
+          </h3>
+
+          <p class="servicos-split__desc">
+            Pendentes, arandelas e spots de destaque que não precisam apenas iluminar — precisam ser lembrados. Curadoria rigorosa de marcas nacionais e internacionais disponíveis nos nossos showrooms.
+          </p>
+
+          <ul class="servicos-split__list">
+            <?php foreach([
+              'Pendentes e lustres de design nacional e importado',
+              'Arandelas, spots e luminárias de parede',
+              'Iluminação de quadros, esculturas e peças de arte',
+              'Perfis LED decorativos e fitas para ambientação',
+              'Peças exclusivas de marcas internacionais',
+              'Consultoria de especificação com amostras físicas',
+            ] as $item): ?>
+            <li><?php echo esc_html($item); ?></li>
+            <?php endforeach; ?>
+          </ul>
+
+          <div>
+            <a href="https://wa.me/5519999778710?text=Olá!%20Quero%20ver%20luminárias%20decorativas%20no%20showroom%20da%20Vertz." target="_blank" rel="noopener" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark)">
+              <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary-hover);"></span>
+              <span class="btn__label" aria-hidden="true"><span>Agendar visita ao showroom</span><span>Agendar visita ao showroom</span></span>
+            </a>
           </div>
-          <?php endforeach; ?>
-        </div>
-        <div class="mt-20">
-          <a href="https://wa.me/5519999778710?text=Olá!%20Quero%20ver%20luminárias%20decorativas%20no%20showroom%20da%20Vertz." target="_blank" rel="noopener" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark)">
-            <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary-hover);"></span>
-            <span class="btn__label" aria-hidden="true"><span>Agendar visita ao showroom</span><span>Agendar visita ao showroom</span></span>
-          </a>
+
         </div>
       </div>
 
