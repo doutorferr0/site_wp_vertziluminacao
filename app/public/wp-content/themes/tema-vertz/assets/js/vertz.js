@@ -395,22 +395,7 @@
      HOVER TILT SUAVE EM CARDS
      ============================================================ */
   function initCardTilt() {
-    var cards = qsa('.pb-row-razoes__card, .pb-row-house-models__house');
-    if (!window.matchMedia('(hover: hover)').matches) return;
-
-    cards.forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        var rect   = card.getBoundingClientRect();
-        var cx     = rect.left + rect.width / 2;
-        var cy     = rect.top + rect.height / 2;
-        var rx     = (e.clientY - cy) / (rect.height / 2) * 3;
-        var ry     = (cx - e.clientX) / (rect.width / 2) * 3;
-        card.style.transform = 'perspective(600px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-2px)';
-      });
-      card.addEventListener('mouseleave', function () {
-        card.style.transform = '';
-      });
-    });
+    // Removido — efeito 3D desativado
   }
 
 
@@ -489,22 +474,7 @@
      HOVER TILT SUAVE EM CARDS
      ============================================================ */
   function initCardTilt() {
-    var cards = qsa('.pb-row-razoes__card, .pb-row-house-models__house');
-    if (!window.matchMedia('(hover: hover)').matches) return;
-
-    cards.forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        var rect   = card.getBoundingClientRect();
-        var cx     = rect.left + rect.width / 2;
-        var cy     = rect.top + rect.height / 2;
-        var rx     = (e.clientY - cy) / (rect.height / 2) * 3;
-        var ry     = (cx - e.clientX) / (rect.width / 2) * 3;
-        card.style.transform = 'perspective(600px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-2px)';
-      });
-      card.addEventListener('mouseleave', function () {
-        card.style.transform = '';
-      });
-    });
+    // Removido — efeito 3D desativado
   }
 
 
