@@ -229,11 +229,13 @@ $theme_uri = get_template_directory_uri();
         foreach ($segmentos as $s): ?>
         <article class="d-grid grid-gap-20" data-scroll data-scroll-offset="60px,0" data-module-delay style="--index:<?php echo $s['i'] % 3; ?>">
 
-          <!-- IMG: <?php echo esc_html($s['img']); ?> | <?php echo esc_html($s['ratio']); ?> -->
           <div class="overflow-clip" style="border-radius:12px;">
-            <div style="width:100%;aspect-ratio:<?php echo esc_attr($s['ratio']); ?>;background:var(--color-surface);display:flex;align-items:flex-end;padding:1rem;">
-              <span style="font-size:var(--fz-10);text-transform:uppercase;letter-spacing:0.1em;color:var(--color-gray-600)"><?php echo esc_html($s['img']); ?></span>
-            </div>
+            <!-- IMG: <?php echo esc_html($s['img']); ?> | <?php echo esc_html($s['ratio']); ?> -->
+            <img
+              src="<?php echo esc_url( $theme_uri . '/assets/images/' . $s['img'] ); ?>"
+              alt="<?php echo esc_attr( $s['titulo'] ); ?> — Vertz Iluminação"
+              loading="lazy" decoding="async"
+              style="width:100%;aspect-ratio:<?php echo esc_attr($s['ratio']); ?>;object-fit:cover;display:block;transition:transform .8s ease;">
           </div>
 
           <div class="d-grid grid-gap-12" style="border-top:1px solid var(--color-gray-300);padding-top:1.25rem;">
