@@ -3111,3 +3111,32 @@ a, button, [role="button"] {
     font-size: clamp(10rem, 14vw, 18rem);
   }
 }
+
+
+/* ============================================================
+   HEADER — Fixo escuro em páginas internas (não-home)
+   WordPress adiciona .home no <body> apenas na front page.
+   Em todas as outras páginas, o header nasce já escuro,
+   sem esperar scroll.
+   ============================================================ */
+
+body:not(.home) .site-header.is-top {
+  background: rgba(24, 24, 26, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 2px 40px rgba(0,0,0,0.35);
+  pointer-events: all;
+}
+
+/* Nav links: brancos (mesmo padrão do is-scrolled) */
+body:not(.home) .site-header.is-top .site-header__rightMenuItems a {
+  color: rgba(255,255,255,0.9);
+}
+body:not(.home) .site-header.is-top .site-header__rightMenuItems a:hover {
+  color: var(--color-white);
+}
+
+/* Burger: branco */
+body:not(.home) .site-header.is-top .site-header__burger span {
+  background: var(--color-white);
+}
