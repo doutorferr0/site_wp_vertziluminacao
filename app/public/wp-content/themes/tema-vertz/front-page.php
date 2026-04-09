@@ -3,39 +3,27 @@
  * front-page.php — Vertz Iluminação
  */
 get_header();
-
 $theme_uri = get_template_directory_uri();
 ?>
 
 <div class="single single-page" id="page-home">
 
-  <!-- ============================================================
-    SEÇÃO 1: HERO — Vídeo fullscreen + título
-  ============================================================ -->
-  <div class="pb-row-wrapper position-relative pt-0 pb-0 pt-md-0 pb-md-0 pt-lg-0 pb-lg-0 mt-0 mb-0 --layout-pb-row-hero --first" style="--zindex:1">
+  <!-- SEÇÃO 1: HERO -->
+  <div class="pb-row-wrapper position-relative pt-0 pb-0 mt-0 mb-0 --layout-pb-row-hero --first" style="--zindex:1">
     <div id="pb-row-hero-1" class="pb-row pb-row-hero d-grid grid-row-1" data-scroll data-module-delay data-module-delay-increment="550">
-
       <figure class="pb-row-hero__media col-start-1 row-start-1 position-relative w-100 h-100">
         <div class="pb-row-hero__mediaWrap position-absolute t-0 l-0 w-100 m-0">
           <div class="pb-row-hero__mediaSticky position-sticky t-0 l-0 w-100 overflow-clip"
-            data-scroll
-            data-scroll-target="#pb-row-hero-1"
-            data-scroll-progress="easeInCubic">
+            data-scroll data-scroll-target="#pb-row-hero-1" data-scroll-progress="easeInCubic">
             <?php
-            $video_path = get_template_directory() . '/assets/images/hero-video.mp4';
+            $video_path  = get_template_directory() . '/assets/images/hero-video.mp4';
             $poster_path = get_template_directory() . '/assets/images/hero-poster.jpg';
-            $poster_attr = file_exists( $poster_path )
-              ? 'poster="' . esc_url( $theme_uri ) . '/assets/images/hero-poster.jpg"'
-              : '';
-            if ( file_exists( $video_path ) ) : ?>
-            <video
-              class="w-100 pb-row-hero__video"
-              autoplay muted loop playsinline preload="none"
-              <?php echo $poster_attr; ?>
-              style="aspect-ratio:16/9;object-fit:cover;display:block;">
-              <source src="<?php echo esc_url( $theme_uri ); ?>/assets/images/hero-video.mp4" type="video/mp4">
+            $poster_attr = file_exists($poster_path) ? 'poster="' . esc_url($theme_uri) . '/assets/images/hero-poster.jpg"' : '';
+            if (file_exists($video_path)): ?>
+            <video class="w-100 pb-row-hero__video" autoplay muted loop playsinline preload="none" <?php echo $poster_attr; ?> style="aspect-ratio:16/9;object-fit:cover;display:block;">
+              <source src="<?php echo esc_url($theme_uri); ?>/assets/images/hero-video.mp4" type="video/mp4">
             </video>
-            <?php else : ?>
+            <?php else: ?>
             <div class="pb-row-hero__videoFallback" style="width:100%;aspect-ratio:16/9;background:var(--color-header-bg);display:block;"></div>
             <?php endif; ?>
           </div>
@@ -43,498 +31,333 @@ $theme_uri = get_template_directory_uri();
       </figure>
 
       <div class="vertz-circle-hero vertz-circle vertz-circle--light" aria-hidden="true">
-
-        <!-- Anel externo: texto Vertz girando no sentido horário -->
         <svg class="vertz-circle__outer" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;">
-          <defs>
-            <path id="vertz-outer-path" d="M120,120 m-108,0 a108,108 0 1,1 216,0 a108,108 0 1,1 -216,0"/>
-          </defs>
+          <defs><path id="vertz-outer-path" d="M120,120 m-108,0 a108,108 0 1,1 216,0 a108,108 0 1,1 -216,0"/></defs>
           <text font-size="12" font-family="inherit" fill="rgba(255,255,255,0.9)" font-weight="500" letter-spacing="4.5" stroke="rgba(0,0,0,0.4)" stroke-width="1.2" paint-order="stroke fill">
-            <textPath href="#vertz-outer-path">
-              VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  
-            </textPath>
+            <textPath href="#vertz-outer-path">VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  </textPath>
           </text>
         </svg>
-
-        <!-- Anel interno: data/hora girando no sentido anti-horário -->
         <div class="vertz-circle__inner-ring" style="position:absolute;inset:0;width:100%;height:100%;">
           <svg id="vertz-inner-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-            <defs>
-              <path id="vertz-inner-path" d="M120,120 m-80,0 a80,80 0 1,0 160,0 a80,80 0 1,0 -160,0"/>
-            </defs>
+            <defs><path id="vertz-inner-path" d="M120,120 m-80,0 a80,80 0 1,0 160,0 a80,80 0 1,0 -160,0"/></defs>
             <text id="vertz-date-text" font-size="11.5" font-family="inherit" fill="rgba(255,255,255,0.8)" font-weight="400" letter-spacing="3" stroke="rgba(0,0,0,0.35)" stroke-width="1.1" paint-order="stroke fill">
-              <textPath href="#vertz-inner-path">
-                --:-- ✦ --/--/----
-              </textPath>
+              <textPath href="#vertz-inner-path">--:-- ✦ --/--/----</textPath>
             </text>
           </svg>
         </div>
-
       </div>
 
       <div class="pb-row-hero__titleWrap col-start-1 row-start-1 align-self-end container-fluid color-white position-relative overflow-clip ta-center">
         <h1 class="pb-row-hero__title ff-body fz-44 fz-md-64 fz-xl-96 fw-400 lh-none ls--4 m-0 ta-center"
-          data-scroll
-          data-scroll-target="#pb-row-hero-1"
-          data-scroll-progress
-          data-splitting="charsWrapped"
-        >Lorem ipsum, lux semper.</h1>
-
-        <!-- CTAs hero -->
+          data-scroll data-scroll-target="#pb-row-hero-1" data-scroll-progress data-splitting="charsWrapped"
+        >Luz com <span class="title-highlight --font-heading --fs-italic">intenção.</span></h1>
         <div class="mt-30 mt-md-40 d-flex flex-column flex-md-row justify-content-center align-items-center grid-gap-15" style="position:relative;z-index:2;">
-          <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark);">
+          <a href="<?php echo esc_url(home_url('/contato')); ?>" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark);">
             <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary-hover);"></span>
             <span class="btn__label" aria-hidden="true"><span>Solicitar orçamento</span><span>Solicitar orçamento</span></span>
           </a>
-          <a href="<?php echo esc_url( home_url('/servicos') ); ?>" class="btn --cta --cta-default" style="border-color:rgba(255,255,255,0.6);color:var(--color-white);">
+          <a href="<?php echo esc_url(home_url('/servicos')); ?>" class="btn --cta --cta-default" style="border-color:rgba(255,255,255,0.6);color:var(--color-white);">
             <span class="btn__bg" aria-hidden="true" style="background:rgba(255,255,255,0.15);"></span>
             <span class="btn__label" aria-hidden="true"><span>Nossos serviços</span><span>Nossos serviços</span></span>
           </a>
         </div>
-
       </div>
-
     </div>
   </div>
 
 
-  <!-- ============================================================
-    SEÇÃO 2: PAGE HEADING — Chamada principal
-  ============================================================ -->
-  <div class="pb-row-wrapper position-relative pt-40 pb-40 pt-md-50 pb-md-60 pt-xl-100 pb-xl-110 mt-0 mb-0 --layout-pb-row-page-heading" style="--zindex:2">
+  <!-- SEÇÃO 2: DECLARAÇÃO EDITORIAL -->
+  <div class="pb-row-wrapper position-relative pt-80 pb-80 pt-md-100 pb-md-100 pt-xl-130 pb-xl-130 mt-0 mb-0" style="--zindex:2">
     <header class="page-heading d-flex flex-column align-items-center pb-row pb-row-page-heading container-fluid"
       data-scroll id="pb-row-page-heading-1" data-scroll-offset="80px,0" data-module-delay>
-
-      <div class="page-heading__subtitleWrap">
-        <p class="page-heading__subtitle fz-12 fz-md-14 fw-400 lh-116 lh-md-none ta-center tt-uppercase m-0">O que fazemos</p>
+      <p class="fz-12 fz-md-14 fw-400 ta-center tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)">O que fazemos</p>
+      <h2 class="ff-body fz-28 fz-md-44 fz-xl-64 fw-400 lh-107 ls--4 ta-center m-0 mt-20 mt-md-30 mt-xl-40"
+        data-splitting="wordsMask" data-scroll data-reveal data-text-animation="slidein-by-lines"
+        data-scroll-target="#pb-row-page-heading-1" data-scroll-offset="80px,0"
+      >Iluminação técnica e decorativa para ambientes <span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0" data-splitting="chars">únicos.</span></h2>
+      <div class="fz-14 fz-md-16 fz-xl-18 lh-150 ta-center wysiwyg mt-24 mt-md-30 mt-xl-60" style="max-width:680px;">
+        <p>A Vertz combina projeto luminotécnico rigoroso com curadoria estética de marcas exclusivas — transformando cada ambiente em uma experiência precisa e memorável.</p>
       </div>
-
-      <h2 class="page-heading__title ff-body fz-28 fz-md-44 fz-xl-64 fw-400 lh-107 lh-md-none lh-xl-93 ls--4 ta-center m-0 mt-20 mt-md-30 mt-xl-40"
-        data-splitting="wordsMask"
-        data-scroll
-        data-reveal
-        data-text-animation="slidein-by-lines"
-        data-scroll-target="#pb-row-page-heading-1"
-        data-scroll-offset="80px,0"
-      >Soluções em iluminação para ambientes <span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0" data-splitting="chars">únicos.</span></h2>
-
-      <div class="page-heading__text fz-14 fz-md-16 fz-xl-18 lh-142 lh-md-150 lh-xl-133 ta-center wysiwyg mt-24 mt-md-30 mt-xl-60">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Produzimos iluminação de alto desempenho que transforma qualquer espaço em uma experiência visual extraordinária.</p>
-      </div>
-
     </header>
   </div>
 
 
-  <!-- ============================================================
-    SEÇÃO 3: GALERIA — Troca por botão, sem swipe
-  ============================================================ -->
+  <!-- SEÇÃO 3: GALERIA -->
   <div class="pb-row-wrapper position-relative pt-0 pb-0 mt-0 mb-0" style="--zindex:3">
     <div class="pb-row pb-row-gallery-btn container-fluid" data-scroll data-scroll-offset="80px,0" data-module-delay>
-
-      <!-- Header -->
-      <header class="pb-row-gallery-btn__header d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20 mb-30 mb-md-40" data-scroll data-scroll-offset="80px,0" data-module-delay>
+      <header class="pb-row-gallery-btn__header d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20 mb-30 mb-md-40">
         <h2 class="col-start-1 col-span-md-8 col-span-xl-14 ff-body fz-20 fz-md-32 fz-xl-48 fw-400 lh-110 ls--3 m-0">
           Iluminação para cada <span class="title-highlight --font-heading --fs-italic">ambiente</span>.
         </h2>
         <div class="col-start-1 col-start-md-9 col-span-md-4 col-start-xl-17 col-span-xl-8 fz-14 lh-142 d-flex align-items-md-end" style="color:var(--color-gray-600)">
-          <p class="m-0">Desenvolvida para se adaptar a qualquer projeto, nossa linha ilumina do residencial ao comercial com eficiência e elegância.</p>
+          <p class="m-0">Do residencial de alto padrão ao complexo comercial — com eficiência técnica e curadoria estética.</p>
         </div>
       </header>
-
-      <!-- Área da imagem — proporções em % -->
       <div class="pb-row-gallery-btn__stage" id="gallery-stage">
-
-        <!-- Imagem 1 — Residencial -->
         <figure class="pb-row-gallery-btn__slide" id="gallery-slide-0" aria-hidden="false">
-          <img
-            src="<?php echo esc_url( $theme_uri ); ?>/assets/images/gallery-01.jpg"
-            alt="Projeto residencial Vertz Iluminação"
-            loading="lazy" decoding="async">
+          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/gallery-01.jpg" alt="Projeto residencial Vertz Iluminação" loading="lazy" decoding="async">
         </figure>
-
-        <!-- Imagem 2 — Comercial -->
         <figure class="pb-row-gallery-btn__slide" id="gallery-slide-1" aria-hidden="true">
-          <img
-            src="<?php echo esc_url( $theme_uri ); ?>/assets/images/gallery-02.jpg"
-            alt="Projeto comercial Vertz Iluminação"
-            loading="lazy" decoding="async">
+          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/gallery-02.jpg" alt="Projeto comercial Vertz Iluminação" loading="lazy" decoding="async">
         </figure>
-
-        <!-- Botões sobrepostos na imagem -->
         <nav class="pb-row-gallery-btn__nav" aria-label="Categoria de projeto">
-          <button class="pb-row-gallery-btn__pill is-active" data-gallery-target="0" aria-pressed="true">
-            Residencial
-          </button>
-          <button class="pb-row-gallery-btn__pill" data-gallery-target="1" aria-pressed="false">
-            Comercial
-          </button>
+          <button class="pb-row-gallery-btn__pill is-active" data-gallery-target="0" aria-pressed="true">Residencial</button>
+          <button class="pb-row-gallery-btn__pill" data-gallery-target="1" aria-pressed="false">Comercial</button>
         </nav>
-
       </div>
-
     </div>
   </div>
-
-  <!-- Mini CTA após galeria -->
   <div class="pb-row-wrapper position-relative pt-0 pb-0" style="--zindex:3.5">
-    <div class="pb-row container-fluid d-flex justify-content-center" style="padding-left:18%;padding-right:18%;padding-top:1.5rem;padding-bottom:0;">
-      <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="fz-12 tt-uppercase fw-500 d-flex align-items-center grid-gap-10" style="color:var(--color-dark);text-decoration:none;letter-spacing:0.12em;border-bottom:1px solid var(--color-dark);">
+    <div class="pb-row container-fluid d-flex justify-content-center" style="padding-left:18%;padding-right:18%;padding-top:1.5rem;">
+      <a href="<?php echo esc_url(home_url('/contato')); ?>" class="fz-12 tt-uppercase fw-500 d-flex align-items-center grid-gap-10" style="color:var(--color-dark);text-decoration:none;letter-spacing:0.12em;border-bottom:1px solid var(--color-dark);">
         Solicitar projeto para este tipo de ambiente →
       </a>
     </div>
   </div>
 
 
-  <!-- ============================================================
-    SEÇÃO 4: PRODUTOS
-  ============================================================ -->
-  <div class="pb-row-wrapper position-relative pt-50 pb-70 pt-md-80 pb-md-60 pt-xl-110 pb-xl-60 mt-0 mb-0 --layout-pb-row-house-models" style="--zindex:4">
-    <div id="pb-row-house-models-1"
-      class="pb-row pb-row-house-models container-fluid d-grid grid-column-md-2 grid-column-xl-24 align-items-md-start grid-gap-30 grid-gap-md-12 grid-gap-xl-20"
-      data-module="pb-row-house-models">
-
-      <aside class="pb-row-house-models__house col-start-xl-1 col-span-xl-11 d-grid grid-gap-15 grid-gap-xl-20 position-relative">
-        <img
-          src="<?php echo esc_url( $theme_uri ); ?>/assets/images/produto-residencial.jpg"
-          alt="Linha Residencial Vertz — Spots, Pendentes e Perfis LED"
-          loading="lazy"
-          decoding="async"
-          style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
-        <div class="d-grid grid-gap-10">
-          <h3 class="fz-20 fz-xl-28 fw-400 m-0">Linha Residencial</h3>
-          <p class="fz-14 fz-xl-16 lh-142 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Iluminação elegante para ambientes residenciais internos e externos.</p>
-          <p class="fz-12 tt-uppercase m-0">Spots · Pendentes · Perfis LED</p>
+  <!-- SEÇÃO 4: PRODUTOS -->
+  <div class="pb-row-wrapper position-relative pt-50 pb-70 pt-md-80 pb-md-80 pt-xl-110 pb-xl-80 mt-0 mb-0" style="--zindex:4">
+    <div class="pb-row pb-row-house-models container-fluid d-grid grid-column-md-2 grid-column-xl-24 align-items-md-start grid-gap-30 grid-gap-md-12 grid-gap-xl-20">
+      <?php
+      $produtos = [
+        ['img'=>'produto-residencial.jpg','alt'=>'Linha Residencial Vertz','col'=>'col-start-xl-1 col-span-xl-11','titulo'=>'Linha Residencial',
+         'desc'=>'Spots embutidos, pendentes de design e perfis LED para sancas — iluminação que eleva o padrão de qualquer projeto residencial.',
+         'tags'=>'Spots · Pendentes · Perfis LED'],
+        ['img'=>'produto-comercial.jpg',  'alt'=>'Linha Comercial Vertz',  'col'=>'col-start-xl-13 col-span-xl-11','titulo'=>'Linha Comercial',
+         'desc'=>'Trilhos ajustáveis, luminárias embutidas e sistemas de temperatura de cor dinâmica para lojas, restaurantes e escritórios.',
+         'tags'=>'Trilhos · Luminárias embutidas · Painéis'],
+      ];
+      foreach ($produtos as $p): ?>
+      <aside class="pb-row-house-models__house <?php echo esc_attr($p['col']); ?> d-grid grid-gap-15 grid-gap-xl-20">
+        <div class="overflow-clip" style="border-radius:10px;">
+          <img src="<?php echo esc_url($theme_uri . '/assets/images/' . $p['img']); ?>" alt="<?php echo esc_attr($p['alt']); ?>"
+            loading="lazy" decoding="async"
+            style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;transition:transform .8s ease;">
+        </div>
+        <div class="d-grid grid-gap-10" style="border-top:1px solid var(--color-gray-300);padding-top:1.25rem;">
+          <h3 class="fz-20 fz-xl-28 fw-400 m-0"><?php echo esc_html($p['titulo']); ?></h3>
+          <p class="fz-14 fz-xl-16 lh-155 m-0" style="color:var(--color-gray-600)"><?php echo esc_html($p['desc']); ?></p>
+          <p class="fz-11 tt-uppercase m-0" style="color:var(--color-accent);letter-spacing:.1em;"><?php echo esc_html($p['tags']); ?></p>
         </div>
       </aside>
-
-      <aside class="pb-row-house-models__house col-start-xl-13 col-span-xl-11 d-grid grid-gap-15 grid-gap-xl-20 position-relative">
-        <img
-          src="<?php echo esc_url( $theme_uri ); ?>/assets/images/produto-comercial.jpg"
-          alt="Linha Comercial Vertz — Trilhos, Luminárias embutidas e Painéis"
-          loading="lazy"
-          decoding="async"
-          style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
-        <div class="d-grid grid-gap-10">
-          <h3 class="fz-20 fz-xl-28 fw-400 m-0">Linha Comercial</h3>
-          <p class="fz-14 fz-xl-16 lh-142 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Soluções de iluminação para lojas, escritórios e espaços públicos.</p>
-          <p class="fz-12 tt-uppercase m-0">Trilhos · Luminárias embutidas · Painéis</p>
-        </div>
-      </aside>
-
+      <?php endforeach; ?>
     </div>
   </div>
 
 
-  <!-- ============================================================
-    SEÇÃO 4.5: 10 RAZÕES PARA VERTZ — Cards slider
-  ============================================================ -->
+  <!-- SEÇÃO 4.5: 10 RAZÕES -->
   <div class="pb-row-wrapper position-relative pt-50 pb-50 pt-md-80 pb-md-80 pt-xl-110 pb-xl-110 mt-0 mb-0" style="--zindex:4.5;background:var(--color-surface);">
-    <div id="pb-row-razoes-1"
-      class="pb-row pb-row-razoes"
-      data-scroll data-scroll-offset="100px,0" data-module-delay>
-
-      <!-- Cabeçalho -->
-      <header class="container-fluid mb-40 mb-md-60" data-scroll data-scroll-offset="80px,0" data-module-delay>
+    <div id="pb-row-razoes-1" class="pb-row pb-row-razoes" data-scroll data-scroll-offset="100px,0" data-module-delay>
+      <header class="container-fluid mb-40 mb-md-60">
         <p class="fz-12 tt-uppercase m-0 mb-15" style="color:var(--color-gray-600)">Por que escolher a Vertz</p>
         <h2 class="ff-body fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0">
           10 razões para <span class="title-highlight --font-heading --fs-italic">iluminar</span> com a Vertz.
         </h2>
       </header>
-
-      <!-- Slider -->
       <div class="pb-row-razoes__slider swiper">
         <div class="pb-row-razoes__sliderWrap swiper-wrapper">
-
           <?php
           $razoes = [
-            [ 'titulo' => 'Experiência comprovada',          'gif' => 'razoes-01.gif', 'acento' => 'Mais de 20 anos no mercado,',           'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
-            [ 'titulo' => 'Projeto luminotécnico completo',  'gif' => 'razoes-02.gif', 'acento' => 'Do briefing ao memorial descritivo,',   'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
-            [ 'titulo' => 'Marcas exclusivas',               'gif' => 'razoes-03.gif', 'acento' => 'Revendedor exclusivo de marcas premium,','texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
-            [ 'titulo' => 'Eficiência energética real',      'gif' => 'razoes-04.gif', 'acento' => 'Redução de até 80% no consumo,',         'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
-            [ 'titulo' => 'Soluções sob medida',             'gif' => 'razoes-05.gif', 'acento' => 'Cada projeto é único,',                 'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
-            [ 'titulo' => 'Acompanhamento de obra',          'gif' => 'razoes-06.gif', 'acento' => 'Nossa equipe técnica acompanha',        'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
-            [ 'titulo' => 'Parceria com arquitetos',         'gif' => 'razoes-07.gif', 'acento' => 'Trabalhamos lado a lado com',           'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
-            [ 'titulo' => 'Showrooms em SP e Campinas',      'gif' => 'razoes-08.gif', 'acento' => 'Visite nossos showrooms modernos',      'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
-            [ 'titulo' => 'Tecnologia e design juntos',      'gif' => 'razoes-09.gif', 'acento' => 'Unimos alta performance técnica',       'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
-            [ 'titulo' => 'Garantia e suporte técnico',      'gif' => 'razoes-10.gif', 'acento' => 'Dois anos de garantia',                 'texto' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.' ],
+            ['titulo'=>'Experiência comprovada',         'gif'=>'razoes-01.gif','acento'=>'Mais de 20 anos no mercado,',           'texto'=>'atendendo arquitetos, construtoras e clientes finais com consistência técnica e curadoria estética selecionada.'],
+            ['titulo'=>'Projeto luminotécnico completo', 'gif'=>'razoes-02.gif','acento'=>'Do briefing ao memorial descritivo,',   'texto'=>'entregamos cálculos de iluminância por ambiente, seleção de produtos e documentação técnica completa para instalação.'],
+            ['titulo'=>'Marcas exclusivas',              'gif'=>'razoes-03.gif','acento'=>'Revendedor exclusivo de marcas premium,','texto'=>'nacionais e internacionais disponíveis nos nossos showrooms para ver, tocar e especificar com segurança.'],
+            ['titulo'=>'Eficiência energética real',     'gif'=>'razoes-04.gif','acento'=>'Redução de até 80% no consumo,',         'texto'=>'com tecnologia LED certificada, dimensionada por cálculo técnico — sem superdimensionamento, sem desperdício.'],
+            ['titulo'=>'Soluções sob medida',            'gif'=>'razoes-05.gif','acento'=>'Cada projeto é único,',                 'texto'=>'e o atendimento também. Não trabalhamos com pacotes prontos — cada especificação é desenvolvida para o espaço e o cliente.'],
+            ['titulo'=>'Acompanhamento de obra',         'gif'=>'razoes-06.gif','acento'=>'Nossa equipe técnica acompanha',        'texto'=>'a instalação e faz visitas de comissionamento para garantir que o projeto entregue exatamente o que foi projetado.'],
+            ['titulo'=>'Parceria com arquitetos',        'gif'=>'razoes-07.gif','acento'=>'Trabalhamos lado a lado com',            'texto'=>'arquitetos e designers — com memorial descritivo, amostras físicas e visitas de acompanhamento inclusas.'],
+            ['titulo'=>'Showrooms em SP e Campinas',     'gif'=>'razoes-08.gif','acento'=>'Visite nossos showrooms,',              'texto'=>'onde você experimenta temperatura de cor, IRC e acabamento de cada produto antes de especificar.'],
+            ['titulo'=>'Tecnologia e design juntos',     'gif'=>'razoes-09.gif','acento'=>'Unimos alta performance técnica',       'texto'=>'com curadoria estética rigorosa — porque um projeto de iluminação precisa ser belo e funcional ao mesmo tempo.'],
+            ['titulo'=>'Garantia e suporte técnico',     'gif'=>'razoes-10.gif','acento'=>'Dois anos de garantia',                 'texto'=>'em todos os produtos fornecidos, com suporte técnico especializado e orientação para manutenção preventiva.'],
           ];
-          foreach ( $razoes as $index => $razao ) : ?>
-
+          foreach ($razoes as $index => $razao): ?>
           <div class="pb-row-razoes__slide swiper-slide" style="--index:<?php echo $index; ?>">
             <div class="pb-row-razoes__card">
-
-              <!-- Título em itálico -->
-              <h3 class="pb-row-razoes__titulo ff-heading fs-italic fw-400 m-0">
-                <?php echo esc_html( $razao['titulo'] ); ?>
-              </h3>
-
-              <!-- GIF central -->
+              <h3 class="pb-row-razoes__titulo ff-heading fs-italic fw-400 m-0"><?php echo esc_html($razao['titulo']); ?></h3>
               <figure class="pb-row-razoes__gif m-0">
-                <img
-                  src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/<?php echo esc_attr( $razao['gif'] ); ?>"
-                  alt="<?php echo esc_attr( $razao['titulo'] ); ?>"
-                  loading="lazy"
-                  decoding="async"
+                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/<?php echo esc_attr($razao['gif']); ?>"
+                  alt="<?php echo esc_attr($razao['titulo']); ?>" loading="lazy" decoding="async"
                   style="width:100%;aspect-ratio:1/1;object-fit:contain;display:block;">
               </figure>
-
-              <!-- Texto -->
               <p class="pb-row-razoes__texto m-0">
-                <span class="pb-row-razoes__acento"><?php echo esc_html( $razao['acento'] ); ?></span>
-                <?php echo esc_html( ' ' . $razao['texto'] ); ?>
+                <span class="pb-row-razoes__acento"><?php echo esc_html($razao['acento']); ?></span>
+                <?php echo esc_html(' ' . $razao['texto']); ?>
               </p>
-
             </div>
           </div>
-
           <?php endforeach; ?>
-
         </div>
       </div>
-
     </div>
   </div>
 
 
-  <!-- ============================================================
-    SEÇÃO 5: PAGE HEADING — Diferenciais
-  ============================================================ -->
-  <div class="pb-row-wrapper position-relative pt-40 pb-40 pt-md-50 pb-md-60 pt-xl-100 pb-xl-100 mt-0 mb-0 --layout-pb-row-page-heading" style="--zindex:5">
-    <header class="page-heading d-flex flex-column align-items-center pb-row pb-row-page-heading container-fluid"
+  <!-- SEÇÃO 5: PAGE HEADING DIFERENCIAIS -->
+  <div class="pb-row-wrapper position-relative pt-80 pb-40 pt-md-100 pb-md-60 pt-xl-130 pb-xl-80 mt-0 mb-0" style="--zindex:5">
+    <header class="d-flex flex-column align-items-center pb-row container-fluid"
       data-scroll id="pb-row-page-heading-2" data-scroll-offset="80px,0" data-module-delay>
-
-      <div class="page-heading__subtitleWrap">
-        <p class="page-heading__subtitle fz-12 fz-md-14 fw-400 ta-center tt-uppercase m-0">Por que a Vertz</p>
-      </div>
-
-      <h2 class="page-heading__title ff-body fz-28 fz-md-44 fz-xl-64 fw-400 lh-107 lh-md-none ls--4 ta-center m-0 mt-20 mt-md-30 mt-xl-40"
+      <p class="fz-12 fz-md-14 fw-400 ta-center tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)">Por que a Vertz</p>
+      <h2 class="ff-body fz-28 fz-md-44 fz-xl-64 fw-400 lh-107 ls--4 ta-center m-0 mt-20 mt-md-30 mt-xl-40"
         data-splitting="wordsMask" data-scroll data-text-animation="slidein-by-lines"
         data-scroll-target="#pb-row-page-heading-2" data-scroll-offset="80px,0"
       >Tecnologia e design a serviço da <span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0" data-splitting="chars">luz.</span></h2>
-
     </header>
   </div>
 
 
-  <!-- ============================================================
-    SEÇÃO 6: FEATURES — Diferenciais
-  ============================================================ -->
-  <div class="pb-row-wrapper position-relative pt-0 pb-60 pt-md-0 pb-md-80 pt-xl-0 pb-xl-110 mt-0 mb-0 --layout-pb-row-features" style="--zindex:6">
+  <!-- SEÇÃO 6: FEATURES — Imagem + 3 diferenciais -->
+  <div class="pb-row-wrapper position-relative pt-0 pb-80 pt-md-0 pb-md-100 pt-xl-0 pb-xl-130 mt-0 mb-0" style="--zindex:6">
     <div id="pb-row-features-1"
       class="pb-row pb-row-features container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20"
       data-module="pb-row-features">
 
-      <div class="pb-row-features__mediasContainer col-start-1 col-span-md-6 col-span-xl-12 row-start-md-1">
-        <img
-          src="<?php echo esc_url( $theme_uri ); ?>/assets/images/features-destaque.jpg"
-          alt="Diferenciais Vertz Iluminação"
-          loading="lazy"
-          decoding="async"
+      <div class="pb-row-features__mediasContainer col-start-1 col-span-md-6 col-span-xl-12 row-start-md-1 overflow-clip" style="border-radius:12px;">
+        <img src="<?php echo esc_url($theme_uri); ?>/assets/images/features-destaque.jpg"
+          alt="Diferenciais Vertz Iluminação" loading="lazy" decoding="async"
           style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;">
       </div>
 
-      <div class="pb-row-features__list col-start-1 col-start-md-7 col-span-md-6 col-span-xl-11 d-grid align-content-start grid-gap-30 grid-gap-xl-40 pt-md-40">
-
+      <div class="pb-row-features__list col-start-1 col-start-md-7 col-span-md-6 col-span-xl-11 d-grid align-content-start grid-gap-0 pt-md-40">
+        <?php
+        $features = [
+          ['titulo'=>'Eficiência energética certificada','texto'=>'Nossas especificações em LED resultam em reduções de até 80% no consumo elétrico — com cálculo de iluminância ABNT e produtos com certificação PROCEL.'],
+          ['titulo'=>'Projeto luminotécnico completo','texto'=>'Utilizamos o software DIALux para calcular iluminâncias ambiente a ambiente. Você recebe o memorial descritivo completo, circuitos e quantitativo para a obra.'],
+          ['titulo'=>'Curadoria de marcas exclusivas','texto'=>'Trabalhamos com revendas exclusivas de marcas nacionais e internacionais disponíveis para visitação física nos showrooms de Campinas e São Paulo.'],
+        ];
+        foreach ($features as $i => $f): ?>
         <div class="pb-row-features__feature" data-scroll data-scroll-offset="50px,0" data-module-delay>
-          <div class="pb-row-features__featureWrap d-grid grid-gap-15">
-            <h3 class="pb-row-features__title fz-18 fz-xl-24 fw-400 m-0">Eficiência energética</h3>
-            <p class="pb-row-features__text fz-14 fz-xl-16 lh-142 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nossas luminárias LED consomem até 80% menos energia que sistemas convencionais.</p>
+          <div class="d-grid grid-gap-12" style="border-top:1px solid var(--color-gray-300);padding:1.75rem 0;">
+            <h3 class="fz-18 fz-xl-22 fw-400 m-0"><?php echo esc_html($f['titulo']); ?></h3>
+            <p class="fz-14 fz-xl-15 lh-155 m-0" style="color:var(--color-gray-600)"><?php echo esc_html($f['texto']); ?></p>
           </div>
         </div>
-
-        <div class="pb-row-features__feature" data-scroll data-scroll-offset="50px,0" data-module-delay>
-          <div class="pb-row-features__featureWrap d-grid grid-gap-15">
-            <h3 class="pb-row-features__title fz-18 fz-xl-24 fw-400 m-0">Design personalizável</h3>
-            <p class="pb-row-features__text fz-14 fz-xl-16 lh-142 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cada projeto é desenvolvido com atenção ao detalhe e às necessidades do cliente.</p>
-          </div>
+        <?php endforeach; ?>
+        <div style="padding-top:1.5rem;">
+          <a href="<?php echo esc_url(home_url('/sobre')); ?>" class="fz-12 tt-uppercase fw-500 d-inline-flex align-items-center grid-gap-10" style="color:var(--color-dark);text-decoration:none;letter-spacing:0.12em;border-bottom:1px solid var(--color-dark);">
+            Conheça a Vertz →
+          </a>
         </div>
-
-        <div class="pb-row-features__feature" data-scroll data-scroll-offset="50px,0" data-module-delay>
-          <div class="pb-row-features__featureWrap d-grid grid-gap-15">
-            <h3 class="pb-row-features__title fz-18 fz-xl-24 fw-400 m-0">Instalação rápida</h3>
-            <p class="pb-row-features__text fz-14 fz-xl-16 lh-142 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sistemas modulares que facilitam a instalação e manutenção em qualquer ambiente.</p>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
 
 
-  <!-- ============================================================
-    SEÇÃO 7: PARCEIROS
-  ============================================================ -->
+  <!-- SEÇÃO 7: PARCEIROS -->
   <div class="pb-row-wrapper position-relative pt-40 pb-40 pt-md-60 pb-md-60 pt-xl-80 pb-xl-80 mt-0 mb-0" style="--zindex:7">
-    <section id="pb_row_partners-1"
-      class="pb-row pb-row-partners container-fluid position-relative d-grid grid-column-md-12 grid-column-xl-24 grid-gap-md-12 grid-gap-xl-20"
-      data-scroll data-scroll-offset="50px,0" data-module-delay style="--length:5">
-
+    <section class="pb-row pb-row-partners container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-md-12 grid-gap-xl-20"
+      data-scroll data-scroll-offset="50px,0" data-module-delay>
       <header class="col-start-1 col-span-md-12 col-span-xl-24 mb-20 mb-md-30">
-        <p class="fz-12 tt-uppercase m-0">Parceiros &amp; Certificações</p>
+        <p class="fz-12 tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)">Marcas que representamos</p>
       </header>
-
       <div class="pb-row-partners__wrap col-start-1 col-span-md-12 col-span-xl-24 overflow-clip">
         <div class="pb-row-partners__ticker d-flex align-items-center grid-gap-40 grid-gap-xl-60">
-          <?php for ( $i = 1; $i <= 5; $i++ ) : ?>
-          <div class="pb-row-partners__partner flex-shrink-0" style="--index:<?php echo $i - 1; ?>">
-            <img
-              src="<?php echo esc_url( $theme_uri ); ?>/assets/images/logo-parceiro-0<?php echo $i; ?>.svg"
-              alt="Parceiro <?php echo $i; ?>"
-              loading="lazy"
-              decoding="async"
-              width="120"
-              height="40"
-              style="width:120px;height:40px;object-fit:contain;display:block;">
+          <?php for ($i = 1; $i <= 5; $i++): ?>
+          <div class="pb-row-partners__partner flex-shrink-0">
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/logo-parceiro-0<?php echo $i; ?>.svg"
+              alt="Parceiro <?php echo $i; ?>" loading="lazy" decoding="async" width="120" height="40"
+              style="width:120px;height:40px;object-fit:contain;display:block;opacity:.55;filter:grayscale(1);transition:opacity .3s,filter .3s;">
+          </div>
+          <?php endfor; ?>
+          <?php for ($i = 1; $i <= 5; $i++): ?>
+          <div class="pb-row-partners__partner flex-shrink-0" aria-hidden="true">
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/logo-parceiro-0<?php echo $i; ?>.svg"
+              alt="" loading="lazy" decoding="async" width="120" height="40"
+              style="width:120px;height:40px;object-fit:contain;display:block;opacity:.55;filter:grayscale(1);">
           </div>
           <?php endfor; ?>
         </div>
       </div>
-
     </section>
   </div>
 
 
-  <!-- ============================================================
-    SEÇÃO 8: FAQ
-  ============================================================ -->
+  <!-- SEÇÃO 8: FAQ -->
   <div class="pb-row-wrapper position-relative pt-60 pb-60 pt-md-80 pb-md-80 pt-xl-110 pb-xl-110 mt-0 mb-0" style="--zindex:8">
-    <div id="pb-row-faqs-1"
-      class="pb-row pb-row-faqs container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20"
-      data-scroll>
-
-      <header class="pb-row-faqs__header col-start-1 col-span-md-12 col-span-xl-24 mb-50 mb-md-60 mb-xl-130"
-        data-scroll data-scroll-offset="100px,0" data-module-delay>
-        <h2 class="pb-row-faqs__title fz-28 fz-md-44 fz-xl-64 fw-400 ls--3 m-0"
-          data-splitting="wordsMask" data-scroll data-text-animation="slidein-by-lines"
-        >Perguntas <span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0">frequentes.</span></h2>
+    <div class="pb-row pb-row-faqs container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20" data-scroll>
+      <header class="col-start-1 col-span-md-12 col-span-xl-24 mb-50 mb-md-60" data-scroll data-scroll-offset="100px,0" data-module-delay>
+        <h2 class="fz-28 fz-md-44 fz-xl-64 fw-400 ls--3 m-0" data-splitting="wordsMask" data-scroll data-text-animation="slidein-by-lines">
+          Perguntas <span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0">frequentes.</span>
+        </h2>
       </header>
-
       <div class="pb-row-faqs__faqs col-start-1 col-span-md-12 col-span-xl-18 col-start-xl-4 d-grid grid-gap-0">
         <?php
         $faqs = [
-          [
-            'q' => 'Quais tipos de projetos a Vertz atende?',
-            'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Atendemos projetos residenciais, comerciais, industriais e de arquitetura de luz para eventos e espaços públicos.',
-          ],
-          [
-            'q' => 'Vocês fazem projetos personalizados?',
-            'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sim, trabalhamos com projetos sob medida, adaptando nossa linha de produtos às necessidades específicas de cada cliente e arquiteto.',
-          ],
-          [
-            'q' => 'Qual o prazo médio de entrega dos produtos?',
-            'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. O prazo varia conforme o projeto, mas nossa linha padrão tem entrega de 5 a 10 dias úteis para todo o Brasil.',
-          ],
-          [
-            'q' => 'Os produtos possuem garantia?',
-            'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Todos os nossos produtos possuem garantia de 2 anos contra defeitos de fabricação, com suporte técnico especializado.',
-          ],
+          ['q'=>'Quais tipos de projetos a Vertz atende?',
+           'a'=>'Atendemos projetos residenciais de alto padrão, comerciais e de varejo, corporativos, hoteleiros, hospitalares e projetos especiais como museus e galerias. Também desenvolvemos consultoria para arquitetos e designers de interiores.'],
+          ['q'=>'Vocês desenvolvem o projeto luminotécnico?',
+           'a'=>'Sim. Desenvolvemos o projeto luminotécnico completo com software DIALux — incluindo cálculo de iluminâncias por ambiente, seleção de produtos, memorial descritivo, circuitos e quantitativo. Tudo documentado conforme normas ABNT.'],
+          ['q'=>'Qual o prazo médio de fornecimento?',
+           'a'=>'Nossa linha padrão tem entrega de 5 a 10 dias úteis para todo o Brasil. Produtos importados ou sob encomenda têm prazo informado na proposta, antes do fechamento.'],
+          ['q'=>'Os produtos possuem garantia?',
+           'a'=>'Todos os produtos fornecidos pela Vertz têm garantia de 2 anos contra defeitos de fabricação, com suporte técnico especializado. Para projetos maiores, oferecemos contrato de manutenção preventiva.'],
         ];
-
-        foreach ( $faqs as $index => $faq ) : ?>
+        foreach ($faqs as $index => $faq): ?>
         <div class="pb-row-faqs__accordion" style="--index:<?php echo $index; ?>">
           <button class="pb-row-faqs__accordionBtn d-flex justify-content-between align-items-center w-100 fz-16 fz-xl-20 fw-400 m-0 py-20 py-xl-30" aria-expanded="false">
-            <span><?php echo esc_html( $faq['q'] ); ?></span>
+            <span><?php echo esc_html($faq['q']); ?></span>
             <span class="pb-row-faqs__accordionIcon" aria-hidden="true">+</span>
           </button>
           <div class="pb-row-faqs__accordionContent" hidden>
-            <p class="fz-14 fz-xl-16 lh-142 pb-20 pb-xl-30 m-0"><?php echo esc_html( $faq['a'] ); ?></p>
+            <p class="fz-14 fz-xl-16 lh-155 pb-20 pb-xl-30 m-0" style="color:var(--color-gray-600)"><?php echo esc_html($faq['a']); ?></p>
           </div>
         </div>
         <?php endforeach; ?>
       </div>
-
     </div>
   </div>
 
 
-  <!-- ============================================================
-    SEÇÃO 8.5: NÚMEROS — Estilo editorial com stats grandes
-  ============================================================ -->
+  <!-- SEÇÃO 8.5: NÚMEROS -->
   <div class="pb-row-wrapper position-relative pt-60 pb-60 pt-md-80 pb-md-80 mt-0 mb-0" style="--zindex:8.5;background:var(--color-header-bg);">
     <div class="pb-row container-fluid" data-scroll data-scroll-offset="80px,0" data-module-delay>
-
-      <!-- Divisor animado -->
       <div class="vertz-divider mb-40 mb-md-60" data-scroll></div>
-
       <div class="d-grid grid-column-2 grid-column-md-4 grid-gap-30 grid-gap-xl-40" style="color:var(--color-white);">
-
         <div class="vertz-stat" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:0">
-          <div class="vertz-stat__num" data-count="20" data-count-prefix="+" data-count-suffix=" anos">
-            <span>+20</span> anos
-          </div>
+          <div class="vertz-stat__num" data-count="20" data-count-prefix="+" data-count-suffix=" anos"><span>+20</span> anos</div>
           <p class="vertz-stat__label m-0" style="color:rgba(255,255,255,0.4);">de mercado</p>
         </div>
-
         <div class="vertz-stat" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:1">
-          <div class="vertz-stat__num" data-count="500" data-count-prefix="+">
-            <span>+500</span>
-          </div>
+          <div class="vertz-stat__num" data-count="500" data-count-prefix="+"><span>+500</span></div>
           <p class="vertz-stat__label m-0" style="color:rgba(255,255,255,0.4);">projetos entregues</p>
         </div>
-
         <div class="vertz-stat" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:2">
-          <div class="vertz-stat__num" data-count="80" data-count-suffix="%">
-            <span>80%</span>
-          </div>
+          <div class="vertz-stat__num" data-count="80" data-count-suffix="%"><span>80%</span></div>
           <p class="vertz-stat__label m-0" style="color:rgba(255,255,255,0.4);">menos energia consumida</p>
         </div>
-
         <div class="vertz-stat" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:3">
-          <div class="vertz-stat__num">
-            <span>2</span>
-          </div>
+          <div class="vertz-stat__num"><span>2</span></div>
           <p class="vertz-stat__label m-0" style="color:rgba(255,255,255,0.4);">showrooms — SP e Campinas</p>
         </div>
-
       </div>
     </div>
   </div>
 
 
-  <!-- ============================================================
-    SEÇÃO 9: CONTATO — CTA final
-  ============================================================ -->
+  <!-- SEÇÃO 9: CTA FINAL -->
   <div class="pb-row-wrapper position-relative pt-60 pb-60 pt-md-80 pb-md-80 pt-xl-110 pb-xl-110 mt-0 mb-0" style="--zindex:9">
-    <div id="pb-row-contact-1"
-      class="pb-row pb-row-contact container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20"
+    <div class="pb-row pb-row-contact container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20"
       data-scroll data-scroll-offset="50px,0" data-module-delay>
-
-      <div class="pb-row-contact__imgWrap col-start-1 col-span-md-5 col-span-xl-10 position-relative overflow-clip">
-        <img
-          src="<?php echo esc_url( $theme_uri ); ?>/assets/images/contato-foto.jpg"
-          alt="Fale com a Vertz Iluminação"
-          loading="lazy"
-          decoding="async"
+      <div class="col-start-1 col-span-md-5 col-span-xl-10 position-relative overflow-clip" style="border-radius:12px;">
+        <img src="<?php echo esc_url($theme_uri); ?>/assets/images/contato-foto.jpg"
+          alt="Showroom Vertz Iluminação" loading="lazy" decoding="async"
           style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
       </div>
-
-      <div class="pb-row-contact__wrapper col-start-1 col-start-md-7 col-span-md-6 col-span-xl-12 d-flex flex-column justify-content-center grid-gap-30 grid-gap-xl-40 pt-40 pt-md-0">
-
-        <div class="pb-row-contact__subtitleWrap">
-          <p class="fz-12 tt-uppercase m-0">Fale com a gente</p>
+      <div class="col-start-1 col-start-md-7 col-span-md-6 col-span-xl-12 d-flex flex-column justify-content-center grid-gap-30 grid-gap-xl-40 pt-40 pt-md-0">
+        <p class="fz-12 tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)">Fale com a gente</p>
+        <h2 class="fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0" data-splitting="wordsMask" data-scroll data-text-animation="slidein-by-lines">
+          Vamos iluminar o seu <span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0">projeto.</span>
+        </h2>
+        <p class="fz-14 fz-xl-16 lh-155 m-0" style="color:var(--color-gray-600)">Envie a planta baixa, o projeto do arquiteto ou apenas descreva o espaço. Nossa equipe retorna em até 24 horas úteis com uma proposta preliminar.</p>
+        <div class="d-flex flex-column flex-md-row grid-gap-15">
+          <a href="<?php echo esc_url(home_url('/contato')); ?>" class="btn --cta --cta-default">
+            <span class="btn__bg" aria-hidden="true"></span>
+            <span class="btn__label" aria-hidden="true"><span>Solicitar orçamento</span><span>Solicitar orçamento</span></span>
+          </a>
+          <a href="https://wa.me/5519999778710?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank" rel="noopener" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark);">
+            <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary-hover);"></span>
+            <span class="btn__label" aria-hidden="true"><span>WhatsApp direto</span><span>WhatsApp direto</span></span>
+          </a>
         </div>
-
-        <h2 class="fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0"
-          data-splitting="wordsMask" data-scroll data-text-animation="slidein-by-lines"
-        >Vamos iluminar o seu <span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0">projeto.</span></h2>
-
-        <p class="fz-14 fz-xl-16 lh-142 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Entre em contato e um de nossos consultores retornará em até 24 horas úteis.</p>
-
-        <div class="pb-row-contact__form">
-          <?php
-          // Substituir pelo shortcode do seu plugin de formulário:
-          // echo do_shortcode('[contact-form-7 id="SEU_ID"]');
-          // echo do_shortcode('[wpforms id="SEU_ID"]');
-          ?>
-          <div style="padding:30px;background:#f5f5f5;border-radius:4px;">
-            <p style="font-size:13px;color:#999;margin:0;text-align:center;">
-              FORMULÁRIO DE CONTATO<br>
-              <small>Instalar Contact Form 7 e substituir este bloco pelo <code>do_shortcode()</code></small>
-            </p>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
