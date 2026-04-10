@@ -13,15 +13,29 @@
 <div data-windmill="wrapper">
 <div data-windmill="container" data-ui="gform">
 <header class="site-header position-fixed z-9000 t-0 l-0 w-100 pointer-events-none">
-  <div class="site-header__wrap container-fluid d-flex justify-content-between align-items-center w-100">
-    <figure class="site-header__logo m-0 p-0 pointer-events-all color-red" role="banner">
+  <div class="site-header__wrap container-fluid d-flex align-items-center w-100">
+
+    <!-- CTA esquerda — visível apenas no estado hero (home no topo) -->
+    <div class="site-header__cta-hero pointer-events-all">
+      <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default fw-500" aria-label="Fale Conosco">
+        <span class="btn__bg" aria-hidden="true"></span>
+        <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fale Conosco</span></span>
+      </a>
+    </div>
+
+    <!-- Logo: grande e central no hero, pequeno e à esquerda ao scrollar -->
+    <figure class="site-header__logo m-0 p-0 pointer-events-all" role="banner">
       <a class="site-header__logoLink d-block w-100 color-current td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php bloginfo('name'); ?>">
         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Vertz Iluminação" width="320" height="108" loading="eager" decoding="async" style="display:block;height:auto;object-fit:contain;">
+        <span class="site-header__iluminacao" aria-hidden="true">iluminação</span>
       </a>
     </figure>
+
+    <!-- Nav direita -->
     <nav class="site-header__rightNav pointer-events-all">
       <ul class="site-header__rightMenu list-none m-0 p-0 d-flex align-items-center grid-gap-15 grid-gap-xl-20">
-        <li>
+        <!-- Fale Conosco posição normal (estados scrolled / páginas internas) -->
+        <li class="site-header__cta-normal">
           <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default fw-500" aria-label="Fale Conosco">
             <span class="btn__bg" aria-hidden="true"></span>
             <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fale Conosco</span></span>
@@ -37,6 +51,7 @@
         </li>
       </ul>
     </nav>
+
   </div>
 </header>
 <div class="site-header__spacer w-100 visibility-hidden" aria-hidden="true"></div>
