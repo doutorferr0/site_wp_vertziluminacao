@@ -100,9 +100,13 @@ $theme_uri = get_template_directory_uri();
         <figure class="pb-row-gallery-btn__slide" id="gallery-slide-1" aria-hidden="true">
           <img src="<?php echo esc_url($theme_uri); ?>/assets/images/gallery-02.jpg" alt="Projeto comercial Vertz Iluminação" loading="lazy" decoding="async">
         </figure>
+        <figure class="pb-row-gallery-btn__slide" id="gallery-slide-2" aria-hidden="true">
+          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/gallery-03.jpg" alt="Projeto de paisagismo Vertz Iluminação" loading="lazy" decoding="async">
+        </figure>
         <nav class="pb-row-gallery-btn__nav" aria-label="Categoria de projeto">
           <button class="pb-row-gallery-btn__pill is-active" data-gallery-target="0" aria-pressed="true">Residencial</button>
           <button class="pb-row-gallery-btn__pill" data-gallery-target="1" aria-pressed="false">Comercial</button>
+          <button class="pb-row-gallery-btn__pill" data-gallery-target="2" aria-pressed="false">Paisagismo</button>
         </nav>
       </div>
     </div>
@@ -116,32 +120,72 @@ $theme_uri = get_template_directory_uri();
   </div>
 
 
-  <!-- SEÇÃO 4: PRODUTOS -->
-  <div class="pb-row-wrapper position-relative pt-50 pb-70 pt-md-80 pb-md-80 pt-xl-110 pb-xl-80 mt-0 mb-0" style="--zindex:4">
-    <div class="pb-row pb-row-house-models container-fluid d-grid grid-column-md-2 grid-column-xl-24 align-items-md-start grid-gap-30 grid-gap-md-12 grid-gap-xl-20">
-      <?php
-      $produtos = [
-        ['img'=>'produto-residencial.jpg','alt'=>'Linha Residencial Vertz','col'=>'col-start-xl-1 col-span-xl-11','titulo'=>'Linha Residencial',
-         'desc'=>'Spots embutidos, pendentes de design e perfis LED para sancas — iluminação que eleva o padrão de qualquer projeto residencial.',
-         'tags'=>'Spots · Pendentes · Perfis LED'],
-        ['img'=>'produto-comercial.jpg',  'alt'=>'Linha Comercial Vertz',  'col'=>'col-start-xl-13 col-span-xl-11','titulo'=>'Linha Comercial',
-         'desc'=>'Trilhos ajustáveis, luminárias embutidas e sistemas de temperatura de cor dinâmica para lojas, restaurantes e escritórios.',
-         'tags'=>'Trilhos · Luminárias embutidas · Painéis'],
-      ];
-      foreach ($produtos as $p): ?>
-      <aside class="pb-row-house-models__house <?php echo esc_attr($p['col']); ?> d-grid grid-gap-15 grid-gap-xl-20">
-        <div class="overflow-clip" style="border-radius:10px;">
-          <img src="<?php echo esc_url($theme_uri . '/assets/images/' . $p['img']); ?>" alt="<?php echo esc_attr($p['alt']); ?>"
-            loading="lazy" decoding="async"
-            style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;transition:transform .8s ease;">
-        </div>
-        <div class="d-grid grid-gap-10" style="border-top:1px solid var(--color-gray-300);padding-top:1.25rem;">
-          <h3 class="fz-20 fz-xl-28 fw-400 m-0"><?php echo esc_html($p['titulo']); ?></h3>
-          <p class="fz-14 fz-xl-16 lh-155 m-0" style="color:var(--color-gray-600)"><?php echo esc_html($p['desc']); ?></p>
-          <p class="fz-11 tt-uppercase m-0" style="color:var(--color-accent);letter-spacing:.1em;"><?php echo esc_html($p['tags']); ?></p>
-        </div>
-      </aside>
-      <?php endforeach; ?>
+  <!-- SEÇÃO 4: DOIS PILARES DO SERVIÇO — Técnico + Decorativo -->
+  <div class="pb-row-wrapper position-relative pt-80 pb-80 pt-md-100 pb-md-100 pt-xl-130 pb-xl-130 mt-0 mb-0" style="--zindex:4">
+    <div class="pb-row container-fluid">
+
+      <!-- Eyebrow -->
+      <div class="vertz-service-duo__eyebrow" data-scroll data-scroll-offset="60px,0" data-module-delay>
+        <span class="vertz-service-duo__eyebrow-label">O que entregamos</span>
+        <span class="vertz-service-duo__eyebrow-rule" aria-hidden="true"></span>
+      </div>
+
+      <!-- Grid dos dois pilares -->
+      <div class="vertz-service-duo__grid" data-scroll data-scroll-offset="60px,0" data-module-delay>
+
+        <!-- PILAR 01: Técnico -->
+        <a href="<?php echo esc_url(home_url('/iluminacao-tecnica')); ?>" class="vertz-service-duo__card" aria-label="Projeto Técnico de Iluminação">
+          <div class="vertz-service-duo__img-wrap overflow-clip">
+            <!-- IMG: produto-residencial.jpg | 3/2 | ambiente com spots embutidos, perfis LED -->
+            <img
+              src="<?php echo esc_url($theme_uri); ?>/assets/images/produto-residencial.jpg"
+              alt="Projeto Técnico de Iluminação — Vertz"
+              loading="lazy" decoding="async"
+              class="vertz-service-duo__img">
+          </div>
+          <div class="vertz-service-duo__body">
+            <div class="vertz-service-duo__meta">
+              <span class="vertz-service-duo__index" aria-hidden="true">01</span>
+              <span class="vertz-service-duo__tag">Projeto Técnico</span>
+            </div>
+            <h3 class="vertz-service-duo__title">
+              Projeto Técnico<br>de Iluminação
+            </h3>
+            <p class="vertz-service-duo__desc">A camada que sustenta tudo — calculada em lux, IRC e temperatura de cor para que cada ambiente funcione com precisão técnica e eficiência energética real.</p>
+            <div class="vertz-service-duo__cta">
+              <span>Ver serviço</span>
+              <span class="vertz-service-duo__arrow" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- PILAR 02: Decorativo -->
+        <a href="<?php echo esc_url(home_url('/iluminacao-decorativa')); ?>" class="vertz-service-duo__card" aria-label="Projeto Decorativo de Iluminação">
+          <div class="vertz-service-duo__img-wrap overflow-clip">
+            <!-- IMG: produto-comercial.jpg | 3/2 | pendente / luminária decorativa de destaque -->
+            <img
+              src="<?php echo esc_url($theme_uri); ?>/assets/images/produto-comercial.jpg"
+              alt="Projeto Decorativo de Iluminação — Vertz"
+              loading="lazy" decoding="async"
+              class="vertz-service-duo__img">
+          </div>
+          <div class="vertz-service-duo__body">
+            <div class="vertz-service-duo__meta">
+              <span class="vertz-service-duo__index" aria-hidden="true">02</span>
+              <span class="vertz-service-duo__tag">Projeto Decorativo</span>
+            </div>
+            <h3 class="vertz-service-duo__title">
+              Projeto Decorativo<br>de Iluminação
+            </h3>
+            <p class="vertz-service-duo__desc">A camada que define a identidade — pendentes, arandelas e peças de design curadas para impressionar, criar atmosfera e ser lembrada.</p>
+            <div class="vertz-service-duo__cta">
+              <span>Ver serviço</span>
+              <span class="vertz-service-duo__arrow" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
     </div>
   </div>
 
