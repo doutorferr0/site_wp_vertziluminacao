@@ -30,64 +30,164 @@
     var header = qs('.site-header');
     if (!header) return;
 
-    var lastScrollY   = window.scrollY;
-    var ticking       = false;
-    var TOP_THRESHOLD = 100;   // px para considerar "no topo"
-    var HIDE_DELAY    = 12;    // px de diff para esconder/mostrar
-    var HERO_EXIT     = 0;     // calculado dinamicamente abaixo
+    /* ── elementos ─────────────────────────────────── */
+    var logo        = header.querySelector('.site-header__logo');
+    var iluminacao  = header.querySelector('.site-header__iluminacao');
+    var ctaHero     = header.querySelector('.site-header__cta-hero');
+    var ctaNormal   = header.querySelector('.site-header__cta-normal');
+    if (!logo) return;
 
-    // Limite de saída do hero: 50% da viewport height
-    function getHeroExit() {
-      return Math.max(window.innerHeight * 0.50, 200);
+    /* ── configuração ───────────────────────────────── */
+    var isHome        = document.body.classList.contains('home');
+    var HIDE_DELAY    = 14;        // px de diff para esconder
+    var HERO_EXIT_PCT = 0.48;      // % da viewport para sair do hero
+    var LERP_FACTOR   = 0.072;     // menor = mais devagar/suave
+    var SCALE_HERO    = 2.0;       // escala do logo no hero
+
+    /* ── estado de interpolação ─────────────────────── */
+    var cur = { x: 0, y: 0, scale: 1, opacity: 0 };   // valores atuais
+    var tgt = { x: 0, y: 0, scale: 1, opacity: 0 };   // valores alvo
+
+    /* ── estado do scroll ───────────────────────────── */
+    var lastScrollY  = window.scrollY;
+    var inHero       = false;
+    var rafId        = null;
+
+    /* ── utilidade lerp ─────────────────────────────── */
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function nearlyEqual(a, b) { return Math.abs(a - b) < 0.01; }
+
+    /* ── calcula offset centro da viewport ──────────── */
+    function calcHeroTarget() {
+      var rect    = logo.getBoundingClientRect();
+      var vpW     = window.innerWidth;
+      var vpH     = window.innerHeight;
+      // queremos que o CENTRO do logo (após scale) fique em:
+      //   x: centro da viewport
+      //   y: ~38% da viewport
+      var logoW   = rect.width;
+      var logoH   = rect.height;
+      var destX   = vpW / 2 - rect.left - logoW / 2;
+      var destY   = vpH * 0.32 - rect.top  - logoH / 2;
+      return { x: destX, y: destY, scale: SCALE_HERO };
     }
-    HERO_EXIT = getHeroExit();
-    window.addEventListener('resize', function () { HERO_EXIT = getHeroExit(); }, { passive: true });
 
-    // Só aplica is-hero na home page (body.home)
-    var isHomePage = document.body.classList.contains('home');
+    /* ── loop RAF ───────────────────────────────────── */
+    function tick() {
+      cur.x     = lerp(cur.x,     tgt.x,     LERP_FACTOR);
+      cur.y     = lerp(cur.y,     tgt.y,     LERP_FACTOR);
+      cur.scale = lerp(cur.scale, tgt.scale, LERP_FACTOR);
+      cur.opacity = lerp(cur.opacity, tgt.opacity, LERP_FACTOR * 1.4);
+
+      logo.style.transform = 'translate(' + cur.x.toFixed(3) + 'px,' +
+                                            cur.y.toFixed(3) + 'px) ' +
+                             'scale(' + cur.scale.toFixed(4) + ')';
+
+      if (iluminacao) {
+        iluminacao.style.opacity  = cur.opacity.toFixed(3);
+        iluminacao.style.transform = 'translateY(' + ((1 - cur.opacity) * 8).toFixed(2) + 'px)';
+      }
+
+      // Drop-shadow proporcional ao scale
+      var shadowBlur = (cur.scale - 1) * 20;
+      logo.style.filter = 'drop-shadow(0 2px ' + shadowBlur.toFixed(1) + 'px rgba(0,0,0,0.55))';
+
+      var allSame = nearlyEqual(cur.x, tgt.x) &&
+                    nearlyEqual(cur.y, tgt.y) &&
+                    nearlyEqual(cur.scale, tgt.scale) &&
+                    nearlyEqual(cur.opacity, tgt.opacity);
+      if (!allSame) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+        // snap final
+        cur.x = tgt.x; cur.y = tgt.y; cur.scale = tgt.scale; cur.opacity = tgt.opacity;
+        logo.style.transform = 'translate(' + cur.x + 'px,' + cur.y + 'px) scale(' + cur.scale + ')';
+        if (iluminacao) { iluminacao.style.opacity = cur.opacity; }
+      }
+    }
+
+    function startRaf() {
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    }
+
+    /* ── entrar no estado hero ───────────────────────── */
+    function enterHero() {
+      if (inHero) return;
+      inHero = true;
+      var t = calcHeroTarget();
+      tgt.x = t.x; tgt.y = t.y; tgt.scale = t.scale; tgt.opacity = 1;
+      header.classList.add('is-hero');
+      if (ctaHero)   { ctaHero.removeAttribute('aria-hidden');   ctaHero.querySelector('a').removeAttribute('tabindex'); }
+      if (ctaNormal) { ctaNormal.setAttribute('aria-hidden','true'); }
+      startRaf();
+    }
+
+    /* ── sair do estado hero ─────────────────────────── */
+    function leaveHero() {
+      if (!inHero) return;
+      inHero = false;
+      tgt.x = 0; tgt.y = 0; tgt.scale = 1; tgt.opacity = 0;
+      header.classList.remove('is-hero');
+      if (ctaHero)   { ctaHero.setAttribute('aria-hidden','true'); ctaHero.querySelector('a').setAttribute('tabindex','-1'); }
+      if (ctaNormal) { ctaNormal.removeAttribute('aria-hidden'); }
+      startRaf();
+    }
+
+    /* ── recalcular ao redimensionar ─────────────────── */
+    window.addEventListener('resize', function () {
+      if (inHero) {
+        var t = calcHeroTarget();
+        tgt.x = t.x; tgt.y = t.y; tgt.scale = t.scale;
+        // snap sem lerp ao resize (evita salto visual)
+        cur.x = tgt.x; cur.y = tgt.y; cur.scale = tgt.scale;
+        logo.style.transform = 'translate(' + cur.x + 'px,' + cur.y + 'px) scale(' + cur.scale + ')';
+      }
+    }, { passive: true });
+
+    /* ── scroll handler ──────────────────────────────── */
+    var lastY = window.scrollY, ticking = false;
 
     function updateHeader() {
-      var currentY  = window.scrollY;
-      var diff      = currentY - lastScrollY;
-      var isAtTop   = currentY <= TOP_THRESHOLD;
-      var isInHero  = isHomePage && currentY < HERO_EXIT;
+      var y       = window.scrollY;
+      var diff    = y - lastY;
+      var heroExit = window.innerHeight * HERO_EXIT_PCT;
+      var isAtTop  = y <= 10;
+
+      if (isHome) {
+        if (y < heroExit) {
+          enterHero();
+        } else {
+          leaveHero();
+        }
+      }
 
       if (isAtTop) {
-        // Topo absoluto
         header.classList.add('is-top');
         header.classList.remove('is-scrolled', 'is-hidden');
         header.classList.add('is-visible');
-        if (isInHero) {
-          header.classList.add('is-hero');
-        } else {
-          header.classList.remove('is-hero');
-        }
-
-      } else if (isInHero) {
-        // Dentro do hero mas já saiu do TOP_THRESHOLD
-        // Mantém is-hero mas tira is-top para mostrar fundo escuro
-        header.classList.remove('is-top', 'is-hidden');
-        header.classList.add('is-scrolled', 'is-visible', 'is-hero');
-
-      } else if (diff > HIDE_DELAY) {
-        // Scrollando para baixo fora do hero → esconde
-        header.classList.remove('is-top', 'is-visible', 'is-hero');
+      } else if (diff > HIDE_DELAY && !inHero) {
+        header.classList.remove('is-top', 'is-visible');
         header.classList.add('is-scrolled', 'is-hidden');
-
       } else if (diff < -HIDE_DELAY) {
-        // Scrollando para cima fora do hero → mostra
-        header.classList.remove('is-top', 'is-hidden', 'is-hero');
+        header.classList.remove('is-top', 'is-hidden');
         header.classList.add('is-scrolled', 'is-visible');
       }
 
-      lastScrollY = currentY <= 0 ? 0 : currentY;
+      lastY = y <= 0 ? 0 : y;
       ticking = false;
     }
 
     window.addEventListener('scroll', function () {
-      if (!ticking) { window.requestAnimationFrame(updateHeader); ticking = true; }
+      if (!ticking) { requestAnimationFrame(updateHeader); ticking = true; }
     }, { passive: true });
+
+    // Estado inicial
     updateHeader();
+    if (isHome && window.scrollY < window.innerHeight * HERO_EXIT_PCT) {
+      // Pequeno delay para o layout estar calculado
+      setTimeout(function () { enterHero(); }, 60);
+    }
   }
 
   /* BURGER MENU */
