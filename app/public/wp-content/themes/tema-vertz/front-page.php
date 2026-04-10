@@ -47,20 +47,12 @@ $theme_uri = get_template_directory_uri();
         </div>
       </div>
 
-      <div class="pb-row-hero__titleWrap col-start-1 row-start-1 align-self-end container-fluid color-white position-relative overflow-clip ta-center">
-        <h1 class="pb-row-hero__title ff-body fz-44 fz-md-64 fz-xl-96 fw-400 lh-none ls--4 m-0 ta-center"
-          data-scroll data-scroll-target="#pb-row-hero-1" data-scroll-progress data-splitting="charsWrapped"
-        >Luz com <span class="title-highlight --font-heading --fs-italic">intenção.</span></h1>
-        <div class="mt-30 mt-md-40 d-flex flex-column flex-md-row justify-content-center align-items-center grid-gap-15" style="position:relative;z-index:2;">
-          <a href="<?php echo esc_url(home_url('/contato')); ?>" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark);">
-            <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary-hover);"></span>
-            <span class="btn__label" aria-hidden="true"><span>Solicitar orçamento</span><span>Solicitar orçamento</span></span>
-          </a>
-          <a href="<?php echo esc_url(home_url('/servicos')); ?>" class="btn --cta --cta-default" style="border-color:rgba(255,255,255,0.6);color:var(--color-white);">
-            <span class="btn__bg" aria-hidden="true" style="background:rgba(255,255,255,0.15);"></span>
-            <span class="btn__label" aria-hidden="true"><span>Nossos serviços</span><span>Nossos serviços</span></span>
-          </a>
-        </div>
+      <!-- Scrim: gradiente escuro no topo (logo) + no rodapé (atmosfera) -->
+      <div class="pb-row-hero__scrim" aria-hidden="true"></div>
+
+      <!-- Scroll indicator sutil no rodapé do hero -->
+      <div class="pb-row-hero__scroll col-start-1 row-start-1 align-self-end position-relative overflow-clip" aria-hidden="true">
+        <span class="pb-row-hero__scroll-line"></span>
       </div>
     </div>
   </div>
