@@ -29,29 +29,57 @@
   function initStickyHeader() {
     var header = qs('.site-header');
     if (!header) return;
-    var lastScrollY = window.scrollY, ticking = false;
-    var TOP_THRESHOLD = 100, HIDE_DELAY = 12;
-    var wasAtTop = true;
+
+    var lastScrollY   = window.scrollY;
+    var ticking       = false;
+    var TOP_THRESHOLD = 100;   // px para considerar "no topo"
+    var HIDE_DELAY    = 12;    // px de diff para esconder/mostrar
+    var HERO_EXIT     = 0;     // calculado dinamicamente abaixo
+
+    // Limite de saída do hero: 50% da viewport height
+    function getHeroExit() {
+      return Math.max(window.innerHeight * 0.50, 200);
+    }
+    HERO_EXIT = getHeroExit();
+    window.addEventListener('resize', function () { HERO_EXIT = getHeroExit(); }, { passive: true });
+
+    // Só aplica is-hero na home page (body.home)
+    var isHomePage = document.body.classList.contains('home');
 
     function updateHeader() {
-      var currentY = window.scrollY;
-      var diff = currentY - lastScrollY;
-      var isAtTop = currentY <= TOP_THRESHOLD;
+      var currentY  = window.scrollY;
+      var diff      = currentY - lastScrollY;
+      var isAtTop   = currentY <= TOP_THRESHOLD;
+      var isInHero  = isHomePage && currentY < HERO_EXIT;
 
       if (isAtTop) {
+        // Topo absoluto
         header.classList.add('is-top');
         header.classList.remove('is-scrolled', 'is-hidden');
         header.classList.add('is-visible');
-        wasAtTop = true;
-      } else if (diff > HIDE_DELAY) {
-        header.classList.remove('is-top', 'is-visible');
-        header.classList.add('is-scrolled', 'is-hidden');
-        wasAtTop = false;
-      } else if (diff < -HIDE_DELAY) {
+        if (isInHero) {
+          header.classList.add('is-hero');
+        } else {
+          header.classList.remove('is-hero');
+        }
+
+      } else if (isInHero) {
+        // Dentro do hero mas já saiu do TOP_THRESHOLD
+        // Mantém is-hero mas tira is-top para mostrar fundo escuro
         header.classList.remove('is-top', 'is-hidden');
+        header.classList.add('is-scrolled', 'is-visible', 'is-hero');
+
+      } else if (diff > HIDE_DELAY) {
+        // Scrollando para baixo fora do hero → esconde
+        header.classList.remove('is-top', 'is-visible', 'is-hero');
+        header.classList.add('is-scrolled', 'is-hidden');
+
+      } else if (diff < -HIDE_DELAY) {
+        // Scrollando para cima fora do hero → mostra
+        header.classList.remove('is-top', 'is-hidden', 'is-hero');
         header.classList.add('is-scrolled', 'is-visible');
-        wasAtTop = false;
       }
+
       lastScrollY = currentY <= 0 ? 0 : currentY;
       ticking = false;
     }
