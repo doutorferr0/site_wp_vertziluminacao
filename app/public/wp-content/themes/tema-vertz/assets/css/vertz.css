@@ -3344,3 +3344,81 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 .vertz-service-duo__card:hover .vertz-service-duo__arrow {
   transform: translateX(4px);
 }
+
+
+/* ============================================================
+   HERO — Scrim duplo + logo visível + scroll indicator
+   ============================================================ */
+
+/* Scrim: gradient escuro no TOPO (para o logo/header)
+   e no RODAPÉ (para dar profundidade / atmosfera)
+   Cobre o hero inteiro via grid stacking (col-start-1 row-start-1) */
+.pb-row-hero__scrim {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    /* topo: escuro para proteger logo */
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.20) 18%,
+      transparent 40%
+    ),
+    /* rodapé: escuro suave para atmosfera */
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0.15) 20%,
+      transparent 45%
+    );
+}
+
+/* Logo: drop-shadow quando sobre fundo claro
+   Funciona independente da cor do logo.png */
+.home .site-header.is-top .site-header__logo img {
+  filter: drop-shadow(0 1px 8px rgba(0,0,0,0.55));
+}
+
+/* Nav links: sombra de texto para legibilidade sobre qualquer fundo */
+.home .site-header.is-top .site-header__rightMenuItems a {
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+}
+
+/* Botão Fale Conosco: força sólido no topo da home
+   para ser visível sobre fundo claro */
+.home .site-header.is-top .btn.--cta.--cta-default {
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-dark) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+/* Scroll indicator — linha vertical pulsando no rodapé do hero */
+.pb-row-hero__scroll {
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 2.5rem;
+  pointer-events: none;
+}
+.pb-row-hero__scroll-line {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.7));
+  animation: scroll-indicator 2s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes scroll-indicator {
+  0%   { transform: scaleY(0); opacity: 0; }
+  30%  { opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
