@@ -3422,3 +3422,146 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   30%  { opacity: 1; }
   100% { transform: scaleY(1); opacity: 0; }
 }
+
+
+/* ============================================================
+   METROPOLIS REGULAR — font-face via CDN (jsDelivr / GitHub)
+   ============================================================ */
+@font-face {
+  font-family: 'Metropolis';
+  src: url('https://cdn.jsdelivr.net/gh/chrismsimpson/Metropolis@r12/Fonts/Metropolis-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/chrismsimpson/Metropolis@r12/Fonts/Metropolis-Regular.woff')  format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ============================================================
+   HEADER — Estado HERO (home no topo, is-hero class)
+
+   Layout hero:
+     [FALE CONOSCO]   [logo grande + iluminação]   [nav]
+   ============================================================ */
+
+/* ── Wrap: 3 colunas no desktop ── */
+.site-header.is-hero .site-header__wrap {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding-top: clamp(1.5rem, 3vh, 2.25rem);
+  padding-bottom: clamp(1rem, 2vh, 1.5rem);
+}
+
+/* ── CTA hero (esquerda) ── */
+.site-header__cta-hero {
+  display: none;           /* escondido por padrão */
+  justify-self: start;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .5s ease;
+}
+.site-header.is-hero .site-header__cta-hero {
+  display: flex;
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Fale Conosco normal (dentro da nav) ── */
+.site-header__cta-normal {
+  display: list-item;
+  transition: opacity .4s ease;
+}
+.site-header.is-hero .site-header__cta-normal {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Logo: centralizado e grande no hero ── */
+.site-header__logo {
+  /* transição suave entre estados */
+  transition:
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    width     0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Estado normal (já definido anteriormente via is-top / is-scrolled) */
+/* No hero: logo centralizado na coluna do meio */
+.site-header.is-hero .site-header__logo {
+  justify-self: center;
+  text-align: center;
+}
+
+/* Tamanho da imagem do logo no hero */
+.site-header.is-hero .site-header__logo img {
+  width: clamp(180px, 22vw, 300px);
+  filter: drop-shadow(0 2px 16px rgba(0,0,0,0.6));
+  transition: width 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.75s ease;
+}
+
+/* ── "iluminação" — só aparece no estado hero ── */
+.site-header__iluminacao {
+  display: block;
+  font-family: 'Metropolis', 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: clamp(.875rem, 1.4vw, 1.25rem);
+  letter-spacing: 0.22em;
+  text-transform: lowercase;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  margin-top: .45rem;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  /* animação de entrada/saída */
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition:
+    opacity  0.5s ease 0.15s,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+.site-header.is-hero .site-header__iluminacao {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Nav: alinhada à direita, links maiores no hero ── */
+.site-header.is-hero .site-header__rightNav {
+  justify-self: end;
+}
+.site-header.is-hero .site-header__rightMenuItems a {
+  font-size: .8125rem;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+}
+
+/* ── Burger mobile: branco no hero ── */
+.site-header.is-hero .site-header__burger span {
+  background: var(--color-white);
+}
+
+/* ── Mobile: no hero empilha CTA sobre logo (simplificado) ── */
+@media (max-width: 767px) {
+  .site-header.is-hero .site-header__wrap {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+  }
+  .site-header__cta-hero {
+    display: none !important; /* mobile: usa o botão normal na nav */
+  }
+  .site-header.is-hero .site-header__cta-normal {
+    display: list-item;
+    opacity: 1;
+    pointer-events: all;
+  }
+  .site-header.is-hero .site-header__iluminacao {
+    font-size: .75rem;
+    letter-spacing: .18em;
+  }
+}
+
+/* ── Garante que páginas internas (não-home) NUNCA mostram estado hero ── */
+body:not(.home) .site-header__cta-hero    { display: none !important; }
+body:not(.home) .site-header__iluminacao  { display: none !important; }
+body:not(.home) .site-header__cta-normal  { display: list-item !important; opacity: 1 !important; }
