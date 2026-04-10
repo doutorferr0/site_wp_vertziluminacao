@@ -43,13 +43,13 @@
 
   /* Header modular */
   --header-max-width: min(1200px, calc(100vw - 4rem));
-  --header-padding-y: clamp(1.2rem, 2.5vw, 2.75rem);
-  --header-padding-y-scrolled: clamp(0.75rem, 1.5vw, 1.5rem);
+  --header-padding-y: clamp(0.875rem, 1.4vw, 1.375rem);
+  --header-padding-y-scrolled: clamp(0.5rem, 0.9vw, 0.875rem);
   --header-gutter: clamp(1rem, 2vw, 1.8rem);
   --header-nav-font-size: clamp(0.85rem, 1.1vw, 1rem);
   --header-cta-padding: clamp(0.85rem, 1.2vw, 1.1rem) clamp(1rem, 1.5vw, 1.4rem);
-  --header-logo-size-top: clamp(280px, 20vw, 340px);
-  --header-logo-size-scrolled: clamp(180px, 14vw, 220px);
+  --header-logo-size-top: clamp(130px, 9.5vw, 165px);
+  --header-logo-size-scrolled: clamp(100px, 7.5vw, 130px);
   --header-logo-margin-left: clamp(0.5rem, 1.5vw, 1.5rem);
 
   /* Tamanhos de fonte */
@@ -800,12 +800,12 @@ figure {
 
 @media (min-width: 1280px) {
   .site-header__wrap {
-    padding-top: var(--sp-60);
-    padding-bottom: var(--sp-60);
+    padding-top: var(--header-padding-y);
+    padding-bottom: var(--header-padding-y);
   }
   .site-header.is-scrolled .site-header__wrap {
-    padding-top: var(--sp-20);
-    padding-bottom: var(--sp-20);
+    padding-top: var(--header-padding-y-scrolled);
+    padding-bottom: var(--header-padding-y-scrolled);
   }
 }
 
@@ -823,13 +823,13 @@ figure {
   display: block;
   object-fit: contain;
   transform-origin: left center;
-  transition: width 0.8s ease, transform 0.8s ease, filter 0.5s ease;
+  /* Sem transition no img: o JS (LERP RAF) controla escala via figura-pai */
 }
 
-/* No topo: logo maior */
+/* No topo: logo normal (JS controla scale no hero) */
 .site-header.is-top .site-header__logo img {
   width: var(--header-logo-size-top);
-  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.35));
+  filter: none;
 }
 
 /* Scrollado: compacto */
@@ -864,8 +864,8 @@ figure {
 
 @media (max-width: 767px) {
   :root {
-    --header-logo-size-scrolled: clamp(120px, 18vw, 150px);
-    --header-logo-size-top: clamp(160px, 25vw, 190px);
+    --header-logo-size-scrolled: clamp(90px, 16vw, 115px);
+    --header-logo-size-top: clamp(110px, 20vw, 140px);
     --header-padding-y: clamp(0.8rem, 2.5vw, 1.5rem);
     --header-padding-y-scrolled: clamp(0.5rem, 1.2vw, 1rem);
     --header-gutter: clamp(0.8rem, 2vw, 1.2rem);
