@@ -40,9 +40,9 @@
     /* ── configuração ───────────────────────────────── */
     var isHome        = document.body.classList.contains('home');
     var HIDE_DELAY    = 14;        // px de diff para esconder
-    var HERO_EXIT_PCT = 0.48;      // % da viewport para sair do hero
-    var LERP_FACTOR   = 0.072;     // menor = mais devagar/suave
-    var SCALE_HERO    = 2.0;       // escala do logo no hero
+    var HERO_EXIT_PCT = 0.55;      // % da viewport para sair do hero
+    var LERP_FACTOR   = 0.045;     // menor = mais devagar/suave
+    var SCALE_HERO    = 1.55;      // escala do logo no hero
 
     /* ── estado de interpolação ─────────────────────── */
     var cur = { x: 0, y: 0, scale: 1, opacity: 0 };   // valores atuais
@@ -59,17 +59,20 @@
 
     /* ── calcula offset centro da viewport ──────────── */
     function calcHeroTarget() {
-      var rect    = logo.getBoundingClientRect();
-      var vpW     = window.innerWidth;
-      var vpH     = window.innerHeight;
-      // queremos que o CENTRO do logo (após scale) fique em:
-      //   x: centro da viewport
-      //   y: ~38% da viewport
-      var logoW   = rect.width;
-      var logoH   = rect.height;
-      var destX   = vpW / 2 - rect.left - logoW / 2;
-      var destY   = vpH * 0.32 - rect.top  - logoH / 2;
-      return { x: destX, y: destY, scale: SCALE_HERO };
+      var rect = logo.getBoundingClientRect();
+      var vpW  = window.innerWidth;
+      var vpH  = window.innerHeight;
+      var W    = rect.width;
+      var H    = rect.height;
+      var S    = SCALE_HERO;
+      // transform-origin: left top
+      // Após translate(X,Y) scale(S), o centro visual fica em:
+      //   cx = rect.left + X + W*S/2
+      //   cy = rect.top  + Y + H*S/2
+      // Queremos cx = vpW/2, cy = vpH*0.36
+      var destX = vpW / 2       - rect.left - (W * S) / 2;
+      var destY = vpH * 0.36    - rect.top  - (H * S) / 2;
+      return { x: destX, y: destY, scale: S };
     }
 
     /* ── loop RAF ───────────────────────────────────── */
@@ -186,7 +189,7 @@
     updateHeader();
     if (isHome && window.scrollY < window.innerHeight * HERO_EXIT_PCT) {
       // Pequeno delay para o layout estar calculado
-      setTimeout(function () { enterHero(); }, 60);
+      setTimeout(function () { enterHero(); }, 120);
     }
   }
 
