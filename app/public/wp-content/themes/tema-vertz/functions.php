@@ -275,360 +275,60 @@ function vertz_customizer_css() {
 add_action( 'wp_head', 'vertz_customizer_css', 10 );
 
 
-/* =============================================================
-   ACF — OPTIONS PAGE + FIELD GROUPS
-   Campos definidos em código (acf_add_local_field_group).
-   Funciona sem exportar JSON. Requer ACF Free instalado.
-   ============================================================= */
-
-/* ── 1. Options Page NATIVA (sem ACF PRO) ──────────────────── */
-/* Nada aqui — a página de opções é registrada abaixo com WP nativo */
-
-
-/* ── 2. Helper: registrar grupos de campos ─────────────────── */
-add_action('acf/init', function() {
-    if (!function_exists('acf_add_local_field_group')) return;
-
-
-    /* ════════════════════════════════════════════════════
-       GRUPO 1 — CONTATO GLOBAL (options page)
-       Aparece em: ⚡ Vertz Config > Contato & Endereços
-    ════════════════════════════════════════════════════ */
-    acf_add_local_field_group(array(
-        'key'    => 'group_vertz_contato',
-        'title'  => 'Dados de Contato',
-        'fields' => array(
-            array('key'=>'field_v_wa',   'label'=>'WhatsApp (só números)',  'name'=>'contato_whatsapp',         'type'=>'text', 'default_value'=>'5519999778710'),
-            array('key'=>'field_v_tel',  'label'=>'Telefone fixo',          'name'=>'contato_telefone',         'type'=>'text', 'default_value'=>'(19) 3251-0501'),
-            array('key'=>'field_v_em',   'label'=>'E-mail',                 'name'=>'contato_email',            'type'=>'email','default_value'=>'contato@vertziluminacao.com.br'),
-            array('key'=>'field_v_ig',   'label'=>'Instagram (sem @)',       'name'=>'contato_instagram',        'type'=>'text', 'default_value'=>'vertziluminacao'),
-            array('key'=>'field_v_adc',  'label'=>'Endereço Campinas',       'name'=>'contato_endereco_campinas','type'=>'text', 'default_value'=>'R. Antônio Lapa, 328 — Cambuí'),
-            array('key'=>'field_v_adsp', 'label'=>'Endereço São Paulo',      'name'=>'contato_endereco_sp',      'type'=>'text', 'default_value'=>'Alameda Casa Branca, 806 — Jardim Paulista'),
-            array('key'=>'field_v_hr',   'label'=>'Horário de atendimento',  'name'=>'contato_horario',          'type'=>'text', 'default_value'=>'Seg–Sex 9h–18h / Sáb 9h–13h'),
-        ),
-        'location' => array(array(array('param'=>'options_page','operator'=>'==','value'=>'vertz-contato-global'))),
-    ));
-
-
-    /* ════════════════════════════════════════════════════
-       GRUPO 2 — HOME (front-page.php)
-    ════════════════════════════════════════════════════ */
-    acf_add_local_field_group(array(
-        'key'    => 'group_vertz_home',
-        'title'  => 'Home — Conteúdo',
-        'fields' => array(
-
-            /* Hero */
-            array('key'=>'field_h_tab1','label'=>'— HERO —','name'=>'','type'=>'tab'),
-            array('key'=>'field_h_vid', 'label'=>'Vídeo hero (MP4)',  'name'=>'hero_video',  'type'=>'file',  'return_format'=>'url','mime_types'=>'mp4'),
-            array('key'=>'field_h_pos', 'label'=>'Poster do vídeo',   'name'=>'hero_poster', 'type'=>'image', 'return_format'=>'url','preview_size'=>'medium'),
-
-            /* Seção 2 */
-            array('key'=>'field_h_tab2','label'=>'— SEÇÃO 2: Chamada —','name'=>'','type'=>'tab'),
-            array('key'=>'field_h_s2sub','label'=>'Eyebrow (pequeno)','name'=>'home_s2_sub',   'type'=>'text','default_value'=>'O que fazemos'),
-            array('key'=>'field_h_s2ti', 'label'=>'Título',            'name'=>'home_s2_titulo','type'=>'text','default_value'=>'Iluminação técnica e decorativa para ambientes únicos.'),
-            array('key'=>'field_h_s2co', 'label'=>'Parágrafo',         'name'=>'home_s2_corpo', 'type'=>'textarea','rows'=>3,'default_value'=>'A Vertz combina projeto luminotécnico rigoroso com curadoria estética de marcas exclusivas — transformando cada ambiente em uma experiência precisa e memorável.'),
-
-            /* Galeria */
-            array('key'=>'field_h_tab3','label'=>'— GALERIA —','name'=>'','type'=>'tab'),
-            array('key'=>'field_h_g1',  'label'=>'Foto Residencial',  'name'=>'gallery_01','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-            array('key'=>'field_h_g2',  'label'=>'Foto Comercial',    'name'=>'gallery_02','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-            array('key'=>'field_h_g3',  'label'=>'Foto Paisagismo',   'name'=>'gallery_03','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-
-            /* Features */
-            array('key'=>'field_h_tab4','label'=>'— DIFERENCIAIS —','name'=>'','type'=>'tab'),
-            array('key'=>'field_h_fimg','label'=>'Imagem lateral','name'=>'features_img','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-            array('key'=>'field_h_frep','label'=>'Diferenciais','name'=>'features_items','type'=>'repeater',
-                'min'=>1,'max'=>5,'layout'=>'table','button_label'=>'Adicionar diferencial',
-                'sub_fields'=>array(
-                    array('key'=>'field_h_frti','label'=>'Título','name'=>'titulo','type'=>'text','column_width'=>'30'),
-                    array('key'=>'field_h_frtx','label'=>'Texto', 'name'=>'texto', 'type'=>'textarea','rows'=>2,'column_width'=>'70'),
-                ),
-            ),
-
-            /* FAQ */
-            array('key'=>'field_h_tab5','label'=>'— PERGUNTAS FREQUENTES —','name'=>'','type'=>'tab'),
-            array('key'=>'field_h_faq', 'label'=>'FAQs','name'=>'faq_items','type'=>'repeater',
-                'min'=>1,'max'=>10,'layout'=>'table','button_label'=>'Adicionar pergunta',
-                'sub_fields'=>array(
-                    array('key'=>'field_h_faqq','label'=>'Pergunta','name'=>'pergunta','type'=>'text','column_width'=>'40'),
-                    array('key'=>'field_h_faqa','label'=>'Resposta','name'=>'resposta','type'=>'textarea','rows'=>3,'column_width'=>'60'),
-                ),
-            ),
-
-            /* CTA Final */
-            array('key'=>'field_h_tab6','label'=>'— CTA FINAL —','name'=>'','type'=>'tab'),
-            array('key'=>'field_h_cimg','label'=>'Foto showroom','name'=>'cta_foto','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-            array('key'=>'field_h_cti', 'label'=>'Título',       'name'=>'cta_titulo','type'=>'text','default_value'=>'Vamos iluminar o seu projeto.'),
-            array('key'=>'field_h_ctx', 'label'=>'Texto',        'name'=>'cta_corpo', 'type'=>'textarea','rows'=>2,'default_value'=>'Envie a planta baixa, o projeto do arquiteto ou apenas descreva o espaço. Nossa equipe retorna em até 24 horas úteis com uma proposta preliminar.'),
-
-            /* 10 Razões */
-            array('key'=>'field_h_tab7','label'=>'— 10 RAZÕES —','name'=>'','type'=>'tab'),
-            array('key'=>'field_h_raz', 'label'=>'Razões (10 itens)','name'=>'razoes_items','type'=>'repeater',
-                'min'=>1,'max'=>10,'layout'=>'table','button_label'=>'Adicionar razão',
-                'sub_fields'=>array(
-                    array('key'=>'field_h_razti','label'=>'Título',       'name'=>'titulo','type'=>'text','column_width'=>'25'),
-                    array('key'=>'field_h_razac','label'=>'Acento (negrito)','name'=>'acento','type'=>'text','column_width'=>'25'),
-                    array('key'=>'field_h_raztx','label'=>'Texto',        'name'=>'texto', 'type'=>'textarea','rows'=>2,'column_width'=>'50'),
-                ),
-            ),
-        ),
-        'location' => array(array(array('param'=>'page_template','operator'=>'==','value'=>'front-page.php'))),
-    ));
-
-
-    /* ════════════════════════════════════════════════════
-       GRUPO 3 — SOBRE (page-sobre.php)
-    ════════════════════════════════════════════════════ */
-    acf_add_local_field_group(array(
-        'key'    => 'group_vertz_sobre',
-        'title'  => 'Sobre — Conteúdo',
-        'fields' => array(
-            array('key'=>'field_s_tab1','label'=>'— HERO —','name'=>'','type'=>'tab'),
-            array('key'=>'field_s_hero','label'=>'Imagem hero','name'=>'sobre_hero_img','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-
-            array('key'=>'field_s_tab2','label'=>'— MANIFESTO —','name'=>'','type'=>'tab'),
-            array('key'=>'field_s_msub','label'=>'Eyebrow',    'name'=>'sobre_manifesto_sub',   'type'=>'text','default_value'=>'Nossa história'),
-            array('key'=>'field_s_mti', 'label'=>'Título',     'name'=>'sobre_manifesto_titulo', 'type'=>'text','default_value'=>'Mais de 20 anos iluminando projetos com precisão e elegância.'),
-            array('key'=>'field_s_mwy', 'label'=>'Texto (HTML permitido)', 'name'=>'sobre_manifesto_corpo','type'=>'wysiwyg','tabs'=>'text','toolbar'=>'basic','media_upload'=>0),
-            array('key'=>'field_s_mimg','label'=>'Imagem missão (inset)','name'=>'sobre_missao_img','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-
-            array('key'=>'field_s_tab3','label'=>'— NÚMEROS —','name'=>'','type'=>'tab'),
-            array('key'=>'field_s_stats','label'=>'Estatísticas','name'=>'sobre_stats','type'=>'repeater',
-                'min'=>1,'max'=>6,'layout'=>'table','button_label'=>'Adicionar número',
-                'sub_fields'=>array(
-                    array('key'=>'field_s_stnu','label'=>'Número','name'=>'numero','type'=>'text','column_width'=>'20'),
-                    array('key'=>'field_s_stsu','label'=>'Sufixo','name'=>'sufixo','type'=>'text','column_width'=>'15'),
-                    array('key'=>'field_s_stla','label'=>'Legenda','name'=>'legenda','type'=>'text','column_width'=>'65'),
-                ),
-            ),
-
-            array('key'=>'field_s_tab4','label'=>'— GALERIA —','name'=>'','type'=>'tab'),
-            array('key'=>'field_s_ga1','label'=>'Foto 1 (Residencial)','name'=>'sobre_galeria_01','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-            array('key'=>'field_s_ga2','label'=>'Foto 2 (Comercial)',  'name'=>'sobre_galeria_02','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-            array('key'=>'field_s_ga3','label'=>'Foto 3 (Corporativo)','name'=>'sobre_galeria_03','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-        ),
-        'location' => array(array(array('param'=>'page_template','operator'=>'==','value'=>'page-sobre.php'))),
-    ));
-
-
-    /* ════════════════════════════════════════════════════
-       GRUPO 4 — SERVIÇOS (page-servicos.php)
-    ════════════════════════════════════════════════════ */
-    acf_add_local_field_group(array(
-        'key'    => 'group_vertz_servicos',
-        'title'  => 'Serviços — Conteúdo',
-        'fields' => array(
-            array('key'=>'field_sv_tab1','label'=>'— HERO —','name'=>'','type'=>'tab'),
-            array('key'=>'field_sv_hero','label'=>'Imagem hero','name'=>'servicos_hero_img','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-
-            array('key'=>'field_sv_tab2','label'=>'— DECLARAÇÃO —','name'=>'','type'=>'tab'),
-            array('key'=>'field_sv_dti','label'=>'Headline',  'name'=>'servicos_decl_titulo','type'=>'textarea','rows'=>3,'default_value'=>"A maioria das lojas vende luminárias.\nNós projetamos o ambiente que você vai habitar."),
-            array('key'=>'field_sv_dco','label'=>'Parágrafo', 'name'=>'servicos_decl_corpo', 'type'=>'textarea','rows'=>3,'default_value'=>'Cada espaço tem uma função. Cada função exige uma luz específica. Combinamos projeto técnico rigoroso com curadoria estética de marcas exclusivas — para entregar ambientes que funcionam, impressionam e duram.'),
-
-            array('key'=>'field_sv_tab3','label'=>'— SEGMENTOS (cards) —','name'=>'','type'=>'tab'),
-            array('key'=>'field_sv_seg','label'=>'Segmentos','name'=>'servicos_segmentos','type'=>'repeater',
-                'min'=>1,'max'=>9,'layout'=>'block','button_label'=>'Adicionar segmento',
-                'sub_fields'=>array(
-                    array('key'=>'field_sv_sti', 'label'=>'Título',    'name'=>'titulo',  'type'=>'text'),
-                    array('key'=>'field_sv_sde', 'label'=>'Descrição', 'name'=>'desc',    'type'=>'textarea','rows'=>3),
-                    array('key'=>'field_sv_sim', 'label'=>'Imagem',    'name'=>'imagem',  'type'=>'image','return_format'=>'url','preview_size'=>'thumbnail'),
-                    array('key'=>'field_sv_sit', 'label'=>'Itens (um por linha)','name'=>'itens','type'=>'textarea','rows'=>4),
-                ),
-            ),
-        ),
-        'location' => array(array(array('param'=>'page_template','operator'=>'==','value'=>'page-servicos.php'))),
-    ));
-
-
-    /* ════════════════════════════════════════════════════
-       GRUPO 5 — CONTATO (page-contato.php)
-    ════════════════════════════════════════════════════ */
-    acf_add_local_field_group(array(
-        'key'    => 'group_vertz_contato_page',
-        'title'  => 'Contato — Conteúdo',
-        'fields' => array(
-            array('key'=>'field_ct_ti',   'label'=>'Título da página',  'name'=>'contato_titulo','type'=>'text','default_value'=>'Vamos conversar.'),
-            array('key'=>'field_ct_bimg', 'label'=>'Imagem de fechamento (banner 21:9)', 'name'=>'contato_banner','type'=>'image','return_format'=>'url','preview_size'=>'medium'),
-        ),
-        'location' => array(array(array('param'=>'page_template','operator'=>'==','value'=>'page-contato.php'))),
-    ));
-
-}); // fim add_action acf/init
-
-
-/* vf() declarada no bloco de Vertz Config abaixo — ver final do arquivo */
 
 
 /* =============================================================
-   ⚡ VERTZ CONFIG — Página de opções NATIVA (sem ACF PRO)
-   Aparece no menu admin como "⚡ Vertz Config"
-   Salva em wp_options, lido via get_option() / vf()
+   CARBON FIELDS — Bootstrap + Helper
+   Instalar: cd tema-vertz && composer require htmlburger/carbon-fields
    ============================================================= */
 
-/* ── Registrar menu ──────────────────────────────────────────── */
-add_action('admin_menu', function() {
-    add_menu_page(
-        'Vertz — Configurações',
-        '⚡ Vertz Config',
-        'manage_options',
-        'vertz-config',
-        'vertz_config_render',
-        'dashicons-lightbulb',
-        3
-    );
-});
+/* ── Bootstrap ─────────────────────────────────────────────── */
+add_action('after_setup_theme', function() {
+    $autoload = get_template_directory() . '/vendor/autoload.php';
+    if (!file_exists($autoload)) return; // composer não rodado ainda
 
-/* ── Salvar campos ao submeter ──────────────────────────────── */
-add_action('admin_post_vertz_save_config', function() {
-    if (!current_user_can('manage_options')) wp_die('Sem permissão.');
-    check_admin_referer('vertz_config_nonce');
+    require_once $autoload;
+    \Carbon_Fields\Carbon_Fields::boot();
 
-    $fields = array(
-        'contato_whatsapp', 'contato_telefone', 'contato_email',
-        'contato_instagram', 'contato_endereco_campinas',
-        'contato_endereco_sp', 'contato_horario',
-    );
-    foreach ($fields as $key) {
-        if (isset($_POST[$key])) {
-            update_option('vertz_' . $key, sanitize_text_field(wp_unslash($_POST[$key])));
-        }
+    // Incluir definição dos campos
+    $fields_file = get_template_directory() . '/inc/carbon-fields.php';
+    if (file_exists($fields_file)) {
+        require_once $fields_file;
     }
-
-    wp_redirect(admin_url('admin.php?page=vertz-config&saved=1'));
-    exit;
 });
 
-/* ── Renderizar a página ────────────────────────────────────── */
-function vertz_config_render() {
-    if (!current_user_can('manage_options')) return;
 
-    $fields = array(
-        'contato_whatsapp'          => array('label' => 'WhatsApp (só números)',        'placeholder' => '5519999778710',                   'type' => 'text'),
-        'contato_telefone'          => array('label' => 'Telefone fixo',                'placeholder' => '(19) 3251-0501',                  'type' => 'text'),
-        'contato_email'             => array('label' => 'E-mail',                       'placeholder' => 'contato@vertziluminacao.com.br',   'type' => 'email'),
-        'contato_instagram'         => array('label' => 'Instagram (sem @)',             'placeholder' => 'vertziluminacao',                 'type' => 'text'),
-        'contato_endereco_campinas' => array('label' => 'Endereço Campinas',            'placeholder' => 'R. Antônio Lapa, 328 — Cambuí',   'type' => 'text'),
-        'contato_endereco_sp'       => array('label' => 'Endereço São Paulo',           'placeholder' => 'Alameda Casa Branca, 806 — Jardim Paulista', 'type' => 'text'),
-        'contato_horario'           => array('label' => 'Horário de atendimento',       'placeholder' => 'Seg–Sex 9h–18h / Sáb 9h–13h',    'type' => 'text'),
-    );
-
-    $defaults = array(
-        'contato_whatsapp'          => '5519999778710',
-        'contato_telefone'          => '(19) 3251-0501',
-        'contato_email'             => 'contato@vertziluminacao.com.br',
-        'contato_instagram'         => 'vertziluminacao',
-        'contato_endereco_campinas' => 'R. Antônio Lapa, 328 — Cambuí',
-        'contato_endereco_sp'       => 'Alameda Casa Branca, 806 — Jardim Paulista',
-        'contato_horario'           => 'Seg–Sex 9h–18h / Sáb 9h–13h',
-    );
-    ?>
-    <div class="wrap">
-        <h1 style="display:flex;align-items:center;gap:10px;">⚡ Vertz Config</h1>
-
-        <?php if (isset($_GET['saved'])): ?>
-        <div class="notice notice-success is-dismissible"><p><strong>✅ Configurações salvas!</strong> As alterações estão ativas no site.</p></div>
-        <?php endif; ?>
-
-        <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;margin-top:20px;align-items:start;">
-
-            <!-- Formulário principal -->
-            <div style="background:#fff;border:1px solid #c3c4c7;border-radius:4px;padding:24px;">
-                <h2 style="margin-top:0;padding-bottom:12px;border-bottom:1px solid #eee;">📞 Dados de Contato</h2>
-                <p style="color:#666;margin-bottom:24px;font-size:13px;">Estes dados aparecem em todas as páginas do site automaticamente — rodapé, página de contato, CTAs e WhatsApp links.</p>
-
-                <form method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                    <?php wp_nonce_field('vertz_config_nonce'); ?>
-                    <input type="hidden" name="action" value="vertz_save_config">
-
-                    <table class="form-table" role="presentation">
-                        <?php foreach ($fields as $key => $meta):
-                            $val = get_option('vertz_' . $key, $defaults[$key] ?? '');
-                        ?>
-                        <tr>
-                            <th scope="row">
-                                <label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($meta['label']); ?></label>
-                            </th>
-                            <td>
-                                <input
-                                    type="<?php echo esc_attr($meta['type']); ?>"
-                                    id="<?php echo esc_attr($key); ?>"
-                                    name="<?php echo esc_attr($key); ?>"
-                                    value="<?php echo esc_attr($val); ?>"
-                                    placeholder="<?php echo esc_attr($meta['placeholder']); ?>"
-                                    class="regular-text">
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-
-                    <p class="submit">
-                        <button type="submit" class="button button-primary button-large">💾 Salvar configurações</button>
-                    </p>
-                </form>
-            </div>
-
-            <!-- Painel lateral: links rápidos -->
-            <div>
-                <div style="background:#fff;border:1px solid #c3c4c7;border-radius:4px;padding:20px;margin-bottom:16px;">
-                    <h3 style="margin-top:0;">🔗 Editar conteúdo das páginas</h3>
-                    <p style="font-size:13px;color:#666;">Para editar textos e imagens de cada página, vá até a página no admin e use os campos ACF abaixo do editor.</p>
-                    <ul style="margin:0;padding-left:18px;">
-                        <?php
-                        $pages = array(
-                            'home'     => 'Home (front-page)',
-                            'sobre'    => 'Sobre',
-                            'servicos' => 'Serviços',
-                            'contato'  => 'Contato',
-                        );
-                        $all_pages = get_pages(array('post_status'=>'publish'));
-                        foreach ($all_pages as $pg) {
-                            $tpl = get_page_template_slug($pg->ID);
-                            $label = $pg->post_title;
-                            echo '<li style="margin-bottom:6px;"><a href="' . esc_url(get_edit_post_link($pg->ID)) . '">' . esc_html($label) . '</a></li>';
-                        }
-                        ?>
-                    </ul>
-                </div>
-
-                <div style="background:#fff;border:1px solid #c3c4c7;border-radius:4px;padding:20px;margin-bottom:16px;">
-                    <h3 style="margin-top:0;">🎨 Aparência</h3>
-                    <ul style="margin:0;padding-left:18px;">
-                        <li style="margin-bottom:6px;"><a href="<?php echo esc_url(admin_url('customize.php')); ?>">Customizer (Hero & Header)</a></li>
-                        <li style="margin-bottom:6px;"><a href="<?php echo esc_url(admin_url('upload.php')); ?>">Biblioteca de mídia</a></li>
-                        <li style="margin-bottom:6px;"><a href="<?php echo esc_url(admin_url('nav-menus.php')); ?>">Menus de navegação</a></li>
-                    </ul>
-                </div>
-
-                <div style="background:#f0f6fc;border:1px solid #c3c4c7;border-radius:4px;padding:16px;">
-                    <p style="margin:0;font-size:12px;color:#444;line-height:1.5;">
-                        <strong>💡 Dica:</strong> Dados salvos aqui propagam para todo o site — WhatsApp links, rodapé, página de contato e e-mails de formulário.
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <?php
-}
-
-
-/* ── vf() atualizado: lê wp_options para campos globais ─────── */
-/* Remove a versão anterior e redefine com suporte ao prefixo vertz_ */
-if (function_exists('vf')) {
-    // já definida — não redeclara
-} else {
+/* ── vf() — helper universal de leitura de campos ──────────── */
+/*
+ * Abstrai a fonte dos dados: Carbon Fields ou fallback hardcoded.
+ *
+ * Uso:
+ *   vf('contato_whatsapp', 'option', '5519...')  → carbon_get_theme_option
+ *   vf('hero_video',       false,    '')          → carbon_get_post_meta
+ *   vf('faq_items',        false,    array())     → retorna array (repeater)
+ */
+if (!function_exists('vf')) {
     function vf($field, $post_id = false, $fallback = '') {
-        // Campos globais (contato): lê de wp_options com prefixo vertz_
+        $crb_key = 'crb_' . $field;
+
+        // ── Opções globais (theme options) ──────────────────
         if ($post_id === 'option' || $post_id === 'options') {
-            $val = get_option('vertz_' . $field, null);
-            return ($val !== null && $val !== '') ? $val : $fallback;
+            if (function_exists('carbon_get_theme_option')) {
+                $v = carbon_get_theme_option($crb_key);
+                if ($v !== null && $v !== '' && $v !== false) return $v;
+            }
+            // Fallback: wp_options legado (migração suave)
+            $v = get_option('vertz_' . $field, null);
+            return ($v !== null && $v !== '') ? $v : $fallback;
         }
-        // Campos de página: usa ACF se disponível
-        if (function_exists('get_field')) {
-            $v = get_field($field, $post_id ?: false);
-            return ($v !== null && $v !== false && $v !== '') ? $v : $fallback;
+
+        // ── Meta de página ───────────────────────────────────
+        if (function_exists('carbon_get_post_meta')) {
+            $pid = ($post_id && $post_id !== false) ? (int)$post_id : get_the_ID();
+            $v   = carbon_get_post_meta($pid, $crb_key);
+            if ($v !== null && $v !== '' && $v !== false) return $v;
         }
+
         return $fallback;
     }
 }
