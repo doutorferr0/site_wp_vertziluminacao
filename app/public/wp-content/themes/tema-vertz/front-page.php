@@ -4,6 +4,61 @@
  */
 get_header();
 $theme_uri = get_template_directory_uri();
+
+// ── Contato global ──────────────────────────────────────────
+$wa      = vf('contato_whatsapp',         'option', '5519999778710');
+$tel     = vf('contato_telefone',          'option', '(19) 3251-0501');
+$email   = vf('contato_email',             'option', 'contato@vertziluminacao.com.br');
+$ig      = vf('contato_instagram',         'option', 'vertziluminacao');
+$adc     = vf('contato_endereco_campinas', 'option', 'R. Antônio Lapa, 328 — Cambuí');
+$adsp    = vf('contato_endereco_sp',       'option', 'Alameda Casa Branca, 806 — Jardim Paulista');
+$horario = vf('contato_horario',           'option', 'Seg–Sex 9h–18h / Sáb 9h–13h');
+
+// ── Campos desta página ─────────────────────────────────────
+$hero_video  = vf('hero_video',  false, '');
+$hero_poster = vf('hero_poster', false, '');
+$s2_sub    = vf('home_s2_sub',   false, 'O que fazemos');
+$s2_titulo = vf('home_s2_titulo',false, 'Iluminação técnica e decorativa para ambientes <em>únicos.</em>');
+$s2_corpo  = vf('home_s2_corpo', false, 'A Vertz combina projeto luminotécnico rigoroso com curadoria estética de marcas exclusivas — transformando cada ambiente em uma experiência precisa e memorável.');
+$g1 = vf('gallery_01', false, $theme_uri . '/assets/images/gallery-01.jpg');
+$g2 = vf('gallery_02', false, $theme_uri . '/assets/images/gallery-02.jpg');
+$g3 = vf('gallery_03', false, $theme_uri . '/assets/images/gallery-03.jpg');
+$feat_img  = vf('features_img', false, $theme_uri . '/assets/images/features-destaque.jpg');
+$cta_foto  = vf('cta_foto',   false, $theme_uri . '/assets/images/contato-foto.jpg');
+$cta_titulo = vf('cta_titulo',false, 'Vamos iluminar o seu projeto.');
+$cta_corpo  = vf('cta_corpo', false, 'Envie a planta baixa, o projeto do arquiteto ou apenas descreva o espaço. Nossa equipe retorna em até 24 horas úteis com uma proposta preliminar.');
+
+// Features com fallback
+$features_raw = get_field('features_items');
+$features = (!empty($features_raw)) ? $features_raw : array(
+    array('titulo'=>'Eficiência energética certificada','texto'=>'Nossas especificações em LED resultam em reduções de até 80% no consumo elétrico — com cálculo de iluminância ABNT e produtos com certificação PROCEL.'),
+    array('titulo'=>'Projeto luminotécnico completo',  'texto'=>'Utilizamos o software DIALux para calcular iluminâncias ambiente a ambiente. Você recebe o memorial descritivo completo, circuitos e quantitativo para a obra.'),
+    array('titulo'=>'Curadoria de marcas exclusivas',  'texto'=>'Trabalhamos com revendas exclusivas de marcas nacionais e internacionais disponíveis para visitação física nos showrooms de Campinas e São Paulo.'),
+);
+
+// FAQs com fallback
+$faqs_raw = get_field('faq_items');
+$faqs = (!empty($faqs_raw)) ? $faqs_raw : array(
+    array('pergunta'=>'Quais tipos de projetos a Vertz atende?','resposta'=>'Atendemos projetos residenciais de alto padrão, comerciais e de varejo, corporativos, hoteleiros, hospitalares e projetos especiais como museus e galerias. Também desenvolvemos consultoria para arquitetos e designers de interiores.'),
+    array('pergunta'=>'Vocês desenvolvem o projeto luminotécnico?','resposta'=>'Sim. Desenvolvemos o projeto luminotécnico completo com software DIALux — incluindo cálculo de iluminâncias por ambiente, seleção de produtos, memorial descritivo, circuitos e quantitativo. Tudo documentado conforme normas ABNT.'),
+    array('pergunta'=>'Qual o prazo médio de fornecimento?','resposta'=>'Nossa linha padrão tem entrega de 5 a 10 dias úteis para todo o Brasil. Produtos importados ou sob encomenda têm prazo informado na proposta, antes do fechamento.'),
+    array('pergunta'=>'Os produtos possuem garantia?','resposta'=>'Todos os produtos fornecidos pela Vertz têm garantia de 2 anos contra defeitos de fabricação, com suporte técnico especializado. Para projetos maiores, oferecemos contrato de manutenção preventiva.'),
+);
+
+// 10 Razões com fallback
+$razoes_raw = get_field('razoes_items');
+$razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
+    array('titulo'=>'Experiência comprovada',         'acento'=>'Mais de 20 anos no mercado,',           'texto'=>'atendendo arquitetos, construtoras e clientes finais com consistência técnica e curadoria estética selecionada.'),
+    array('titulo'=>'Projeto luminotécnico completo', 'acento'=>'Do briefing ao memorial descritivo,',   'texto'=>'entregamos cálculos de iluminância por ambiente, seleção de produtos e documentação técnica completa para instalação.'),
+    array('titulo'=>'Marcas exclusivas',              'acento'=>'Revendedor exclusivo de marcas premium,','texto'=>'nacionais e internacionais disponíveis nos nossos showrooms para ver, tocar e especificar com segurança.'),
+    array('titulo'=>'Eficiência energética real',     'acento'=>'Redução de até 80% no consumo,',         'texto'=>'com tecnologia LED certificada, dimensionada por cálculo técnico — sem superdimensionamento, sem desperdício.'),
+    array('titulo'=>'Soluções sob medida',            'acento'=>'Cada projeto é único,',                 'texto'=>'e o atendimento também. Não trabalhamos com pacotes prontos — cada especificação é desenvolvida para o espaço e o cliente.'),
+    array('titulo'=>'Acompanhamento de obra',         'acento'=>'Nossa equipe técnica acompanha',        'texto'=>'a instalação e faz visitas de comissionamento para garantir que o projeto entregue exatamente o que foi projetado.'),
+    array('titulo'=>'Parceria com arquitetos',        'acento'=>'Trabalhamos lado a lado com',            'texto'=>'arquitetos e designers — com memorial descritivo, amostras físicas e visitas de acompanhamento inclusas.'),
+    array('titulo'=>'Showrooms em SP e Campinas',     'acento'=>'Visite nossos showrooms,',              'texto'=>'onde você experimenta temperatura de cor, IRC e acabamento de cada produto antes de especificar.'),
+    array('titulo'=>'Tecnologia e design juntos',     'acento'=>'Unimos alta performance técnica',       'texto'=>'com curadoria estética rigorosa — porque um projeto de iluminação precisa ser belo e funcional ao mesmo tempo.'),
+    array('titulo'=>'Garantia e suporte técnico',     'acento'=>'Dois anos de garantia',                 'texto'=>'em todos os produtos fornecidos, com suporte técnico especializado e orientação para manutenção preventiva.'),
+);
 ?>
 
 <div class="single single-page" id="page-home">
@@ -16,12 +71,17 @@ $theme_uri = get_template_directory_uri();
           <div class="pb-row-hero__mediaSticky position-sticky t-0 l-0 w-100 overflow-clip"
             data-scroll data-scroll-target="#pb-row-hero-1" data-scroll-progress="easeInCubic">
             <?php
-            $video_path  = get_template_directory() . '/assets/images/hero-video.mp4';
-            $poster_path = get_template_directory() . '/assets/images/hero-poster.jpg';
-            $poster_attr = file_exists($poster_path) ? 'poster="' . esc_url($theme_uri) . '/assets/images/hero-poster.jpg"' : '';
-            if (file_exists($video_path)): ?>
-            <video class="w-100 pb-row-hero__video" autoplay muted loop playsinline preload="none" <?php echo $poster_attr; ?> style="aspect-ratio:16/9;object-fit:cover;display:block;">
-              <source src="<?php echo esc_url($theme_uri); ?>/assets/images/hero-video.mp4" type="video/mp4">
+            $vpath = get_template_directory() . '/assets/images/hero-video.mp4';
+            $pattr = '';
+            if ($hero_poster) $pattr = 'poster="' . esc_url($hero_poster) . '"';
+            elseif (file_exists(get_template_directory() . '/assets/images/hero-poster.jpg'))
+                $pattr = 'poster="' . esc_url($theme_uri) . '/assets/images/hero-poster.jpg"';
+
+            if ($hero_video || file_exists($vpath)):
+                $vsrc = $hero_video ?: esc_url($theme_uri) . '/assets/images/hero-video.mp4'; ?>
+            <video class="w-100 pb-row-hero__video" autoplay muted loop playsinline preload="none"
+              <?php echo $pattr; ?> style="aspect-ratio:16/9;object-fit:cover;display:block;">
+              <source src="<?php echo esc_url($vsrc); ?>" type="video/mp4">
             </video>
             <?php else: ?>
             <div class="pb-row-hero__videoFallback" style="width:100%;aspect-ratio:16/9;background:var(--color-header-bg);display:block;"></div>
@@ -47,10 +107,7 @@ $theme_uri = get_template_directory_uri();
         </div>
       </div>
 
-      <!-- Scrim: gradiente escuro no topo (logo) + no rodapé (atmosfera) -->
       <div class="pb-row-hero__scrim" aria-hidden="true"></div>
-
-      <!-- Scroll indicator sutil no rodapé do hero -->
       <div class="pb-row-hero__scroll col-start-1 row-start-1 align-self-end position-relative overflow-clip" aria-hidden="true">
         <span class="pb-row-hero__scroll-line"></span>
       </div>
@@ -58,17 +115,16 @@ $theme_uri = get_template_directory_uri();
   </div>
 
 
-  <!-- SEÇÃO 2: DECLARAÇÃO EDITORIAL -->
+  <!-- SEÇÃO 2: DECLARAÇÃO -->
   <div class="pb-row-wrapper position-relative pt-80 pb-80 pt-md-100 pb-md-100 pt-xl-130 pb-xl-130 mt-0 mb-0" style="--zindex:2">
     <header class="page-heading d-flex flex-column align-items-center pb-row pb-row-page-heading container-fluid"
       data-scroll id="pb-row-page-heading-1" data-scroll-offset="80px,0" data-module-delay>
-      <p class="fz-12 fz-md-14 fw-400 ta-center tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)">O que fazemos</p>
+      <p class="fz-12 fz-md-14 fw-400 ta-center tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)"><?php echo esc_html($s2_sub); ?></p>
       <h2 class="ff-body fz-28 fz-md-44 fz-xl-64 fw-400 lh-107 ls--4 ta-center m-0 mt-20 mt-md-30 mt-xl-40"
         data-splitting="wordsMask" data-scroll data-reveal data-text-animation="slidein-by-lines"
-        data-scroll-target="#pb-row-page-heading-1" data-scroll-offset="80px,0"
-      >Iluminação técnica e decorativa para ambientes <span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0" data-splitting="chars">únicos.</span></h2>
+        data-scroll-target="#pb-row-page-heading-1" data-scroll-offset="80px,0"><?php echo wp_kses_post($s2_titulo); ?></h2>
       <div class="fz-14 fz-md-16 fz-xl-18 lh-150 ta-center wysiwyg mt-24 mt-md-30 mt-xl-60" style="max-width:680px;">
-        <p>A Vertz combina projeto luminotécnico rigoroso com curadoria estética de marcas exclusivas — transformando cada ambiente em uma experiência precisa e memorável.</p>
+        <p><?php echo esc_html($s2_corpo); ?></p>
       </div>
     </header>
   </div>
@@ -87,13 +143,13 @@ $theme_uri = get_template_directory_uri();
       </header>
       <div class="pb-row-gallery-btn__stage" id="gallery-stage">
         <figure class="pb-row-gallery-btn__slide" id="gallery-slide-0" aria-hidden="false">
-          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/gallery-01.jpg" alt="Projeto residencial Vertz Iluminação" loading="lazy" decoding="async">
+          <img src="<?php echo esc_url($g1); ?>" alt="Projeto residencial Vertz Iluminação" loading="lazy" decoding="async">
         </figure>
         <figure class="pb-row-gallery-btn__slide" id="gallery-slide-1" aria-hidden="true">
-          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/gallery-02.jpg" alt="Projeto comercial Vertz Iluminação" loading="lazy" decoding="async">
+          <img src="<?php echo esc_url($g2); ?>" alt="Projeto comercial Vertz Iluminação" loading="lazy" decoding="async">
         </figure>
         <figure class="pb-row-gallery-btn__slide" id="gallery-slide-2" aria-hidden="true">
-          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/gallery-03.jpg" alt="Projeto de paisagismo Vertz Iluminação" loading="lazy" decoding="async">
+          <img src="<?php echo esc_url($g3); ?>" alt="Projeto de paisagismo Vertz Iluminação" loading="lazy" decoding="async">
         </figure>
         <nav class="pb-row-gallery-btn__nav" aria-label="Categoria de projeto">
           <button class="pb-row-gallery-btn__pill is-active" data-gallery-target="0" aria-pressed="true">Residencial</button>
@@ -112,71 +168,42 @@ $theme_uri = get_template_directory_uri();
   </div>
 
 
-  <!-- SEÇÃO 4: DOIS PILARES DO SERVIÇO — Técnico + Decorativo -->
+  <!-- SEÇÃO 4: DOIS PILARES -->
   <div class="pb-row-wrapper position-relative pt-80 pb-80 pt-md-100 pb-md-100 pt-xl-130 pb-xl-130 mt-0 mb-0" style="--zindex:4">
     <div class="pb-row container-fluid">
-
-      <!-- Eyebrow -->
       <div class="vertz-service-duo__eyebrow" data-scroll data-scroll-offset="60px,0" data-module-delay>
         <span class="vertz-service-duo__eyebrow-label">O que entregamos</span>
         <span class="vertz-service-duo__eyebrow-rule" aria-hidden="true"></span>
       </div>
-
-      <!-- Grid dos dois pilares -->
       <div class="vertz-service-duo__grid" data-scroll data-scroll-offset="60px,0" data-module-delay>
-
-        <!-- PILAR 01: Técnico -->
         <a href="<?php echo esc_url(home_url('/iluminacao-tecnica')); ?>" class="vertz-service-duo__card" aria-label="Projeto Técnico de Iluminação">
           <div class="vertz-service-duo__img-wrap overflow-clip">
-            <!-- IMG: produto-residencial.jpg | 3/2 | ambiente com spots embutidos, perfis LED -->
-            <img
-              src="<?php echo esc_url($theme_uri); ?>/assets/images/produto-residencial.jpg"
-              alt="Projeto Técnico de Iluminação — Vertz"
-              loading="lazy" decoding="async"
-              class="vertz-service-duo__img">
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/produto-residencial.jpg" alt="Projeto Técnico de Iluminação — Vertz" loading="lazy" decoding="async" class="vertz-service-duo__img">
           </div>
           <div class="vertz-service-duo__body">
             <div class="vertz-service-duo__meta">
               <span class="vertz-service-duo__index" aria-hidden="true">01</span>
               <span class="vertz-service-duo__tag">Projeto Técnico</span>
             </div>
-            <h3 class="vertz-service-duo__title">
-              Projeto Técnico<br>de Iluminação
-            </h3>
+            <h3 class="vertz-service-duo__title">Projeto Técnico<br>de Iluminação</h3>
             <p class="vertz-service-duo__desc">A camada que sustenta tudo — calculada em lux, IRC e temperatura de cor para que cada ambiente funcione com precisão técnica e eficiência energética real.</p>
-            <div class="vertz-service-duo__cta">
-              <span>Ver serviço</span>
-              <span class="vertz-service-duo__arrow" aria-hidden="true">→</span>
-            </div>
+            <div class="vertz-service-duo__cta"><span>Ver serviço</span><span class="vertz-service-duo__arrow" aria-hidden="true">→</span></div>
           </div>
         </a>
-
-        <!-- PILAR 02: Decorativo -->
         <a href="<?php echo esc_url(home_url('/iluminacao-decorativa')); ?>" class="vertz-service-duo__card" aria-label="Projeto Decorativo de Iluminação">
           <div class="vertz-service-duo__img-wrap overflow-clip">
-            <!-- IMG: produto-comercial.jpg | 3/2 | pendente / luminária decorativa de destaque -->
-            <img
-              src="<?php echo esc_url($theme_uri); ?>/assets/images/produto-comercial.jpg"
-              alt="Projeto Decorativo de Iluminação — Vertz"
-              loading="lazy" decoding="async"
-              class="vertz-service-duo__img">
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/produto-comercial.jpg" alt="Projeto Decorativo de Iluminação — Vertz" loading="lazy" decoding="async" class="vertz-service-duo__img">
           </div>
           <div class="vertz-service-duo__body">
             <div class="vertz-service-duo__meta">
               <span class="vertz-service-duo__index" aria-hidden="true">02</span>
               <span class="vertz-service-duo__tag">Projeto Decorativo</span>
             </div>
-            <h3 class="vertz-service-duo__title">
-              Projeto Decorativo<br>de Iluminação
-            </h3>
+            <h3 class="vertz-service-duo__title">Projeto Decorativo<br>de Iluminação</h3>
             <p class="vertz-service-duo__desc">A camada que define a identidade — pendentes, arandelas e peças de design curadas para impressionar, criar atmosfera e ser lembrada.</p>
-            <div class="vertz-service-duo__cta">
-              <span>Ver serviço</span>
-              <span class="vertz-service-duo__arrow" aria-hidden="true">→</span>
-            </div>
+            <div class="vertz-service-duo__cta"><span>Ver serviço</span><span class="vertz-service-duo__arrow" aria-hidden="true">→</span></div>
           </div>
         </a>
-
       </div>
     </div>
   </div>
@@ -187,33 +214,17 @@ $theme_uri = get_template_directory_uri();
     <div id="pb-row-razoes-1" class="pb-row pb-row-razoes" data-scroll data-scroll-offset="100px,0" data-module-delay>
       <header class="container-fluid mb-40 mb-md-60">
         <p class="fz-12 tt-uppercase m-0 mb-15" style="color:var(--color-gray-600)">Por que escolher a Vertz</p>
-        <h2 class="ff-body fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0">
-          10 razões para <span class="title-highlight --font-heading --fs-italic">iluminar</span> com a Vertz.
-        </h2>
+        <h2 class="ff-body fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0">10 razões para <span class="title-highlight --font-heading --fs-italic">iluminar</span> com a Vertz.</h2>
       </header>
       <div class="pb-row-razoes__slider swiper">
         <div class="pb-row-razoes__sliderWrap swiper-wrapper">
-          <?php
-          $razoes = [
-            ['titulo'=>'Experiência comprovada',         'gif'=>'razoes-01.gif','acento'=>'Mais de 20 anos no mercado,',           'texto'=>'atendendo arquitetos, construtoras e clientes finais com consistência técnica e curadoria estética selecionada.'],
-            ['titulo'=>'Projeto luminotécnico completo', 'gif'=>'razoes-02.gif','acento'=>'Do briefing ao memorial descritivo,',   'texto'=>'entregamos cálculos de iluminância por ambiente, seleção de produtos e documentação técnica completa para instalação.'],
-            ['titulo'=>'Marcas exclusivas',              'gif'=>'razoes-03.gif','acento'=>'Revendedor exclusivo de marcas premium,','texto'=>'nacionais e internacionais disponíveis nos nossos showrooms para ver, tocar e especificar com segurança.'],
-            ['titulo'=>'Eficiência energética real',     'gif'=>'razoes-04.gif','acento'=>'Redução de até 80% no consumo,',         'texto'=>'com tecnologia LED certificada, dimensionada por cálculo técnico — sem superdimensionamento, sem desperdício.'],
-            ['titulo'=>'Soluções sob medida',            'gif'=>'razoes-05.gif','acento'=>'Cada projeto é único,',                 'texto'=>'e o atendimento também. Não trabalhamos com pacotes prontos — cada especificação é desenvolvida para o espaço e o cliente.'],
-            ['titulo'=>'Acompanhamento de obra',         'gif'=>'razoes-06.gif','acento'=>'Nossa equipe técnica acompanha',        'texto'=>'a instalação e faz visitas de comissionamento para garantir que o projeto entregue exatamente o que foi projetado.'],
-            ['titulo'=>'Parceria com arquitetos',        'gif'=>'razoes-07.gif','acento'=>'Trabalhamos lado a lado com',            'texto'=>'arquitetos e designers — com memorial descritivo, amostras físicas e visitas de acompanhamento inclusas.'],
-            ['titulo'=>'Showrooms em SP e Campinas',     'gif'=>'razoes-08.gif','acento'=>'Visite nossos showrooms,',              'texto'=>'onde você experimenta temperatura de cor, IRC e acabamento de cada produto antes de especificar.'],
-            ['titulo'=>'Tecnologia e design juntos',     'gif'=>'razoes-09.gif','acento'=>'Unimos alta performance técnica',       'texto'=>'com curadoria estética rigorosa — porque um projeto de iluminação precisa ser belo e funcional ao mesmo tempo.'],
-            ['titulo'=>'Garantia e suporte técnico',     'gif'=>'razoes-10.gif','acento'=>'Dois anos de garantia',                 'texto'=>'em todos os produtos fornecidos, com suporte técnico especializado e orientação para manutenção preventiva.'],
-          ];
-          foreach ($razoes as $index => $razao): ?>
+          <?php foreach ($razoes as $index => $razao):
+            $gif = $theme_uri . '/assets/images/razoes-' . str_pad($index+1,2,'0',STR_PAD_LEFT) . '.gif'; ?>
           <div class="pb-row-razoes__slide swiper-slide" style="--index:<?php echo $index; ?>">
             <div class="pb-row-razoes__card">
               <h3 class="pb-row-razoes__titulo ff-heading fs-italic fw-400 m-0"><?php echo esc_html($razao['titulo']); ?></h3>
               <figure class="pb-row-razoes__gif m-0">
-                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/<?php echo esc_attr($razao['gif']); ?>"
-                  alt="<?php echo esc_attr($razao['titulo']); ?>" loading="lazy" decoding="async"
-                  style="width:100%;aspect-ratio:1/1;object-fit:contain;display:block;">
+                <img src="<?php echo esc_url($gif); ?>" alt="<?php echo esc_attr($razao['titulo']); ?>" loading="lazy" decoding="async" style="width:100%;aspect-ratio:1/1;object-fit:contain;display:block;">
               </figure>
               <p class="pb-row-razoes__texto m-0">
                 <span class="pb-row-razoes__acento"><?php echo esc_html($razao['acento']); ?></span>
@@ -241,26 +252,14 @@ $theme_uri = get_template_directory_uri();
   </div>
 
 
-  <!-- SEÇÃO 6: FEATURES — Imagem + 3 diferenciais -->
+  <!-- SEÇÃO 6: FEATURES -->
   <div class="pb-row-wrapper position-relative pt-0 pb-80 pt-md-0 pb-md-100 pt-xl-0 pb-xl-130 mt-0 mb-0" style="--zindex:6">
-    <div id="pb-row-features-1"
-      class="pb-row pb-row-features container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20"
-      data-module="pb-row-features">
-
+    <div id="pb-row-features-1" class="pb-row pb-row-features container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20">
       <div class="pb-row-features__mediasContainer col-start-1 col-span-md-6 col-span-xl-12 row-start-md-1 overflow-clip" style="border-radius:12px;">
-        <img src="<?php echo esc_url($theme_uri); ?>/assets/images/features-destaque.jpg"
-          alt="Diferenciais Vertz Iluminação" loading="lazy" decoding="async"
-          style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;">
+        <img src="<?php echo esc_url($feat_img); ?>" alt="Diferenciais Vertz Iluminação" loading="lazy" decoding="async" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;">
       </div>
-
       <div class="pb-row-features__list col-start-1 col-start-md-7 col-span-md-6 col-span-xl-11 d-grid align-content-start grid-gap-0 pt-md-40">
-        <?php
-        $features = [
-          ['titulo'=>'Eficiência energética certificada','texto'=>'Nossas especificações em LED resultam em reduções de até 80% no consumo elétrico — com cálculo de iluminância ABNT e produtos com certificação PROCEL.'],
-          ['titulo'=>'Projeto luminotécnico completo','texto'=>'Utilizamos o software DIALux para calcular iluminâncias ambiente a ambiente. Você recebe o memorial descritivo completo, circuitos e quantitativo para a obra.'],
-          ['titulo'=>'Curadoria de marcas exclusivas','texto'=>'Trabalhamos com revendas exclusivas de marcas nacionais e internacionais disponíveis para visitação física nos showrooms de Campinas e São Paulo.'],
-        ];
-        foreach ($features as $i => $f): ?>
+        <?php foreach ($features as $f): ?>
         <div class="pb-row-features__feature" data-scroll data-scroll-offset="50px,0" data-module-delay>
           <div class="d-grid grid-gap-12" style="border-top:1px solid var(--color-gray-300);padding:1.75rem 0;">
             <h3 class="fz-18 fz-xl-22 fw-400 m-0"><?php echo esc_html($f['titulo']); ?></h3>
@@ -269,9 +268,7 @@ $theme_uri = get_template_directory_uri();
         </div>
         <?php endforeach; ?>
         <div style="padding-top:1.5rem;">
-          <a href="<?php echo esc_url(home_url('/sobre')); ?>" class="fz-12 tt-uppercase fw-500 d-inline-flex align-items-center grid-gap-10" style="color:var(--color-dark);text-decoration:none;letter-spacing:0.12em;border-bottom:1px solid var(--color-dark);">
-            Conheça a Vertz →
-          </a>
+          <a href="<?php echo esc_url(home_url('/sobre')); ?>" class="fz-12 tt-uppercase fw-500 d-inline-flex align-items-center grid-gap-10" style="color:var(--color-dark);text-decoration:none;letter-spacing:0.12em;border-bottom:1px solid var(--color-dark);">Conheça a Vertz →</a>
         </div>
       </div>
     </div>
@@ -280,8 +277,7 @@ $theme_uri = get_template_directory_uri();
 
   <!-- SEÇÃO 7: PARCEIROS -->
   <div class="pb-row-wrapper position-relative pt-40 pb-40 pt-md-60 pb-md-60 pt-xl-80 pb-xl-80 mt-0 mb-0" style="--zindex:7">
-    <section class="pb-row pb-row-partners container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-md-12 grid-gap-xl-20"
-      data-scroll data-scroll-offset="50px,0" data-module-delay>
+    <section class="pb-row pb-row-partners container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-md-12 grid-gap-xl-20" data-scroll data-scroll-offset="50px,0" data-module-delay>
       <header class="col-start-1 col-span-md-12 col-span-xl-24 mb-20 mb-md-30">
         <p class="fz-12 tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)">Marcas que representamos</p>
       </header>
@@ -289,16 +285,12 @@ $theme_uri = get_template_directory_uri();
         <div class="pb-row-partners__ticker d-flex align-items-center grid-gap-40 grid-gap-xl-60">
           <?php for ($i = 1; $i <= 5; $i++): ?>
           <div class="pb-row-partners__partner flex-shrink-0">
-            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/logo-parceiro-0<?php echo $i; ?>.svg"
-              alt="Parceiro <?php echo $i; ?>" loading="lazy" decoding="async" width="120" height="40"
-              style="width:120px;height:40px;object-fit:contain;display:block;opacity:.55;filter:grayscale(1);transition:opacity .3s,filter .3s;">
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/logo-parceiro-0<?php echo $i; ?>.svg" alt="Parceiro <?php echo $i; ?>" loading="lazy" decoding="async" width="120" height="40" style="width:120px;height:40px;object-fit:contain;display:block;opacity:.55;filter:grayscale(1);transition:opacity .3s,filter .3s;">
           </div>
           <?php endfor; ?>
           <?php for ($i = 1; $i <= 5; $i++): ?>
           <div class="pb-row-partners__partner flex-shrink-0" aria-hidden="true">
-            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/logo-parceiro-0<?php echo $i; ?>.svg"
-              alt="" loading="lazy" decoding="async" width="120" height="40"
-              style="width:120px;height:40px;object-fit:contain;display:block;opacity:.55;filter:grayscale(1);">
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/logo-parceiro-0<?php echo $i; ?>.svg" alt="" loading="lazy" decoding="async" width="120" height="40" style="width:120px;height:40px;object-fit:contain;display:block;opacity:.55;filter:grayscale(1);">
           </div>
           <?php endfor; ?>
         </div>
@@ -316,25 +308,14 @@ $theme_uri = get_template_directory_uri();
         </h2>
       </header>
       <div class="pb-row-faqs__faqs col-start-1 col-span-md-12 col-span-xl-18 col-start-xl-4 d-grid grid-gap-0">
-        <?php
-        $faqs = [
-          ['q'=>'Quais tipos de projetos a Vertz atende?',
-           'a'=>'Atendemos projetos residenciais de alto padrão, comerciais e de varejo, corporativos, hoteleiros, hospitalares e projetos especiais como museus e galerias. Também desenvolvemos consultoria para arquitetos e designers de interiores.'],
-          ['q'=>'Vocês desenvolvem o projeto luminotécnico?',
-           'a'=>'Sim. Desenvolvemos o projeto luminotécnico completo com software DIALux — incluindo cálculo de iluminâncias por ambiente, seleção de produtos, memorial descritivo, circuitos e quantitativo. Tudo documentado conforme normas ABNT.'],
-          ['q'=>'Qual o prazo médio de fornecimento?',
-           'a'=>'Nossa linha padrão tem entrega de 5 a 10 dias úteis para todo o Brasil. Produtos importados ou sob encomenda têm prazo informado na proposta, antes do fechamento.'],
-          ['q'=>'Os produtos possuem garantia?',
-           'a'=>'Todos os produtos fornecidos pela Vertz têm garantia de 2 anos contra defeitos de fabricação, com suporte técnico especializado. Para projetos maiores, oferecemos contrato de manutenção preventiva.'],
-        ];
-        foreach ($faqs as $index => $faq): ?>
+        <?php foreach ($faqs as $index => $faq): ?>
         <div class="pb-row-faqs__accordion" style="--index:<?php echo $index; ?>">
           <button class="pb-row-faqs__accordionBtn d-flex justify-content-between align-items-center w-100 fz-16 fz-xl-20 fw-400 m-0 py-20 py-xl-30" aria-expanded="false">
-            <span><?php echo esc_html($faq['q']); ?></span>
+            <span><?php echo esc_html($faq['pergunta']); ?></span>
             <span class="pb-row-faqs__accordionIcon" aria-hidden="true">+</span>
           </button>
           <div class="pb-row-faqs__accordionContent" hidden>
-            <p class="fz-14 fz-xl-16 lh-155 pb-20 pb-xl-30 m-0" style="color:var(--color-gray-600)"><?php echo esc_html($faq['a']); ?></p>
+            <p class="fz-14 fz-xl-16 lh-155 pb-20 pb-xl-30 m-0" style="color:var(--color-gray-600)"><?php echo esc_html($faq['resposta']); ?></p>
           </div>
         </div>
         <?php endforeach; ?>
@@ -371,25 +352,22 @@ $theme_uri = get_template_directory_uri();
 
   <!-- SEÇÃO 9: CTA FINAL -->
   <div class="pb-row-wrapper position-relative pt-60 pb-60 pt-md-80 pb-md-80 pt-xl-110 pb-xl-110 mt-0 mb-0" style="--zindex:9">
-    <div class="pb-row pb-row-contact container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20"
-      data-scroll data-scroll-offset="50px,0" data-module-delay>
+    <div class="pb-row pb-row-contact container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20" data-scroll data-scroll-offset="50px,0" data-module-delay>
       <div class="col-start-1 col-span-md-5 col-span-xl-10 position-relative overflow-clip" style="border-radius:12px;">
-        <img src="<?php echo esc_url($theme_uri); ?>/assets/images/contato-foto.jpg"
-          alt="Showroom Vertz Iluminação" loading="lazy" decoding="async"
-          style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
+        <img src="<?php echo esc_url($cta_foto); ?>" alt="Showroom Vertz Iluminação" loading="lazy" decoding="async" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
       </div>
       <div class="col-start-1 col-start-md-7 col-span-md-6 col-span-xl-12 d-flex flex-column justify-content-center grid-gap-30 grid-gap-xl-40 pt-40 pt-md-0">
         <p class="fz-12 tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)">Fale com a gente</p>
         <h2 class="fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0" data-splitting="wordsMask" data-scroll data-text-animation="slidein-by-lines">
-          Vamos iluminar o seu <span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0">projeto.</span>
+          <?php echo wp_kses_post($cta_titulo); ?>
         </h2>
-        <p class="fz-14 fz-xl-16 lh-155 m-0" style="color:var(--color-gray-600)">Envie a planta baixa, o projeto do arquiteto ou apenas descreva o espaço. Nossa equipe retorna em até 24 horas úteis com uma proposta preliminar.</p>
+        <p class="fz-14 fz-xl-16 lh-155 m-0" style="color:var(--color-gray-600)"><?php echo esc_html($cta_corpo); ?></p>
         <div class="d-flex flex-column flex-md-row grid-gap-15">
           <a href="<?php echo esc_url(home_url('/contato')); ?>" class="btn --cta --cta-default">
             <span class="btn__bg" aria-hidden="true"></span>
             <span class="btn__label" aria-hidden="true"><span>Solicitar orçamento</span><span>Solicitar orçamento</span></span>
           </a>
-          <a href="https://wa.me/5519999778710?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank" rel="noopener" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark);">
+          <a href="https://wa.me/<?php echo esc_attr($wa); ?>?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark);">
             <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary-hover);"></span>
             <span class="btn__label" aria-hidden="true"><span>WhatsApp direto</span><span>WhatsApp direto</span></span>
           </a>
@@ -399,5 +377,4 @@ $theme_uri = get_template_directory_uri();
   </div>
 
 </div><!-- /single single-page -->
-
 <?php get_footer(); ?>
