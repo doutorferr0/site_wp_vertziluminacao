@@ -281,26 +281,8 @@ add_action( 'wp_head', 'vertz_customizer_css', 10 );
    Funciona sem exportar JSON. Requer ACF Free instalado.
    ============================================================= */
 
-/* ── 1. Registrar Options Page ─────────────────────────────── */
-add_action('acf/init', function() {
-    if (!function_exists('acf_add_options_page')) return;
-
-    acf_add_options_page(array(
-        'page_title' => 'Vertz — Configurações',
-        'menu_title' => '⚡ Vertz Config',
-        'menu_slug'  => 'vertz-config',
-        'capability' => 'manage_options',
-        'icon_url'   => 'dashicons-lightbulb',
-        'position'   => 3,
-        'redirect'   => false,
-    ));
-
-    acf_add_options_sub_page(array(
-        'page_title'  => 'Dados de Contato',
-        'menu_title'  => 'Contato & Endereços',
-        'parent_slug' => 'vertz-config',
-    ));
-});
+/* ── 1. Options Page NATIVA (sem ACF PRO) ──────────────────── */
+/* Nada aqui — a página de opções é registrada abaixo com WP nativo */
 
 
 /* ── 2. Helper: registrar grupos de campos ─────────────────── */
@@ -324,7 +306,7 @@ add_action('acf/init', function() {
             array('key'=>'field_v_adsp', 'label'=>'Endereço São Paulo',      'name'=>'contato_endereco_sp',      'type'=>'text', 'default_value'=>'Alameda Casa Branca, 806 — Jardim Paulista'),
             array('key'=>'field_v_hr',   'label'=>'Horário de atendimento',  'name'=>'contato_horario',          'type'=>'text', 'default_value'=>'Seg–Sex 9h–18h / Sáb 9h–13h'),
         ),
-        'location' => array(array(array('param'=>'options_page','operator'=>'==','value'=>'vertz-config'))),
+        'location' => array(array(array('param'=>'options_page','operator'=>'==','value'=>'vertz-contato-global'))),
     ));
 
 
@@ -475,11 +457,178 @@ add_action('acf/init', function() {
 }); // fim add_action acf/init
 
 
-/* ── Helper: lê campo ACF com fallback ─────────────────────── */
-if (!function_exists('vf')) {
+/* vf() declarada no bloco de Vertz Config abaixo — ver final do arquivo */
+
+
+/* =============================================================
+   ⚡ VERTZ CONFIG — Página de opções NATIVA (sem ACF PRO)
+   Aparece no menu admin como "⚡ Vertz Config"
+   Salva em wp_options, lido via get_option() / vf()
+   ============================================================= */
+
+/* ── Registrar menu ──────────────────────────────────────────── */
+add_action('admin_menu', function() {
+    add_menu_page(
+        'Vertz — Configurações',
+        '⚡ Vertz Config',
+        'manage_options',
+        'vertz-config',
+        'vertz_config_render',
+        'dashicons-lightbulb',
+        3
+    );
+});
+
+/* ── Salvar campos ao submeter ──────────────────────────────── */
+add_action('admin_post_vertz_save_config', function() {
+    if (!current_user_can('manage_options')) wp_die('Sem permissão.');
+    check_admin_referer('vertz_config_nonce');
+
+    $fields = array(
+        'contato_whatsapp', 'contato_telefone', 'contato_email',
+        'contato_instagram', 'contato_endereco_campinas',
+        'contato_endereco_sp', 'contato_horario',
+    );
+    foreach ($fields as $key) {
+        if (isset($_POST[$key])) {
+            update_option('vertz_' . $key, sanitize_text_field(wp_unslash($_POST[$key])));
+        }
+    }
+
+    wp_redirect(admin_url('admin.php?page=vertz-config&saved=1'));
+    exit;
+});
+
+/* ── Renderizar a página ────────────────────────────────────── */
+function vertz_config_render() {
+    if (!current_user_can('manage_options')) return;
+
+    $fields = array(
+        'contato_whatsapp'          => array('label' => 'WhatsApp (só números)',        'placeholder' => '5519999778710',                   'type' => 'text'),
+        'contato_telefone'          => array('label' => 'Telefone fixo',                'placeholder' => '(19) 3251-0501',                  'type' => 'text'),
+        'contato_email'             => array('label' => 'E-mail',                       'placeholder' => 'contato@vertziluminacao.com.br',   'type' => 'email'),
+        'contato_instagram'         => array('label' => 'Instagram (sem @)',             'placeholder' => 'vertziluminacao',                 'type' => 'text'),
+        'contato_endereco_campinas' => array('label' => 'Endereço Campinas',            'placeholder' => 'R. Antônio Lapa, 328 — Cambuí',   'type' => 'text'),
+        'contato_endereco_sp'       => array('label' => 'Endereço São Paulo',           'placeholder' => 'Alameda Casa Branca, 806 — Jardim Paulista', 'type' => 'text'),
+        'contato_horario'           => array('label' => 'Horário de atendimento',       'placeholder' => 'Seg–Sex 9h–18h / Sáb 9h–13h',    'type' => 'text'),
+    );
+
+    $defaults = array(
+        'contato_whatsapp'          => '5519999778710',
+        'contato_telefone'          => '(19) 3251-0501',
+        'contato_email'             => 'contato@vertziluminacao.com.br',
+        'contato_instagram'         => 'vertziluminacao',
+        'contato_endereco_campinas' => 'R. Antônio Lapa, 328 — Cambuí',
+        'contato_endereco_sp'       => 'Alameda Casa Branca, 806 — Jardim Paulista',
+        'contato_horario'           => 'Seg–Sex 9h–18h / Sáb 9h–13h',
+    );
+    ?>
+    <div class="wrap">
+        <h1 style="display:flex;align-items:center;gap:10px;">⚡ Vertz Config</h1>
+
+        <?php if (isset($_GET['saved'])): ?>
+        <div class="notice notice-success is-dismissible"><p><strong>✅ Configurações salvas!</strong> As alterações estão ativas no site.</p></div>
+        <?php endif; ?>
+
+        <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;margin-top:20px;align-items:start;">
+
+            <!-- Formulário principal -->
+            <div style="background:#fff;border:1px solid #c3c4c7;border-radius:4px;padding:24px;">
+                <h2 style="margin-top:0;padding-bottom:12px;border-bottom:1px solid #eee;">📞 Dados de Contato</h2>
+                <p style="color:#666;margin-bottom:24px;font-size:13px;">Estes dados aparecem em todas as páginas do site automaticamente — rodapé, página de contato, CTAs e WhatsApp links.</p>
+
+                <form method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                    <?php wp_nonce_field('vertz_config_nonce'); ?>
+                    <input type="hidden" name="action" value="vertz_save_config">
+
+                    <table class="form-table" role="presentation">
+                        <?php foreach ($fields as $key => $meta):
+                            $val = get_option('vertz_' . $key, $defaults[$key] ?? '');
+                        ?>
+                        <tr>
+                            <th scope="row">
+                                <label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($meta['label']); ?></label>
+                            </th>
+                            <td>
+                                <input
+                                    type="<?php echo esc_attr($meta['type']); ?>"
+                                    id="<?php echo esc_attr($key); ?>"
+                                    name="<?php echo esc_attr($key); ?>"
+                                    value="<?php echo esc_attr($val); ?>"
+                                    placeholder="<?php echo esc_attr($meta['placeholder']); ?>"
+                                    class="regular-text">
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+
+                    <p class="submit">
+                        <button type="submit" class="button button-primary button-large">💾 Salvar configurações</button>
+                    </p>
+                </form>
+            </div>
+
+            <!-- Painel lateral: links rápidos -->
+            <div>
+                <div style="background:#fff;border:1px solid #c3c4c7;border-radius:4px;padding:20px;margin-bottom:16px;">
+                    <h3 style="margin-top:0;">🔗 Editar conteúdo das páginas</h3>
+                    <p style="font-size:13px;color:#666;">Para editar textos e imagens de cada página, vá até a página no admin e use os campos ACF abaixo do editor.</p>
+                    <ul style="margin:0;padding-left:18px;">
+                        <?php
+                        $pages = array(
+                            'home'     => 'Home (front-page)',
+                            'sobre'    => 'Sobre',
+                            'servicos' => 'Serviços',
+                            'contato'  => 'Contato',
+                        );
+                        $all_pages = get_pages(array('post_status'=>'publish'));
+                        foreach ($all_pages as $pg) {
+                            $tpl = get_page_template_slug($pg->ID);
+                            $label = $pg->post_title;
+                            echo '<li style="margin-bottom:6px;"><a href="' . esc_url(get_edit_post_link($pg->ID)) . '">' . esc_html($label) . '</a></li>';
+                        }
+                        ?>
+                    </ul>
+                </div>
+
+                <div style="background:#fff;border:1px solid #c3c4c7;border-radius:4px;padding:20px;margin-bottom:16px;">
+                    <h3 style="margin-top:0;">🎨 Aparência</h3>
+                    <ul style="margin:0;padding-left:18px;">
+                        <li style="margin-bottom:6px;"><a href="<?php echo esc_url(admin_url('customize.php')); ?>">Customizer (Hero & Header)</a></li>
+                        <li style="margin-bottom:6px;"><a href="<?php echo esc_url(admin_url('upload.php')); ?>">Biblioteca de mídia</a></li>
+                        <li style="margin-bottom:6px;"><a href="<?php echo esc_url(admin_url('nav-menus.php')); ?>">Menus de navegação</a></li>
+                    </ul>
+                </div>
+
+                <div style="background:#f0f6fc;border:1px solid #c3c4c7;border-radius:4px;padding:16px;">
+                    <p style="margin:0;font-size:12px;color:#444;line-height:1.5;">
+                        <strong>💡 Dica:</strong> Dados salvos aqui propagam para todo o site — WhatsApp links, rodapé, página de contato e e-mails de formulário.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <?php
+}
+
+
+/* ── vf() atualizado: lê wp_options para campos globais ─────── */
+/* Remove a versão anterior e redefine com suporte ao prefixo vertz_ */
+if (function_exists('vf')) {
+    // já definida — não redeclara
+} else {
     function vf($field, $post_id = false, $fallback = '') {
-        if (!function_exists('get_field')) return $fallback;
-        $v = get_field($field, $post_id);
-        return ($v !== null && $v !== false && $v !== '') ? $v : $fallback;
+        // Campos globais (contato): lê de wp_options com prefixo vertz_
+        if ($post_id === 'option' || $post_id === 'options') {
+            $val = get_option('vertz_' . $field, null);
+            return ($val !== null && $val !== '') ? $val : $fallback;
+        }
+        // Campos de página: usa ACF se disponível
+        if (function_exists('get_field')) {
+            $v = get_field($field, $post_id ?: false);
+            return ($v !== null && $v !== false && $v !== '') ? $v : $fallback;
+        }
+        return $fallback;
     }
 }
