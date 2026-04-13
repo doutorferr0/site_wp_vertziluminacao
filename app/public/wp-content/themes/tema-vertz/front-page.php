@@ -29,7 +29,7 @@ $cta_titulo = vf('cta_titulo',false, 'Vamos iluminar o seu projeto.');
 $cta_corpo  = vf('cta_corpo', false, 'Envie a planta baixa, o projeto do arquiteto ou apenas descreva o espaço. Nossa equipe retorna em até 24 horas úteis com uma proposta preliminar.');
 
 // Features com fallback
-$features_raw = get_field('features_items');
+$features_raw = vf('features_items', false, array());
 $features = (!empty($features_raw)) ? $features_raw : array(
     array('titulo'=>'Eficiência energética certificada','texto'=>'Nossas especificações em LED resultam em reduções de até 80% no consumo elétrico — com cálculo de iluminância ABNT e produtos com certificação PROCEL.'),
     array('titulo'=>'Projeto luminotécnico completo',  'texto'=>'Utilizamos o software DIALux para calcular iluminâncias ambiente a ambiente. Você recebe o memorial descritivo completo, circuitos e quantitativo para a obra.'),
@@ -37,7 +37,7 @@ $features = (!empty($features_raw)) ? $features_raw : array(
 );
 
 // FAQs com fallback
-$faqs_raw = get_field('faq_items');
+$faqs_raw = vf('faq_items', false, array());
 $faqs = (!empty($faqs_raw)) ? $faqs_raw : array(
     array('pergunta'=>'Quais tipos de projetos a Vertz atende?','resposta'=>'Atendemos projetos residenciais de alto padrão, comerciais e de varejo, corporativos, hoteleiros, hospitalares e projetos especiais como museus e galerias. Também desenvolvemos consultoria para arquitetos e designers de interiores.'),
     array('pergunta'=>'Vocês desenvolvem o projeto luminotécnico?','resposta'=>'Sim. Desenvolvemos o projeto luminotécnico completo com software DIALux — incluindo cálculo de iluminâncias por ambiente, seleção de produtos, memorial descritivo, circuitos e quantitativo. Tudo documentado conforme normas ABNT.'),
@@ -46,7 +46,7 @@ $faqs = (!empty($faqs_raw)) ? $faqs_raw : array(
 );
 
 // 10 Razões com fallback
-$razoes_raw = get_field('razoes_items');
+$razoes_raw = vf('razoes_items', false, array());
 $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
     array('titulo'=>'Experiência comprovada',         'acento'=>'Mais de 20 anos no mercado,',           'texto'=>'atendendo arquitetos, construtoras e clientes finais com consistência técnica e curadoria estética selecionada.'),
     array('titulo'=>'Projeto luminotécnico completo', 'acento'=>'Do briefing ao memorial descritivo,',   'texto'=>'entregamos cálculos de iluminância por ambiente, seleção de produtos e documentação técnica completa para instalação.'),
