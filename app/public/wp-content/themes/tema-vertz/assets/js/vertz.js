@@ -41,8 +41,8 @@
     var isHome        = document.body.classList.contains('home');
     var HIDE_DELAY    = 14;        // px de diff para esconder
     var HERO_EXIT_PCT = 0.55;      // % da viewport para sair do hero
-    var LERP_FACTOR   = 0.045;     // menor = mais devagar/suave
-    var SCALE_HERO    = 1.55;      // escala do logo no hero
+    var LERP_FACTOR   = 0.042;     // menor = mais devagar/suave
+    var SCALE_HERO    = 6.0;       // cap máximo de escala (dinâmico por viewport)
 
     /* ── estado de interpolação ─────────────────────── */
     var cur = { x: 0, y: 0, scale: 1, opacity: 0 };   // valores atuais
@@ -64,14 +64,15 @@
       var vpH  = window.innerHeight;
       var W    = rect.width;
       var H    = rect.height;
-      var S    = SCALE_HERO;
+      // Scale dinâmico: logo ocupa ~38% da largura da viewport
+      // Limitado por SCALE_HERO como máximo para telas muito pequenas
+      var targetW = vpW * 0.38;
+      var S = Math.min(targetW / W, SCALE_HERO);
       // transform-origin: left top
-      // Após translate(X,Y) scale(S), o centro visual fica em:
-      //   cx = rect.left + X + W*S/2
-      //   cy = rect.top  + Y + H*S/2
-      // Queremos cx = vpW/2, cy = vpH*0.36
-      var destX = vpW / 2       - rect.left - (W * S) / 2;
-      var destY = vpH * 0.36    - rect.top  - (H * S) / 2;
+      // centro visual após scale: cx = rect.left + X + W*S/2
+      // destino: cx = vpW/2 (centro H), cy = vpH*0.44 (levemente abaixo do meio)
+      var destX = vpW / 2    - rect.left - (W * S) / 2;
+      var destY = vpH * 0.44 - rect.top  - (H * S) / 2;
       return { x: destX, y: destY, scale: S };
     }
 
