@@ -813,28 +813,34 @@ figure {
   margin: 0;
   padding: 0;
   margin-right: auto;
+  width: var(--header-logo-size-top);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
 }
 
 /* Logo — sem animação, transição simples de tamanho */
 .site-header__logo img {
-  width: var(--header-logo-size-top);
+  width: 100%;
   height: auto;
-  max-width: 100%;
   display: block;
   object-fit: contain;
   transform-origin: left center;
-  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* No topo: logo normal (JS controla scale no hero) */
-.site-header.is-top .site-header__logo img {
+/* No topo: logo normal */
+.site-header.is-top .site-header__logo {
   width: var(--header-logo-size-top);
+}
+.site-header.is-top .site-header__logo img {
   filter: none;
 }
 
 /* Scrollado: compacto */
-.site-header.is-scrolled .site-header__logo img {
+.site-header.is-scrolled .site-header__logo {
   width: var(--header-logo-size-scrolled);
+}
+.site-header.is-scrolled .site-header__logo img {
   filter: none;
 }
 
