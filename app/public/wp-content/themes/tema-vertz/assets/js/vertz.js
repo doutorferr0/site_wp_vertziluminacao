@@ -64,15 +64,17 @@
       var vpH  = window.innerHeight;
       var W    = rect.width;
       var H    = rect.height;
-      // Scale dinâmico: logo ocupa ~38% da largura da viewport
+      // Scale dinâmico: logo ocupa ~32% da largura da viewport
       // Limitado por SCALE_HERO como máximo para telas muito pequenas
-      var targetW = vpW * 0.38;
+      var targetW = vpW * 0.32;
       var S = Math.min(targetW / W, SCALE_HERO);
       // transform-origin: left top
       // centro visual após scale: cx = rect.left + X + W*S/2
-      // destino: cx = vpW/2 (centro H), cy = vpH*0.44 (levemente abaixo do meio)
+      // destino: logo centrado na metade da tela, verticalmente em ~42%
+      // (logo + iluminação juntos ficam aprox na faixa 30%–58% do hero)
+      var logoAndTextH = H * S + 60; // estimativa do bloco logo + texto iluminação
       var destX = vpW / 2    - rect.left - (W * S) / 2;
-      var destY = vpH * 0.44 - rect.top  - (H * S) / 2;
+      var destY = vpH * 0.42 - rect.top  - logoAndTextH / 2;
       return { x: destX, y: destY, scale: S };
     }
 
