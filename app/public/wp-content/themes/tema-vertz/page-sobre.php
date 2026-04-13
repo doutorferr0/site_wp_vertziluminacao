@@ -5,6 +5,30 @@
  */
 get_header();
 $theme_uri = get_template_directory_uri();
+
+// ── Contato global ──────────────────────────────────────────
+$wa      = vf('contato_whatsapp',         'option', '5519999778710');
+$adc     = vf('contato_endereco_campinas', 'option', 'R. Antônio Lapa, 328 — Cambuí');
+$adsp    = vf('contato_endereco_sp',       'option', 'Alameda Casa Branca, 806 — Jardim Paulista');
+$horario = vf('contato_horario',           'option', 'Seg–Sex 9h–18h / Sáb 9h–13h');
+
+// ── Campos desta página ─────────────────────────────────────
+$hero_img    = vf('sobre_hero_img',     false, $theme_uri . '/assets/images/sobre-hero.jpg');
+$manifesto_sub   = vf('sobre_manifesto_sub',   false, 'Nossa história');
+$manifesto_titulo = vf('sobre_manifesto_titulo', false, 'Mais de 20 anos iluminando projetos com precisão e elegância.');
+$manifesto_corpo  = vf('sobre_manifesto_corpo',  false, '');
+$missao_img  = vf('sobre_missao_img',   false, $theme_uri . '/assets/images/sobre-missao.jpg');
+$galeria_01  = vf('sobre_galeria_01',   false, $theme_uri . '/assets/images/sobre-galeria-01.jpg');
+$galeria_02  = vf('sobre_galeria_02',   false, $theme_uri . '/assets/images/sobre-galeria-02.jpg');
+$galeria_03  = vf('sobre_galeria_03',   false, $theme_uri . '/assets/images/sobre-galeria-03.jpg');
+
+$stats_raw = vf('sobre_stats', false, array());
+$stats = !empty($stats_raw) ? $stats_raw : array(
+    array('numero'=>'+20', 'sufixo'=>'',  'legenda'=>'anos no mercado de iluminação técnica e decorativa'),
+    array('numero'=>'+500','sufixo'=>'',  'legenda'=>'projetos entregues em SP, Campinas e todo o Brasil'),
+    array('numero'=>'80',  'sufixo'=>'%', 'legenda'=>'de redução no consumo energético com LED certificado'),
+    array('numero'=>'2',   'sufixo'=>'',  'legenda'=>'showrooms — Alameda Casa Branca (SP) e Cambuí (Campinas)'),
+);
 ?>
 
 <div class="single single-page" id="page-sobre">
