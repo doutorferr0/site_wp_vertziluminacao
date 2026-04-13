@@ -120,3 +120,156 @@ function vertz_handle_optin() {
 }
 add_action( 'admin_post_vertz_optin',        'vertz_handle_optin' );
 add_action( 'admin_post_nopriv_vertz_optin', 'vertz_handle_optin' );
+
+
+/* =============================================================
+   VERTZ CUSTOMIZER — Hero & Header
+   Expõe controles visuais no WP Customizer para ajustar
+   animações e tamanhos sem tocar em código.
+   ============================================================= */
+
+function vertz_customizer_register( $wp_customize ) {
+
+    /* ── PAINEL ─────────────────────────────────────────── */
+    $wp_customize->add_panel( 'vertz_hero', array(
+        'title'    => '🔆 Vertz — Hero & Header',
+        'priority' => 30,
+    ) );
+
+    /* ── SEÇÃO: Logo Hero ───────────────────────────────── */
+    $wp_customize->add_section( 'vertz_hero_logo', array(
+        'title' => 'Logo no Hero',
+        'panel' => 'vertz_hero',
+    ) );
+
+    $controls_logo = array(
+        'vertz_hero_logo_pct' => array(
+            'label'       => 'Tamanho do logo (% da tela)',
+            'description' => 'Quanto da largura da tela o logo ocupa no hero. Padrão: 32',
+            'default'     => 32,
+            'min' => 15, 'max' => 55, 'step' => 1,
+        ),
+        'vertz_hero_logo_y' => array(
+            'label'       => 'Posição vertical (% da altura da tela)',
+            'description' => 'Onde o bloco logo+iluminação fica na vertical. Padrão: 42',
+            'default'     => 42,
+            'min' => 25, 'max' => 65, 'step' => 1,
+        ),
+    );
+
+    foreach ( $controls_logo as $id => $args ) {
+        $wp_customize->add_setting( $id, array(
+            'default'           => $args['default'],
+            'sanitize_callback' => 'absint',
+            'transport'         => 'postMessage',
+        ) );
+        $wp_customize->add_control( $id, array(
+            'label'       => $args['label'],
+            'description' => $args['description'],
+            'section'     => 'vertz_hero_logo',
+            'type'        => 'range',
+            'input_attrs' => array( 'min' => $args['min'], 'max' => $args['max'], 'step' => $args['step'] ),
+        ) );
+    }
+
+    /* ── SEÇÃO: Velocidade da animação ──────────────────── */
+    $wp_customize->add_section( 'vertz_hero_anim', array(
+        'title' => 'Velocidade da animação',
+        'panel' => 'vertz_hero',
+    ) );
+
+    $wp_customize->add_setting( 'vertz_hero_lerp', array(
+        'default'           => 42,       // representa 0.042 (÷1000)
+        'sanitize_callback' => 'absint',
+        'transport'         => 'postMessage',
+    ) );
+    $wp_customize->add_control( 'vertz_hero_lerp', array(
+        'label'       => 'Suavidade da animação',
+        'description' => 'Menor = mais devagar e fluido. Padrão: 42 (= 0.042). Recomendado: 30–60.',
+        'section'     => 'vertz_hero_anim',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 15, 'max' => 120, 'step' => 1 ),
+    ) );
+
+    /* ── SEÇÃO: Header ──────────────────────────────────── */
+    $wp_customize->add_section( 'vertz_header_size', array(
+        'title' => 'Tamanho do Header',
+        'panel' => 'vertz_hero',
+    ) );
+
+    $controls_header = array(
+        'vertz_header_logo_scrolled' => array(
+            'label'       => 'Logo ao scrollar (px)',
+            'description' => 'Largura do logo no header fixo. Padrão: 80',
+            'default'     => 80,
+            'min' => 50, 'max' => 180, 'step' => 2,
+        ),
+        'vertz_header_padding' => array(
+            'label'       => 'Espaçamento vertical do header (px)',
+            'description' => 'Padding cima/baixo do header. Padrão: 14',
+            'default'     => 14,
+            'min' => 6, 'max' => 40, 'step' => 1,
+        ),
+    );
+
+    foreach ( $controls_header as $id => $args ) {
+        $wp_customize->add_setting( $id, array(
+            'default'           => $args['default'],
+            'sanitize_callback' => 'absint',
+            'transport'         => 'postMessage',
+        ) );
+        $wp_customize->add_control( $id, array(
+            'label'       => $args['label'],
+            'description' => $args['description'],
+            'section'     => 'vertz_header_size',
+            'type'        => 'range',
+            'input_attrs' => array( 'min' => $args['min'], 'max' => $args['max'], 'step' => $args['step'] ),
+        ) );
+    }
+}
+add_action( 'customize_register', 'vertz_customizer_register' );
+
+
+/* =============================================================
+   INJETA window.vertzConfig com os valores salvos
+   O JS lê este objeto; se não existir, usa defaults hardcoded.
+   ============================================================= */
+
+function vertz_inject_config() {
+    $config = array(
+        'heroLogoPct'   => (int) get_theme_mod( 'vertz_hero_logo_pct',      32 ),
+        'heroLogoY'     => (int) get_theme_mod( 'vertz_hero_logo_y',        42 ),
+        'heroLerp'      => (int) get_theme_mod( 'vertz_hero_lerp',          42 ),
+        'logoScrolled'  => (int) get_theme_mod( 'vertz_header_logo_scrolled', 80 ),
+        'headerPadding' => (int) get_theme_mod( 'vertz_header_padding',     14 ),
+    );
+    ?>
+    <script id="vertz-config">
+    window.vertzConfig = <?php echo wp_json_encode( $config ); ?>;
+    </script>
+    <?php
+}
+add_action( 'wp_head', 'vertz_inject_config', 5 );
+
+
+/* =============================================================
+   CSS DINÂMICO: aplica os valores do Customizer como variáveis
+   ============================================================= */
+
+function vertz_customizer_css() {
+    $logo_scrolled  = (int) get_theme_mod( 'vertz_header_logo_scrolled', 80 );
+    $pad            = (int) get_theme_mod( 'vertz_header_padding', 14 );
+    $pad_rem        = round( $pad / 16, 4 );
+    $logo_top       = round( $logo_scrolled * 1.3 ); // topo = scrolled × 1.3
+    ?>
+    <style id="vertz-customizer-css">
+    :root {
+        --header-logo-size-scrolled: <?php echo $logo_scrolled; ?>px;
+        --header-logo-size-top:      <?php echo $logo_top; ?>px;
+        --header-padding-y:          <?php echo $pad_rem; ?>rem;
+        --header-padding-y-scrolled: <?php echo round($pad_rem * 0.6, 4); ?>rem;
+    }
+    </style>
+    <?php
+}
+add_action( 'wp_head', 'vertz_customizer_css', 10 );
