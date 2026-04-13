@@ -43,13 +43,13 @@
 
   /* Header modular */
   --header-max-width: min(1200px, calc(100vw - 4rem));
-  --header-padding-y: clamp(0.875rem, 1.4vw, 1.375rem);
-  --header-padding-y-scrolled: clamp(0.5rem, 0.9vw, 0.875rem);
+  --header-padding-y: clamp(0.7rem, 1.12vw, 1.1rem);
+  --header-padding-y-scrolled: clamp(0.4rem, 0.72vw, 0.7rem);
   --header-gutter: clamp(1rem, 2vw, 1.8rem);
   --header-nav-font-size: clamp(0.85rem, 1.1vw, 1rem);
   --header-cta-padding: clamp(0.85rem, 1.2vw, 1.1rem) clamp(1rem, 1.5vw, 1.4rem);
-  --header-logo-size-top: clamp(130px, 9.5vw, 165px);
-  --header-logo-size-scrolled: clamp(100px, 7.5vw, 130px);
+  --header-logo-size-top: clamp(104px, 7.6vw, 132px);
+  --header-logo-size-scrolled: clamp(80px, 6vw, 104px);
   --header-logo-margin-left: clamp(0.5rem, 1.5vw, 1.5rem);
 
   /* Tamanhos de fonte */
@@ -864,10 +864,10 @@ figure {
 
 @media (max-width: 767px) {
   :root {
-    --header-logo-size-scrolled: clamp(90px, 16vw, 115px);
-    --header-logo-size-top: clamp(110px, 20vw, 140px);
-    --header-padding-y: clamp(0.8rem, 2.5vw, 1.5rem);
-    --header-padding-y-scrolled: clamp(0.5rem, 1.2vw, 1rem);
+    --header-logo-size-scrolled: clamp(72px, 12.8vw, 92px);
+    --header-logo-size-top: clamp(88px, 16vw, 112px);
+    --header-padding-y: clamp(0.64rem, 2vw, 1.2rem);
+    --header-padding-y-scrolled: clamp(0.4rem, 0.96vw, 0.8rem);
     --header-gutter: clamp(0.8rem, 2vw, 1.2rem);
     --header-nav-font-size: clamp(0.8rem, 2.5vw, 0.92rem);
   }
