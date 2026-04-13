@@ -29,150 +29,19 @@
   function initStickyHeader() {
     var header = qs('.site-header');
     if (!header) return;
-
-    /* ── elementos ─────────────────────────────────── */
-    var logo        = header.querySelector('.site-header__logo');
-    var iluminacao  = header.querySelector('.site-header__iluminacao');
-    var ctaHero     = header.querySelector('.site-header__cta-hero');
-    var ctaNormal   = header.querySelector('.site-header__cta-normal');
-    if (!logo) return;
-
-    /* ── configuração ───────────────────────────────── */
-    var isHome        = document.body.classList.contains('home');
-    var HIDE_DELAY    = 14;        // px de diff para esconder
-    var HERO_EXIT_PCT = 0.55;      // % da viewport para sair do hero
-    // Lê config do Customizer (injetado pelo PHP) com fallbacks
-    var _cfg          = window.vertzConfig || {};
-    var LERP_FACTOR   = (_cfg.heroLerp   || 42)  / 1000;  // 42 → 0.042
-    var SCALE_HERO    = 6.0;       // cap máximo de escala (dinâmico por viewport)
-
-    /* ── estado de interpolação ─────────────────────── */
-    var cur = { x: 0, y: 0, scale: 1, opacity: 0 };   // valores atuais
-    var tgt = { x: 0, y: 0, scale: 1, opacity: 0 };   // valores alvo
-
-    /* ── estado do scroll ───────────────────────────── */
-    var lastScrollY  = window.scrollY;
-    var inHero       = false;
-    var rafId        = null;
-
-    /* ── utilidade lerp ─────────────────────────────── */
-    function lerp(a, b, t) { return a + (b - a) * t; }
-    function nearlyEqual(a, b) { return Math.abs(a - b) < 0.01; }
-
-    /* ── calcula offset centro da viewport ──────────── */
-    function calcHeroTarget() {
-      var rect = logo.getBoundingClientRect();
-      var vpW  = window.innerWidth;
-      var vpH  = window.innerHeight;
-      var W    = rect.width;
-      var H    = rect.height;
-      // Scale dinâmico: tamanho e posição lidos do Customizer (vertzConfig)
-      var _c    = window.vertzConfig || {};
-      var pct   = (_c.heroLogoPct || 32) / 100;   // ex: 32 → 0.32
-      var yFrac = (_c.heroLogoY   || 42) / 100;   // ex: 42 → 0.42
-      var targetW = vpW * pct;
-      var S = Math.min(targetW / W, SCALE_HERO);
-      var logoAndTextH = H * S + 60;
-      var destX = vpW / 2      - rect.left - (W * S) / 2;
-      var destY = vpH * yFrac  - rect.top  - logoAndTextH / 2;
-      return { x: destX, y: destY, scale: S };
-    }
-
-    /* ── loop RAF ───────────────────────────────────── */
-    function tick() {
-      cur.x     = lerp(cur.x,     tgt.x,     LERP_FACTOR);
-      cur.y     = lerp(cur.y,     tgt.y,     LERP_FACTOR);
-      cur.scale = lerp(cur.scale, tgt.scale, LERP_FACTOR);
-      cur.opacity = lerp(cur.opacity, tgt.opacity, LERP_FACTOR * 1.4);
-
-      logo.style.transform = 'translate(' + cur.x.toFixed(3) + 'px,' +
-                                            cur.y.toFixed(3) + 'px) ' +
-                             'scale(' + cur.scale.toFixed(4) + ')';
-
-      if (iluminacao) {
-        iluminacao.style.opacity  = cur.opacity.toFixed(3);
-        iluminacao.style.transform = 'translateY(' + ((1 - cur.opacity) * 8).toFixed(2) + 'px)';
-      }
-
-      // Drop-shadow proporcional ao scale
-      var shadowBlur = (cur.scale - 1) * 20;
-      logo.style.filter = 'drop-shadow(0 2px ' + shadowBlur.toFixed(1) + 'px rgba(0,0,0,0.55))';
-
-      var allSame = nearlyEqual(cur.x, tgt.x) &&
-                    nearlyEqual(cur.y, tgt.y) &&
-                    nearlyEqual(cur.scale, tgt.scale) &&
-                    nearlyEqual(cur.opacity, tgt.opacity);
-      if (!allSame) {
-        rafId = requestAnimationFrame(tick);
-      } else {
-        rafId = null;
-        // snap final
-        cur.x = tgt.x; cur.y = tgt.y; cur.scale = tgt.scale; cur.opacity = tgt.opacity;
-        logo.style.transform = 'translate(' + cur.x + 'px,' + cur.y + 'px) scale(' + cur.scale + ')';
-        if (iluminacao) { iluminacao.style.opacity = cur.opacity; }
-      }
-    }
-
-    function startRaf() {
-      if (!rafId) rafId = requestAnimationFrame(tick);
-    }
-
-    /* ── entrar no estado hero ───────────────────────── */
-    function enterHero() {
-      if (inHero) return;
-      inHero = true;
-      var t = calcHeroTarget();
-      tgt.x = t.x; tgt.y = t.y; tgt.scale = t.scale; tgt.opacity = 1;
-      header.classList.add('is-hero');
-      if (ctaHero)   { ctaHero.removeAttribute('aria-hidden');   ctaHero.querySelector('a').removeAttribute('tabindex'); }
-      if (ctaNormal) { ctaNormal.setAttribute('aria-hidden','true'); }
-      startRaf();
-    }
-
-    /* ── sair do estado hero ─────────────────────────── */
-    function leaveHero() {
-      if (!inHero) return;
-      inHero = false;
-      tgt.x = 0; tgt.y = 0; tgt.scale = 1; tgt.opacity = 0;
-      header.classList.remove('is-hero');
-      if (ctaHero)   { ctaHero.setAttribute('aria-hidden','true'); ctaHero.querySelector('a').setAttribute('tabindex','-1'); }
-      if (ctaNormal) { ctaNormal.removeAttribute('aria-hidden'); }
-      startRaf();
-    }
-
-    /* ── recalcular ao redimensionar ─────────────────── */
-    window.addEventListener('resize', function () {
-      if (inHero) {
-        var t = calcHeroTarget();
-        tgt.x = t.x; tgt.y = t.y; tgt.scale = t.scale;
-        // snap sem lerp ao resize (evita salto visual)
-        cur.x = tgt.x; cur.y = tgt.y; cur.scale = tgt.scale;
-        logo.style.transform = 'translate(' + cur.x + 'px,' + cur.y + 'px) scale(' + cur.scale + ')';
-      }
-    }, { passive: true });
-
-    /* ── scroll handler ──────────────────────────────── */
-    var lastY = window.scrollY, ticking = false;
+    var lastScrollY = window.scrollY, ticking = false;
+    var TOP_THRESHOLD = 80, HIDE_DELAY = 12;
 
     function updateHeader() {
-      var y       = window.scrollY;
-      var diff    = y - lastY;
-      var heroExit = window.innerHeight * HERO_EXIT_PCT;
-      var isAtTop  = y <= 10;
-
-      if (isHome) {
-        if (y < heroExit) {
-          enterHero();
-        } else {
-          leaveHero();
-        }
-      }
+      var currentY = window.scrollY;
+      var diff     = currentY - lastScrollY;
+      var isAtTop  = currentY <= TOP_THRESHOLD;
 
       if (isAtTop) {
         header.classList.add('is-top');
         header.classList.remove('is-scrolled', 'is-hidden');
         header.classList.add('is-visible');
-      } else if (diff > HIDE_DELAY && !inHero) {
+      } else if (diff > HIDE_DELAY) {
         header.classList.remove('is-top', 'is-visible');
         header.classList.add('is-scrolled', 'is-hidden');
       } else if (diff < -HIDE_DELAY) {
@@ -180,22 +49,15 @@
         header.classList.add('is-scrolled', 'is-visible');
       }
 
-      lastY = y <= 0 ? 0 : y;
+      lastScrollY = currentY <= 0 ? 0 : currentY;
       ticking = false;
     }
 
     window.addEventListener('scroll', function () {
-      if (!ticking) { requestAnimationFrame(updateHeader); ticking = true; }
+      if (!ticking) { window.requestAnimationFrame(updateHeader); ticking = true; }
     }, { passive: true });
-
-    // Estado inicial
     updateHeader();
-    if (isHome && window.scrollY < window.innerHeight * HERO_EXIT_PCT) {
-      // Pequeno delay para o layout estar calculado
-      setTimeout(function () { enterHero(); }, 120);
-    }
   }
-
   /* BURGER MENU */
   function initBurgerMenu() {
     var burger = qs('.site-header__burger');
