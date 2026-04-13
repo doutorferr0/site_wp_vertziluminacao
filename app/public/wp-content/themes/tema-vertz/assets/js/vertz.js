@@ -41,7 +41,9 @@
     var isHome        = document.body.classList.contains('home');
     var HIDE_DELAY    = 14;        // px de diff para esconder
     var HERO_EXIT_PCT = 0.55;      // % da viewport para sair do hero
-    var LERP_FACTOR   = 0.042;     // menor = mais devagar/suave
+    // Lê config do Customizer (injetado pelo PHP) com fallbacks
+    var _cfg          = window.vertzConfig || {};
+    var LERP_FACTOR   = (_cfg.heroLerp   || 42)  / 1000;  // 42 → 0.042
     var SCALE_HERO    = 6.0;       // cap máximo de escala (dinâmico por viewport)
 
     /* ── estado de interpolação ─────────────────────── */
@@ -64,17 +66,15 @@
       var vpH  = window.innerHeight;
       var W    = rect.width;
       var H    = rect.height;
-      // Scale dinâmico: logo ocupa ~32% da largura da viewport
-      // Limitado por SCALE_HERO como máximo para telas muito pequenas
-      var targetW = vpW * 0.32;
+      // Scale dinâmico: tamanho e posição lidos do Customizer (vertzConfig)
+      var _c    = window.vertzConfig || {};
+      var pct   = (_c.heroLogoPct || 32) / 100;   // ex: 32 → 0.32
+      var yFrac = (_c.heroLogoY   || 42) / 100;   // ex: 42 → 0.42
+      var targetW = vpW * pct;
       var S = Math.min(targetW / W, SCALE_HERO);
-      // transform-origin: left top
-      // centro visual após scale: cx = rect.left + X + W*S/2
-      // destino: logo centrado na metade da tela, verticalmente em ~42%
-      // (logo + iluminação juntos ficam aprox na faixa 30%–58% do hero)
-      var logoAndTextH = H * S + 60; // estimativa do bloco logo + texto iluminação
-      var destX = vpW / 2    - rect.left - (W * S) / 2;
-      var destY = vpH * 0.42 - rect.top  - logoAndTextH / 2;
+      var logoAndTextH = H * S + 60;
+      var destX = vpW / 2      - rect.left - (W * S) / 2;
+      var destY = vpH * yFrac  - rect.top  - logoAndTextH / 2;
       return { x: destX, y: destY, scale: S };
     }
 
