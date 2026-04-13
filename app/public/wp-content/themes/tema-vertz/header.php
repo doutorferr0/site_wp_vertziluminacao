@@ -12,35 +12,22 @@
 <div class="site-transition position-fixed t-0 l-0 w-100 z-10000 bg-color-white visibility-hidden pointer-events-none" aria-hidden="true" data-site-transition></div>
 <div data-windmill="wrapper">
 <div data-windmill="container" data-ui="gform">
-
 <header class="site-header position-fixed z-9000 t-0 l-0 w-100 pointer-events-none">
-  <div class="site-header__wrap d-flex align-items-center w-100">
+  <div class="site-header__wrap container-fluid d-flex justify-content-between align-items-center w-100">
 
-    <!-- Logo: sempre top-left no fluxo; JS aplica transform para o hero -->
     <figure class="site-header__logo m-0 p-0 pointer-events-all" role="banner">
-      <a class="site-header__logoLink d-block td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php bloginfo('name'); ?>">
+      <a class="site-header__logoLink d-block w-100 color-current td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php bloginfo('name'); ?>">
         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png"
              alt="Vertz Iluminação"
              width="320" height="224"
              loading="eager" decoding="async"
-             style="display:block;width:var(--logo-w,160px);height:auto;object-fit:contain;">
-        <span class="site-header__iluminacao" aria-hidden="true">iluminação</span>
+             style="display:block;height:auto;object-fit:contain;">
       </a>
     </figure>
 
-    <!-- CTA hero: absoluta à esquerda, só visível no estado hero (home) -->
-    <div class="site-header__cta-hero pointer-events-all" aria-hidden="true">
-      <a href="<?php echo esc_url(home_url('/contato')); ?>" class="btn --cta --cta-default fw-500" tabindex="-1" aria-label="Fale Conosco">
-        <span class="btn__bg" aria-hidden="true"></span>
-        <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fale Conosco</span></span>
-      </a>
-    </div>
-
-    <!-- Nav direita: sempre à direita -->
     <nav class="site-header__rightNav pointer-events-all">
       <ul class="site-header__rightMenu list-none m-0 p-0 d-flex align-items-center grid-gap-15 grid-gap-xl-20">
-        <!-- CTA normal dentro da nav (visível fora do estado hero) -->
-        <li class="site-header__cta-normal">
+        <li>
           <a href="<?php echo esc_url(home_url('/contato')); ?>" class="btn --cta --cta-default fw-500" aria-label="Fale Conosco">
             <span class="btn__bg" aria-hidden="true"></span>
             <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fale Conosco</span></span>
@@ -59,7 +46,6 @@
 
   </div>
 </header>
-
 <div class="site-header__spacer w-100 visibility-hidden" aria-hidden="true"></div>
 <div id="site-nav" class="site-nav d-md-none position-fixed z-6000 t-0 l-0 w-100 vh-100 overflow-clip" aria-hidden="true" data-ui="site-nav">
   <div class="site-nav__backdrop position-absolute t-0 l-0 w-100 h-100" aria-hidden="true" aria-controls="site-nav"></div>
