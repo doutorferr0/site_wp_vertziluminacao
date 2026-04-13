@@ -823,7 +823,7 @@ figure {
   display: block;
   object-fit: contain;
   transform-origin: left center;
-  /* Sem transition no img: o JS (LERP RAF) controla escala via figura-pai */
+  transition: width 0.5s ease, filter 0.4s ease;
 }
 
 /* No topo: logo normal (JS controla scale no hero) */
@@ -3424,94 +3424,6 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 }
 
 
-/* ============================================================
-   METROPOLIS REGULAR — font-face via CDN (jsDelivr / GitHub)
-   ============================================================ */
-@font-face {
-  font-family: 'Metropolis';
-  src: url('https://cdn.jsdelivr.net/gh/chrismsimpson/Metropolis@r12/Fonts/Metropolis-Regular.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/chrismsimpson/Metropolis@r12/Fonts/Metropolis-Regular.woff')  format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 
 
-/* ============================================================
-   HEADER — Estado HERO
-   Posição e scale do logo controlados 100% por JS (LERP RAF).
-   CSS gerencia apenas: visibilidade do CTA hero/normal,
-   do texto "iluminação", e do scrim.
-   ============================================================ */
 
-/* ── Logo: transform-origin no centro para o scale ser simétrico ── */
-.site-header__logo {
-  transform-origin: left top;   /* JS usa translate+scale a partir do canto */
-  will-change: transform, filter;
-  flex-shrink: 0;
-}
-
-/* ── "iluminação": controlado por opacity/transform via JS ── */
-.site-header__iluminacao {
-  display: block;
-  font-family: 'Metropolis', 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: clamp(.75rem, 1.2vw, 1.1rem);
-  letter-spacing: 0.24em;
-  text-transform: lowercase;
-  color: rgba(255, 255, 255, 0.88);
-  text-align: left;
-  margin-top: .4rem;
-  text-shadow: 0 1px 10px rgba(0,0,0,0.6);
-  opacity: 0;                    /* JS controla via style.opacity */
-  pointer-events: none;
-  will-change: opacity, transform;
-}
-
-/* ── CTA hero (posição absoluta à esquerda do wrap) ── */
-.site-header__cta-hero {
-  position: absolute;
-  left: var(--container-padding, 1.5rem);
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 2;
-}
-.site-header.is-hero .site-header__cta-hero {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* ── CTA normal (dentro da nav): esconde no hero ── */
-.site-header__cta-normal {
-  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.site-header.is-hero .site-header__cta-normal {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* ── Nav links: sombra de texto no hero ── */
-.site-header.is-hero .site-header__rightMenuItems a {
-  text-shadow: 0 1px 8px rgba(0,0,0,0.55);
-  color: rgba(255,255,255,0.9);
-}
-.site-header.is-hero .site-header__burger span {
-  background: var(--color-white);
-}
-
-/* ── Mobile: sem animação de logo, CTA hero escondida ── */
-@media (max-width: 767px) {
-  .site-header__cta-hero { display: none !important; }
-  .site-header.is-hero .site-header__cta-normal {
-    opacity: 1;
-    pointer-events: all;
-  }
-}
-
-/* ── Páginas internas: nunca hero ── */
-body:not(.home) .site-header__cta-hero   { display: none !important; }
-body:not(.home) .site-header__iluminacao { opacity: 0 !important; pointer-events: none !important; }
-body:not(.home) .site-header__cta-normal { opacity: 1 !important; pointer-events: all !important; }
