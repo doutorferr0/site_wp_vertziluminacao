@@ -4,8 +4,20 @@
  * page-contato.php — Vertz Iluminação
  */
 get_header();
-
 $theme_uri = get_template_directory_uri();
+
+// Dados globais de contato (ACF options)
+$wa      = vf('contato_whatsapp',         'option', '5519999778710');
+$tel     = vf('contato_telefone',          'option', '(19) 3251-0501');
+$email   = vf('contato_email',             'option', 'contato@vertziluminacao.com.br');
+$ig      = vf('contato_instagram',         'option', 'vertziluminacao');
+$adc     = vf('contato_endereco_campinas', 'option', 'R. Antônio Lapa, 328 — Cambuí');
+$adsp    = vf('contato_endereco_sp',       'option', 'Alameda Casa Branca, 806 — Jardim Paulista');
+$horario = vf('contato_horario',           'option', 'Seg–Sex 9h–18h / Sáb 9h–13h');
+
+// Campos desta página
+$titulo_pagina   = vf('contato_titulo',  false, 'Vamos conversar.');
+$banner_img      = vf('contato_banner',  false, $theme_uri . '/assets/images/contato-banner.jpg');
 ?>
 
 <div class="single single-page" id="page-contato">
@@ -19,7 +31,7 @@ $theme_uri = get_template_directory_uri();
       <p class="fz-12 tt-uppercase m-0 mb-20 mb-md-30">Entre em contato</p>
       <h1 class="ff-body fz-40 fz-md-64 fz-xl-96 fw-400 lh-none ls--4 m-0"
         data-splitting="charsWrapped"
-      >Vamos conversar<span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0">.</span></h1>
+      ><?php echo esc_html(rtrim($titulo_pagina, '.')); ?><span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0">.</span></h1>
 
     </div>
   </div>
@@ -37,14 +49,14 @@ $theme_uri = get_template_directory_uri();
 
         <div class="d-flex flex-column grid-gap-15">
           <p class="fz-12 tt-uppercase m-0">E-mail</p>
-          <a href="mailto:contato@vertziluminacao.com.br" class="fz-18 fz-xl-22 fw-400 lh-120 td-none color-current">
-            contato@vertziluminacao.com.br
+          <a href="mailto:<?php echo esc_attr($email); ?>" class="fz-18 fz-xl-22 fw-400 lh-120 td-none color-current">
+            <?php echo esc_html($email); ?>
           </a>
         </div>
 
         <div class="d-flex flex-column grid-gap-15">
           <p class="fz-12 tt-uppercase m-0">Telefone / WhatsApp</p>
-          <a href="https://wa.me/5519999778710?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" class="fz-18 fz-xl-22 fw-400 lh-120 td-none color-current">
+          <a href="https://wa.me/<?php echo esc_attr($wa); ?>?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" class="fz-18 fz-xl-22 fw-400 lh-120 td-none color-current">
             (19) 9 9977-8710 — WhatsApp
           </a>
         </div>
@@ -52,14 +64,14 @@ $theme_uri = get_template_directory_uri();
         <div class="d-flex flex-column grid-gap-15">
           <p class="fz-12 tt-uppercase m-0">Telefone fixo</p>
           <a href="tel:+551932510501" class="fz-18 fz-xl-22 fw-400 lh-120 td-none color-current">
-            (19) 3251-0501
+            <?php echo esc_html($tel); ?>
           </a>
         </div>
 
         <div class="d-flex flex-column grid-gap-15">
           <p class="fz-12 tt-uppercase m-0">Endereço</p>
           <address class="fz-16 fz-xl-18 lh-150 not-italic m-0">
-            Campinas: R. Antônio Lapa, 328 — Cambuí<br>Campinas, SP — 13025-242<br><br>São Paulo: Alameda Casa Branca, 806 — Jardim Paulista<br>São Paulo, SP
+            Campinas: <?php echo esc_html($adc); ?><br>Campinas, SP<br><br>São Paulo: <?php echo esc_html($adsp); ?><br>São Paulo, SP
           </address>
         </div>
 
@@ -67,8 +79,8 @@ $theme_uri = get_template_directory_uri();
           <p class="fz-12 tt-uppercase m-0">Siga-nos</p>
           <ul class="list-none m-0 p-0 d-flex flex-column grid-gap-8">
             <li>
-              <a href="https://www.instagram.com/vertziluminacao/" target="_blank" rel="noopener" class="fz-16 fz-xl-18 td-none color-current d-flex align-items-center grid-gap-10">
-                @vertziluminacao →
+              <a href="https://www.instagram.com/<?php echo esc_attr($ig); ?>/" target="_blank" rel="noopener" class="fz-16 fz-xl-18 td-none color-current d-flex align-items-center grid-gap-10">
+                @<?php echo esc_html($ig); ?> →
               </a>
             </li>
             <li>
@@ -82,9 +94,7 @@ $theme_uri = get_template_directory_uri();
         <div class="d-flex flex-column grid-gap-15">
           <p class="fz-12 tt-uppercase m-0">Horário de atendimento</p>
           <p class="fz-14 fz-xl-16 lh-150 m-0">
-            Seg–Sex: 9h às 18h<br>
-            Sáb: 9h às 13h<br>
-            Dom: Fechado
+            <?php echo nl2br(esc_html($horario)); ?><br>Dom: Fechado
           </p>
         </div>
 
@@ -206,7 +216,7 @@ $theme_uri = get_template_directory_uri();
   <div class="pb-row-wrapper position-relative pt-0 pb-0 mt-0 mb-0" style="--zindex:3">
     <figure class="m-0 overflow-clip" data-scroll data-scroll-offset="80px,0" data-module-delay>
       <img
-        src="<?php echo esc_url( $theme_uri ); ?>/assets/images/contato-banner.jpg"
+        src="<?php echo esc_url( $banner_img ); ?>"
         alt="Vertz Iluminação — Projetos que transformam"
         loading="lazy"
         decoding="async"
