@@ -809,38 +809,43 @@ figure {
   }
 }
 
+/* Logo — desvinculado do header, position fixed independente */
 .site-header__logo {
+  position: fixed;
+  left: 2rem;
+  top: 52vh;
+  width: 575px;
   margin: 0;
   padding: 0;
-  margin-right: auto;
-  width: var(--header-logo-size-top) !important;
-  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  flex-shrink: 0;
+  z-index: 9001;
+  transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              width 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Logo — sem animação, transição simples de tamanho */
 .site-header__logo img {
   width: 100%;
   height: auto;
   display: block;
   object-fit: contain;
-  transform-origin: left center;
   transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* No topo: logo normal */
+/* No topo: grande, posição baixa (linhas 5-7) */
 .site-header.is-top .site-header__logo {
-  width: var(--header-logo-size-top) !important;
-}
-.site-header.is-top .site-header__logo img {
-  filter: none;
+  top: 52vh;
+  width: 575px;
+  left: 2rem;
 }
 
-/* Scrollado: compacto */
+/* Scrollado: pequeno, linha 2 (col B) */
 .site-header.is-scrolled .site-header__logo {
-  width: var(--header-logo-size-scrolled) !important;
+  top: 0.6rem;
+  width: 150px;
+  left: 1rem;
 }
-.site-header.is-scrolled .site-header__logo img {
+
+.site-header__logo img {
   filter: none;
 }
 
