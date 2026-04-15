@@ -19,7 +19,6 @@
       <a class="site-header__logoLink d-block w-100 color-current td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php bloginfo('name'); ?>">
         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png"
              alt="Vertz Iluminação"
-             width="320" height="224"
              loading="eager" decoding="async"
              style="display:block;height:auto;object-fit:contain;">
       </a>
