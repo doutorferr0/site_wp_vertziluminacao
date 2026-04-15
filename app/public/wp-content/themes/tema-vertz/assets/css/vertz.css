@@ -813,7 +813,7 @@ figure {
   margin: 0;
   padding: 0;
   margin-right: auto;
-  width: var(--header-logo-size-top);
+  width: var(--header-logo-size-top) !important;
   transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
 }
@@ -830,7 +830,7 @@ figure {
 
 /* No topo: logo normal */
 .site-header.is-top .site-header__logo {
-  width: var(--header-logo-size-top);
+  width: var(--header-logo-size-top) !important;
 }
 .site-header.is-top .site-header__logo img {
   filter: none;
@@ -838,7 +838,7 @@ figure {
 
 /* Scrollado: compacto */
 .site-header.is-scrolled .site-header__logo {
-  width: var(--header-logo-size-scrolled);
+  width: var(--header-logo-size-scrolled) !important;
 }
 .site-header.is-scrolled .site-header__logo img {
   filter: none;
