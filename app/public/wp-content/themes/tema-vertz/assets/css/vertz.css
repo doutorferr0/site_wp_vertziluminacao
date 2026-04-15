@@ -48,8 +48,8 @@
   --header-gutter: clamp(1rem, 2vw, 1.8rem);
   --header-nav-font-size: clamp(0.85rem, 1.1vw, 1rem);
   --header-cta-padding: clamp(0.85rem, 1.2vw, 1.1rem) clamp(1rem, 1.5vw, 1.4rem);
-  --header-logo-size-top: clamp(570px, 40.5vw, 720px);
-  --header-logo-size-scrolled: clamp(420px, 31.5vw, 540px);
+  --header-logo-size-top: 575px;
+  --header-logo-size-scrolled: 150px;
   --header-logo-margin-left: clamp(0.5rem, 1.5vw, 1.5rem);
 
   /* Tamanhos de fonte */
@@ -870,8 +870,8 @@ figure {
 
 @media (max-width: 767px) {
   :root {
-    --header-logo-size-scrolled: clamp(360px, 64.5vw, 465px);
-    --header-logo-size-top: clamp(450px, 82.5vw, 570px);
+    --header-logo-size-scrolled: 150px;
+    --header-logo-size-top: 575px;
     --header-padding-y: clamp(0.64rem, 2vw, 1.2rem);
     --header-padding-y-scrolled: clamp(0.4rem, 0.96vw, 0.8rem);
     --header-gutter: clamp(0.8rem, 2vw, 1.2rem);
