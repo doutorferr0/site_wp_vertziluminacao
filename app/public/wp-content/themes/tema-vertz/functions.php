@@ -253,26 +253,9 @@ add_action( 'wp_head', 'vertz_inject_config', 5 );
 
 
 /* =============================================================
-   CSS DINÂMICO: aplica os valores do Customizer como variáveis
+   CSS DINÂMICO — desativado; variáveis controladas em vertz.css
    ============================================================= */
-
-function vertz_customizer_css() {
-    $logo_scrolled  = (int) get_theme_mod( 'vertz_header_logo_scrolled', 80 );
-    $pad            = (int) get_theme_mod( 'vertz_header_padding', 14 );
-    $pad_rem        = round( $pad / 16, 4 );
-    $logo_top       = round( $logo_scrolled * 1.3 ); // topo = scrolled × 1.3
-    ?>
-    <style id="vertz-customizer-css">
-    :root {
-        --header-logo-size-scrolled: <?php echo $logo_scrolled; ?>px;
-        --header-logo-size-top:      <?php echo $logo_top; ?>px;
-        --header-padding-y:          <?php echo $pad_rem; ?>rem;
-        --header-padding-y-scrolled: <?php echo round($pad_rem * 0.6, 4); ?>rem;
-    }
-    </style>
-    <?php
-}
-add_action( 'wp_head', 'vertz_customizer_css', 10 );
+// vertz_customizer_css() removida — --header-logo-size-* definidas em vertz.css
 
 
 
