@@ -711,7 +711,7 @@ figure {
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   box-shadow: none;
-  height: 35vh;
+  height: 50vh;
   display: flex;
   align-items: center;
 }
