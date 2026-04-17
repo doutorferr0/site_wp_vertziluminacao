@@ -3450,3 +3450,42 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 
 
 
+
+
+/* ── Nav thumbnail + overlay ─────────────────────────── */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 8000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.nav-overlay.is-active {
+  opacity: 1;
+}
+
+.nav-link--with-img {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+}
+
+.nav-link__thumb {
+  width: 64px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 4px;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.nav-link--with-img:hover .nav-link__thumb {
+  opacity: 1;
+  transform: scale(1);
+}
