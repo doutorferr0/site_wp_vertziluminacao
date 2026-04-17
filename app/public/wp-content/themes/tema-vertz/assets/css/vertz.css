@@ -846,8 +846,9 @@ figure {
 
 /* Scrollado: pequeno, linha 2 (col B) */
 .site-header.is-scrolled .site-header__logo {
-  top: 25px;
-  width: 150px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;
   left: 1.5rem;
 }
 
