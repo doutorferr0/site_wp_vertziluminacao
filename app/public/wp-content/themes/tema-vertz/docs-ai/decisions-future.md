@@ -9,9 +9,15 @@
 - Prioridade: média
 
 ### WP CLI via WSL
-- PHP do WSL não tem mysqli — não conecta ao MySQL do LocalWP
-- Solução atual: editar via GitHub API direto
-- Solução futura: configurar WP CLI com PHP do LocalWP (pendente confirmar caminho correto)
+- Configurado: PHP.exe do LocalWP (php-8.2.29+0), php-local.ini com mysqli, wp-cli.phar em C:\Users\henri\
+- Função wp() no ~/.zshrc pronta
+- Problema restante: php.exe Windows não lê path /mnt/c/ do WSL — wp --path precisa de C:\ format
+- Impacto baixo — edição via GitHub API e VS Code supre a necessidade
+- Retomar só se precisar rodar comando WP específico
+
+### DB_HOST alterado
+- wp-config.php: DB_HOST agora é 127.0.0.1:10005 (porta real do LocalWP)
+- Não reverter
 
 ### Imagens e copy
 - Todas as imagens são placeholder — cliente ainda não entregou
