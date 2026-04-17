@@ -31,13 +31,14 @@
     if (!header) return;
     var lastScrollY = window.scrollY, ticking = false;
     var TOP_THRESHOLD = 80, HIDE_DELAY = 12;
+    var isHome = document.body.classList.contains('home');
 
     function updateHeader() {
       var currentY = window.scrollY;
       var diff     = currentY - lastScrollY;
       var isAtTop  = currentY <= TOP_THRESHOLD;
 
-      if (isAtTop) {
+      if (isHome && isAtTop) {
         header.classList.add('is-top');
         header.classList.remove('is-scrolled', 'is-hidden');
         header.classList.add('is-visible');
