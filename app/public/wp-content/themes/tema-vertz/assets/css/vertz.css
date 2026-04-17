@@ -698,7 +698,7 @@ figure {
   margin: 0 auto;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   gap: var(--header-gutter);
   transition: padding 1s cubic-bezier(0.25, 1, 0.35, 1),
