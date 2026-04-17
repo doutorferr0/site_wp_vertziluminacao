@@ -84,6 +84,36 @@
     });
   }
 
+
+  /* ── SMOOTH SCROLL (LERP) ─────────────────────────── */
+  function initSmoothScroll() {
+    // Não roda em mobile (touch) — causa problemas
+    if ('ontouchstart' in window) return;
+
+    var current = window.scrollY;
+    var target  = window.scrollY;
+    var ease    = 0.07; // 0.05 = muito lento, 0.1 = rápido
+    var running = false;
+
+    // Captura scroll nativo e cancela — usa posição como alvo
+    window.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      target += e.deltaY * 0.8; // multiplica para ajustar velocidade
+      target = Math.max(0, Math.min(target, document.body.scrollHeight - window.innerHeight));
+      if (!running) { running = true; raf(); }
+    }, { passive: false });
+
+    function raf() {
+      current += (target - current) * ease;
+      if (Math.abs(target - current) < 0.5) {
+        current = target;
+        running = false;
+      }
+      window.scrollTo(0, current);
+      if (running) requestAnimationFrame(raf);
+    }
+  }
+
   /* BURGER MENU */
   function initBurgerMenu() {
     var burger = qs('.site-header__burger');
@@ -599,11 +629,13 @@
     if (typeof Swiper !== 'undefined') {
       initGallerySwiper();
   initNavOverlay();
+  initSmoothScroll();
       initCardsSlider();
     } else {
       window.addEventListener('load', function () {
         initGallerySwiper();
   initNavOverlay();
+  initSmoothScroll();
         initCardsSlider();
       });
     }
