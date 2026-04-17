@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /slice-simulator
+Disallow: /design-system
+Disallow: /lottie
+Disallow: /api/
+
+Sitemap: https://www.icomat.com/sitemap.xml
