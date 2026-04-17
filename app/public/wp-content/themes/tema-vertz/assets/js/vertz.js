@@ -33,6 +33,12 @@
     var TOP_THRESHOLD = 80, HIDE_DELAY = 12;
     var isHome = document.body.classList.contains('home');
 
+    // Non-home: force scrolled state immediately, no animation
+    if (!isHome) {
+      header.classList.add('is-scrolled', 'is-visible');
+      header.classList.remove('is-top');
+    }
+
     function updateHeader() {
       var currentY = window.scrollY;
       var diff     = currentY - lastScrollY;
@@ -42,12 +48,14 @@
         header.classList.add('is-top');
         header.classList.remove('is-scrolled', 'is-hidden');
         header.classList.add('is-visible');
-      } else if (diff > HIDE_DELAY) {
-        header.classList.remove('is-top', 'is-visible');
-        header.classList.add('is-scrolled', 'is-hidden');
-      } else if (diff < -HIDE_DELAY) {
-        header.classList.remove('is-top', 'is-hidden');
-        header.classList.add('is-scrolled', 'is-visible');
+      } else if (!isHome || !isAtTop) {
+        if (diff > HIDE_DELAY) {
+          header.classList.remove('is-top', 'is-visible');
+          header.classList.add('is-scrolled', 'is-hidden');
+        } else if (diff < -HIDE_DELAY || (!isHome && currentY <= TOP_THRESHOLD)) {
+          header.classList.remove('is-top', 'is-hidden');
+          header.classList.add('is-scrolled', 'is-visible');
+        }
       }
 
       lastScrollY = currentY <= 0 ? 0 : currentY;
