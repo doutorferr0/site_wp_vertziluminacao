@@ -15,6 +15,8 @@
    VARIÁVEIS CSS
    ============================================================ */
 :root {
+  --transition-speed: 1.4s;
+  --transition-ease: cubic-bezier(0.16, 1, 0.3, 1);
   /* ── PALETA VERTZ ILUMINAÇÃO ── */
   /* Estrutura */
   --color-bg:          #F4F1EA;   /* fundo principal — espaço branco quente */
@@ -685,12 +687,12 @@ figure {
   display: flex;
   align-items: stretch;
   z-index: var(--z-header);
-  transition: transform 1s cubic-bezier(0.25, 1, 0.35, 1),
-              background 1s ease,
-              box-shadow 1s ease,
-              height 1s cubic-bezier(0.25, 1, 0.35, 1),
-              padding 1s cubic-bezier(0.25, 1, 0.35, 1),
-              backdrop-filter 1s ease;
+  transition: transform 1.4s cubic-bezier(0.25, 1, 0.35, 1),
+              background 1.4s ease,
+              box-shadow 1.4s ease,
+              height 1.4s cubic-bezier(0.25, 1, 0.35, 1),
+              padding 1.4s cubic-bezier(0.25, 1, 0.35, 1),
+              backdrop-filter 1.4s ease;
 }
 
 .site-header__wrap {
@@ -827,10 +829,10 @@ figure {
   margin: 0;
   padding: 0;
   z-index: 9001;
-  transition: top 1s cubic-bezier(0.25, 1, 0.35, 1),
-              width 1s cubic-bezier(0.25, 1, 0.35, 1),
-              left 1s cubic-bezier(0.25, 1, 0.35, 1),
-              transform 1s cubic-bezier(0.25, 1, 0.35, 1);
+  transition: top 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              width 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              left 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .site-header__logo img {
@@ -887,6 +889,8 @@ figure {
 
 @media (max-width: 767px) {
   :root {
+  --transition-speed: 1.4s;
+  --transition-ease: cubic-bezier(0.16, 1, 0.3, 1);
     --header-logo-size-scrolled: 150px;
     --header-logo-size-top: 575px;
     --header-padding-y: clamp(0.64rem, 2vw, 1.2rem);
@@ -1802,6 +1806,8 @@ figure {
    VARIÁVEIS ADICIONAIS
    ============================================================ */
 :root {
+  --transition-speed: 1.4s;
+  --transition-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --fz-22:  1.375rem;
   --fz-40:  2.5rem;
 
