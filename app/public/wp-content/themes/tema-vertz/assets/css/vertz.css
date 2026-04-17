@@ -45,7 +45,7 @@
   --header-max-width: min(1200px, calc(100vw - 4rem));
   --header-padding-y: clamp(0.7rem, 1.12vw, 1.1rem);
   --header-padding-y-scrolled: clamp(0.4rem, 0.72vw, 0.7rem);
-  --header-gutter: clamp(2rem, 4vw, 3.6rem);
+  --header-gutter: clamp(1rem, 2vw, 1.8rem);
   --header-nav-font-size: clamp(1.24rem, 1.69vw, 1.5rem);
   --header-cta-padding: clamp(0.85rem, 1.2vw, 1.1rem) clamp(1rem, 1.5vw, 1.4rem);
   --header-logo-size-top: 575px;
@@ -726,12 +726,6 @@ figure {
   transform: translateY(0);
 }
 
-.site-header.is-top .site-header__rightMenuItems {
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.4rem;
-}
-
 /* Texto branco quando header transparente */
 .site-header.is-top .site-header__rightMenuItems a {
   color: rgba(255,255,255,0.9);
@@ -924,19 +918,14 @@ figure {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--header-gutter);
+  gap: var(--sp-20);
 }
 
 .site-header__rightMenuItems a {
-  font-size: var(--header-nav-font-size);
+  font-size: var(--fz-13);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  transform: scaleX(0.82);
-  display: inline-block;
+  letter-spacing: 0.18em;
   color: rgba(255,255,255,0.95);
   text-decoration: none;
   position: relative;
