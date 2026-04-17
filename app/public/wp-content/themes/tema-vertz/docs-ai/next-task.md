@@ -1,21 +1,14 @@
 # next-task
 
 ## Tarefa atual
-Refinamento visual do header/logo.
+Indefinida — aguardando direcionamento.
 
-## Objetivo
-Header e logo com posicionamento e animação corretos em desktop.
+## Últimas ações concluídas
+- WP-CLI parcialmente configurado via WSL (pendente fix de --path Windows)
+- DB_HOST atualizado para 127.0.0.1:10005 no wp-config.php
 
-## Escopo
-- Ajustar posição/tamanho do logo e nav conforme grid 8x8
-- Validar animação is-top → is-scrolled e volta
-- Garantir que nav fica visível e alinhada corretamente
-
-## Não fazer agora
-- Mobile
-- Carbon Fields
-- Imagens reais
-- Deploy
-
-## Pronto quando
-Logo 575px em is-top (linha 4), 150px em is-scrolled (linha 1), animação fluida. Nav visível e alinhada à direita em ambos os estados.
+## Opções de próxima tarefa
+- Inserir imagens e copy reais (alta prioridade)
+- Revisar header/logo mobile (breakpoint 767px)
+- Instalar Carbon Fields via Composer
+- Deploy Hostinger
