@@ -46,7 +46,7 @@
   --header-padding-y: clamp(0.7rem, 1.12vw, 1.1rem);
   --header-padding-y-scrolled: clamp(0.4rem, 0.72vw, 0.7rem);
   --header-gutter: clamp(1rem, 2vw, 1.8rem);
-  --header-nav-font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  --header-nav-font-size: clamp(1.24rem, 1.69vw, 1.5rem);
   --header-cta-padding: clamp(0.85rem, 1.2vw, 1.1rem) clamp(1rem, 1.5vw, 1.4rem);
   --header-logo-size-top: 575px;
   --header-logo-size-scrolled: 150px;
@@ -763,7 +763,7 @@ figure {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 2px 20px rgba(0,0,0,0.25);
-  height: 90px;
+  height: 117px;
   pointer-events: all;
 }
 
@@ -849,7 +849,7 @@ figure {
 .site-header.is-scrolled .site-header__logo {
   top: 50%;
   transform: translateY(-50%);
-  width: 120px;
+  width: 156px;
   left: 1.5rem;
 }
 
@@ -860,6 +860,7 @@ figure {
 .site-header__rightNav {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--header-gutter);
 }
 
