@@ -45,8 +45,8 @@
   --header-max-width: min(1200px, calc(100vw - 4rem));
   --header-padding-y: clamp(0.7rem, 1.12vw, 1.1rem);
   --header-padding-y-scrolled: clamp(0.4rem, 0.72vw, 0.7rem);
-  --header-gutter: clamp(1rem, 2vw, 1.8rem);
-  --header-nav-font-size: clamp(1.24rem, 1.69vw, 1.5rem);
+  --header-gutter: clamp(1.5rem, 3vw, 2.7rem);
+  --header-nav-font-size: clamp(1.45rem, 1.95vw, 1.75rem);
   --header-cta-padding: clamp(0.85rem, 1.2vw, 1.1rem) clamp(1rem, 1.5vw, 1.4rem);
   --header-logo-size-top: 575px;
   --header-logo-size-scrolled: 150px;
@@ -762,7 +762,7 @@ figure {
 
 /* Scrolled: fundo escuro quase sólido */
 .site-header.is-scrolled {
-  background: rgba(43, 43, 43, 0.97);
+  background: rgba(15, 15, 15, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 2px 20px rgba(0,0,0,0.25);
