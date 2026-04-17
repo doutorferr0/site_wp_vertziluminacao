@@ -924,7 +924,10 @@ figure {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: var(--sp-20);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--header-gutter);
 }
 
 .site-header__rightMenuItems a {
