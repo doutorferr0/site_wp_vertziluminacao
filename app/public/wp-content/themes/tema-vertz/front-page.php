@@ -233,6 +233,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
           </div>
           <?php endforeach; ?>
         </div>
+        <div class="swiper-scrollbar"></div>
       </div>
     </div>
   </div>
