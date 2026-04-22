@@ -184,6 +184,33 @@
     });
   }
 
+
+  /* PILL NAV — sliding background */
+  function initPillNav() {
+    var nav  = qs('.site-header__pillNav');
+    var pill = qs('.site-header__pillBg');
+    if (!nav || !pill) return;
+
+    var links = qsa('.site-header__pillLink');
+
+    links.forEach(function(link) {
+      link.addEventListener('mouseenter', function() {
+        var navRect  = nav.getBoundingClientRect();
+        var linkRect = link.getBoundingClientRect();
+        pill.style.width     = linkRect.width + 'px';
+        pill.style.transform = 'translateX(' + (linkRect.left - navRect.left) + 'px)';
+      });
+    });
+
+    nav.addEventListener('mouseleave', function() {
+      pill.style.opacity = '0';
+    });
+
+    nav.addEventListener('mouseenter', function() {
+      pill.style.opacity = '1';
+    });
+  }
+
   /* BURGER MENU */
   function initBurgerMenu() {
     var burger = qs('.site-header__burger');
@@ -706,6 +733,7 @@
   initNavOverlay();
   initSmoothScroll();
   initHeaderMouseProximity();
+  initPillNav();
       initCardsSlider();
     } else {
       window.addEventListener('load', function () {
@@ -713,6 +741,7 @@
   initNavOverlay();
   initSmoothScroll();
   initHeaderMouseProximity();
+  initPillNav();
         initCardsSlider();
       });
     }
