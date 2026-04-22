@@ -208,9 +208,6 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
   </div>
 
 
-  <?php /* SEÇÕES REMOVIDAS DA HOME — mover para páginas internas
-
-
   <!-- SEÇÃO 4.5: 10 RAZÕES -->
   <div class="pb-row-wrapper position-relative pt-30 pb-20 pt-md-40 pb-md-30 mt-0 mb-0" style="--zindex:4.5;background:var(--color-surface);">
     <div id="pb-row-razoes-1" class="pb-row pb-row-razoes" data-scroll data-scroll-offset="100px,0" data-module-delay>
@@ -240,6 +237,8 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
       </div>
     </div>
   </div>
+
+  <?php /* SEÇÕES REMOVIDAS DA HOME — mover para páginas internas
 
 
   <!-- SEÇÃO 5: PAGE HEADING DIFERENCIAIS -->
