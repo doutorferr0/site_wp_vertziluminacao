@@ -118,19 +118,9 @@
 
     window.addEventListener('wheel', function(e) {
       e.preventDefault();
-      target += e.deltaY * 0.7;
+      target += e.deltaY * 0.65;
       target = Math.max(0, Math.min(target, document.body.scrollHeight - window.innerHeight));
       if (!running) { running = true; raf(); }
-
-      // Snap após parar de rolar (400ms sem wheel)
-      clearTimeout(snapTimer);
-      snapTimer = setTimeout(function() {
-        var snap = getNearestSection(target);
-        if (snap !== null) {
-          target = Math.max(0, Math.min(snap, document.body.scrollHeight - window.innerHeight));
-          if (!running) { running = true; raf(); }
-        }
-      }, 700);
     }, { passive: false });
 
     function raf() {
