@@ -57,7 +57,6 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
     array('titulo'=>'Parceria com arquitetos',        'acento'=>'Trabalhamos lado a lado com',            'texto'=>'arquitetos e designers — com memorial descritivo, amostras físicas e visitas de acompanhamento inclusas.'),
     array('titulo'=>'Showrooms em SP e Campinas',     'acento'=>'Visite nossos showrooms,',              'texto'=>'onde você experimenta temperatura de cor, IRC e acabamento de cada produto antes de especificar.'),
     array('titulo'=>'Tecnologia e design juntos',     'acento'=>'Unimos alta performance técnica',       'texto'=>'com curadoria estética rigorosa — porque um projeto de iluminação precisa ser belo e funcional ao mesmo tempo.'),
-    array('titulo'=>'Garantia e suporte técnico',     'acento'=>'Dois anos de garantia',                 'texto'=>'em todos os produtos fornecidos, com suporte técnico especializado e orientação para manutenção preventiva.'),
 );
 ?>
 
@@ -214,7 +213,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
     <div id="pb-row-razoes-1" class="pb-row pb-row-razoes" data-scroll data-scroll-offset="100px,0" data-module-delay>
       <header class="container-fluid mb-40 mb-md-60">
         <p class="fz-12 tt-uppercase m-0 mb-15" style="color:var(--color-gray-600)">Por que escolher a Vertz</p>
-        <h2 class="ff-body fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0">10 razões para <span class="title-highlight --font-heading --fs-italic">iluminar</span> com a Vertz.</h2>
+        <h2 class="ff-body fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0">9 razões para <span class="title-highlight --font-heading --fs-italic">iluminar</span> com a Vertz.</h2>
       </header>
       <div class="pb-row-razoes__slider swiper">
         <div class="pb-row-razoes__sliderWrap swiper-wrapper">
