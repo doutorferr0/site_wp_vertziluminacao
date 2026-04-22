@@ -119,7 +119,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
     <header class="page-heading d-flex flex-column align-items-center pb-row pb-row-page-heading container-fluid"
       data-scroll id="pb-row-page-heading-1" data-scroll-offset="80px,0" data-module-delay>
       <p class="fz-12 fz-md-14 fw-400 ta-center tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)"><?php echo esc_html($s2_sub); ?></p>
-      <h2 class="ff-body fz-28 fz-md-44 fz-xl-64 fw-400 lh-107 ls--4 ta-center m-0 mt-20 mt-md-30 mt-xl-40"
+      <h2 class="ff-body fz-24 fz-md-36 fz-xl-48 fw-400 lh-107 ls--4 ta-center m-0 mt-15 mt-md-20 mt-xl-28"
         data-splitting="wordsMask" data-scroll data-reveal data-text-animation="slidein-by-lines"
         data-scroll-target="#pb-row-page-heading-1" data-scroll-offset="80px,0"><?php echo wp_kses_post($s2_titulo); ?></h2>
       <div class="fz-14 fz-md-16 fz-xl-18 lh-150 ta-center wysiwyg mt-24 mt-md-30 mt-xl-60" style="max-width:680px;">
@@ -247,7 +247,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
     <header class="d-flex flex-column align-items-center pb-row container-fluid"
       data-scroll id="pb-row-page-heading-2" data-scroll-offset="80px,0" data-module-delay>
       <p class="fz-12 fz-md-14 fw-400 ta-center tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)">Por que a Vertz</p>
-      <h2 class="ff-body fz-28 fz-md-44 fz-xl-64 fw-400 lh-107 ls--4 ta-center m-0 mt-20 mt-md-30 mt-xl-40"
+      <h2 class="ff-body fz-24 fz-md-36 fz-xl-48 fw-400 lh-107 ls--4 ta-center m-0 mt-15 mt-md-20 mt-xl-28"
         data-splitting="wordsMask" data-scroll data-text-animation="slidein-by-lines"
         data-scroll-target="#pb-row-page-heading-2" data-scroll-offset="80px,0"
       >Tecnologia e design a serviço da <span class="title-highlight__word title-highlight --font-heading --fs-italic" style="--highlight-index:0" data-splitting="chars">luz.</span></h2>
