@@ -114,7 +114,8 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
   </div>
 
 
-  <!-- SEÇÃO 2: DECLARAÇÃO -->
+  <?php /* SEÇÃO 2 REMOVIDA — conteúdo integrado na seção 3
+<!-- SEÇÃO 2: DECLARAÇÃO -->
   <div class="pb-row-wrapper position-relative pt-40 pb-40 pt-md-60 pb-md-60 pt-xl-80 pb-xl-80 mt-0 mb-0" style="--zindex:2">
     <header class="page-heading d-flex flex-column align-items-center pb-row pb-row-page-heading container-fluid"
       data-scroll id="pb-row-page-heading-1" data-scroll-offset="80px,0" data-module-delay>
@@ -127,7 +128,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
       </div>
     </header>
   </div>
-
+  */ ?>
 
   <!-- SEÇÃO 3: GALERIA -->
   <div class="pb-row-wrapper position-relative pt-0 pb-40 mt-0 mb-0" style="--zindex:3">
