@@ -2303,12 +2303,15 @@ a, button, [role="button"] {
 .pb-row-razoes__slider {
   width: 100%;
   overflow: hidden;
-  padding-left: var(--container-px);
+  padding-left: 12%;
+  padding-right: 12%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 1280px) {
   .pb-row-razoes__slider {
-    padding-left: var(--container-px-xl);
+    padding-left: 12%;
+    padding-right: 12%;
   }
 }
 
@@ -3505,7 +3508,7 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   position: relative;
   left: 0;
   bottom: 0;
-  width: calc(100% - var(--container-gutter, 2rem) * 2);
+  width: 76%;
   margin: 24px auto 0;
   height: 2px;
   background: rgba(0,0,0,0.12);
@@ -3513,7 +3516,7 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 }
 
 .pb-row-razoes .swiper-scrollbar-drag {
-  background: var(--color-dark);
+  background: var(--color-premium);
   border-radius: 2px;
   cursor: grab;
 }
