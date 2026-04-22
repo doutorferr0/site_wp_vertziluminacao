@@ -91,7 +91,7 @@
 
     var current = window.scrollY;
     var target  = window.scrollY;
-    var ease    = 0.055; // mais lento e suave
+    var ease    = 0.048; // mais lento e suave
     var running = false;
     var snapTimer = null;
 
@@ -100,14 +100,18 @@
       return Array.from(document.querySelectorAll('.pb-row-wrapper'));
     }
 
-    // Encontra seção mais próxima do target
+    // Encontra seção próxima do target — só snapa se estiver dentro de 35% do viewport
     function getNearestSection(pos) {
       var sections = getSections();
+      var threshold = window.innerHeight * 0.35;
       var best = null, bestDist = Infinity;
       sections.forEach(function(s) {
         var top = s.getBoundingClientRect().top + pos;
         var dist = Math.abs(top - pos);
-        if (dist < bestDist) { bestDist = dist; best = top; }
+        if (dist < bestDist && dist < threshold) {
+          bestDist = dist;
+          best = top;
+        }
       });
       return best;
     }
@@ -126,7 +130,7 @@
           target = Math.max(0, Math.min(snap, document.body.scrollHeight - window.innerHeight));
           if (!running) { running = true; raf(); }
         }
-      }, 400);
+      }, 700);
     }, { passive: false });
 
     function raf() {
