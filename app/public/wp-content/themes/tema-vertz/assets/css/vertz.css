@@ -3509,16 +3509,21 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   left: 0;
   bottom: 0;
   width: 76%;
-  margin: 24px auto 0;
-  height: 2px;
-  background: rgba(0,0,0,0.12);
-  border-radius: 2px;
+  margin: 32px auto 0;
+  height: 5px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 99px;
 }
 
 .pb-row-razoes .swiper-scrollbar-drag {
-  background: var(--color-premium);
-  border-radius: 2px;
+  background: var(--color-accent);
+  border-radius: 99px;
   cursor: grab;
+  transition: background 0.2s ease;
+}
+
+.pb-row-razoes .swiper-scrollbar-drag:hover {
+  background: var(--color-copper);
 }
 
 .pb-row-razoes .swiper-scrollbar-drag:active {
