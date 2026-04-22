@@ -115,7 +115,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
 
 
   <!-- SEÇÃO 2: DECLARAÇÃO -->
-  <div class="pb-row-wrapper position-relative pt-80 pb-80 pt-md-100 pb-md-100 pt-xl-130 pb-xl-130 mt-0 mb-0" style="--zindex:2">
+  <div class="pb-row-wrapper position-relative pt-40 pb-40 pt-md-60 pb-md-60 pt-xl-80 pb-xl-80 mt-0 mb-0" style="--zindex:2">
     <header class="page-heading d-flex flex-column align-items-center pb-row pb-row-page-heading container-fluid"
       data-scroll id="pb-row-page-heading-1" data-scroll-offset="80px,0" data-module-delay>
       <p class="fz-12 fz-md-14 fw-400 ta-center tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)"><?php echo esc_html($s2_sub); ?></p>
@@ -130,7 +130,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
 
 
   <!-- SEÇÃO 3: GALERIA -->
-  <div class="pb-row-wrapper position-relative pt-0 pb-0 mt-0 mb-0" style="--zindex:3">
+  <div class="pb-row-wrapper position-relative pt-0 pb-40 mt-0 mb-0" style="--zindex:3">
     <div class="pb-row pb-row-gallery-btn container-fluid" data-scroll data-scroll-offset="80px,0" data-module-delay>
       <header class="pb-row-gallery-btn__header d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20 mb-30 mb-md-40">
         <h2 class="col-start-1 col-span-md-8 col-span-xl-14 ff-body fz-20 fz-md-32 fz-xl-48 fw-400 lh-110 ls--3 m-0">
@@ -355,7 +355,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
   */ ?>
 
   <!-- SEÇÃO 9: CTA FINAL -->
-  <div class="pb-row-wrapper position-relative pt-60 pb-60 pt-md-80 pb-md-80 pt-xl-110 pb-xl-110 mt-0 mb-0" style="--zindex:9">
+  <div class="pb-row-wrapper position-relative pt-50 pb-50 pt-md-70 pb-md-70 mt-0 mb-0" style="--zindex:9">
     <div class="pb-row pb-row-contact container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20" data-scroll data-scroll-offset="50px,0" data-module-delay>
       <div class="col-start-1 col-span-md-5 col-span-xl-10 position-relative overflow-clip" style="border-radius:12px;">
         <img src="<?php echo esc_url($cta_foto); ?>" alt="Showroom Vertz Iluminação" loading="lazy" decoding="async" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
