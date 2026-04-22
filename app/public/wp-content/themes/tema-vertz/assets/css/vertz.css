@@ -1161,6 +1161,10 @@ figure {
 .pb-row-wrapper {
   position: relative;
   overflow: clip;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .pb-row {
@@ -2306,6 +2310,7 @@ a, button, [role="button"] {
   padding-left: 12%;
   padding-right: 12%;
   box-sizing: border-box;
+  flex: 1;
 }
 
 @media (min-width: 1280px) {
@@ -2346,7 +2351,7 @@ a, button, [role="button"] {
   background: transparent;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.6rem;
   height: 100%;
   padding: 0;
   border: none;
@@ -2356,7 +2361,7 @@ a, button, [role="button"] {
 /* Título itálico */
 .pb-row-razoes__titulo {
   font-family: var(--font-heading);
-  font-size: 1.375rem;
+  font-size: 1.1rem;
   font-style: italic;
   font-weight: 400;
   line-height: 1.2;
@@ -2365,7 +2370,7 @@ a, button, [role="button"] {
 
 @media (min-width: 1280px) {
   .pb-row-razoes__titulo {
-    font-size: 1.625rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -2378,6 +2383,7 @@ a, button, [role="button"] {
 
 .pb-row-razoes__gif img {
   width: 100%;
+  max-height: 22vh;
   aspect-ratio: 1/1;
   object-fit: contain;
   display: block;
