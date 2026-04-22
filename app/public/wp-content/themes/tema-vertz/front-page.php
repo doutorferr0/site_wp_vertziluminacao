@@ -167,7 +167,8 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
   </div>
 
 
-  <!-- SEÇÃO 4: DOIS PILARES -->
+  <?php /* SEÇÃO 4 REMOVIDA DA HOME
+<!-- SEÇÃO 4: DOIS PILARES -->
   <div class="pb-row-wrapper position-relative pt-80 pb-80 pt-md-100 pb-md-100 pt-xl-130 pb-xl-130 mt-0 mb-0" style="--zindex:4">
     <div class="pb-row container-fluid">
       <div class="vertz-service-duo__eyebrow" data-scroll data-scroll-offset="60px,0" data-module-delay>
@@ -206,7 +207,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
       </div>
     </div>
   </div>
-
+  */ ?>
 
   <!-- SEÇÃO 4.5: 10 RAZÕES -->
   <div class="pb-row-wrapper position-relative pt-30 pb-20 pt-md-40 pb-md-30 mt-0 mb-0" style="--zindex:4.5;background:var(--color-surface);">
