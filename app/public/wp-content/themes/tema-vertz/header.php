@@ -34,28 +34,22 @@
           </a>
         </li>
         <li class="d-none d-md-block">
-          <ul class="site-header__rightMenuItems d-flex align-items-center fz-12 tt-uppercase list-none m-0 p-0">
+          <nav class="site-header__pillNav" aria-label="Menu principal">
+            <div class="site-header__pillBg" aria-hidden="true"></div>
             <?php
             $nav_items = [
-              ['url' => home_url('/'),          'label' => 'Home',     'thumb' => 'nav-home.jpg'],
-              ['url' => home_url('/contato'),   'label' => 'Contato',  'thumb' => 'nav-contato.jpg'],
-              ['url' => home_url('/servicos'),  'label' => 'Serviços', 'thumb' => 'nav-servicos.jpg'],
-              ['url' => home_url('/sobre'),     'label' => 'Sobre',    'thumb' => 'nav-sobre.jpg'],
+              ['url' => home_url('/'),         'label' => 'Home'],
+              ['url' => home_url('/contato'),  'label' => 'Contato'],
+              ['url' => home_url('/servicos'), 'label' => 'Serviços'],
+              ['url' => home_url('/sobre'),    'label' => 'Sobre'],
             ];
             foreach ($nav_items as $item):
-              $thumb_path = get_template_directory() . '/assets/images/' . $item['thumb'];
-              $thumb_url  = file_exists($thumb_path)
-                ? get_template_directory_uri() . '/assets/images/' . $item['thumb']
-                : 'https://picsum.photos/seed/' . urlencode($item['label']) . '/120/80';
             ?>
-            <li>
-              <a href="<?php echo esc_url($item['url']); ?>" class="site-header__navLink nav-link--with-img">
-                <img src="<?php echo esc_url($thumb_url); ?>" alt="" aria-hidden="true" class="nav-link__thumb" loading="lazy">
-                <span><?php echo esc_html($item['label']); ?></span>
-              </a>
-            </li>
+            <a href="<?php echo esc_url($item['url']); ?>" class="site-header__pillLink">
+              <?php echo esc_html($item['label']); ?>
+            </a>
             <?php endforeach; ?>
-          </ul>
+          </nav>
         </li>
         <li class="d-md-none">
           <button class="site-header__burger position-relative m-0 p-0" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
