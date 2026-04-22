@@ -362,11 +362,16 @@
     if (!sliders.length) return;
     sliders.forEach(function (el) {
       new Swiper(el, {
-        slidesPerView: 'auto',  /* respeita width do CSS */
-        spaceBetween: 0,        /* espaço via padding-right no CSS */
-        loop: true,
+        slidesPerView: 'auto',
+        spaceBetween: 0,
+        loop: false,
         speed: 700,
-        loopAdditionalSlides: 3,
+        grabCursor: true,
+        scrollbar: {
+          el: el.querySelector('.swiper-scrollbar'),
+          draggable: true,
+          hide: false,
+        },
       });
     });
   }
