@@ -131,17 +131,18 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
   */ ?>
 
   <!-- SEÇÃO 3: GALERIA -->
-  <div class="pb-row-wrapper position-relative pt-0 pb-40 mt-0 mb-0" style="--zindex:3">
+  <div class="pb-row-wrapper position-relative pt-0 pb-0 mt-0 mb-0" style="--zindex:3;min-height:100vh;display:flex;align-items:center;">
     <div class="pb-row pb-row-gallery-btn container-fluid" data-scroll data-scroll-offset="80px,0" data-module-delay>
-      <header class="pb-row-gallery-btn__header d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20 mb-30 mb-md-40">
-        <h2 class="col-start-1 col-span-md-8 col-span-xl-14 ff-body fz-20 fz-md-32 fz-xl-48 fw-400 lh-110 ls--3 m-0">
-          Iluminação para cada <span class="title-highlight --font-heading --fs-italic">ambiente</span>.
-        </h2>
-        <div class="col-start-1 col-start-md-9 col-span-md-4 col-start-xl-17 col-span-xl-8 fz-14 lh-142 d-flex align-items-md-end" style="color:var(--color-gray-600)">
-          <p class="m-0">Do residencial de alto padrão ao complexo comercial — com eficiência técnica e curadoria estética.</p>
+      <div class="pb-row-gallery-btn__layout">
+        <!-- Texto esquerda -->
+        <div class="pb-row-gallery-btn__text">
+          <h2 class="ff-body fz-28 fz-md-40 fz-xl-52 fw-400 lh-110 ls--3 m-0 mb-20">
+            Iluminação<br>para cada<br><span class="title-highlight --font-heading --fs-italic">projeto</span>.
+          </h2>
+          <p class="fz-13 fz-md-14 lh-160 m-0" style="color:var(--color-gray-600);max-width:260px;">Do residencial de alto padrão ao complexo comercial — com eficiência técnica e curadoria estética.</p>
         </div>
-      </header>
-      <div class="pb-row-gallery-btn__stage" id="gallery-stage">
+        <!-- Galeria direita -->
+        <div class="pb-row-gallery-btn__stage" id="gallery-stage">
         <figure class="pb-row-gallery-btn__slide" id="gallery-slide-0" aria-hidden="false">
           <img src="<?php echo esc_url($g1); ?>" alt="Projeto residencial Vertz Iluminação" loading="lazy" decoding="async">
         </figure>
@@ -156,14 +157,14 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
           <button class="pb-row-gallery-btn__pill" data-gallery-target="1" aria-pressed="false">Comercial</button>
           <button class="pb-row-gallery-btn__pill" data-gallery-target="2" aria-pressed="false">Paisagismo</button>
         </nav>
+        </div><!-- /.pb-row-gallery-btn__stage -->
+      </div><!-- /.pb-row-gallery-btn__layout -->
+      <!-- CTA abaixo da galeria -->
+      <div class="pb-row-gallery-btn__cta">
+        <a href="<?php echo esc_url(home_url('/contato')); ?>" class="pb-row-gallery-btn__cta-link">
+          Solicitar projeto para este tipo de ambiente →
+        </a>
       </div>
-    </div>
-  </div>
-  <div class="pb-row-wrapper position-relative pt-0 pb-0" style="--zindex:3.5">
-    <div class="pb-row container-fluid d-flex justify-content-center" style="padding-left:18%;padding-right:18%;padding-top:1.5rem;">
-      <a href="<?php echo esc_url(home_url('/contato')); ?>" class="fz-12 tt-uppercase fw-500 d-flex align-items-center grid-gap-10" style="color:var(--color-dark);text-decoration:none;letter-spacing:0.12em;border-bottom:1px solid var(--color-dark);">
-        Solicitar projeto para este tipo de ambiente →
-      </a>
     </div>
   </div>
 
