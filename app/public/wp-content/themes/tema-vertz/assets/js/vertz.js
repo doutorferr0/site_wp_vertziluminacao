@@ -116,11 +116,33 @@
       return best;
     }
 
+    var snapTimer = null;
+    var isSnapping = false;
+
     window.addEventListener('wheel', function(e) {
       e.preventDefault();
       target += e.deltaY * 0.65;
       target = Math.max(0, Math.min(target, document.body.scrollHeight - window.innerHeight));
       if (!running) { running = true; raf(); }
+
+      // Snap suave após parar — threshold 40% viewport
+      clearTimeout(snapTimer);
+      snapTimer = setTimeout(function() {
+        var sections = document.querySelectorAll('.pb-row-wrapper');
+        var threshold = window.innerHeight * 0.40;
+        var best = null, bestDist = Infinity;
+        sections.forEach(function(s) {
+          var top = s.getBoundingClientRect().top + target;
+          var dist = Math.abs(top - target);
+          if (dist < bestDist && dist < threshold) { bestDist = dist; best = top; }
+        });
+        if (best !== null) {
+          isSnapping = true;
+          target = Math.max(0, Math.min(best, document.body.scrollHeight - window.innerHeight));
+          if (!running) { running = true; raf(); }
+          setTimeout(function() { isSnapping = false; }, 1000);
+        }
+      }, 600);
     }, { passive: false });
 
     function raf() {
@@ -132,6 +154,34 @@
       window.scrollTo(0, current);
       if (running) requestAnimationFrame(raf);
     }
+  }
+
+
+  /* HEADER POR MOUSE PROXIMITY */
+  function initHeaderMouseProximity() {
+    var header = qs('.site-header');
+    if (!header) return;
+    var ZONE = 150; // px do topo que ativa o header
+
+    document.addEventListener('mousemove', function(e) {
+      if (window.scrollY <= 80) return; // no topo a lógica normal cuida
+      if (e.clientY <= ZONE) {
+        header.classList.remove('is-hidden');
+        header.classList.add('is-visible');
+      } else if (e.clientY > ZONE + 60) {
+        // só esconde se não estiver snappando
+        if (!document.querySelector('.site-header:hover')) {
+          header.classList.add('is-hidden');
+          header.classList.remove('is-visible');
+        }
+      }
+    });
+
+    // Hover no header: sempre mostra
+    header.addEventListener('mouseenter', function() {
+      header.classList.remove('is-hidden');
+      header.classList.add('is-visible');
+    });
   }
 
   /* BURGER MENU */
@@ -655,12 +705,14 @@
       initGallerySwiper();
   initNavOverlay();
   initSmoothScroll();
+  initHeaderMouseProximity();
       initCardsSlider();
     } else {
       window.addEventListener('load', function () {
         initGallerySwiper();
   initNavOverlay();
   initSmoothScroll();
+  initHeaderMouseProximity();
         initCardsSlider();
       });
     }
