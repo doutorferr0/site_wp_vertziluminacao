@@ -209,7 +209,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
 
 
   <!-- SEÇÃO 4.5: 10 RAZÕES -->
-  <div class="pb-row-wrapper position-relative pt-50 pb-50 pt-md-80 pb-md-80 pt-xl-110 pb-xl-110 mt-0 mb-0" style="--zindex:4.5;background:var(--color-surface);">
+  <div class="pb-row-wrapper position-relative pt-30 pb-20 pt-md-40 pb-md-30 mt-0 mb-0" style="--zindex:4.5;background:var(--color-surface);">
     <div id="pb-row-razoes-1" class="pb-row pb-row-razoes" data-scroll data-scroll-offset="100px,0" data-module-delay>
       <header class="container-fluid mb-40 mb-md-60">
         <p class="fz-12 tt-uppercase m-0 mb-15" style="color:var(--color-gray-600)">Por que escolher a Vertz</p>
