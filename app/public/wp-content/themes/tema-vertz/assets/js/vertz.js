@@ -87,20 +87,46 @@
 
   /* ── SMOOTH SCROLL (LERP) ─────────────────────────── */
   function initSmoothScroll() {
-    // Não roda em mobile (touch) — causa problemas
     if ('ontouchstart' in window) return;
 
     var current = window.scrollY;
     var target  = window.scrollY;
-    var ease    = 0.07; // 0.05 = muito lento, 0.1 = rápido
+    var ease    = 0.055; // mais lento e suave
     var running = false;
+    var snapTimer = null;
 
-    // Captura scroll nativo e cancela — usa posição como alvo
+    // Seções que fazem snap
+    function getSections() {
+      return Array.from(document.querySelectorAll('.pb-row-wrapper'));
+    }
+
+    // Encontra seção mais próxima do target
+    function getNearestSection(pos) {
+      var sections = getSections();
+      var best = null, bestDist = Infinity;
+      sections.forEach(function(s) {
+        var top = s.getBoundingClientRect().top + pos;
+        var dist = Math.abs(top - pos);
+        if (dist < bestDist) { bestDist = dist; best = top; }
+      });
+      return best;
+    }
+
     window.addEventListener('wheel', function(e) {
       e.preventDefault();
-      target += e.deltaY * 0.8; // multiplica para ajustar velocidade
+      target += e.deltaY * 0.7;
       target = Math.max(0, Math.min(target, document.body.scrollHeight - window.innerHeight));
       if (!running) { running = true; raf(); }
+
+      // Snap após parar de rolar (400ms sem wheel)
+      clearTimeout(snapTimer);
+      snapTimer = setTimeout(function() {
+        var snap = getNearestSection(target);
+        if (snap !== null) {
+          target = Math.max(0, Math.min(snap, document.body.scrollHeight - window.innerHeight));
+          if (!running) { running = true; raf(); }
+        }
+      }, 400);
     }, { passive: false });
 
     function raf() {
