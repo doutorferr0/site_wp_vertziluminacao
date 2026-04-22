@@ -3498,3 +3498,26 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   opacity: 1;
   transform: translateX(-50%) translateY(0) scale(1);
 }
+
+
+/* ── Razões scrollbar ─────────────────────────── */
+.pb-row-razoes .swiper-scrollbar {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: calc(100% - var(--container-gutter, 2rem) * 2);
+  margin: 24px auto 0;
+  height: 2px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 2px;
+}
+
+.pb-row-razoes .swiper-scrollbar-drag {
+  background: var(--color-dark);
+  border-radius: 2px;
+  cursor: grab;
+}
+
+.pb-row-razoes .swiper-scrollbar-drag:active {
+  cursor: grabbing;
+}
