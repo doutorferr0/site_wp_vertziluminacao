@@ -1161,10 +1161,6 @@ figure {
 .pb-row-wrapper {
   position: relative;
   overflow: clip;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .pb-row {
