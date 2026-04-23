@@ -92,8 +92,8 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
       <div class="vertz-circle-hero vertz-circle vertz-circle--light" aria-hidden="true">
         <svg class="vertz-circle__outer" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;">
           <defs><path id="vertz-outer-path" d="M120,120 m-108,0 a108,108 0 1,1 216,0 a108,108 0 1,1 -216,0"/></defs>
-          <text font-size="12" font-family="inherit" fill="rgba(255,255,255,0.9)" font-weight="500" letter-spacing="4.5" stroke="rgba(0,0,0,0.4)" stroke-width="1.2" paint-order="stroke fill">
-            <textPath href="#vertz-outer-path">VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  VERTZ ILUMINAÇÃO  ✦  CAMPINAS &amp; SÃO PAULO  ✦  </textPath>
+          <text font-size="12" font-family="inherit" fill="rgba(255,255,255,0.9)" font-weight="2000" letter-spacing="1" stroke="rgba(0,0,0,0.4)" stroke-width="1.2" paint-order="stroke fill">
+            <textPath href="#vertz-outer-path"> VERTZ ILUMINAÇÃO ✦ CAMPINAS E SÃO PAULO ✦</textPath>
           </text>
         </svg>
         <div class="vertz-circle__inner-ring" style="position:absolute;inset:0;width:100%;height:100%;">

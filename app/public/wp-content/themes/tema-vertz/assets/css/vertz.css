@@ -2689,9 +2689,9 @@ a, button, [role="button"] {
 .vertz-circle__outer text,
 .vertz-circle__inner-ring text {
   font-family: var(--font-mono);
-  font-size: 16px;
-  font-weight: 300;
-  letter-spacing: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 7px;
   line-height: 2.0;
   font-stretch: expanded;
 }
