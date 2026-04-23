@@ -52,7 +52,7 @@
   --header-cta-padding: clamp(0.85rem, 1.2vw, 1.1rem) clamp(1rem, 1.5vw, 1.4rem);
   --header-logo-size-top: 575px;
   --header-logo-size-scrolled: 150px;
-  --header-logo-margin-left: clamp(0.5rem, 1.5vw, 1.5rem);
+  --header-logo-margin-left: clamp(1.0rem, 2.0vw, 2.0rem);
 
   /* Tamanhos de fonte */
   --fz-10:  0.625rem;
@@ -2322,6 +2322,7 @@ a, button, [role="button"] {
   flex: 0 0 80vw;
   width: 80vw;
   padding-right: 2rem;   /* espaço duplo entre cards */
+  min-height: 40vh;
   height: auto;
   box-sizing: border-box;
 }
@@ -2349,7 +2350,7 @@ a, button, [role="button"] {
   flex-direction: column;
   gap: 0.6rem;
   height: 100%;
-  padding: 0;
+  padding: 1rem 0 0 0;
   border: none;
   box-shadow: none;
 }
@@ -2379,7 +2380,7 @@ a, button, [role="button"] {
 
 .pb-row-razoes__gif img {
   width: 100%;
-  max-height: 22vh;
+  max-height: 30vh;
   aspect-ratio: 1/1;
   object-fit: contain;
   display: block;
