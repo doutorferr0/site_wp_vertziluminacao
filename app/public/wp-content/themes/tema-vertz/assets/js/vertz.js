@@ -131,10 +131,16 @@
         var sections = document.querySelectorAll('.pb-row-wrapper');
         var threshold = window.innerHeight * 0.40;
         var best = null, bestDist = Infinity;
+        var snapPoints = [];
         sections.forEach(function(s) {
-          var top = s.getBoundingClientRect().top + target;
-          var dist = Math.abs(top - target);
-          if (dist < bestDist && dist < threshold) { bestDist = dist; best = top; }
+          var top  = s.getBoundingClientRect().top + target;
+          var mid  = top + (s.offsetHeight / 2) - (window.innerHeight / 2);
+          snapPoints.push(top);  // topo da seção
+          snapPoints.push(mid);  // meio da seção centralizado no viewport
+        });
+        snapPoints.forEach(function(pt) {
+          var dist = Math.abs(pt - target);
+          if (dist < bestDist && dist < threshold) { bestDist = dist; best = pt; }
         });
         if (best !== null) {
           isSnapping = true;
