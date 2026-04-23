@@ -2389,8 +2389,8 @@ a, button, [role="button"] {
 
 /* Texto */
 .pb-row-razoes__texto {
-  font-size: var(--fz-14);
-  line-height: 1.6;
+  font-size: 0.7rem;
+  line-height: 1.5;
   color: var(--color-dark);
 }
 
@@ -3523,14 +3523,12 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   border-radius: 99px;
   cursor: grab;
   transition: box-shadow 0.3s ease, background 0.2s ease;
-  box-shadow: 0 0 8px 2px rgba(165, 42, 42, 0.55),
-              0 0 18px 4px rgba(165, 42, 42, 0.3);
+  box-shadow: 0 0 6px 1px rgba(165, 42, 42, 0.2);
 }
 
 .pb-row-razoes .swiper-scrollbar-drag:hover {
   background: #c0392b;
-  box-shadow: 0 0 12px 4px rgba(192, 57, 43, 0.75),
-              0 0 28px 8px rgba(192, 57, 43, 0.4);
+  box-shadow: 0 0 8px 2px rgba(192, 57, 43, 0.35);
 }
 
 .pb-row-razoes .swiper-scrollbar-drag:active {
