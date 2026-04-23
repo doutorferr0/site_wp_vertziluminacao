@@ -221,7 +221,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
       <div class="pb-row-razoes__slider swiper">
         <div class="pb-row-razoes__sliderWrap swiper-wrapper">
           <?php foreach ($razoes as $index => $razao):
-            $gif = $theme_uri . '/assets/images/razoes-' . str_pad($index+1,2,'0',STR_PAD_LEFT) . '.gif'; ?>
+            $gif = $theme_uri . '/assets/images/gifrazoes' . ($index+1) . '.png'; ?>
           <div class="pb-row-razoes__slide swiper-slide" style="--index:<?php echo $index; ?>">
             <div class="pb-row-razoes__card">
               <h3 class="pb-row-razoes__titulo ff-heading fs-italic fw-400 m-0"><?php echo esc_html($razao['titulo']); ?></h3>
