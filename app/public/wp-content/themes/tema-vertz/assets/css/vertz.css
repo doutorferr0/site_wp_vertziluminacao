@@ -2358,7 +2358,7 @@ a, button, [role="button"] {
 /* Título itálico */
 .pb-row-razoes__titulo {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-style: italic;
   font-weight: 400;
   line-height: 1.2;
@@ -2367,7 +2367,7 @@ a, button, [role="button"] {
 
 @media (min-width: 1280px) {
   .pb-row-razoes__titulo {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 }
 
