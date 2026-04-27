@@ -355,6 +355,26 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
 
   */ ?>
 
+  <!-- SEÇÃO: PARCEIROS -->
+  <div class="pb-row-wrapper position-relative pt-40 pb-40 mt-0 mb-0" style="--zindex:8">
+    <div class="pb-row pb-row-partners container-fluid">
+      <p class="pb-row-partners__label">Parceiros selecionados</p>
+      <div class="pb-row-partners__track-wrap">
+        <div class="pb-row-partners__track">
+          <?php
+          $partners = range(1, 5);
+          foreach (array_merge($partners, $partners) as $i):
+            $src = get_template_directory_uri() . '/assets/images/parceiro' . $i . '.png';
+          ?>
+          <div class="pb-row-partners__item">
+            <img src="<?php echo esc_url($src); ?>" alt="Parceiro <?php echo $i; ?>" loading="lazy">
+          </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- SEÇÃO 9: CTA FINAL -->
   <div class="pb-row-wrapper position-relative pt-50 pb-50 pt-md-70 pb-md-70 mt-0 mb-0" style="--zindex:9">
     <div class="pb-row pb-row-contact container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20" data-scroll data-scroll-offset="50px,0" data-module-delay>
