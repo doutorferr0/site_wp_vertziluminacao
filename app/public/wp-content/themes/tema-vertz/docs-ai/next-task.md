@@ -1,14 +1,24 @@
 # next-task
 
 ## Tarefa atual
-Indefinida — aguardando direcionamento.
+Ativar e testar CPT de projetos no LocalWP.
 
-## Últimas ações concluídas
-- WP-CLI parcialmente configurado via WSL (pendente fix de --path Windows)
-- DB_HOST atualizado para 127.0.0.1:10005 no wp-config.php
+## Foco
+Verificar que CPT `projeto` e templates funcionam corretamente.
 
-## Opções de próxima tarefa
-- Inserir imagens e copy reais (alta prioridade)
-- Revisar header/logo mobile (breakpoint 767px)
-- Instalar Carbon Fields via Composer
-- Deploy Hostinger
+## Escopo
+1. No LocalWP → abrir site Vertz → WP Admin
+2. Ir em Configurações → Links Permanentes → Salvar (flush rewrite rules)
+3. Criar 1 projeto de teste: título, cover, categoria, galeria (2-3 fotos), meta
+4. Verificar: /projetos/ renderiza grid corretamente
+5. Verificar: /projetos/[slug]/ renderiza hero + meta + galeria
+6. Verificar filtro de categoria (JS no archive)
+7. Verificar lightbox (clique na galeria do single)
+
+## Critério de conclusão
+Archive e single renderizam sem erro, filtro funciona, lightbox abre/fecha.
+
+## Próximas ações após validação
+- Criar categorias reais (Residencial, Comercial, Hotelaria, Corporativo, Paisagismo)
+- Inserir projetos reais com fotos e copy
+- Adicionar link "Projetos" no menu principal do WP
