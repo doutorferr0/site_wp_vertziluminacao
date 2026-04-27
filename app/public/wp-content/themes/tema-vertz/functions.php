@@ -6,6 +6,9 @@ function tema_vertz_setup() {
 }
 add_action( 'after_setup_theme', 'tema_vertz_setup' );
 
+// CPT: projeto + taxonomia categoria_projeto
+require_once get_template_directory() . '/inc/cpt-projeto.php';
+
 function tema_vertz_scripts() {
     $get_ver = function( $filepath ) {
         return file_exists( $filepath ) ? filemtime( $filepath ) : '1.0.0';
@@ -23,6 +26,14 @@ function tema_vertz_scripts() {
         get_template_directory_uri() . '/assets/css/vertz.css',
         array( 'google-fonts' ),
         $get_ver( get_template_directory() . '/assets/css/vertz.css' ) );
+
+    // CSS de projetos — carregado só nas páginas de projeto
+    if ( is_post_type_archive( 'projeto' ) || is_singular( 'projeto' ) ) {
+        wp_enqueue_style( 'vertz-projetos',
+            get_template_directory_uri() . '/assets/css/projetos.css',
+            array( 'vertz-main' ),
+            $get_ver( get_template_directory() . '/assets/css/projetos.css' ) );
+    }
 
     wp_enqueue_script( 'swiper',
         'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
@@ -124,19 +135,15 @@ add_action( 'admin_post_nopriv_vertz_optin', 'vertz_handle_optin' );
 
 /* =============================================================
    VERTZ CUSTOMIZER — Hero & Header
-   Expõe controles visuais no WP Customizer para ajustar
-   animações e tamanhos sem tocar em código.
    ============================================================= */
 
 function vertz_customizer_register( $wp_customize ) {
 
-    /* ── PAINEL ─────────────────────────────────────────── */
     $wp_customize->add_panel( 'vertz_hero', array(
         'title'    => '🔆 Vertz — Hero & Header',
         'priority' => 30,
     ) );
 
-    /* ── SEÇÃO: Logo Hero ───────────────────────────────── */
     $wp_customize->add_section( 'vertz_hero_logo', array(
         'title' => 'Logo no Hero',
         'panel' => 'vertz_hero',
@@ -172,14 +179,13 @@ function vertz_customizer_register( $wp_customize ) {
         ) );
     }
 
-    /* ── SEÇÃO: Velocidade da animação ──────────────────── */
     $wp_customize->add_section( 'vertz_hero_anim', array(
         'title' => 'Velocidade da animação',
         'panel' => 'vertz_hero',
     ) );
 
     $wp_customize->add_setting( 'vertz_hero_lerp', array(
-        'default'           => 42,       // representa 0.042 (÷1000)
+        'default'           => 42,
         'sanitize_callback' => 'absint',
         'transport'         => 'postMessage',
     ) );
@@ -191,7 +197,6 @@ function vertz_customizer_register( $wp_customize ) {
         'input_attrs' => array( 'min' => 15, 'max' => 120, 'step' => 1 ),
     ) );
 
-    /* ── SEÇÃO: Header ──────────────────────────────────── */
     $wp_customize->add_section( 'vertz_header_size', array(
         'title' => 'Tamanho do Header',
         'panel' => 'vertz_hero',
@@ -230,11 +235,6 @@ function vertz_customizer_register( $wp_customize ) {
 add_action( 'customize_register', 'vertz_customizer_register' );
 
 
-/* =============================================================
-   INJETA window.vertzConfig com os valores salvos
-   O JS lê este objeto; se não existir, usa defaults hardcoded.
-   ============================================================= */
-
 function vertz_inject_config() {
     $config = array(
         'heroLogoPct'   => (int) get_theme_mod( 'vertz_hero_logo_pct',      32 ),
@@ -252,12 +252,7 @@ function vertz_inject_config() {
 add_action( 'wp_head', 'vertz_inject_config', 5 );
 
 
-/* =============================================================
-   CSS DINÂMICO — desativado; variáveis controladas em vertz.css
-   ============================================================= */
 // vertz_customizer_css() removida — --header-logo-size-* definidas em vertz.css
-
-
 
 
 /* =============================================================
@@ -265,15 +260,13 @@ add_action( 'wp_head', 'vertz_inject_config', 5 );
    Instalar: cd tema-vertz && composer require htmlburger/carbon-fields
    ============================================================= */
 
-/* ── Bootstrap ─────────────────────────────────────────────── */
 add_action('after_setup_theme', function() {
     $autoload = get_template_directory() . '/vendor/autoload.php';
-    if (!file_exists($autoload)) return; // composer não rodado ainda
+    if (!file_exists($autoload)) return;
 
     require_once $autoload;
     \Carbon_Fields\Carbon_Fields::boot();
 
-    // Incluir definição dos campos
     $fields_file = get_template_directory() . '/inc/carbon-fields.php';
     if (file_exists($fields_file)) {
         require_once $fields_file;
@@ -281,31 +274,19 @@ add_action('after_setup_theme', function() {
 });
 
 
-/* ── vf() — helper universal de leitura de campos ──────────── */
-/*
- * Abstrai a fonte dos dados: Carbon Fields ou fallback hardcoded.
- *
- * Uso:
- *   vf('contato_whatsapp', 'option', '5519...')  → carbon_get_theme_option
- *   vf('hero_video',       false,    '')          → carbon_get_post_meta
- *   vf('faq_items',        false,    array())     → retorna array (repeater)
- */
 if (!function_exists('vf')) {
     function vf($field, $post_id = false, $fallback = '') {
         $crb_key = 'crb_' . $field;
 
-        // ── Opções globais (theme options) ──────────────────
         if ($post_id === 'option' || $post_id === 'options') {
             if (function_exists('carbon_get_theme_option')) {
                 $v = carbon_get_theme_option($crb_key);
                 if ($v !== null && $v !== '' && $v !== false) return $v;
             }
-            // Fallback: wp_options legado (migração suave)
             $v = get_option('vertz_' . $field, null);
             return ($v !== null && $v !== '') ? $v : $fallback;
         }
 
-        // ── Meta de página ───────────────────────────────────
         if (function_exists('carbon_get_post_meta')) {
             $pid = ($post_id && $post_id !== false) ? (int)$post_id : get_the_ID();
             $v   = carbon_get_post_meta($pid, $crb_key);

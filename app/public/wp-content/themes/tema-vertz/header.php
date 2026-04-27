@@ -38,10 +38,11 @@
             <div class="site-header__pillBg" aria-hidden="true"></div>
             <?php
             $nav_items = [
-              ['url' => home_url('/'),         'label' => 'Home'],
-              ['url' => home_url('/contato'),  'label' => 'Contato'],
-              ['url' => home_url('/servicos'), 'label' => 'Serviços'],
-              ['url' => home_url('/sobre'),    'label' => 'Sobre'],
+              ['url' => home_url('/'),          'label' => 'Home'],
+              ['url' => home_url('/projetos'),  'label' => 'Projetos'],
+              ['url' => home_url('/servicos'),  'label' => 'Serviços'],
+              ['url' => home_url('/sobre'),     'label' => 'Sobre'],
+              ['url' => home_url('/contato'),   'label' => 'Contato'],
             ];
             foreach ($nav_items as $item):
             ?>
@@ -71,4 +72,3 @@
   </div>
 </div>
 <main class="flex-grow-1" role="main">
-
