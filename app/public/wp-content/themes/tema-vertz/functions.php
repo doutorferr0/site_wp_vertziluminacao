@@ -6,6 +6,9 @@ function tema_vertz_setup() {
 }
 add_action( 'after_setup_theme', 'tema_vertz_setup' );
 
+// CPT: projeto + taxonomia categoria_projeto
+require_once get_template_directory() . '/inc/cpt-projeto.php';
+
 function tema_vertz_scripts() {
     $get_ver = function( $filepath ) {
         return file_exists( $filepath ) ? filemtime( $filepath ) : '1.0.0';
@@ -23,6 +26,14 @@ function tema_vertz_scripts() {
         get_template_directory_uri() . '/assets/css/vertz.css',
         array( 'google-fonts' ),
         $get_ver( get_template_directory() . '/assets/css/vertz.css' ) );
+
+    // CSS de projetos (archive + single)
+    if ( is_post_type_archive( 'projeto' ) || is_singular( 'projeto' ) ) {
+        wp_enqueue_style( 'vertz-projetos',
+            get_template_directory_uri() . '/assets/css/projetos.css',
+            array( 'vertz-main' ),
+            $get_ver( get_template_directory() . '/assets/css/projetos.css' ) );
+    }
 
     wp_enqueue_script( 'swiper',
         'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
