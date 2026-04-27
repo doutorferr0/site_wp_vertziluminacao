@@ -48,13 +48,13 @@ $faqs = (!empty($faqs_raw)) ? $faqs_raw : array(
 // 10 Razões com fallback
 $razoes_raw = vf('razoes_items', false, array());
 $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
-    array('titulo'=>'1- Integração com a Arquitetura',         'acento'=>'A iluminação nasce com o projeto.',           'texto'=>'Nossas soluções são pensadas desde a planta para se fundir aos elementos estruturais, estabelecendo uma simbiose técnica e estética com a arquitetura.'),
-    array('titulo'=>'2- Sem Tentativa e Erro', 'acento'=>'Precisão profissional em cada ponto.',   'texto'=>'a Vertz trabalha APENAS com luz, então conhece ela. Calculamos o comportamento,  ângulos de abertura e eficiência luminosa, eliminando arrependimentos no futuro.'),
-    array('titulo'=>'3- A Luz revela',              'acento'=>'Não existe ambiente bonito com uma luz feia,','texto'=>'a iluminação pode deixar um ambiente comum em algo extraordinário — ou arruinar um projeto incrível. Por isso, a curadoria luminotécnica é tão importante quanto a decorativa.'),
-    array('titulo'=>'4- Valorização do Imóvel',     'acento'=>'Percepção imediata de alto padrão.',         'texto'=>'Um projeto luminotécnico executado com precisão eleva o valor agregado do espaço. Nossos projetos transmitem conforto e sofisticação, fatores decisivos de diferenciação no mercado imobiliário premium..'),
-    array('titulo'=>'5- Mais tempo para você',            'acento'=>'Sua única tarefa é aprovar o projeto,',                 'texto'=>' assumimos a solução de projeto luminotécnico de ponta a ponta. Voce e seu arquiteto são liberados  para focar nas demais exigências da sua obra.'),
-    array('titulo'=>'6- Cenas para cada momento',         'acento'=>'Atmosferas moldadas pela Luz.',        'texto'=>' Cada ponto de luz possui uma finalidade técnica específica, possuindo transições e aplicações conforme a demanda de uso do ambiente.'),
-    array('titulo'=>'7- Curadoria minuciosa',        'acento'=>'O topo da pirâmide em iluminação',            'texto'=>'Filtramos o mercado global e nacional para oferecer apenas peças que entregam  o que há de mais sofisticado no setor, sem precisar se preocupar com a procedência ou a durabilidade do material escolhido.'),
+    array('titulo'=>'1- Integração com a Arquitetura',         'acento'=>'A iluminação evolui com o projeto.',           'texto'=>'Nossas soluções são pensadas desde a planta, para se fundir aos elementos arquitetonicos e estéticos'),
+    array('titulo'=>'2- Sem Tentativa e Erro', 'acento'=>'Precisão profissional em cada ponto.',   'texto'=>'Conhecemos o comportamento, os ângulos de abertura e eficiências luminosas dos nossos produtos, eliminando arrependimentos no futuro.'),
+    array('titulo'=>'3- A Luz revela',              'acento'=>'Iluminação bem feita, ambiente bonito.','texto'=>'A iluminação pode deixar um ambiente comum em algo extraordinário — ou arruinar um projeto incrível. Por isso, o projeto luminotécnico é tão importante quanto o decorativo.'),
+    array('titulo'=>'4- Valorização do Imóvel',     'acento'=>'Percepção imediata de alto padrão.',         'texto'=>'Um projeto luminotécnico executado com precisão eleva o valor agregado do espaço. Nossos projetos transmitem sofisticação, fator decisivo de diferenciação no mercado imobiliário de luxo.'),
+    array('titulo'=>'5- Mais tempo para você',            'acento'=>'Sua única tarefa é aprovar o projeto,',                 'texto'=>' Assumimos o projeto luminotécnico de ponta a ponta. Voce ou seu arquiteto terão mais tempo para focar nas demais exigências da sua obra.'),
+    array('titulo'=>'6- Cenas para cada momento',         'acento'=>'Moldamos atmosferas com a luz.',        'texto'=>' Cada ponto de luz possui uma finalidade técnica específica, possuindo transições e aplicações conforme a demanda de uso do ambiente.'),
+    array('titulo'=>'7- Curadoria minuciosa',        'acento'=>'O topo da pirâmide em iluminação',            'texto'=>'Filtramos o mercado global e nacional para oferecer apenas peças que entregam  o que há de mais sofisticado no setor'),
     array('titulo'=>'8- Certeza do Resultado',     'acento'=>'Visite nosso showroom,',              'texto'=>'Te convidamos a conhecer nossos showrooms em Campinas e São Paulo para conversar sobre seu projeto e mostrar os produtos que oferecemos. Assim, você tem total segurança do resultado final antes mesmo de fechar o projeto.'),
     array('titulo'=>'9- 20 anos de estrada',     'acento'=>'Somos a primeira loja de iluminação com light designers da cidade',       'texto'=>'O verdadeiro teste de uma empresa é a sua permanência, e nosso legado reflete isso. Acumulamos o conhecimento necessários para te entregar o mais alto nível de sofisticação no setor de iluminação.'),
 );
@@ -215,8 +215,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
   <div class="pb-row-wrapper position-relative pt-30 pb-20 pt-md-40 pb-md-30 mt-0 mb-0" style="--zindex:4.5;background:var(--color-surface);">
     <div id="pb-row-razoes-1" class="pb-row pb-row-razoes" data-scroll data-scroll-offset="100px,0" data-module-delay>
       <header class="container-fluid mb-40 mb-md-60">
-        <p class="fz-12 tt-uppercase m-0 mb-15" style="color:var(--color-gray-600)">Por que escolher a Vertz</p>
-        <h2 class="ff-body fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0">9 razões para <span class="title-highlight --font-heading --fs-italic">iluminar</span> com a Vertz.</h2>
+        <h2 class="ff-body fz-28 fz-md-44 fz-xl-56 fw-400 ls--3 m-0"><span class="title-highlight --font-heading --fs-italic">9 razões</span> para escolher a Vertz.</h2>
       </header>
       <div class="pb-row-razoes__slider swiper">
         <div class="pb-row-razoes__sliderWrap swiper-wrapper">

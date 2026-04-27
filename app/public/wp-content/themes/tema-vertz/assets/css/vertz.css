@@ -2358,10 +2358,10 @@ a, button, [role="button"] {
 /* Título itálico */
 .pb-row-razoes__titulo {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-style: italic;
+  font-size: 1.8rem;
+  font-style: bold;
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 0.8;
   color: var(--color-dark);
 }
 
@@ -2389,12 +2389,14 @@ a, button, [role="button"] {
 
 /* Texto */
 .pb-row-razoes__texto {
-  font-size: 0.7rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.1;
   color: var(--color-dark);
 }
 
 .pb-row-razoes__acento {
+  font-style: italic;
+  font-size: 1.2rem;
   color: var(--color-accent);
   font-weight: 500;
 }
