@@ -3710,7 +3710,7 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 }
 
 .pb-row-partners__item img {
-  height: 40px;
+  height: 70px;
   width: auto;
   max-width: 140px;
   object-fit: contain;
