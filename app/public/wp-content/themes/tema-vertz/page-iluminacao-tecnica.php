@@ -80,7 +80,7 @@ $theme_uri = get_template_directory_uri();
       <div class="overflow-clip" style="border-radius:16px;">
         <!-- IMG: servico-corporativo.jpg | 1200×800 | 3/2 | ambiente corporativo iluminado -->
         <img
-          src="<?php echo esc_url($theme_uri); ?>/assets/images/servico-corporativo.jpg"
+          src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/servico-corporativo.jpg"
           alt="Projeto de iluminação técnica Vertz"
           loading="lazy" decoding="async"
           style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
@@ -193,7 +193,7 @@ $theme_uri = get_template_directory_uri();
       <div class="col-start-1 col-span-md-6 col-span-xl-12 overflow-clip" style="border-radius:12px;">
         <!-- IMG: produto-comercial.jpg | 3/2 | pendente decorativo -->
         <img
-          src="<?php echo esc_url($theme_uri); ?>/assets/images/produto-comercial.jpg"
+          src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/produto-comercial.jpg"
           alt="Projeto Decorativo de Iluminação — Vertz"
           loading="lazy" decoding="async"
           style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
