@@ -20,11 +20,11 @@ $hero_poster = vf('hero_poster', false, '');
 $s2_sub    = vf('home_s2_sub',   false, 'O que fazemos');
 $s2_titulo = vf('home_s2_titulo',false, 'Iluminação técnica e decorativa para ambientes <em>únicos.</em>');
 $s2_corpo  = vf('home_s2_corpo', false, 'A Vertz combina projeto luminotécnico rigoroso com curadoria estética de marcas exclusivas — transformando cada ambiente em uma experiência precisa e memorável.');
-$g1 = vf('gallery_01', false, $theme_uri . '/assets/images/gallery-01.jpg');
-$g2 = vf('gallery_02', false, $theme_uri . '/assets/images/gallery-02.jpg');
-$g3 = vf('gallery_03', false, $theme_uri . '/assets/images/gallery-03.jpg');
-$feat_img  = vf('features_img', false, $theme_uri . '/assets/images/features-destaque.jpg');
-$cta_foto  = vf('cta_foto',   false, $theme_uri . '/assets/images/contato-foto.jpg');
+$g1 = vf('gallery_01', false, $theme_uri . '/assets/images/projetos/gallery-01.jpg');
+$g2 = vf('gallery_02', false, $theme_uri . '/assets/images/projetos/gallery-02.jpg');
+$g3 = vf('gallery_03', false, $theme_uri . '/assets/images/projetos/gallery-03.jpg');
+$feat_img  = vf('features_img', false, $theme_uri . '/assets/images/projetos/features-destaque.jpg');
+$cta_foto  = vf('cta_foto',   false, $theme_uri . '/assets/images/projetos/contato-foto.jpg');
 $cta_titulo = vf('cta_titulo',false, 'Vamos iluminar o seu projeto.');
 $cta_corpo  = vf('cta_corpo', false, 'Envie a planta baixa, o projeto do arquiteto ou apenas descreva o espaço. Nossa equipe retorna em até 24 horas úteis com uma proposta preliminar.');
 
@@ -70,14 +70,14 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
           <div class="pb-row-hero__mediaSticky position-sticky t-0 l-0 w-100 overflow-clip"
             data-scroll data-scroll-target="#pb-row-hero-1" data-scroll-progress="easeInCubic">
             <?php
-            $vpath = get_template_directory() . '/assets/images/hero-video.mp4';
+            $vpath = get_template_directory() . '/assets/images/videos/hero-video.mp4';
             $pattr = '';
             if ($hero_poster) $pattr = 'poster="' . esc_url($hero_poster) . '"';
-            elseif (file_exists(get_template_directory() . '/assets/images/hero-poster.jpg'))
-                $pattr = 'poster="' . esc_url($theme_uri) . '/assets/images/hero-poster.jpg"';
+            elseif (file_exists(get_template_directory() . '/assets/images/hero/hero-poster.jpg'))
+                $pattr = 'poster="' . esc_url($theme_uri) . '/assets/images/hero/hero-poster.jpg"';
 
             if ($hero_video || file_exists($vpath)):
-                $vsrc = $hero_video ?: esc_url($theme_uri) . '/assets/images/hero-video.mp4'; ?>
+                $vsrc = $hero_video ?: esc_url($theme_uri) . '/assets/images/videos/hero-video.mp4'; ?>
             <video class="w-100 pb-row-hero__video" autoplay muted loop playsinline preload="none"
               <?php echo $pattr; ?> style="aspect-ratio:16/9;object-fit:cover;display:block;">
               <source src="<?php echo esc_url($vsrc); ?>" type="video/mp4">
@@ -123,7 +123,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
           <?php
           $partners = range(1, 10);
           foreach (array_merge($partners, $partners) as $i):
-            $src = get_template_directory_uri() . '/assets/images/parceiro' . $i . '.png';
+            $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.png';
           ?>
           <div class="pb-row-partners__item">
             <img src="<?php echo esc_url($src); ?>" alt="Parceiro <?php echo $i; ?>" loading="lazy">
@@ -200,7 +200,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
       <div class="vertz-service-duo__grid" data-scroll data-scroll-offset="60px,0" data-module-delay>
         <a href="<?php echo esc_url(home_url('/iluminacao-tecnica')); ?>" class="vertz-service-duo__card" aria-label="Projeto Técnico de Iluminação">
           <div class="vertz-service-duo__img-wrap overflow-clip">
-            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/produto-residencial.jpg" alt="Projeto Técnico de Iluminação — Vertz" loading="lazy" decoding="async" class="vertz-service-duo__img">
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/produto-residencial.jpg" alt="Projeto Técnico de Iluminação — Vertz" loading="lazy" decoding="async" class="vertz-service-duo__img">
           </div>
           <div class="vertz-service-duo__body">
             <div class="vertz-service-duo__meta">
@@ -214,7 +214,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
         </a>
         <a href="<?php echo esc_url(home_url('/iluminacao-decorativa')); ?>" class="vertz-service-duo__card" aria-label="Projeto Decorativo de Iluminação">
           <div class="vertz-service-duo__img-wrap overflow-clip">
-            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/produto-comercial.jpg" alt="Projeto Decorativo de Iluminação — Vertz" loading="lazy" decoding="async" class="vertz-service-duo__img">
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/produto-comercial.jpg" alt="Projeto Decorativo de Iluminação — Vertz" loading="lazy" decoding="async" class="vertz-service-duo__img">
           </div>
           <div class="vertz-service-duo__body">
             <div class="vertz-service-duo__meta">
@@ -240,7 +240,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
       <div class="pb-row-razoes__slider swiper">
         <div class="pb-row-razoes__sliderWrap swiper-wrapper">
           <?php foreach ($razoes as $index => $razao):
-            $gif = $theme_uri . '/assets/images/gifrazoes' . ($index+1) . '.png'; ?>
+            $gif = $theme_uri . '/assets/images/razoes/gifrazoes' . ($index+1) . '.png'; ?>
           <div class="pb-row-razoes__slide swiper-slide" style="--index:<?php echo $index; ?>">
             <div class="pb-row-razoes__card">
               <h3 class="pb-row-razoes__titulo ff-heading fs-italic fw-400 m-0"><?php echo esc_html($razao['titulo']); ?></h3>
@@ -309,12 +309,12 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
         <div class="pb-row-partners__ticker d-flex align-items-center grid-gap-40 grid-gap-xl-60">
           <?php for ($i = 1; $i <= 5; $i++): ?>
           <div class="pb-row-partners__partner flex-shrink-0">
-            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/logo-parceiro-0<?php echo $i; ?>.svg" alt="Parceiro <?php echo $i; ?>" loading="lazy" decoding="async" width="120" height="40" style="width:120px;height:40px;object-fit:contain;display:block;opacity:.55;filter:grayscale(1);transition:opacity .3s,filter .3s;">
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/parceiros/logo-parceiro-0<?php echo $i; ?>.svg" alt="Parceiro <?php echo $i; ?>" loading="lazy" decoding="async" width="120" height="40" style="width:120px;height:40px;object-fit:contain;display:block;opacity:.55;filter:grayscale(1);transition:opacity .3s,filter .3s;">
           </div>
           <?php endfor; ?>
           <?php for ($i = 1; $i <= 5; $i++): ?>
           <div class="pb-row-partners__partner flex-shrink-0" aria-hidden="true">
-            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/logo-parceiro-0<?php echo $i; ?>.svg" alt="" loading="lazy" decoding="async" width="120" height="40" style="width:120px;height:40px;object-fit:contain;display:block;opacity:.55;filter:grayscale(1);">
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/parceiros/logo-parceiro-0<?php echo $i; ?>.svg" alt="" loading="lazy" decoding="async" width="120" height="40" style="width:120px;height:40px;object-fit:contain;display:block;opacity:.55;filter:grayscale(1);">
           </div>
           <?php endfor; ?>
         </div>
