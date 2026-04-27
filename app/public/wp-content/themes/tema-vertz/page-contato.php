@@ -17,7 +17,7 @@ $horario = vf('contato_horario',           'option', 'Seg–Sex 9h–18h / Sáb 
 
 // Campos desta página
 $titulo_pagina   = vf('contato_titulo',  false, 'Vamos conversar.');
-$banner_img      = vf('contato_banner',  false, $theme_uri . '/assets/images/contato-banner.jpg');
+$banner_img      = vf('contato_banner',  false, $theme_uri . '/assets/images/projetos/contato-banner.jpg');
 ?>
 
 <div class="single single-page" id="page-contato">
