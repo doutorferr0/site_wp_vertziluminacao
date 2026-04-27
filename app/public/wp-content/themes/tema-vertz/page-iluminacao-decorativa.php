@@ -21,7 +21,7 @@ $theme_uri = get_template_directory_uri();
             data-scroll data-scroll-target="#pb-row-hero-decorativa" data-scroll-progress="easeInCubic">
             <!-- IMG: servico-residencial.jpg | 1920×1080 | 16/9 | pendente premium em ambiente iluminado -->
             <img
-              src="<?php echo esc_url($theme_uri); ?>/assets/images/servico-residencial.jpg"
+              src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/servico-residencial.jpg"
               alt="Iluminação Decorativa — Vertz Iluminação"
               loading="eager" decoding="async"
               style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
@@ -80,7 +80,7 @@ $theme_uri = get_template_directory_uri();
       <div class="overflow-clip" style="border-radius:16px;">
         <!-- IMG: sobre-missao.jpg | 1200×800 | 3/2 | showroom ou ambiente com pendente de destaque -->
         <img
-          src="<?php echo esc_url($theme_uri); ?>/assets/images/sobre-missao.jpg"
+          src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/sobre-missao.jpg"
           alt="Showroom Vertz — Iluminação Decorativa"
           loading="lazy" decoding="async"
           style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
@@ -159,7 +159,7 @@ $theme_uri = get_template_directory_uri();
       <div class="col-start-1 col-start-md-7 col-span-md-6 col-span-xl-12 overflow-clip" style="border-radius:12px;">
         <!-- IMG: contato-foto.jpg | 4/5 portrait | showroom ou detalhe de luminária premium -->
         <img
-          src="<?php echo esc_url($theme_uri); ?>/assets/images/contato-foto.jpg"
+          src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/contato-foto.jpg"
           alt="Showroom Vertz Iluminação"
           loading="lazy" decoding="async"
           style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
@@ -179,7 +179,7 @@ $theme_uri = get_template_directory_uri();
       <div class="col-start-1 col-span-md-5 col-span-xl-10 overflow-clip" style="border-radius:12px;">
         <!-- IMG: servico-corporativo.jpg | 3/2 | ambiente técnico / spots embutidos -->
         <img
-          src="<?php echo esc_url($theme_uri); ?>/assets/images/servico-corporativo.jpg"
+          src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/servico-corporativo.jpg"
           alt="Projeto Técnico de Iluminação — Vertz"
           loading="lazy" decoding="async"
           style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
