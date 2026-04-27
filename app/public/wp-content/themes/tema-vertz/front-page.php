@@ -362,7 +362,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
       <div class="pb-row-partners__track-wrap">
         <div class="pb-row-partners__track">
           <?php
-          $partners = range(1, 5);
+          $partners = range(1, 10);
           foreach (array_merge($partners, $partners) as $i):
             $src = get_template_directory_uri() . '/assets/images/parceiro' . $i . '.png';
           ?>
