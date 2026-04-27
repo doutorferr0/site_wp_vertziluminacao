@@ -221,4 +221,47 @@ add_action('carbon_fields_register_fields', function() {
                 ->set_help_text('Banner wide no rodapé da página de contato.'),
         ));
 
+
+    /* ════════════════════════════════════════════════════════
+       PROJETO — CPT (single-projeto.php)
+       Campos de cada projeto no portfólio
+    ════════════════════════════════════════════════════════ */
+    Container::make('post_meta', 'Projeto — Conteúdo')
+        ->where('post_type', '=', 'projeto')
+        ->add_tab('🖼️ Imagens', array(
+            Field::make('image', 'crb_projeto_cover', 'Capa / Hero (16:9 ou 3:2)')
+                ->set_value_type('url')
+                ->set_help_text('Imagem principal. Usada no hero do single e no card da listagem.'),
+
+            Field::make('complex', 'crb_projeto_galeria', 'Galeria de Imagens')
+                ->set_layout('tabbed-horizontal')
+                ->set_min(1)->set_max(20)
+                ->add_fields(array(
+                    Field::make('image', 'imagem', 'Foto')->set_value_type('url'),
+                    Field::make('text',  'legenda', 'Legenda (opcional)'),
+                )),
+        ))
+        ->add_tab('📋 Dados do Projeto', array(
+            Field::make('text', 'crb_projeto_area', 'Área (ex: 450m²)')
+                ->set_help_text('Área total do projeto.'),
+
+            Field::make('text', 'crb_projeto_localizacao', 'Localização (ex: Campinas, SP)')
+                ->set_default_value('Campinas, SP'),
+
+            Field::make('text', 'crb_projeto_prazo', 'Prazo (ex: 3 meses)'),
+
+            Field::make('text', 'crb_projeto_ano', 'Ano de conclusão (ex: 2024)'),
+
+            Field::make('complex', 'crb_projeto_servicos', 'Serviços prestados')
+                ->set_layout('tabbed-horizontal')
+                ->set_min(1)->set_max(10)
+                ->add_fields(array(
+                    Field::make('text', 'titulo', 'Serviço (ex: Projeto Luminotécnico)'),
+                )),
+        ))
+        ->add_tab('📝 Descrição', array(
+            Field::make('rich_text', 'crb_projeto_descricao', 'Descrição do Projeto')
+                ->set_help_text('Texto completo exibido na página do projeto. Use parágrafos e negrito.'),
+        ));
+
 }); // fim carbon_fields_register_fields
