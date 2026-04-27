@@ -13,14 +13,14 @@ $adsp    = vf('contato_endereco_sp',       'option', 'Alameda Casa Branca, 806 �
 $horario = vf('contato_horario',           'option', 'Seg–Sex 9h–18h / Sáb 9h–13h');
 
 // ── Campos desta página ─────────────────────────────────────
-$hero_img    = vf('sobre_hero_img',     false, $theme_uri . '/assets/images/sobre-hero.jpg');
+$hero_img    = vf('sobre_hero_img',     false, $theme_uri . '/assets/images/projetos/sobre-hero.jpg');
 $manifesto_sub   = vf('sobre_manifesto_sub',   false, 'Nossa história');
 $manifesto_titulo = vf('sobre_manifesto_titulo', false, 'Mais de 20 anos iluminando projetos com precisão e elegância.');
 $manifesto_corpo  = vf('sobre_manifesto_corpo',  false, '');
-$missao_img  = vf('sobre_missao_img',   false, $theme_uri . '/assets/images/sobre-missao.jpg');
-$galeria_01  = vf('sobre_galeria_01',   false, $theme_uri . '/assets/images/sobre-galeria-01.jpg');
-$galeria_02  = vf('sobre_galeria_02',   false, $theme_uri . '/assets/images/sobre-galeria-02.jpg');
-$galeria_03  = vf('sobre_galeria_03',   false, $theme_uri . '/assets/images/sobre-galeria-03.jpg');
+$missao_img  = vf('sobre_missao_img',   false, $theme_uri . '/assets/images/projetos/sobre-missao.jpg');
+$galeria_01  = vf('sobre_galeria_01',   false, $theme_uri . '/assets/images/projetos/sobre-galeria-01.jpg');
+$galeria_02  = vf('sobre_galeria_02',   false, $theme_uri . '/assets/images/projetos/sobre-galeria-02.jpg');
+$galeria_03  = vf('sobre_galeria_03',   false, $theme_uri . '/assets/images/projetos/sobre-galeria-03.jpg');
 
 $stats_raw = vf('sobre_stats', false, array());
 $stats = !empty($stats_raw) ? $stats_raw : array(
@@ -41,7 +41,7 @@ $stats = !empty($stats_raw) ? $stats_raw : array(
           <div class="pb-row-hero__mediaSticky position-sticky t-0 l-0 w-100 overflow-clip"
             data-scroll data-scroll-target="#pb-row-hero-sobre" data-scroll-progress="easeInCubic">
             <!-- IMG: sobre-hero.jpg | 1920×1080 | 16/9 -->
-            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/sobre-hero.jpg"
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/sobre-hero.jpg"
               alt="Vertz Iluminação — Sobre nós"
               loading="eager" decoding="async"
               style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
@@ -94,7 +94,7 @@ $stats = !empty($stats_raw) ? $stats_raw : array(
       <div class="overflow-clip" style="border-radius:16px;">
         <!-- IMG: sobre-missao.jpg | 1200×800 | 3/2 -->
         <img
-          src="<?php echo esc_url($theme_uri); ?>/assets/images/sobre-missao.jpg"
+          src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/sobre-missao.jpg"
           alt="Vertz Iluminação — Missão e Valores"
           loading="lazy" decoding="async"
           style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
@@ -118,7 +118,7 @@ $stats = !empty($stats_raw) ? $stats_raw : array(
       <div class="d-grid grid-column-1 grid-column-md-12 grid-gap-12 grid-gap-xl-20 mb-60 mb-md-80" data-scroll data-scroll-offset="60px,0" data-module-delay>
         <div class="col-start-1 col-span-md-5 col-span-xl-10 overflow-clip" style="border-radius:12px;">
           <!-- IMG: sobre-tecnica.jpg | 2/3 portrait | alta para dar contraste -->
-          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/servico-corporativo.jpg"
+          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/servico-corporativo.jpg"
             alt="Iluminação técnica Vertz" loading="lazy" decoding="async"
             style="width:100%;aspect-ratio:2/3;object-fit:cover;display:block;">
         </div>
@@ -154,7 +154,7 @@ $stats = !empty($stats_raw) ? $stats_raw : array(
         </div>
         <div class="col-start-1 col-span-md-5 col-span-xl-10 order-md-2 overflow-clip" style="border-radius:12px;">
           <!-- IMG: servico-residencial.jpg | 4/3 landscape -->
-          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/servico-residencial.jpg"
+          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/servico-residencial.jpg"
             alt="Iluminação decorativa Vertz" loading="lazy" decoding="async"
             style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
         </div>
