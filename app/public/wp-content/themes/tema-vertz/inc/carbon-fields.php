@@ -248,6 +248,9 @@ add_action('carbon_fields_register_fields', function() {
             Field::make('text', 'crb_projeto_localizacao', 'Localização (ex: Campinas, SP)')
                 ->set_default_value('Campinas, SP'),
 
+            Field::make('text', 'crb_projeto_papel', 'Papel (ex: Full Service Design & Build)')
+                ->set_help_text('Exibido na coluna Papel da listagem de projetos.'),
+
             Field::make('text', 'crb_projeto_prazo', 'Prazo (ex: 3 meses)'),
 
             Field::make('text', 'crb_projeto_ano', 'Ano de conclusão (ex: 2024)'),
@@ -265,3 +268,4 @@ add_action('carbon_fields_register_fields', function() {
         ));
 
 }); // fim carbon_fields_register_fields
+
