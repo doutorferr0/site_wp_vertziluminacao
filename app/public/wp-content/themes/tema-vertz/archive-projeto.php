@@ -1,183 +1,103 @@
 <?php
 /**
  * archive-projeto.php — Vertz Iluminação
- * Layout: lista tabular estilo Bolt Design.
- * URL: /projetos/
+ * Layout: boltdesign.nyc/projects
  */
-
 get_header();
 
-$categorias = get_terms( array(
-    'taxonomy'   => 'categoria_projeto',
-    'hide_empty' => true,
-) );
+$categorias = get_terms( ['taxonomy' => 'categoria_projeto', 'hide_empty' => true] );
+$cat_slug   = isset( $_GET['categoria'] ) ? sanitize_text_field( $_GET['categoria'] ) : '';
 
-$projetos = new WP_Query( array(
+$query_args = [
     'post_type'      => 'projeto',
     'posts_per_page' => -1,
-    'post_status'    => 'publish',
-    'orderby'        => 'menu_order date',
-    'order'          => 'ASC',
-) );
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+];
+if ( $cat_slug ) {
+    $query_args['tax_query'] = [[
+        'taxonomy' => 'categoria_projeto',
+        'field'    => 'slug',
+        'terms'    => $cat_slug,
+    ]];
+}
+$projetos = new WP_Query( $query_args );
 ?>
 
-<main class="pj-archive" id="main">
+<main class="pj-archive">
 
-  <!-- ── Cabeçalho: título + filtros ───────────────────── -->
-  <section class="pj-archive__head">
-    <div class="pj-archive__head-row">
-      <h1 class="pj-archive__title">Projetos</h1>
-      <?php if ( ! empty( $categorias ) && ! is_wp_error( $categorias ) ) : ?>
-      <div class="pj-archive__filters">
-        <span class="pj-archive__filter-label">Filtrar por</span>
-        <div class="pj-archive__filter-btns" role="navigation" aria-label="Filtrar projetos">
-          <button class="pj-filter-btn is-active" data-cat="">Todos</button>
-          <?php foreach ( $categorias as $cat ) : ?>
-            <button class="pj-filter-btn" data-cat="<?php echo esc_attr( $cat->slug ); ?>">
-              <?php echo esc_html( $cat->name ); ?>
-            </button>
-          <?php endforeach; ?>
-        </div>
-      </div>
-      <?php endif; ?>
-    </div>
+  <!-- CABEÇALHO ─────────────────────────────────────── -->
+  <header class="pj-archive__header">
+    <h1 class="pj-archive__title">Projetos</h1>
 
-    <!-- Cabeçalho das colunas -->
-    <div class="pj-archive__col-headers">
-      <div class="pj-archive__col-headers-inner">
-        <span></span><!-- nome: sem label -->
-        <span>Papel</span>
-        <span>Área</span>
-        <span>Prazo</span>
-        <span>Localização</span>
-        <span></span><!-- link: sem label -->
+    <div class="pj-archive__filter-wrap">
+      <span class="pj-archive__filter-label">Filtrar por</span>
+      <div class="pj-archive__pills">
+        <a href="<?php echo get_post_type_archive_link('projeto'); ?>"
+           class="pj-pill <?php echo !$cat_slug ? 'is-active' : ''; ?>">Todos</a>
+        <?php foreach ( $categorias as $cat ): ?>
+        <a href="<?php echo add_query_arg('categoria', $cat->slug, get_post_type_archive_link('projeto')); ?>"
+           class="pj-pill <?php echo $cat_slug === $cat->slug ? 'is-active' : ''; ?>">
+          <?php echo esc_html( $cat->name ); ?>
+        </a>
+        <?php endforeach; ?>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- ── Lista de projetos ──────────────────────────────── -->
-  <?php if ( $projetos->have_posts() ) : ?>
-  <div class="pj-list" id="pj-grid">
-
-    <?php while ( $projetos->have_posts() ) : $projetos->the_post();
-      $pid         = get_the_ID();
-      $cover       = vf( 'projeto_cover', $pid );
-      $thumb       = has_post_thumbnail() ? get_the_post_thumbnail_url( $pid, 'large' ) : '';
-      $cats        = get_the_terms( $pid, 'categoria_projeto' );
-      $cat_slugs   = $cats && ! is_wp_error( $cats ) ? implode( ' ', wp_list_pluck( $cats, 'slug' ) ) : '';
-      $cat_names   = $cats && ! is_wp_error( $cats ) ? implode( ', ', wp_list_pluck( $cats, 'name' ) ) : '';
-      $area        = vf( 'projeto_area', $pid );
-      $localizacao = vf( 'projeto_localizacao', $pid );
-      $prazo       = vf( 'projeto_prazo', $pid );
-      $papel       = vf( 'projeto_papel', $pid );
-      $galeria_raw = vf( 'projeto_galeria', $pid, array() );
-
-      // Monta array de imagens para a faixa (cover + galeria)
-      $faixa_imgs = array();
-      if ( $cover ) $faixa_imgs[] = $cover;
-      elseif ( $thumb ) $faixa_imgs[] = $thumb;
-      foreach ( $galeria_raw as $g ) {
-          if ( ! empty( $g['imagem'] ) ) $faixa_imgs[] = $g['imagem'];
-      }
-    ?>
-
-    <article class="pj-row" data-cats="<?php echo esc_attr( $cat_slugs ); ?>">
-
-      <!-- Linha de metadados -->
-      <div class="pj-row__meta">
-
-        <div class="pj-row__name-wrap">
-          <h2 class="pj-row__name">
-            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-          </h2>
-          <?php if ( $cat_names ) : ?>
-            <span class="pj-row__cat"><?php echo esc_html( $cat_names ); ?></span>
-          <?php endif; ?>
-        </div>
-
-        <div class="pj-row__col">
-          <span class="pj-row__col-label">Papel</span>
-          <span class="pj-row__col-val"><?php echo esc_html( $papel ?: 'Projeto Luminotécnico' ); ?></span>
-        </div>
-
-        <div class="pj-row__col">
-          <span class="pj-row__col-label">Área</span>
-          <span class="pj-row__col-val"><?php echo $area ? esc_html( $area ) : '—'; ?></span>
-        </div>
-
-        <div class="pj-row__col">
-          <span class="pj-row__col-label">Prazo</span>
-          <span class="pj-row__col-val"><?php echo $prazo ? esc_html( $prazo ) : '—'; ?></span>
-        </div>
-
-        <div class="pj-row__col">
-          <span class="pj-row__col-label">Localização</span>
-          <span class="pj-row__col-val"><?php echo $localizacao ? esc_html( $localizacao ) : '—'; ?></span>
-        </div>
-
-        <div class="pj-row__link-wrap">
-          <a class="pj-row__link" href="<?php the_permalink(); ?>" aria-label="Ver projeto <?php the_title_attribute(); ?>">
-            Ver Projeto ↗
-          </a>
-        </div>
-
-      </div><!-- /.pj-row__meta -->
-
-      <!-- Faixa de imagens -->
-      <?php if ( ! empty( $faixa_imgs ) ) : ?>
-      <div class="pj-row__strip" role="img" aria-label="Fotos do projeto <?php the_title_attribute(); ?>">
-        <div class="pj-row__strip-inner">
-          <?php foreach ( $faixa_imgs as $img_url ) : ?>
-          <a class="pj-row__strip-item" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
-            <img src="<?php echo esc_url( $img_url ); ?>"
-                 alt=""
-                 loading="lazy" decoding="async">
-          </a>
-          <?php endforeach; ?>
-        </div>
-      </div>
-      <?php endif; ?>
-
-    </article><!-- /.pj-row -->
-
-    <?php endwhile; wp_reset_postdata(); ?>
-
-    <div class="pj-list__empty" id="pj-empty" hidden>
-      <p>Nenhum projeto nesta categoria.</p>
-    </div>
+  <!-- COLUNAS HEADER ────────────────────────────────── -->
+  <div class="pj-archive__cols">
+    <span></span>
+    <span>Tipo de Serviço</span>
+    <span>Área</span>
+    <span>Localização</span>
+    <span></span>
   </div>
+  <hr class="pj-hr">
 
-  <?php else : ?>
-    <p class="pj-list__no-posts">Nenhum projeto publicado ainda.</p>
+  <!-- LISTA ─────────────────────────────────────────── -->
+  <?php if ( $projetos->have_posts() ): while ( $projetos->have_posts() ): $projetos->the_post();
+    $tipo    = get_post_meta( get_the_ID(), '_projeto_tipo_servico', true );
+    $area    = get_post_meta( get_the_ID(), '_projeto_area', true );
+    $loc     = get_post_meta( get_the_ID(), '_projeto_localizacao', true );
+    $galeria = get_post_meta( get_the_ID(), '_projeto_galeria', true );
+    $gal_ids = $galeria ? array_filter( array_map( 'intval', explode(',', $galeria) ) ) : [];
+  ?>
+  <article class="pj-item">
+
+    <!-- Linha de metadados -->
+    <div class="pj-item__row">
+      <h2 class="pj-item__title">
+        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+      </h2>
+      <span class="pj-item__meta"><?php echo esc_html( $tipo ?: '—' ); ?></span>
+      <span class="pj-item__meta"><?php echo $area ? esc_html($area).' m²' : '—'; ?></span>
+      <span class="pj-item__meta"><?php echo esc_html( $loc ?: '—' ); ?></span>
+      <a href="<?php the_permalink(); ?>" class="pj-item__cta" aria-label="Ver projeto <?php the_title_attribute(); ?>">
+        Ver Projeto →
+      </a>
+    </div>
+
+    <!-- Galeria horizontal ─────────────────────────── -->
+    <?php if ( has_post_thumbnail() || $gal_ids ): ?>
+    <div class="pj-item__gallery">
+      <?php if ( has_post_thumbnail() ):
+        echo get_the_post_thumbnail( null, 'large', ['class' => 'pj-item__img', 'loading' => 'lazy'] );
+      endif;
+      foreach ( $gal_ids as $img_id ):
+        $src = wp_get_attachment_image_url( $img_id, 'large' );
+        if ( $src ) echo '<img src="'.esc_url($src).'" class="pj-item__img" loading="lazy" alt="">';
+      endforeach; ?>
+    </div>
+    <?php endif; ?>
+
+    <hr class="pj-hr">
+  </article>
+  <?php endwhile; wp_reset_postdata();
+  else: ?>
+  <p class="pj-empty">Nenhum projeto encontrado.</p>
   <?php endif; ?>
 
 </main>
-
-<script>
-(function () {
-  var btns  = document.querySelectorAll('.pj-filter-btn');
-  var rows  = document.querySelectorAll('.pj-row');
-  var empty = document.getElementById('pj-empty');
-
-  btns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      btns.forEach(function (b) { b.classList.remove('is-active'); });
-      btn.classList.add('is-active');
-
-      var cat = btn.dataset.cat;
-      var visible = 0;
-
-      rows.forEach(function (row) {
-        var cats = row.dataset.cats || '';
-        var show = !cat || cats.split(' ').indexOf(cat) !== -1;
-        row.style.display = show ? '' : 'none';
-        if (show) visible++;
-      });
-
-      empty.hidden = visible > 0;
-    });
-  });
-})();
-</script>
 
 <?php get_footer(); ?>
