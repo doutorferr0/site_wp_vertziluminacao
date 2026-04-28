@@ -18,12 +18,12 @@ Objetivo: site performático, customizado, alta conversão, estética luxo.
 - Repo GitHub: https://github.com/doutorferr0/site_wp_vertziluminacao
 - Token: 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
 
-## Fluxo de desenvolvimento
+## Fluxo de desenvolvimento (MÉTODO ATIVO)
 - Claude altera arquivos via GitHub API (PUT /contents/)
-- Usuário faz `git pull origin main` para puxar as alterações localmente
-- Usuário faz `gup` para enviar alterações locais ao GitHub
+- Usuário faz git pull origin main para puxar as alterações localmente
+- Usuário faz gup para enviar alterações locais ao GitHub
 - REGRA: nunca Claude faz push via API enquanto usuário tem alterações locais não commitadas
-- Se conflito: `git checkout -- arquivo` depois `git pull origin main`
+- Se conflito: git checkout -- arquivo depois git pull origin main
 
 ## Regras de comunicação
 - Homem das cavernas: conciso, técnico, sem enrolação
