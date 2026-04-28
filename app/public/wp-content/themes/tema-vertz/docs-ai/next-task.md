@@ -1,24 +1,16 @@
 # next-task
 
 ## Tarefa atual
-Ativar e testar CPT de projetos no LocalWP.
+Diagnosticar e corrigir site que parou de abrir no Windows após reorganização de pastas de imagens.
 
 ## Foco
-Verificar que CPT `projeto` e templates funcionam corretamente.
-
-## Escopo
-1. No LocalWP → abrir site Vertz → WP Admin
-2. Ir em Configurações → Links Permanentes → Salvar (flush rewrite rules)
-3. Criar 1 projeto de teste: título, cover, categoria, galeria (2-3 fotos), meta
-4. Verificar: /projetos/ renderiza grid corretamente
-5. Verificar: /projetos/[slug]/ renderiza hero + meta + galeria
-6. Verificar filtro de categoria (JS no archive)
-7. Verificar lightbox (clique na galeria do single)
+Verificar se o problema é nos paths de imagens ou em outro arquivo PHP.
 
 ## Critério de conclusão
-Archive e single renderizam sem erro, filtro funciona, lightbox abre/fecha.
+Site abre normalmente no LocalWP e todas as imagens carregam.
 
-## Próximas ações após validação
-- Criar categorias reais (Residencial, Comercial, Hotelaria, Corporativo, Paisagismo)
-- Inserir projetos reais com fotos e copy
-- Adicionar link "Projetos" no menu principal do WP
+## Próximas ações imediatas
+1. Checar erro no LocalWP (error_log ou tela branca)
+2. Verificar se arquivos físicos foram movidos para as subpastas
+3. Se não foram movidos: mover os arquivos localmente
+4. git pull + gup após correção

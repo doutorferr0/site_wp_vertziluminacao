@@ -27,11 +27,7 @@ function tema_vertz_scripts() {
         array( 'google-fonts' ),
         $get_ver( get_template_directory() . '/assets/css/vertz.css' ) );
 
-<<<<<<< HEAD
     // CSS de projetos — carregado só nas páginas de projeto
-=======
-    // CSS de projetos (archive + single)
->>>>>>> cd33aa8350bdd1fd5ac74bd74a99a3bafd586bd5
     if ( is_post_type_archive( 'projeto' ) || is_singular( 'projeto' ) ) {
         wp_enqueue_style( 'vertz-projetos',
             get_template_directory_uri() . '/assets/css/projetos.css',
