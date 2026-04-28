@@ -1,29 +1,33 @@
 # current-state
 
 ## Fase atual
-Home com 4 seções ativas: Hero → Parceiros → Galeria → 9 Razões (card swiper) → CTA.
-Seções 2, 4, 5, 6, 7, 8, 8.5 comentadas no front-page.php.
+Home funcional com 5 seções ativas. Conflito de merge em functions.php resolvido. Site voltando a funcionar.
 
-## O que existe agora
-- Header: pill nav com sliding bg, 117px scrolled, logo 156px, mouse proximity show
-- Hero: fullscreen com video/imagem, logo animado grande → pequeno (só home)
-- Parceiros: ticker infinito com fade nas bordas, 10 parceiros, logos 70px
-- Galeria: layout lado a lado — texto esquerda + imagem direita, tabs Residencial/Comercial/Paisagismo
-- 9 Razões: swiper horizontal sem loop, scrollbar neon vermelha, imagens gifrazoes1-9.png
-- CTA: seção final de conversão
-- Smooth scroll LERP (ease 0.048, deltaY 0.65) com snap por proximidade (40% viewport, 600ms)
-- Header aparece por mouse proximity (150px do topo)
+## Seções da home (ordem)
+1. Hero — fullscreen video/imagem, logo animado grande→pequeno (só home)
+2. Parceiros — ticker infinito, 10 logos, fade nas bordas, 70px
+3. Galeria — texto esquerda + imagem direita, tabs Residencial/Comercial/Paisagismo
+4. 9 Razões — swiper horizontal sem loop, scrollbar neon vermelha, gifrazoes1-9.png
+5. CTA — conversão final
 
-## Estrutura de imagens reorganizada
-assets/images/
-├── logo/       → logo.png
-├── hero/       → hero-poster.jpg
-├── videos/     → hero-video.mp4
-├── projetos/   → gallery-0x, sobre-*, servico-*, contato-*
-├── razoes/     → gifrazoes1-9.png
-├── parceiros/  → parceiro1-10.png
-└── nav/        → nav-*.jpg
+## Seções comentadas no front-page.php (para uso futuro)
+- Seção 2: Declaração
+- Seção 4: Dois Pilares
+- Seções 5, 6, 7, 8, 8.5
 
-## Problema atual
-Site parou de abrir no Windows após reorganização das pastas de imagens.
-Causa provável: paths de imagens atualizados no PHP/CSS mas arquivos físicos não movidos ainda no LocalWP.
+## Header
+- Pill nav com sliding background (estilo kitskinkind.com.au)
+- 117px altura scrolled, logo 156px centralizado verticalmente
+- Transparente no is-top (hero home), cinza #0F0F0F 75% ao scrollar
+- Aparece ao mover mouse nos 150px do topo
+- is-top apenas na home (body.home)
+- Outras páginas: is-scrolled imediato ao carregar
+
+## Scroll
+- LERP smooth scroll (ease 0.048, deltaY 0.65) — sem touch
+- Snap por proximidade: threshold 40% viewport, timer 600ms
+- Snap points: topo + meio de cada .pb-row-wrapper
+
+## Imagens
+- Paths reorganizados em subpastas (logo/, hero/, projetos/, razoes/, parceiros/, nav/, videos/)
+- Arquivos físicos precisam ser movidos localmente para as subpastas

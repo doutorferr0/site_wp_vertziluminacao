@@ -1,32 +1,33 @@
 # decisions-and-future-tasks
 
-## Pendentes / decisões abertas
+## Pendentes
+
+### Imagens físicas
+- Arquivos em assets/images/ raiz precisam ser movidos para subpastas localmente
+- Mover antes de testar: logo/, hero/, videos/, projetos/, razoes/, parceiros/, nav/
 
 ### Carbon Fields
-- Instalar via composer no tema (composer require htmlburger/carbon-fields)
-- Bootstrap já existe em functions.php (verifica autoload)
+- Instalar via composer (composer require htmlburger/carbon-fields)
 - Substituir Customizer WP por Carbon Fields Theme Options
 - Prioridade: média
 
 ### WP CLI via WSL
-- Configurado: PHP.exe do LocalWP (php-8.2.29+0), php-local.ini com mysqli, wp-cli.phar em C:\Users\henri\
-- Função wp() no ~/.zshrc pronta
-- Problema restante: php.exe Windows não lê path /mnt/c/ do WSL — wp --path precisa de C:\ format
-- Impacto baixo — edição via GitHub API e VS Code supre a necessidade
+- Configurado mas --path não funciona com /mnt/c/ (precisa de C:\)
+- Impacto baixo — edição via GitHub API supre
 - Retomar só se precisar rodar comando WP específico
 
-### DB_HOST alterado
-- wp-config.php: DB_HOST agora é 127.0.0.1:10005 (porta real do LocalWP)
-- Não reverter
-
-### Imagens e copy
-- Todas as imagens são placeholder — cliente ainda não entregou
+### Imagens reais
+- Todas as imagens são placeholder
+- Cliente não entregou imagens reais ainda
 - Copy final não inserido em nenhuma página
-- Prioridade: alta (próxima fase)
 
 ### Deploy Hostinger
-- Processo de deploy não definido ainda (pendente confirmar)
+- Processo de deploy não definido ainda
 
-### Mobile
-- Header/logo no estado is-top em mobile: comportamento não revisado após mudanças recentes
-- Checar breakpoint 767px
+### Miniaturas do nav
+- nav-home.jpg, nav-servicos.jpg, nav-sobre.jpg, nav-contato.jpg
+- Pasta assets/images/nav/ criada, arquivos não existem ainda
+- Pill nav atual não usa mais miniaturas — pode remover essa pendência se não quiser retomar
+
+### Páginas internas
+- Seções removidas da home (razoes, features, FAQ, números, parceiros antigos) podem virar conteúdo das páginas Sobre e Serviços
