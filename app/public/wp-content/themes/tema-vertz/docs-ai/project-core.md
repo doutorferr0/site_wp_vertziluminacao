@@ -1,39 +1,49 @@
 # project-core
 
 ## Projeto
-Site WordPress custom para Vertz Iluminação — empresa de iluminação técnica e decorativa, Campinas e São Paulo.
-
-## Objetivo
-Site performático, conversão alta, identidade premium.
+Site WordPress custom para Vertz Iluminação — empresa de iluminação técnica e decorativa (Campinas/SP).
+Objetivo: site performático, customizado, alta conversão, estética luxo.
 
 ## Stack
-- WordPress (tema custom: tema-vertz)
-- PHP/CSS/JS nativos + WP nativo
-- Carbon Fields (instalação pendente)
-- Google Fonts: Inter + Playfair Display (OFL)
-- Swiper.js (razões slider)
+- WordPress + PHP nativo + Gutenberg + Carbon Fields
+- CSS/JS vanilla (sem framework)
+- Swiper.js para sliders
+- LocalWP (dev local Windows) + Hostinger (produção)
+- VS Code via WSL Ubuntu
 
 ## Ambiente
-- Dev local: LocalWP Windows
-- Editor: VS Code via WSL Ubuntu
-- Arquivos Windows via WSL: /mnt/c/Users/henri/Local Sites/vertziluminacaocombr
-- Repo: github.com/doutorferr0/site_wp_vertziluminacao
-- PAT: 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
-- Hosting: Hostinger (produção)
+- LocalWP: C:\Users\henri\Local Sites\vertziluminacaocombr\app\public
+- wp-config: DB_HOST=127.0.0.1:10005, DB_NAME=local, DB_USER=root
+- WSL: Ubuntu, shell zsh
+- Repo GitHub: https://github.com/doutorferr0/site_wp_vertziluminacao
+- Token: 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
 
-## Regras permanentes
+## Fluxo de desenvolvimento
+- Claude altera arquivos via GitHub API (PUT /contents/)
+- Usuário faz `git pull origin main` para puxar as alterações localmente
+- Usuário faz `gup` para enviar alterações locais ao GitHub
+- REGRA: nunca Claude faz push via API enquanto usuário tem alterações locais não commitadas
+- Se conflito: `git checkout -- arquivo` depois `git pull origin main`
+
+## Regras de comunicação
+- Homem das cavernas: conciso, técnico, sem enrolação
+- Padrão: [objeto] [ação] [motivo]. [próximo passo]
 - Código sempre em bloco com label de linguagem
-- Commit message: "update" (sem descrição)
-- Workflow: git pull antes de editar; gup (add -A + commit + push) após
-- Não mexer na seção pb-row-razoes (cliente preenche)
-- Evitar ferramentas pagas
-- Priorizar PHP/CSS/JS nativos
+- Commits: Conventional Commits, máx 50 chars, foco no porquê
+- Nunca reverter estilo após múltiplos turnos
 
-## Dados do cliente
-- WhatsApp: 5519999778710 | Tel: (19) 3251-0501
-- Email: contato@vertziluminacao.com.br
-- Instagram: @vertziluminacao
-- Campinas: R. Antônio Lapa 328 Cambuí
-- SP: Alameda Casa Branca 806 Jardim Paulista
-- CNPJ: 07.002.210/0001-68
-- Horário: Seg-Sex 9h-18h, Sáb 9h-13h
+## Tema
+- Pasta: app/public/wp-content/themes/tema-vertz/
+- Arquivos principais: functions.php, front-page.php, header.php, footer.php
+- CSS: assets/css/vertz.css
+- JS: assets/js/vertz.js
+
+## Estrutura de imagens
+assets/images/
+├── logo/       → logo.png
+├── hero/       → hero-poster.jpg
+├── videos/     → hero-video.mp4
+├── projetos/   → gallery-*, sobre-*, servico-*, contato-*
+├── razoes/     → gifrazoes1-9.png
+├── parceiros/  → parceiro1-10.png
+└── nav/        → nav-*.jpg
