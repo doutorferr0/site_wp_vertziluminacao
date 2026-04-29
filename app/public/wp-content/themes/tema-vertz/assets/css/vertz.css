@@ -810,10 +810,7 @@ figure {
 }
 
 @media (min-width: 1280px) {
-  .site-header__wrap {
-    padding-top: var(--header-padding-y);
-    padding-bottom: var(--header-padding-y);
-  }
+  /* wrap padding controlado direto na regra base */
 }
 
 /* Logo hero: só na home, fixo no hero, some ao scrollar */
@@ -893,8 +890,10 @@ figure {
 
 
 
-.btn.--cta.--cta-default {
-  padding: var(--header-cta-padding);
+/* header CTA: padding compacto (override do btn genérico) */
+.site-header .btn.--cta.--cta-default {
+  padding: 0.38rem 0.85rem !important;
+  font-size: 0.8rem;
 }
 
 
