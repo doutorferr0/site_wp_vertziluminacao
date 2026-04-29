@@ -251,6 +251,9 @@ add_action('carbon_fields_register_fields', function() {
             Field::make('text', 'crb_projeto_papel', 'Papel (ex: Full Service Design & Build)')
                 ->set_help_text('Exibido na coluna Papel da listagem de projetos.'),
 
+            Field::make('text', 'crb_projeto_parceria', 'Parceria (ex: Arquitetos JM)')
+                ->set_help_text('Escritório ou parceiro envolvido no projeto.'),
+
             Field::make('text', 'crb_projeto_prazo', 'Prazo (ex: 3 meses)'),
 
             Field::make('text', 'crb_projeto_ano', 'Ano de conclusão (ex: 2024)'),
