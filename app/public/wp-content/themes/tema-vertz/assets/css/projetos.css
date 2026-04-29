@@ -1,9 +1,7 @@
 /* ═══════════════════════════════════════════════════════
    ARCHIVE PROJETOS — focal card layout
-   Ref: boltdesign.nyc/projects
    ═══════════════════════════════════════════════════════ */
 
-/* Stage: tela inteira, flex column, fundo escuro */
 .pj-stage {
   display: flex;
   flex-direction: column;
@@ -19,10 +17,8 @@
   justify-content: center;
   flex: 1;
   color: rgba(255,255,255,0.4);
-  font-size: 1rem;
 }
 
-/* ── Slots ────────────────────────────────────────────── */
 .pj-slot { width: 100%; }
 
 .pj-slot.is-hidden {
@@ -31,29 +27,24 @@
   opacity: 0;
 }
 
-/* ── Faixas Prev / Next ───────────────────────────────── */
+/* ── Faixas Prev / Next — maiores ─────────────────────── */
 .pj-slot--adj {
   flex-shrink: 0;
-  height: 72px;
+  height: 120px;
   display: flex;
   align-items: center;
   gap: 1.25rem;
   padding: 0 clamp(1.5rem, 4vw, 3.5rem);
   cursor: pointer;
   background: rgba(255,255,255,0.02);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
   transition: background 0.2s ease;
 }
 
 .pj-slot--adj:hover { background: rgba(255,255,255,0.06); }
 
-/* Linha separadora entre faixa prev e card */
 .pj-slot--prev { border-bottom: 1px solid rgba(255,255,255,0.07); }
-
-/* Linha separadora entre card e faixa next */
 .pj-slot--next {
-  border-top:    1px solid rgba(255,255,255,0.07);
-  border-bottom: none;
+  border-top: 1px solid rgba(255,255,255,0.07);
   justify-content: flex-end;
 }
 
@@ -66,10 +57,10 @@
 }
 
 .pj-adj__title {
-  font-size: 0.9rem;
-  letter-spacing: 0.06em;
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.55);
   font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
@@ -78,9 +69,7 @@
   min-width: 0;
 }
 
-.pj-slot--next .pj-adj__title {
-  text-align: right;
-}
+.pj-slot--next .pj-adj__title { text-align: right; }
 
 .pj-adj__arr {
   font-size: 1rem;
@@ -88,7 +77,7 @@
   flex-shrink: 0;
 }
 
-/* ── Card principal ───────────────────────────────────── */
+/* ── Card principal — menor (flex menor) ──────────────── */
 .pj-slot--current {
   flex: 1;
   min-height: 0;
@@ -97,7 +86,6 @@
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* Animações de entrada/saída */
 .pj-slot--current.exit-up   { opacity: 0; transform: translateY(-16px); }
 .pj-slot--current.exit-down { opacity: 0; transform: translateY(16px);  }
 .pj-slot--current.enter     { animation: pj-enter 0.28s ease forwards;  }
@@ -107,22 +95,22 @@
   to   { opacity: 1; transform: translateY(0);   }
 }
 
+/* Link cobre o card inteiro */
 .pj-cur__link {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  position: relative;
   width: 100%;
   height: 100%;
   text-decoration: none;
   color: inherit;
 }
 
-/* Galeria: imagens lado a lado preenchendo o espaço */
+/* Imagens: background absoluto, 3 lado a lado */
 .pj-cur__imgs {
-  flex: 1;
-  min-height: 0;
+  position: absolute;
+  inset: 0;
   display: flex;
   gap: 3px;
-  overflow: hidden;
 }
 
 .pj-cur__imgs img {
@@ -141,71 +129,83 @@
   background: rgba(255,255,255,0.04);
 }
 
-/* Barra de info inferior */
+/* Overlay escuro sobre as imagens */
+.pj-cur__imgs::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.38);
+  pointer-events: none;
+}
+
+/* Texto centralizado sobre as imagens */
 .pj-cur__bar {
-  flex-shrink: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: clamp(1rem, 2.5vw, 2.5rem);
-  padding: 1.1rem clamp(1.5rem, 4vw, 3.5rem);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(8px);
+  gap: 0.75rem;
+  width: max-content;
+  max-width: min(80vw, 700px);
+  pointer-events: none;
 }
 
 .pj-cur__bar-left {
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
-  flex-shrink: 0;
 }
 
 .pj-cur__num {
   font-size: 0.68rem;
   letter-spacing: 0.15em;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.5);
   font-variant-numeric: tabular-nums;
 }
 
 .pj-cur__title {
-  font-size: clamp(1.15rem, 2vw, 1.75rem);
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
   font-weight: 400;
   letter-spacing: -0.01em;
-  line-height: 1;
+  line-height: 1.05;
   margin: 0;
   font-family: var(--font-heading, 'Playfair Display', serif);
   color: #fff;
-  white-space: nowrap;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
 }
 
 .pj-cur__bar-meta {
-  flex: 1;
   display: flex;
   gap: 1.5rem;
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .pj-cur__bar-meta span:empty { display: none; }
 
 .pj-cur__cta {
-  flex-shrink: 0;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.7);
-  border-bottom: 1px solid rgba(255,255,255,0.3);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.75);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
   padding-bottom: 1px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+  pointer-events: auto;
   transition: color 0.2s, border-color 0.2s;
 }
 
 .pj-cur__link:hover .pj-cur__cta {
   color: #fff;
-  border-color: rgba(255,255,255,0.7);
+  border-color: rgba(255,255,255,0.8);
 }
 
-/* ── Setas fixas (nav lateral) ────────────────────────── */
+/* ── Nav (setas fixas) ────────────────────────────────── */
 .pj-nav {
   position: fixed;
   right: clamp(1.25rem, 3vw, 2.5rem);
@@ -238,10 +238,7 @@
   border-color: rgba(255,255,255,0.5);
 }
 
-.pj-nav__btn:disabled {
-  opacity: 0.2;
-  cursor: default;
-}
+.pj-nav__btn:disabled { opacity: 0.2; cursor: default; }
 
 .pj-nav__count {
   font-size: 0.65rem;
@@ -254,17 +251,10 @@
 
 /* ── Mobile ───────────────────────────────────────────── */
 @media (max-width: 767px) {
-  .pj-slot--adj { height: 58px; gap: 0.75rem; padding: 0 1.25rem; }
-
-  .pj-cur__bar {
-    flex-wrap: wrap;
-    padding: 0.85rem 1.25rem;
-    gap: 0.5rem;
-  }
-
+  .pj-slot--adj    { height: 80px; padding: 0 1.25rem; }
+  .pj-adj__title   { font-size: 0.85rem; }
+  .pj-cur__title   { font-size: 1.4rem; }
   .pj-cur__bar-meta { display: none; }
-  .pj-cur__title    { font-size: 1rem; }
-
-  .pj-nav { right: 0.75rem; }
-  .pj-nav__btn { width: 36px; height: 36px; }
+  .pj-nav          { right: 0.75rem; }
+  .pj-nav__btn     { width: 36px; height: 36px; }
 }
