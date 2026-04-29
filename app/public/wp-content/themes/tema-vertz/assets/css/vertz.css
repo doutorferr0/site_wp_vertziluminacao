@@ -820,25 +820,25 @@ figure {
   }
 }
 
-/* Logo hero — visível só no is-top (hero) */
-.site-header__logo {
-  position: fixed;
+/* Logo hero — removido do header, agora é elemento estático no hero */
+/* .site-header__logo não existe mais no header */
+/* ── Hero logo watermark (estático dentro do hero) ── */
+.pb-row-hero__logo-watermark {
+  position: absolute;
   left: 2rem;
-  top: 37.5vh;
-  width: 575px;
-  margin: 0;
-  padding: 0;
-  z-index: 9001;
-  opacity: 1;
+  bottom: 8vh;
+  width: clamp(280px, 40vw, 575px);
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
 }
 
-/* Some quando sai do hero */
-.site-header.is-scrolled .site-header__logo,
-.site-header.is-hidden   .site-header__logo {
-  opacity: 0;
+.pb-row-hero__logo-watermark img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
+
 
 .site-header__logo img {
   width: 100%;
