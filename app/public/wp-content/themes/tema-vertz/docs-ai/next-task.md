@@ -1,17 +1,14 @@
 # next-task
 
-## Tarefa atual
-Criar single-projeto.php - template da pagina individual do projeto.
+## Proximas acoes imediatas (escolher ordem)
 
-## Foco
-Quando usuario clicar em "Veja mais sobre este projeto", abrir pagina com layout proprio.
+### Opcao A — Redesign Home + Header
+- Definir referencias visuais e escopo
+- Arquivos: front-page.php, header.php, vertz.css, vertz.js
 
-## Escopo
-- Hero com imagem capa
-- Titulo, Funcao, Parceria, Local, Ano
-- Galeria de imagens
-- Campo descricao (rich text)
-- Link voltar para /projetos/
+### Opcao B — single-projeto.php
+- Criar template da pagina individual do projeto
+- Usar campos Carbon Fields existentes (Capa, Galeria, Funcao, Parceria, Local, Ano, Descricao)
 
-## Criterio de conclusao
-Clicar no link abre pagina com layout proprio usando campos Carbon Fields existentes.
+## Aguardando
+Decisao de qual frente iniciar primeiro.
