@@ -482,8 +482,17 @@
         slidesPerView: 'auto',
         spaceBetween: 0,
         loop: false,
-        speed: 700,
+        speed: 500,
         grabCursor: true,
+        freeMode: {
+          enabled: true,
+          sticky: false,
+          momentum: true,
+          momentumRatio: 0.6,
+        },
+        touchEventsTarget: 'container',
+        touchRatio: 1,
+        simulateTouch: true,
         scrollbar: {
           el: el.querySelector('.swiper-scrollbar'),
           draggable: true,
