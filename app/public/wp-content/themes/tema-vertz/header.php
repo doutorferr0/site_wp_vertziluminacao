@@ -13,10 +13,20 @@
 <div class="site-transition position-fixed t-0 l-0 w-100 z-10000 bg-color-white visibility-hidden pointer-events-none" aria-hidden="true" data-site-transition></div>
 <div data-windmill="wrapper">
 <div data-windmill="container" data-ui="gform">
-<header class="site-header position-fixed z-9000 t-0 l-0 w-100 pointer-events-none">
-  <div class="site-header__wrap container-fluid d-flex justify-content-between align-items-center w-100">
+<!-- Logo hero: fora do header para evitar bug backdrop-filter/position:fixed -->
+<figure class="site-header__logo m-0 p-0 pointer-events-all" role="banner">
+  <a class="site-header__logoLink d-block w-100 color-current td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php bloginfo('name'); ?>">
+    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logo.png"
+         alt="Vertz Iluminação"
+         loading="eager" decoding="async"
+         style="display:block;height:auto;object-fit:contain;">
+  </a>
+</figure>
 
-    <figure class="site-header__logoHeader m-0 p-0 pointer-events-all" aria-hidden="true">
+<header class="site-header position-fixed z-9000 t-0 l-0 w-100 pointer-events-none">
+  <div class="site-header__wrap d-flex align-items-center">
+
+    <figure class="site-header__logoHeader m-0 p-0" aria-hidden="true">
       <a class="d-block td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" tabindex="-1">
         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logoheader.png"
              alt="Vertz Iluminação"
@@ -72,4 +82,5 @@
   </div>
 </div>
 <main class="flex-grow-1" role="main">
+
 
