@@ -820,7 +820,7 @@ figure {
   }
 }
 
-/* Logo — fixo no hero, sem animação de posição/tamanho */
+/* Logo hero — completamente estático, nunca muda */
 .site-header__logo {
   position: fixed;
   left: 2rem;
@@ -829,7 +829,6 @@ figure {
   margin: 0;
   padding: 0;
   z-index: 9001;
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .site-header__logo img {
@@ -840,18 +839,7 @@ figure {
   transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* No topo: grande, posição linhas 4-6 */
-.site-header.is-top .site-header__logo {
-  top: 37.5vh;
-  width: 575px;
-  left: 2rem;
-}
 
-/* Scrollado: hero logo desaparece */
-.site-header.is-scrolled .site-header__logo {
-  opacity: 0;
-  pointer-events: none;
-}
 /* Header logo (logoheader.png) — visível só no hover quando scrollado */
 .site-header__logoHeader {
   display: flex;
@@ -862,8 +850,9 @@ figure {
 }
 
 .site-header__logoHeader img {
-  height: 34px;
+  height: 28px;
   width: auto;
+  max-width: 140px;
   display: block;
   object-fit: contain;
 }
@@ -3739,4 +3728,5 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   opacity: 1;
   filter: grayscale(0);
 }
+
 
