@@ -820,7 +820,7 @@ figure {
   }
 }
 
-/* Logo hero — completamente estático, nunca muda */
+/* Logo hero — visível só no is-top (hero) */
 .site-header__logo {
   position: fixed;
   left: 2rem;
@@ -829,6 +829,15 @@ figure {
   margin: 0;
   padding: 0;
   z-index: 9001;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Some quando sai do hero */
+.site-header.is-scrolled .site-header__logo,
+.site-header.is-hidden   .site-header__logo {
+  opacity: 0;
 }
 
 .site-header__logo img {
@@ -840,12 +849,12 @@ figure {
 }
 
 
-/* Header logo (logoheader.png) — visível só no hover quando scrollado */
+/* Header logo — sempre visível, igual outros itens do header */
 .site-header__logoHeader {
   display: flex;
   align-items: center;
-  opacity: 0;
-  pointer-events: none;
+  opacity: 1;
+  pointer-events: all;
   transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -857,9 +866,10 @@ figure {
   object-fit: contain;
 }
 
-.site-header.is-scrolled:hover .site-header__logoHeader {
-  opacity: 1;
-  pointer-events: all;
+/* Esconde no is-top (hero), onde o logo grande já está visível */
+.site-header.is-top .site-header__logoHeader {
+  opacity: 0;
+  pointer-events: none;
 }
 
 
