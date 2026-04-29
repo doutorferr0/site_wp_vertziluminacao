@@ -242,28 +242,16 @@ add_action('carbon_fields_register_fields', function() {
                 )),
         ))
         ->add_tab('📋 Dados do Projeto', array(
-            Field::make('text', 'crb_projeto_area', 'Área (ex: 450m²)')
-                ->set_help_text('Área total do projeto.'),
-
-            Field::make('text', 'crb_projeto_localizacao', 'Localização (ex: Campinas, SP)')
-                ->set_default_value('Campinas, SP'),
-
-            Field::make('text', 'crb_projeto_papel', 'Papel (ex: Full Service Design & Build)')
-                ->set_help_text('Exibido na coluna Papel da listagem de projetos.'),
+            Field::make('text', 'crb_projeto_papel', 'Função (ex: Projeto Luminotécnico)')
+                ->set_help_text('Exibido na coluna Função da listagem de projetos.'),
 
             Field::make('text', 'crb_projeto_parceria', 'Parceria (ex: Arquitetos JM)')
                 ->set_help_text('Escritório ou parceiro envolvido no projeto.'),
 
-            Field::make('text', 'crb_projeto_prazo', 'Prazo (ex: 3 meses)'),
+            Field::make('text', 'crb_projeto_localizacao', 'Local (ex: Campinas, SP)')
+                ->set_default_value('Campinas, SP'),
 
             Field::make('text', 'crb_projeto_ano', 'Ano de conclusão (ex: 2024)'),
-
-            Field::make('complex', 'crb_projeto_servicos', 'Serviços prestados')
-                ->set_layout('tabbed-horizontal')
-                ->set_min(1)->set_max(10)
-                ->add_fields(array(
-                    Field::make('text', 'titulo', 'Serviço (ex: Projeto Luminotécnico)'),
-                )),
         ))
         ->add_tab('📝 Descrição', array(
             Field::make('rich_text', 'crb_projeto_descricao', 'Descrição do Projeto')
