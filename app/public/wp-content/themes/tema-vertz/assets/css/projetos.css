@@ -1,16 +1,19 @@
 /*
  * projetos.css — Vertz Iluminação
- * Archive: accordion vertical, 1 ativo (30vh) por vez.
- * Single: hero + meta + galeria masonry.
+ * Archive: sticky card stack (baralho). Mesmo top, z-index crescente.
+ * Ref: boltdesign.nyc/projects
  */
 
 :root {
-  --pj-gap:     clamp(1rem, 2.5vw, 2rem);
-  --pj-pad-x:   clamp(1.25rem, 5vw, 5rem);
-  --pj-pad-y:   clamp(3rem, 6vw, 6rem);
-  --pj-trans:   0.45s cubic-bezier(0.25,1,0.35,1);
-  --pj-border:  1px solid var(--color-surface, #2a2a2a);
-  --pj-strip-h: calc(30vh - 60px); /* total 30vh − nome */
+  --pj-gap:      clamp(1rem, 2.5vw, 2rem);
+  --pj-pad-x:    clamp(1.25rem, 5vw, 5rem);
+  --pj-pad-y:    clamp(3rem, 6vw, 6rem);
+  --pj-trans:    0.3s ease;
+  --pj-border:   1px solid var(--color-surface, #2a2a2a);
+  --pj-strip-h:  30vh;       /* altura total do card = nome-row + strip */
+  --pj-meta-h:   60px;       /* altura linha de meta */
+  --pj-head-top: 0px;        /* JS seta: altura do header */
+  --pj-card-top: 0px;        /* JS seta: header + pj-head */
 }
 
 /* ══════════════════════════════════════
@@ -25,18 +28,22 @@
 /* ── Cabeçalho sticky ────────────────────────────────── */
 .pj-archive__head {
   position: sticky;
-  top: 0;
-  z-index: 100;
+  top: var(--pj-head-top);
+  z-index: 500;   /* acima de tudo */
   background: var(--color-bg, #0F0F0F);
   border-bottom: var(--pj-border);
 }
 
 .pj-archive__head-inner {
+  padding: 1rem var(--pj-pad-x) 0;
+}
+
+.pj-archive__top-row {
   display: flex;
   align-items: center;
   gap: 2rem;
   flex-wrap: wrap;
-  padding: 1rem var(--pj-pad-x);
+  padding-bottom: 0.75rem;
 }
 
 .pj-archive__title {
@@ -84,8 +91,33 @@
   border-color: var(--color-accent, #E63946);
 }
 
+/* Labels colunas desktop */
+.pj-archive__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto;
+  gap: 0 1rem;
+  padding: 0.4rem 0 0.5rem;
+  border-top: var(--pj-border);
+}
+
+.pj-archive__cols span {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gray-400, #9ca3af);
+}
+
+@media (max-width: 900px) {
+  .pj-archive__cols { display: none; }
+}
+
 /* ── Lista ───────────────────────────────────────────── */
-.pj-list { }
+.pj-list {
+  /* padding-bottom garante scroll suficiente para o último card */
+  padding-bottom: 50vh;
+}
 
 .pj-list__no-posts,
 .pj-list__empty {
@@ -95,61 +127,68 @@
   padding: 3rem var(--pj-pad-x);
 }
 
-/* ── Row ─────────────────────────────────────────────── */
-/* Colapsado: só o head (nome). Ativo: nome + strip = 30vh */
+/* ── Card — sticky baralho ───────────────────────────── */
+/*
+ * MECANISMO:
+ * Todos os cards têm o mesmo `top: var(--pj-card-top)`.
+ * z-index cresce a cada card.
+ * Ao scrollar, o card seguinte (z-index maior) desliza
+ * por cima do anterior — efeito baralho.
+ * Cada card tem altura = meta-row + strip = ~30vh.
+ */
 
 .pj-row {
-  border-bottom: var(--pj-border);
-  overflow: hidden;
-  /* altura colapsada = apenas o head (~60px) */
-  height: 60px;
-  transition: height var(--pj-trans), background var(--pj-trans);
-}
-
-.pj-row.is-active {
-  height: 30vh;
-  min-height: 240px;
-}
-
-/* ── Head (nome) ─────────────────────────────────────── */
-.pj-row__head {
-  display: grid;
-  grid-template-columns: 1fr auto auto auto;
-  align-items: center;
-  gap: 0 1.5rem;
-  padding: 0 var(--pj-pad-x);
-  height: 60px;
+  display: block;
   text-decoration: none;
+  position: sticky;
+  top: var(--pj-card-top);
+  background: var(--color-bg, #0F0F0F);
+  border-top: var(--pj-border);
   transition: background var(--pj-trans);
 }
 
-.pj-row__head:hover { background: rgba(255,255,255,0.03); }
+.pj-row:hover { background: #1a1a1a; }
+
+/* ── Meta row ────────────────────────────────────────── */
+.pj-row__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto;
+  gap: 0 1rem;
+  align-items: center;
+  height: var(--pj-meta-h);
+  padding: 0 var(--pj-pad-x);
+}
+
+.pj-row__name-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  overflow: hidden;
+}
 
 .pj-row__name {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
   font-weight: 600;
   color: var(--color-light, #f5f5f0);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: opacity 0.2s;
 }
 
 .pj-row__cat {
   font-family: 'Inter', sans-serif;
   font-size: 0.6875rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--color-gray-400, #9ca3af);
-  white-space: nowrap;
 }
 
-.pj-row__role {
+.pj-row__col-val {
   font-family: 'Inter', sans-serif;
   font-size: 0.8125rem;
-  color: var(--color-gray-400, #9ca3af);
-  white-space: nowrap;
+  color: var(--color-light, #f5f5f0);
+  line-height: 1.4;
 }
 
 .pj-row__link {
@@ -162,26 +201,20 @@
   transition: opacity 0.2s;
 }
 
-.pj-row.is-active .pj-row__link,
-.pj-row__head:hover .pj-row__link { opacity: 1; }
+.pj-row:hover .pj-row__link { opacity: 1; }
 
 /* ── Strip horizontal ────────────────────────────────── */
 .pj-row__strip {
   display: flex;
   gap: 0.375rem;
   padding: 0 var(--pj-pad-x) 0;
-  height: var(--pj-strip-h);
+  /* altura do strip = 30vh total − meta-row */
+  height: calc(var(--pj-strip-h) - var(--pj-meta-h));
   overflow-x: scroll;
   overflow-y: hidden;
   cursor: e-resize;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  opacity: 0;
-  transition: opacity 0.3s ease 0.1s;
-}
-
-.pj-row.is-active .pj-row__strip {
-  opacity: 1;
 }
 
 .pj-row__strip::-webkit-scrollbar { display: none; }
@@ -190,7 +223,6 @@
   flex: 0 0 auto;
   height: 100%;
   overflow: hidden;
-  display: block;
 }
 
 .pj-row__strip-item img {
@@ -202,18 +234,18 @@
 }
 
 /* ── Responsive ──────────────────────────────────────── */
-@media (max-width: 768px) {
-  .pj-row__head {
+@media (max-width: 900px) {
+  .pj-row__meta {
     grid-template-columns: 1fr auto;
+    height: auto;
+    padding: 0.75rem var(--pj-pad-x);
   }
-  .pj-row__cat,
-  .pj-row__role { display: none; }
-  .pj-row__link { opacity: 1; }
-  .pj-row.is-active { height: 30vh; min-height: 220px; }
-  --pj-strip-h: calc(30vh - 60px);
+
+  /* Esconde colunas intermediárias no mobile */
+  .pj-row__meta > .pj-row__col-val { display: none; }
 }
 
-══════
+═
    SINGLE  /projetos/[slug]/
 ══════════════════════════════════════ */
 
@@ -568,4 +600,5 @@
   transition: color var(--pj-trans);
 }
 .pj-lightbox__close:hover { color: #f5f5f0; }
+
 
