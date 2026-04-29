@@ -107,7 +107,13 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
       </div>
 
       <div class="pb-row-hero__scrim" aria-hidden="true"></div>
-      <div class="pb-row-hero__scroll col-start-1 row-start-1 align-self-end position-relative overflow-clip" aria-hidden="true">
+      <!-- Logo watermark — estático dentro do hero -->
+      <div class="pb-row-hero__logo-watermark col-start-1 row-start-1" aria-hidden="true">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logo.png"
+             alt="" loading="eager" decoding="async">
+      </div>
+
+            <div class="pb-row-hero__scroll col-start-1 row-start-1 align-self-end position-relative overflow-clip" aria-hidden="true">
         <span class="pb-row-hero__scroll-line"></span>
       </div>
     </div>
