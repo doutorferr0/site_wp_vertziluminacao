@@ -2,36 +2,27 @@
 
 ## Pendentes
 
-### Imagens físicas
-- Arquivos em assets/images/ raiz precisam ser movidos para subpastas localmente
-- Mover antes de testar: logo/, hero/, videos/, projetos/, razoes/, parceiros/, nav/
+### Imagens fisicas
+- Arquivos movidos para subpastas localmente mas nao commitados
+- Fazer gup quando pronto
 
 ### Imagens e copy reais
-- Todas as imagens são placeholder
-- Cliente não entregou imagens reais ainda
-- Copy final não inserido em nenhuma página
+- Todas as imagens sao placeholder
+- Cliente nao entregou imagens reais ainda
 
-### Projetos — popular CPT
-- archive-projeto.php pronto mas CPT vazio
-- Criar pelo menos 3 projetos de exemplo no wp-admin para validar o layout
+### Single do projeto (single-projeto.php)
+- Template da pagina individual do projeto nao criado
+- "Veja mais sobre este projeto" aponta para URL do post sem template custom
+- Campos disponiveis: Capa, Galeria, Funcao, Parceria, Local, Ano, Descricao
+- Futuro: pode adicionar campo "Pecas em uso" sem risco para dados existentes
 
 ### Mobile
-- Header/logo no estado is-top em mobile: comportamento não revisado
-- Checar breakpoint 767px após imagens reais
+- Header/logo no is-top em mobile: nao revisado
+- Archive projetos mobile: layout cai para 1 coluna
+- Checar apos imagens reais
 
 ### Deploy Hostinger
-- Processo de deploy não definido ainda
-- Decidir: migração manual vs plugin (WP Migrate, All-in-One WP Migration)
+- Processo nao definido: migracao manual vs plugin
 
-### Páginas internas — CSS
-- Algumas classes de page-sobre, page-servicos, page-contato podem ter CSS incompleto
-- Validar visualmente cada página após imagens reais
-
-### WP CLI via WSL
-- PHP do WSL não tem mysqli — não conecta ao MySQL do LocalWP
-- Impacto baixo — editar via GitHub API supre
-- Retomar só se precisar rodar comando WP específico
-
-### Miniaturas do nav
-- nav-home.jpg, nav-servicos.jpg, nav-sobre.jpg, nav-contato.jpg
-- Pill nav atual não usa miniaturas — remover pendência se não quiser retomar
+### Paginas internas - CSS
+- Validar visualmente sobre, servicos, contato apos imagens reais
