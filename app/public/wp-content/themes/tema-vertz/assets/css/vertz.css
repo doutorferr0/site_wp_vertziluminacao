@@ -703,7 +703,7 @@ figure {
   align-items: center;
   justify-content: flex-end;
   gap: clamp(0.5rem, 1vw, 0.8rem);
-  padding: 3px 28px;
+  padding: 2px 48px;
   width: auto;
   height: auto;
   margin: 0;
@@ -866,7 +866,7 @@ figure {
 
 /* header CTA: padding compacto (override do btn genérico) */
 .site-header .btn.--cta.--cta-default {
-  padding: 0.38rem 0.85rem !important;
+  padding: 0.28rem 0.85rem !important;
   font-size: 0.8rem;
 }
 
@@ -3611,7 +3611,7 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   position: relative;
   z-index: 1;
   display: inline-block;
-  padding: 0.35rem 0.85rem;
+  padding: 0.25rem 0.85rem;
   font-size: clamp(0.85rem, 1vw, 0.95rem);
   font-weight: 700;
   text-transform: uppercase;
