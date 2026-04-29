@@ -1,8 +1,8 @@
 <?php
 /**
  * archive-projeto.php — Vertz Iluminação
- * Layout: card focal claro. Atual em destaque, anterior/próximo como faixas.
- * 4 imagens 5:6. Navegação por setas ↑↓.
+ * Layout: título na primeira coluna (vertically centered), 3 imagens 5:6.
+ * Faixas prev/next. Navegação por setas.
  */
 
 get_header();
@@ -31,13 +31,13 @@ if ( $projetos->have_posts() ) {
             if ( ! empty( $g['imagem'] ) ) $imgs[] = $g['imagem'];
         }
         $items[] = [
-            'title'     => get_the_title(),
-            'permalink' => get_permalink(),
-            'images'    => array_slice( $imgs, 0, 4 ),
-            'funcao'    => vf( 'projeto_papel',       $pid ) ?: '',
-            'parceria'  => vf( 'projeto_parceria',    $pid ) ?: '',
-            'local'     => vf( 'projeto_localizacao', $pid ) ?: '',
-            'ano'       => vf( 'projeto_ano',         $pid ) ?: '',
+            'title'    => get_the_title(),
+            'permalink'=> get_permalink(),
+            'images'   => array_slice( $imgs, 0, 3 ),
+            'funcao'   => vf( 'projeto_papel',       $pid ) ?: '',
+            'parceria' => vf( 'projeto_parceria',    $pid ) ?: '',
+            'local'    => vf( 'projeto_localizacao', $pid ) ?: '',
+            'ano'      => vf( 'projeto_ano',         $pid ) ?: '',
         ];
     }
     wp_reset_postdata();
@@ -61,9 +61,8 @@ $total = count( $items );
   <!-- Card principal -->
   <div class="pj-slot pj-slot--current" id="pj-current">
 
-    <!-- Cabeçalho: título + colunas meta -->
+    <!-- Cabeçalho: apenas metadados (sem título) -->
     <div class="pj-cur__head">
-      <h2 class="pj-cur__title" id="pj-cur-title">–</h2>
       <div class="pj-cur__cols">
         <div class="pj-cur__col">
           <span class="pj-cur__col-label">Função</span>
@@ -84,12 +83,22 @@ $total = count( $items );
       </div>
     </div>
 
-    <!-- Imagens 5:6 -->
-    <div class="pj-cur__imgs" id="pj-cur-imgs">
-      <!-- preenchido via JS -->
+    <!-- Grid: título (col1) + 3 imagens (col2-4) -->
+    <div class="pj-cur__body" id="pj-cur-body">
+
+      <!-- Título no lugar da primeira imagem, centralizado verticalmente -->
+      <div class="pj-cur__title-slot">
+        <h2 class="pj-cur__title" id="pj-cur-title">–</h2>
+      </div>
+
+      <!-- 3 imagens 5:6 -->
+      <div class="pj-cur__imgs" id="pj-cur-imgs">
+        <!-- preenchido via JS -->
+      </div>
+
     </div>
 
-    <!-- Rodapé: link -->
+    <!-- Rodapé -->
     <div class="pj-cur__foot">
       <a class="pj-cur__cta" id="pj-cur-link" href="#">
         Veja mais sobre este projeto ↗
@@ -106,13 +115,13 @@ $total = count( $items );
   <!-- Setas fixas -->
   <nav class="pj-nav" aria-label="Navegar projetos">
     <button class="pj-nav__btn" id="pj-up" aria-label="Anterior">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5,12 12,5 19,12"/>
       </svg>
     </button>
     <span class="pj-nav__count"><b id="pj-cnt">01</b><span>/<?php printf('%02d', $total); ?></span></span>
     <button class="pj-nav__btn" id="pj-down" aria-label="Próximo">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19,12 12,19 5,12"/>
       </svg>
     </button>
@@ -167,11 +176,10 @@ $total = count( $items );
     elCurLink.href            = p.permalink;
     elCnt.textContent         = pad(idx + 1);
 
-    // Imagens 5:6
+    // 3 imagens
     elCurImgs.innerHTML = '';
-    var srcs = p.images && p.images.length ? p.images : [];
-    // sempre 4 slots
-    for (var i = 0; i < 4; i++){
+    var srcs = p.images || [];
+    for (var i = 0; i < 3; i++){
       var wrap = document.createElement('div');
       wrap.className = 'pj-cur__img-wrap';
       if (srcs[i]){
@@ -184,21 +192,16 @@ $total = count( $items );
       elCurImgs.appendChild(wrap);
     }
 
-    // Prev
+    // Prev / Next
     if (idx > 0){
       elPrevTitle.textContent = ITEMS[idx-1].title;
       elPrev.classList.remove('is-hidden');
-    } else {
-      elPrev.classList.add('is-hidden');
-    }
+    } else { elPrev.classList.add('is-hidden'); }
 
-    // Next
     if (idx < total-1){
       elNextTitle.textContent = ITEMS[idx+1].title;
       elNext.classList.remove('is-hidden');
-    } else {
-      elNext.classList.add('is-hidden');
-    }
+    } else { elNext.classList.add('is-hidden'); }
 
     btnUp.disabled = idx === 0;
     btnDn.disabled = idx === total-1;
@@ -212,7 +215,7 @@ $total = count( $items );
       idx = n; render();
       elCurrent.classList.remove('exit-up','exit-down');
       elCurrent.classList.add('enter');
-      setTimeout(function(){ elCurrent.classList.remove('enter'); }, 300);
+      setTimeout(function(){ elCurrent.classList.remove('enter'); }, 280);
     }, 180);
   }
 
