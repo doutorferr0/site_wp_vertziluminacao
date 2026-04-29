@@ -1,181 +1,240 @@
 <?php
 /**
  * archive-projeto.php — Vertz Iluminação
- * Layout: accordion vertical — 1 projeto ativo (30vh) por vez.
- * Colapsado: só nome visível. Expandido: nome + strip horizontal.
+ * Layout focal: projeto atual em destaque, anterior/próximo como faixas.
+ * Navegação por setas ↑↓. Máx. 3 slots visíveis.
  */
 
 get_header();
 
-$categorias = get_terms( array(
-    'taxonomy'   => 'categoria_projeto',
-    'hide_empty' => true,
-) );
-
-$projetos = new WP_Query( array(
+$projetos = new WP_Query([
     'post_type'      => 'projeto',
     'posts_per_page' => -1,
     'post_status'    => 'publish',
     'orderby'        => 'menu_order date',
     'order'          => 'ASC',
-) );
+]);
+
+$items = [];
+if ( $projetos->have_posts() ) {
+    while ( $projetos->have_posts() ) {
+        $projetos->the_post();
+        $pid    = get_the_ID();
+        $cover  = vf( 'projeto_cover', $pid );
+        if ( ! $cover && has_post_thumbnail() ) {
+            $cover = get_the_post_thumbnail_url( $pid, 'large' );
+        }
+        $galeria = vf( 'projeto_galeria', $pid, [] );
+        $imgs    = [];
+        if ( $cover ) $imgs[] = $cover;
+        foreach ( $galeria as $g ) {
+            if ( ! empty( $g['imagem'] ) ) $imgs[] = $g['imagem'];
+        }
+        $items[] = [
+            'title'       => get_the_title(),
+            'permalink'   => get_permalink(),
+            'images'      => array_slice( $imgs, 0, 6 ),
+            'papel'       => vf( 'projeto_papel',       $pid ) ?: '',
+            'area'        => vf( 'projeto_area',        $pid ) ?: '',
+            'localizacao' => vf( 'projeto_localizacao', $pid ) ?: '',
+            'ano'         => vf( 'projeto_ano',         $pid ) ?: '',
+        ];
+    }
+    wp_reset_postdata();
+}
+
+$total = count( $items );
 ?>
 
-<main class="pj-archive" id="main">
+<main class="pj-stage" id="pj-stage">
 
-  <!-- Cabeçalho sticky -->
-  <section class="pj-archive__head" id="pj-head">
-    <div class="pj-archive__head-inner">
-      <h1 class="pj-archive__title">Projetos</h1>
-      <?php if ( ! empty( $categorias ) && ! is_wp_error( $categorias ) ) : ?>
-      <div class="pj-archive__filters">
-        <span class="pj-archive__filter-label">Filtrar</span>
-        <div class="pj-archive__filter-btns">
-          <button class="pj-filter-btn is-active" data-cat="">Todos</button>
-          <?php foreach ( $categorias as $cat ) : ?>
-            <button class="pj-filter-btn" data-cat="<?php echo esc_attr( $cat->slug ); ?>">
-              <?php echo esc_html( $cat->name ); ?>
-            </button>
-          <?php endforeach; ?>
-        </div>
-      </div>
-      <?php endif; ?>
-    </div>
-  </section>
+<?php if ( $total === 0 ) : ?>
+  <div class="pj-stage__empty"><p>Nenhum projeto publicado.</p></div>
 
-  <!-- Lista -->
-  <?php if ( $projetos->have_posts() ) : ?>
-  <div class="pj-list" id="pj-grid">
+<?php else : ?>
 
-    <?php while ( $projetos->have_posts() ) : $projetos->the_post();
-      $pid         = get_the_ID();
-      $cover       = vf( 'projeto_cover', $pid );
-      $thumb       = has_post_thumbnail() ? get_the_post_thumbnail_url( $pid, 'large' ) : '';
-      $cats        = get_the_terms( $pid, 'categoria_projeto' );
-      $cat_slugs   = $cats && ! is_wp_error( $cats ) ? implode( ' ', wp_list_pluck( $cats, 'slug' ) ) : '';
-      $cat_names   = $cats && ! is_wp_error( $cats ) ? implode( ', ', wp_list_pluck( $cats, 'name' ) ) : '';
-      $galeria_raw = vf( 'projeto_galeria', $pid, array() );
-      $papel       = vf( 'projeto_papel', $pid );
-
-      $strip_imgs = array();
-      if ( $cover )     $strip_imgs[] = $cover;
-      elseif ( $thumb ) $strip_imgs[] = $thumb;
-      foreach ( $galeria_raw as $g ) {
-          if ( ! empty( $g['imagem'] ) ) $strip_imgs[] = $g['imagem'];
-      }
-    ?>
-
-    <div class="pj-row" data-cats="<?php echo esc_attr( $cat_slugs ); ?>">
-
-      <!-- Nome — clicável -->
-      <a class="pj-row__head" href="<?php the_permalink(); ?>">
-        <span class="pj-row__name"><?php the_title(); ?></span>
-        <?php if ( $cat_names ) : ?>
-          <span class="pj-row__cat"><?php echo esc_html( $cat_names ); ?></span>
-        <?php endif; ?>
-        <span class="pj-row__role"><?php echo esc_html( $papel ?: 'Projeto Luminotécnico' ); ?></span>
-        <span class="pj-row__link">Ver ↗</span>
-      </a>
-
-      <!-- Strip — visível só quando ativo -->
-      <?php if ( ! empty( $strip_imgs ) ) : ?>
-      <div class="pj-row__strip" aria-hidden="true">
-        <?php foreach ( $strip_imgs as $img_url ) : ?>
-        <a class="pj-row__strip-item" href="<?php the_permalink(); ?>" tabindex="-1">
-          <img src="<?php echo esc_url( $img_url ); ?>"
-               alt="" loading="lazy" decoding="async">
-        </a>
-        <?php endforeach; ?>
-      </div>
-      <?php endif; ?>
-
-    </div>
-
-    <?php endwhile; wp_reset_postdata(); ?>
-
-    <div class="pj-list__empty" id="pj-empty" hidden>
-      <p>Nenhum projeto nesta categoria.</p>
-    </div>
+  <!-- Faixa anterior -->
+  <div class="pj-slot pj-slot--adj pj-slot--prev is-hidden" id="pj-prev" role="button" tabindex="0">
+    <span class="pj-adj__arr">↑</span>
+    <span class="pj-adj__num" id="pj-prev-num">01</span>
+    <span class="pj-adj__title" id="pj-prev-title">–</span>
   </div>
 
-  <?php else : ?>
-    <p class="pj-list__no-posts">Nenhum projeto publicado.</p>
-  <?php endif; ?>
+  <!-- Card principal -->
+  <div class="pj-slot pj-slot--current" id="pj-current">
+    <a class="pj-cur__link" id="pj-cur-link" href="#">
+
+      <div class="pj-cur__imgs" id="pj-cur-imgs">
+        <!-- preenchido via JS -->
+      </div>
+
+      <div class="pj-cur__bar">
+        <div class="pj-cur__bar-left">
+          <span class="pj-cur__num"  id="pj-cur-num">01</span>
+          <h2 class="pj-cur__title" id="pj-cur-title">–</h2>
+        </div>
+        <div class="pj-cur__bar-meta">
+          <span id="pj-cur-papel"></span>
+          <span id="pj-cur-local"></span>
+          <span id="pj-cur-area"></span>
+          <span id="pj-cur-ano"></span>
+        </div>
+        <span class="pj-cur__cta">Ver projeto ↗</span>
+      </div>
+
+    </a>
+  </div>
+
+  <!-- Faixa próximo -->
+  <div class="pj-slot pj-slot--adj pj-slot--next is-hidden" id="pj-next" role="button" tabindex="0">
+    <span class="pj-adj__num" id="pj-next-num">02</span>
+    <span class="pj-adj__title" id="pj-next-title">–</span>
+    <span class="pj-adj__arr">↓</span>
+  </div>
+
+  <!-- Setas fixas -->
+  <nav class="pj-nav" aria-label="Navegar projetos">
+    <button class="pj-nav__btn" id="pj-up"   aria-label="Anterior">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5,12 12,5 19,12"/>
+      </svg>
+    </button>
+    <span class="pj-nav__count">
+      <b id="pj-cnt">1</b><span>/<?php echo $total; ?></span>
+    </span>
+    <button class="pj-nav__btn" id="pj-down" aria-label="Próximo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19,12 12,19 5,12"/>
+      </svg>
+    </button>
+  </nav>
+
+<?php endif; ?>
 
 </main>
 
 <script>
-(function () {
-  var rows    = Array.from(document.querySelectorAll('.pj-row'));
-  var current = null;
+(function(){
+  var ITEMS = <?php echo wp_json_encode( $items ); ?>;
+  var total = ITEMS.length;
+  if (!total) return;
 
-  function activate(row) {
-    if (current === row) return;
-    if (current) current.classList.remove('is-active');
-    current = row;
-    if (current) current.classList.add('is-active');
+  var idx = 0;
+
+  var elPrev      = document.getElementById('pj-prev');
+  var elCurrent   = document.getElementById('pj-current');
+  var elNext      = document.getElementById('pj-next');
+  var elPrevNum   = document.getElementById('pj-prev-num');
+  var elPrevTitle = document.getElementById('pj-prev-title');
+  var elNextNum   = document.getElementById('pj-next-num');
+  var elNextTitle = document.getElementById('pj-next-title');
+  var elCurLink   = document.getElementById('pj-cur-link');
+  var elCurImgs   = document.getElementById('pj-cur-imgs');
+  var elCurNum    = document.getElementById('pj-cur-num');
+  var elCurTitle  = document.getElementById('pj-cur-title');
+  var elCurPapel  = document.getElementById('pj-cur-papel');
+  var elCurLocal  = document.getElementById('pj-cur-local');
+  var elCurArea   = document.getElementById('pj-cur-area');
+  var elCurAno    = document.getElementById('pj-cur-ano');
+  var elCnt       = document.getElementById('pj-cnt');
+  var btnUp       = document.getElementById('pj-up');
+  var btnDown     = document.getElementById('pj-down');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  // Ajusta altura do stage ao header
+  function setStageTop(){
+    var hdr = document.querySelector('.site-header, header');
+    var h   = hdr ? hdr.offsetHeight : 0;
+    var stage = document.getElementById('pj-stage');
+    if (stage) {
+      stage.style.paddingTop = h + 'px';
+      stage.style.height     = '100vh';
+      stage.style.boxSizing  = 'border-box';
+    }
   }
+  setStageTop();
+  window.addEventListener('resize', setStageTop);
 
-  // Ativa o row cujo topo está mais próximo de 30% do viewport
-  function onScroll() {
-    var target = 0.30 * window.innerHeight;
-    var best = null;
-    var bestDist = Infinity;
+  function render(){
+    var p = ITEMS[idx];
 
-    rows.forEach(function(row) {
-      if (row.style.display === 'none') return;
-      var rect = row.getBoundingClientRect();
-      var dist = Math.abs(rect.top - target);
-      if (dist < bestDist) { bestDist = dist; best = row; }
-    });
+    // Current
+    elCurLink.href          = p.permalink;
+    elCurNum.textContent    = pad(idx + 1);
+    elCurTitle.textContent  = p.title;
+    elCurPapel.textContent  = p.papel || '';
+    elCurLocal.textContent  = p.localizacao || '';
+    elCurArea.textContent   = p.area || '';
+    elCurAno.textContent    = p.ano || '';
+    elCnt.textContent       = pad(idx + 1);
 
-    activate(best);
-  }
-
-  // Ativa o primeiro ao carregar
-  function init() {
-    var visible = rows.filter(function(r){ return r.style.display !== 'none'; });
-    if (visible.length) activate(visible[0]);
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  init();
-
-  // Filtro
-  var btns  = document.querySelectorAll('.pj-filter-btn');
-  var empty = document.getElementById('pj-empty');
-
-  btns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      btns.forEach(function(b){ b.classList.remove('is-active'); });
-      btn.classList.add('is-active');
-      var cat = btn.dataset.cat;
-      var visible = 0;
-      rows.forEach(function(row) {
-        var cats = row.dataset.cats || '';
-        var show = !cat || cats.split(' ').indexOf(cat) !== -1;
-        row.style.display = show ? '' : 'none';
-        if (show) visible++;
+    // Imagens
+    elCurImgs.innerHTML = '';
+    if (p.images && p.images.length){
+      p.images.forEach(function(src){
+        var img = document.createElement('img');
+        img.src = src; img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
+        elCurImgs.appendChild(img);
       });
-      if (empty) empty.hidden = visible > 0;
-      current = null;
-      onScroll();
-    });
+    } else {
+      var ph = document.createElement('div');
+      ph.className = 'pj-cur__no-img';
+      elCurImgs.appendChild(ph);
+    }
+
+    // Prev
+    if (idx > 0){
+      var pp = ITEMS[idx - 1];
+      elPrevNum.textContent   = pad(idx);
+      elPrevTitle.textContent = pp.title;
+      elPrev.classList.remove('is-hidden');
+    } else {
+      elPrev.classList.add('is-hidden');
+    }
+
+    // Next
+    if (idx < total - 1){
+      var pn = ITEMS[idx + 1];
+      elNextNum.textContent   = pad(idx + 2);
+      elNextTitle.textContent = pn.title;
+      elNext.classList.remove('is-hidden');
+    } else {
+      elNext.classList.add('is-hidden');
+    }
+
+    btnUp.disabled   = idx === 0;
+    btnDown.disabled = idx === total - 1;
+  }
+
+  function go(dir){
+    var next = idx + dir;
+    if (next < 0 || next >= total) return;
+
+    elCurrent.classList.add(dir > 0 ? 'exit-up' : 'exit-down');
+    setTimeout(function(){
+      idx = next;
+      render();
+      elCurrent.classList.remove('exit-up','exit-down');
+      elCurrent.classList.add('enter');
+      setTimeout(function(){ elCurrent.classList.remove('enter'); }, 300);
+    }, 200);
+  }
+
+  btnUp.addEventListener('click',   function(){ go(-1); });
+  btnDown.addEventListener('click', function(){ go(1);  });
+  elPrev.addEventListener('click',  function(){ go(-1); });
+  elNext.addEventListener('click',  function(){ go(1);  });
+
+  elPrev.addEventListener('keydown', function(e){ if(e.key==='Enter') go(-1); });
+  elNext.addEventListener('keydown', function(e){ if(e.key==='Enter') go(1);  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowUp')   go(-1);
+    if (e.key === 'ArrowDown') go(1);
   });
 
-  // Drag scroll horizontal no strip
-  document.querySelectorAll('.pj-row__strip').forEach(function(strip) {
-    var isDown = false, startX, scrollLeft;
-    strip.addEventListener('mousedown', function(e) {
-      isDown = true; startX = e.pageX; scrollLeft = strip.scrollLeft;
-    });
-    document.addEventListener('mouseup', function() { isDown = false; });
-    strip.addEventListener('mousemove', function(e) {
-      if (!isDown) return;
-      e.preventDefault();
-      strip.scrollLeft = scrollLeft - (e.pageX - startX);
-    });
-  });
+  render();
 })();
 </script>
 
