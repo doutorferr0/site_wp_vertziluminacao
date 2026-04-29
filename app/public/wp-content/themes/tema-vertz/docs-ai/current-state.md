@@ -1,48 +1,49 @@
 # current-state
 
 ## Fase atual
-Site com home + páginas internas funcionais. Carbon Fields instalado. Archive de projetos com sticky card stack criado. Imagens físicas ainda em subpastas pendentes de mover.
+Pagina /projetos/ com layout focal card funcional. Carbon Fields limpo. FAB vinculado ao header.
 
-## Páginas criadas
+## Paginas criadas
 - Home (front-page.php)
 - Sobre (page-sobre.php)
-- Serviços (page-servicos.php)
+- Servicos (page-servicos.php)
 - Contato (page-contato.php)
-- Iluminação Técnica (page-iluminacao-tecnica.php)
-- Iluminação Decorativa (page-iluminacao-decorativa.php)
+- Iluminacao Tecnica (page-iluminacao-tecnica.php)
+- Iluminacao Decorativa (page-iluminacao-decorativa.php)
 - Archive Projetos (archive-projeto.php)
 
-## Seções da home (ordem ativa)
-1. Hero — fullscreen video/imagem, logo animado grande→pequeno (só home)
-2. Parceiros — ticker infinito, 10 logos, fade nas bordas, 70px
-3. Galeria — texto esquerda + imagem direita, tabs Residencial/Comercial/Paisagismo
-4. 9 Razões — swiper horizontal sem loop, scrollbar neon vermelha, gifrazoes1-9.png
-5. CTA — conversão final
+## Secoes da home (ordem ativa)
+1. Hero - fullscreen video/imagem, logo animado grande-pequeno (so home)
+2. Parceiros - ticker infinito, 10 logos, fade nas bordas
+3. Galeria - tabs Residencial/Comercial/Paisagismo
+4. 9 Razoes - swiper horizontal, scrollbar neon vermelha
+5. CTA - conversao final
 
 ## Header
 - Pill nav com sliding background
-- 117px altura scrolled, logo 156px centralizado verticalmente
-- Transparente no is-top (hero home), cinza #0F0F0F 75% ao scrollar
+- Transparente no is-top (home), cinza #0F0F0F 75% ao scrollar
 - Aparece ao mover mouse nos 150px do topo
-- is-top apenas na home (body.home)
-- Outras páginas: is-scrolled imediato ao carregar
+- is-top apenas na home
 
-## Scroll
-- LERP smooth scroll (ease 0.048, deltaY 0.65) — sem touch
-- Snap por proximidade: threshold 40% viewport, timer 600ms
+## Archive Projetos (/projetos/)
+- Layout: faixa prev (72px) | card atual | faixa next (72px)
+- Card atual: grid 2 col - [titulo centralizado | 3 imagens 5:6]
+- Metadados (Funcao, Parceria, Local, Ano) no topo a direita
+- Imagens com 16% padding vertical, hover escurece (sem scale)
+- Click na imagem -> lightbox com carrossel + miniaturas
+- Setas fixas a direita + contador 01/04
+- Navegacao teclado: ArrowUp/Down (projeto), ArrowLeft/Right (lightbox)
 
-## Carbon Fields
-- Instalado via Composer (htmlburger/carbon-fields)
-- inc/carbon-fields.php registra todos os campos
-- Helper vf() em functions.php abstrai leitura de campos
-- vendor/ não commitado (só composer.json + composer.lock)
+## Carbon Fields - CPT Projeto
+Abas no wp-admin:
+- Imagens: Capa/Hero + Galeria (ate 20 fotos)
+- Dados: Funcao, Parceria, Local, Ano
+- Descricao: rich text (para single do projeto)
 
-## Archive Projetos
-- archive-projeto.php — CPT projetos com sticky card stack
-- assets/css/projetos.css — CSS puro, z-index crescente por card
-- Cada card: sticky top=headerH, 30vh altura, desliza sobre anterior
-- Filtros por categoria no topo
+## FAB (WhatsApp + Telefone)
+- Visivel apenas quando header tem is-visible ou is-top
+- Controlado por MutationObserver no vertz.js
 
 ## Imagens
-- Paths reorganizados em subpastas no PHP
-- Arquivos físicos ainda na raiz assets/images/ — precisam ser movidos
+- Paths em subpastas (logo/, hero/, projetos/, razoes/, parceiros/, nav/, videos/)
+- Arquivos fisicos movidos localmente, nao commitados ainda
