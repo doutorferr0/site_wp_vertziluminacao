@@ -47,9 +47,9 @@
   --header-max-width: min(1200px, calc(100vw - 4rem));
   --header-padding-y: clamp(0.7rem, 1.12vw, 1.1rem);
   --header-padding-y-scrolled: clamp(0.4rem, 0.72vw, 0.7rem);
-  --header-gutter: clamp(1.5rem, 3vw, 2.7rem);
+  --header-gutter: clamp(0.6rem, 1.2vw, 1rem);
   --header-nav-font-size: clamp(1.45rem, 1.95vw, 1.75rem);
-  --header-cta-padding: clamp(0.85rem, 1.2vw, 1.1rem) clamp(1rem, 1.5vw, 1.4rem);
+  --header-cta-padding: 0.55rem clamp(0.8rem, 1.2vw, 1.1rem);
   --header-logo-size-top: 575px;
   --header-logo-size-scrolled: 150px;
   --header-logo-margin-left: clamp(1.0rem, 2.0vw, 2.0rem);
@@ -702,22 +702,31 @@ figure {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--header-gutter);
-  padding: 7px 8px;
+  gap: clamp(0.5rem, 1vw, 0.8rem);
+  padding: 6px 6px;
   width: auto;
-  max-width: calc(100vw - 2rem);
   height: auto;
   margin: 0;
+  border-radius: 999px;
+  pointer-events: all;
+  /* SEM backdrop-filter aqui — estaria no ::before */
+}
+
+/* Pill visual no pseudo-element: não cria containing block para position:fixed */
+.site-header__wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   border-radius: 999px;
   background: rgba(12, 12, 12, 0.65);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  pointer-events: all;
+  z-index: -1;
   transition: background 0.4s ease;
 }
 
 /* No topo: pill levemente mais transparente */
-.site-header.is-top .site-header__wrap {
+.site-header.is-top .site-header__wrap::before {
   background: rgba(12, 12, 12, 0.45);
 }
 
@@ -764,7 +773,7 @@ figure {
 }
 
 /* Scrolled: pill mais escuro */
-.site-header.is-scrolled .site-header__wrap {
+.site-header.is-scrolled .site-header__wrap::before {
   background: rgba(12, 12, 12, 0.72);
 }
 
@@ -807,12 +816,9 @@ figure {
   }
 }
 
-/* Logo hero — só na home, fixo, estático */
+/* Logo hero: só na home, fixo no hero, some ao scrollar */
 .site-header__logo {
   display: none;
-}
-.home .site-header__logo {
-  display: block;
   position: fixed;
   left: 2rem;
   top: 37.5vh;
@@ -820,6 +826,16 @@ figure {
   margin: 0;
   padding: 0;
   z-index: 9001;
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.5s ease;
+}
+.home .site-header__logo {
+  display: block;
+}
+.home .site-header.is-scrolled .site-header__logo {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .site-header__logo img {
@@ -3723,6 +3739,7 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   opacity: 1;
   filter: grayscale(0);
 }
+
 
 
 
