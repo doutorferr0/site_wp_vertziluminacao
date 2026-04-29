@@ -8,15 +8,15 @@
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<!-- Logo hero: posição fixa independente — fora de qualquer wrapper/transform -->
-<figure class="site-header__logo m-0 p-0" role="banner">
-  <a class="site-header__logoLink d-block color-current td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php bloginfo('name'); ?>">
+<?php if ( is_front_page() ) : ?>
+<figure style="position:fixed;left:2rem;top:37.5vh;width:575px;z-index:9001;margin:0;padding:0;pointer-events:all;" role="banner">
+  <a href="<?php echo esc_url( home_url('/') ); ?>" style="display:block;">
     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logo.png"
-         alt="Vertz Iluminação"
-         loading="eager" decoding="async"
-         style="display:block;height:auto;object-fit:contain;">
+         alt="Vertz Iluminação" loading="eager" decoding="async"
+         style="display:block;width:100%;height:auto;">
   </a>
 </figure>
+<?php endif; ?>
 <div class="nav-overlay" aria-hidden="true"></div>
 <div class="site-loader position-fixed t-0 l-0 w-100 z-10000 bg-color-white" aria-hidden="true" data-site-loader></div>
 <div class="site-transition position-fixed t-0 l-0 w-100 z-10000 bg-color-white visibility-hidden pointer-events-none" aria-hidden="true" data-site-transition></div>
