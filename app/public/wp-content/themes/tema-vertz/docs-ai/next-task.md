@@ -1,14 +1,14 @@
 # next-task
 
-## Proximas acoes imediatas (escolher ordem)
+## Foco
+Validar header pill + logo hero após correções.
 
-### Opcao A — Redesign Home + Header
-- Definir referencias visuais e escopo
-- Arquivos: front-page.php, header.php, vertz.css, vertz.js
+## Critério de conclusão
+- logo.png estático e sempre visível no hero da home
+- Header pill ~30% menor que versão anterior
+- logoheader.png aparece no hover
 
-### Opcao B — single-projeto.php
-- Criar template da pagina individual do projeto
-- Usar campos Carbon Fields existentes (Capa, Galeria, Funcao, Parceria, Local, Ano, Descricao)
-
-## Aguardando
-Decisao de qual frente iniciar primeiro.
+## Próximas ações
+- single-projeto.php
+- Imagens/copy reais
+- Mobile review
