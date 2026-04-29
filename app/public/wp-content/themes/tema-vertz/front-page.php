@@ -64,6 +64,16 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
 
   <!-- SEÇÃO 1: HERO -->
   <div class="pb-row-wrapper position-relative pt-0 pb-0 mt-0 mb-0 --layout-pb-row-hero --first" style="--zindex:1">
+
+    <!-- Logo: absolute dentro do hero, sem position:fixed, sem bugs -->
+    <figure style="position:absolute;left:2rem;top:37.5%;width:575px;z-index:5;margin:0;padding:0;pointer-events:all;" role="banner">
+      <a href="<?php echo esc_url(home_url('/')); ?>" style="display:block;">
+        <img src="<?php echo esc_url($theme_uri); ?>/assets/images/logo/logo.png"
+             alt="Vertz Iluminação" loading="eager" decoding="async"
+             style="display:block;width:100%;height:auto;">
+      </a>
+    </figure>
+
     <div id="pb-row-hero-1" class="pb-row pb-row-hero d-grid grid-row-1" data-scroll data-module-delay data-module-delay-increment="550">
       <figure class="pb-row-hero__media col-start-1 row-start-1 position-relative w-100 h-100">
         <div class="pb-row-hero__mediaWrap position-absolute t-0 l-0 w-100 m-0">
