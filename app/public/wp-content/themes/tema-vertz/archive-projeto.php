@@ -33,7 +33,7 @@ if ( $projetos->have_posts() ) {
         $items[] = [
             'title'       => get_the_title(),
             'permalink'   => get_permalink(),
-            'images'      => array_slice( $imgs, 0, 6 ),
+            'images'      => array_slice( $imgs, 0, 3 ),
             'papel'       => vf( 'projeto_papel',       $pid ) ?: '',
             'area'        => vf( 'projeto_area',        $pid ) ?: '',
             'localizacao' => vf( 'projeto_localizacao', $pid ) ?: '',
