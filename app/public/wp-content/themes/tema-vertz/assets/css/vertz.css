@@ -709,7 +709,7 @@ figure {
   height: auto;
   margin: 0;
   border-radius: 999px;
-  background: rgba(6, 6, 6, 0.82);
+  background: rgba(12, 12, 12, 0.65);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   pointer-events: all;
@@ -718,7 +718,7 @@ figure {
 
 /* No topo: pill levemente mais transparente */
 .site-header.is-top .site-header__wrap {
-  background: rgba(6, 6, 6, 0.55);
+  background: rgba(12, 12, 12, 0.45);
 }
 
 /* Nav sempre visível no topo */
@@ -765,7 +765,7 @@ figure {
 
 /* Scrolled: pill mais escuro */
 .site-header.is-scrolled .site-header__wrap {
-  background: rgba(6, 6, 6, 0.88);
+  background: rgba(12, 12, 12, 0.72);
 }
 
 
@@ -807,8 +807,12 @@ figure {
   }
 }
 
-/* Logo hero — completamente estático, nunca muda */
+/* Logo hero — só na home, fixo, estático */
 .site-header__logo {
+  display: none;
+}
+.home .site-header__logo {
+  display: block;
   position: fixed;
   left: 2rem;
   top: 37.5vh;
@@ -827,29 +831,31 @@ figure {
 }
 
 
-/* Header logo — dentro do pill, hover no wrap */
+/* Header logo — flex item no pill, expande no hover */
 .site-header__logoHeader {
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
   display: flex;
   align-items: center;
+  overflow: hidden;
+  max-width: 0;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 1;
+  transition: max-width 0.4s cubic-bezier(0.25, 1, 0.35, 1),
+              opacity 0.3s ease;
+  flex-shrink: 0;
 }
 
 .site-header__logoHeader img {
   height: 26px;
   width: auto;
+  min-width: 80px;
   max-width: 130px;
   display: block;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .site-header__wrap:hover .site-header__logoHeader {
+  max-width: 150px;
   opacity: 1;
   pointer-events: all;
 }
@@ -3717,6 +3723,7 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   opacity: 1;
   filter: grayscale(0);
 }
+
 
 
 
