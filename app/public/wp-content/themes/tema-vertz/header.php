@@ -25,6 +25,15 @@
       </a>
     </figure>
 
+    <figure class="site-header__logoHeader m-0 p-0 pointer-events-all" aria-hidden="true">
+      <a class="d-block td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" tabindex="-1">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logoheader.png"
+             alt="Vertz Iluminação"
+             loading="eager" decoding="async"
+             style="display:block;height:auto;object-fit:contain;">
+      </a>
+    </figure>
+
     <nav class="site-header__rightNav pointer-events-all">
       <ul class="site-header__rightMenu list-none m-0 p-0 d-flex align-items-center grid-gap-15 grid-gap-xl-20">
         <li>
@@ -72,3 +81,4 @@
   </div>
 </div>
 <main class="flex-grow-1" role="main">
+
