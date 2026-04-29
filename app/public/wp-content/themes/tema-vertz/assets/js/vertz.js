@@ -441,17 +441,31 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hidePanel(); });
   }
 
-  /* FAB */
+  /* FAB — aparece apenas quando header é visível */
   function initFab() {
-    var fab = qs('.site-fab');
-    if (!fab) return;
+    var fab    = qs('.site-fab');
+    var header = qs('.site-header');
+    if (!fab || !header) return;
+
+    fab.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+
+    function syncFab() {
+      var visible = header.classList.contains('is-visible') ||
+                    header.classList.contains('is-top');
+      fab.style.opacity   = visible ? '1' : '0';
+      fab.style.transform = visible ? 'translateY(0)' : 'translateY(10px)';
+      fab.style.pointerEvents = visible ? '' : 'none';
+    }
+
+    // Estado inicial
     fab.style.opacity = '0';
-    fab.style.transform = 'translateY(20px)';
-    fab.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    setTimeout(function () {
-      fab.style.opacity = '1';
-      fab.style.transform = 'translateY(0)';
-    }, 2000);
+    fab.style.transform = 'translateY(10px)';
+    fab.style.pointerEvents = 'none';
+
+    // Observa mudanças de classe no header
+    var obs = new MutationObserver(syncFab);
+    obs.observe(header, { attributes: true, attributeFilter: ['class'] });
+    syncFab();
   }
 
   /* INIT */
