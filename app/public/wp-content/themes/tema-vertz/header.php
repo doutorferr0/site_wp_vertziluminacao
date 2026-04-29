@@ -8,22 +8,21 @@
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<!-- Logo hero: posição fixa independente — fora de qualquer wrapper/transform -->
+<figure class="site-header__logo m-0 p-0" role="banner">
+  <a class="site-header__logoLink d-block color-current td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php bloginfo('name'); ?>">
+    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logo.png"
+         alt="Vertz Iluminação"
+         loading="eager" decoding="async"
+         style="display:block;height:auto;object-fit:contain;">
+  </a>
+</figure>
 <div class="nav-overlay" aria-hidden="true"></div>
 <div class="site-loader position-fixed t-0 l-0 w-100 z-10000 bg-color-white" aria-hidden="true" data-site-loader></div>
 <div class="site-transition position-fixed t-0 l-0 w-100 z-10000 bg-color-white visibility-hidden pointer-events-none" aria-hidden="true" data-site-transition></div>
 <div data-windmill="wrapper">
 <div data-windmill="container" data-ui="gform">
 <header class="site-header position-fixed z-9000 t-0 l-0 w-100 pointer-events-none">
-
-  <!-- Logo hero: filho DIRETO do header (não do __wrap), evita bug backdrop-filter -->
-  <figure class="site-header__logo m-0 p-0 pointer-events-all" role="banner">
-    <a class="site-header__logoLink d-block color-current td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" title="<?php bloginfo('name'); ?>">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logo.png"
-           alt="Vertz Iluminação"
-           loading="eager" decoding="async"
-           style="display:block;height:auto;object-fit:contain;">
-    </a>
-  </figure>
 
   <div class="site-header__wrap d-flex align-items-center">
 
