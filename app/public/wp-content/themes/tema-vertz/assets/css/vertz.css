@@ -813,30 +813,8 @@ figure {
   /* wrap padding controlado direto na regra base */
 }
 
-/* Logo hero: só na home, fixo no hero, some ao scrollar */
-.site-header__logo {
-  display: none;
-  position: fixed;
-  left: 2rem;
-  top: 37.5vh;
-  width: 575px;
-  margin: 0;
-  padding: 0;
-  z-index: 9001;
-
-}
-.home .site-header__logo {
-  display: block;
-}
 
 
-.site-header__logo img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
 
 
 /* Header logo — flex item no pill, expande no hover */
@@ -868,10 +846,6 @@ figure {
   pointer-events: all;
 }
 
-
-.site-header__logo img {
-  filter: none;
-}
 
 .site-header__rightNav {
   display: flex;
@@ -914,10 +888,6 @@ figure {
     gap: var(--header-gutter);
     padding-left: var(--header-gutter);
     padding-right: var(--header-gutter);
-  }
-
-  .site-header__logo {
-    margin-right: 0;
   }
 }
 
@@ -3427,9 +3397,6 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 
 /* Logo: drop-shadow quando sobre fundo claro
    Funciona independente da cor do logo.png */
-.home .site-header.is-top .site-header__logo img {
-  filter: drop-shadow(0 1px 8px rgba(0,0,0,0.55));
-}
 
 /* Nav links: sombra de texto para legibilidade sobre qualquer fundo */
 .home .site-header.is-top .site-header__rightMenuItems a {
