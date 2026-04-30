@@ -702,33 +702,20 @@ figure {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(0.5rem, 1vw, 0.8rem);
-  padding: 2px 32px;
-  width: calc(100% - 200px);
-  height: 70px;
+  gap: 12px;
+  padding: 0;
+  width: calc(100% - 2rem);
+  height: auto;
   margin: 0 auto;
-  border-radius: 999px;
-  pointer-events: all;
-  /* SEM backdrop-filter aqui — estaria no ::before */
+  background: transparent;
+  border-radius: 0;
+  pointer-events: none;
 }
 
-/* Pill visual no pseudo-element: não cria containing block para position:fixed */
-.site-header__wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: rgba(12, 12, 12, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  z-index: -1;
-  transition: background 0.4s ease;
-}
+
 
 /* No topo: pill levemente mais transparente */
-.site-header.is-top .site-header__wrap::before {
-  background: rgba(12, 12, 12, 0.45);
-}
+
 
 /* Nav sempre visível no topo */
 .site-header.is-top .site-header__rightNav,
@@ -773,9 +760,7 @@ figure {
 }
 
 /* Scrolled: pill mais escuro */
-.site-header.is-scrolled .site-header__wrap::before {
-  background: rgba(12, 12, 12, 0.72);
-}
+
 
 
 /* Nav links brancos sobre header escuro */
@@ -817,28 +802,33 @@ figure {
 
 
 
-/* Header 3 colunas: left / center / right */
-.site-header__left {
-  display: flex;
-  align-items: center;
+/* Duas pills do header */
+.site-header__pill {
+  height: 38px;
+  border-radius: 999px;
+  background: rgba(12, 12, 12, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0 16px;
+  gap: 10px;
+  pointer-events: all;
+  transition: background 0.4s ease;
+}
+
+.site-header__pill--left {
   flex: 0 0 auto;
 }
 
-.site-header__center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  pointer-events: none;
+.site-header__pill--right {
+  flex: 0 0 auto;
 }
 
-.site-header__right {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  flex: 0 0 auto;
-  margin-left: auto;
+.site-header.is-top .site-header__pill {
+  background: rgba(12, 12, 12, 0.45);
+}
+
+.site-header.is-scrolled .site-header__pill {
+  background: rgba(12, 12, 12, 0.72);
 }
 
 /* Header logo — sempre visível no centro */
