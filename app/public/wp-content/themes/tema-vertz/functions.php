@@ -9,6 +9,7 @@ add_action( 'after_setup_theme', 'tema_vertz_setup' );
 // CPT: projeto + taxonomia categoria_projeto
 require_once get_template_directory() . '/inc/cpt-projeto.php';
 require_once get_template_directory() . '/inc/meta-projeto.php';
+require_once get_template_directory() . '/inc/cpt-novidade.php';
 
 function tema_vertz_scripts() {
     $get_ver = function( $filepath ) {
