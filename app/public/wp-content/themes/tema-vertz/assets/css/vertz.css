@@ -1040,14 +1040,14 @@ figure {
 
 .btn__label {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: block;
   overflow: hidden;
-  height: 1em;
+  height: 1.1em;
+  line-height: 1.1em;
 }
 
-.btn__label span { display: block; transition: transform var(--transition-base); }
-.btn__label span:nth-child(2) { color: var(--color-white); transform: translateY(100%); position: absolute; top: 0; left: 0; }
+.btn__label span { display: block; transition: transform var(--transition-base); line-height: 1.1em; }
+.btn__label span:nth-child(2) { color: var(--color-white); transform: translateY(100%); position: absolute; top: 0; left: 0; width: 100%; }
 .btn:hover .btn__label span:nth-child(1) { transform: translateY(-100%); }
 .btn:hover .btn__label span:nth-child(2) { transform: translateY(0); }
 
