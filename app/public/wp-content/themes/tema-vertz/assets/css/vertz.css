@@ -687,7 +687,7 @@ figure {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 14px;
+  padding-top: 20px;
   height: auto !important;
   background: transparent !important;
   backdrop-filter: none !important;
@@ -866,8 +866,8 @@ figure {
 
 /* header CTA: altura forçada */
 .site-header .btn.--cta.--cta-default {
-  padding: 0.22rem 0.9rem !important;
-  font-size: 0.78rem !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 1rem !important;
   height: auto !important;
   line-height: 1 !important;
 }
