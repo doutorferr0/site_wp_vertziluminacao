@@ -33,7 +33,7 @@
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logoheader.png"
                alt="Vertz Iluminação"
                loading="eager" decoding="async"
-               style="display:block;height:auto;object-fit:contain;">
+               style="display:block;object-fit:contain;">
         </a>
       </figure>
     </div>
