@@ -18,49 +18,49 @@
 
   <div class="site-header__wrap d-flex align-items-center">
 
-    <figure class="site-header__logoHeader m-0 p-0" aria-hidden="true">
-      <a class="d-block td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" tabindex="-1">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logoheader.png"
-             alt="Vertz Iluminação"
-             loading="eager" decoding="async"
-             style="display:block;height:auto;object-fit:contain;">
+    <!-- ESQUERDA: CTA -->
+    <div class="site-header__left pointer-events-all">
+      <a href="<?php echo esc_url(home_url('/contato')); ?>" class="btn --cta --cta-default fw-500" aria-label="Fale Conosco">
+        <span class="btn__bg" aria-hidden="true"></span>
+        <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fale Conosco</span></span>
       </a>
-    </figure>
+    </div>
 
-    <nav class="site-header__rightNav pointer-events-all">
-      <ul class="site-header__rightMenu list-none m-0 p-0 d-flex align-items-center grid-gap-15 grid-gap-xl-20">
-        <li>
-          <a href="<?php echo esc_url(home_url('/contato')); ?>" class="btn --cta --cta-default fw-500" aria-label="Fale Conosco">
-            <span class="btn__bg" aria-hidden="true"></span>
-            <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fale Conosco</span></span>
-          </a>
-        </li>
-        <li class="d-none d-md-block">
-          <nav class="site-header__pillNav" aria-label="Menu principal">
-            <div class="site-header__pillBg" aria-hidden="true"></div>
-            <?php
-            $nav_items = [
-              ['url' => home_url('/'),          'label' => 'Home'],
-              ['url' => home_url('/projetos'),  'label' => 'Projetos'],
-              ['url' => home_url('/servicos'),  'label' => 'Serviços'],
-              ['url' => home_url('/sobre'),     'label' => 'Sobre'],
-              ['url' => home_url('/contato'),   'label' => 'Contato'],
-            ];
-            foreach ($nav_items as $item):
-            ?>
-            <a href="<?php echo esc_url($item['url']); ?>" class="site-header__pillLink">
-              <?php echo esc_html($item['label']); ?>
-            </a>
-            <?php endforeach; ?>
-          </nav>
-        </li>
-        <li class="d-md-none">
-          <button class="site-header__burger position-relative m-0 p-0" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
-            <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
-          </button>
-        </li>
-      </ul>
-    </nav>
+    <!-- CENTRO: Logo -->
+    <div class="site-header__center">
+      <figure class="site-header__logoHeader m-0 p-0" aria-hidden="true">
+        <a class="d-block td-none pointer-events-all" href="<?php echo esc_url(home_url('/')); ?>" rel="home" tabindex="-1">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logoheader.png"
+               alt="Vertz Iluminação"
+               loading="eager" decoding="async"
+               style="display:block;height:auto;object-fit:contain;">
+        </a>
+      </figure>
+    </div>
+
+    <!-- DIREITA: Pill nav + burger -->
+    <div class="site-header__right d-flex align-items-center pointer-events-all">
+      <nav class="site-header__pillNav d-none d-md-flex" aria-label="Menu principal">
+        <div class="site-header__pillBg" aria-hidden="true"></div>
+        <?php
+        $nav_items = [
+          ['url' => home_url('/'),          'label' => 'Home'],
+          ['url' => home_url('/projetos'),  'label' => 'Projetos'],
+          ['url' => home_url('/servicos'),  'label' => 'Serviços'],
+          ['url' => home_url('/sobre'),     'label' => 'Sobre'],
+          ['url' => home_url('/contato'),   'label' => 'Contato'],
+        ];
+        foreach ($nav_items as $item):
+        ?>
+        <a href="<?php echo esc_url($item['url']); ?>" class="site-header__pillLink">
+          <?php echo esc_html($item['label']); ?>
+        </a>
+        <?php endforeach; ?>
+      </nav>
+      <button class="site-header__burger position-relative m-0 p-0 d-md-none pointer-events-all" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+    </div>
 
   </div>
 </header>
