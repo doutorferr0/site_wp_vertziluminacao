@@ -854,6 +854,11 @@ figure {
   max-width: 120px;
   display: block;
   object-fit: contain;
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+.site-header__logoHeader:hover img {
+  opacity: 1;
 }
 
 
@@ -880,6 +885,11 @@ figure {
   font-size: 0.78rem !important;
   height: auto !important;
   line-height: 1 !important;
+  opacity: 0.6;
+  transition: opacity 0.25s ease;
+}
+.site-header .btn.--cta.--cta-default:hover {
+  opacity: 1;
 }
 
 
