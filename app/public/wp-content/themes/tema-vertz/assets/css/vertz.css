@@ -817,33 +817,42 @@ figure {
 
 
 
-/* Header logo — flex item no pill, expande no hover */
+/* Header 3 colunas: left / center / right */
+.site-header__left {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.site-header__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.site-header__right {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+/* Header logo — sempre visível no centro */
 .site-header__logoHeader {
   display: flex;
   align-items: center;
-  overflow: hidden;
-  max-width: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: max-width 0.4s cubic-bezier(0.25, 1, 0.35, 1),
-              opacity 0.3s ease;
   flex-shrink: 0;
 }
 
 .site-header__logoHeader img {
-  height: 14px;
+  height: 22px;
   width: auto;
-  min-width: 0;
-  max-width: 100px;
   display: block;
   object-fit: contain;
-  flex-shrink: 0;
-}
-
-.site-header__wrap:hover .site-header__logoHeader {
-  max-width: 150px;
-  opacity: 1;
-  pointer-events: all;
 }
 
 
