@@ -1,14 +1,15 @@
 # next-task
 
 ## Foco
-Validar header pill + logo hero após correções.
+Validar visualmente o header dual-pill e botões após últimas correções.
 
 ## Critério de conclusão
-- logo.png estático e sempre visível no hero da home
-- Header pill ~30% menor que versão anterior
-- logoheader.png aparece no hover
+- Dois pills visíveis e proporcionais
+- Logo hero estático no hero da home
+- Texto dos botões sem efeito duplo/fantasma
+- FAB sempre visível
 
 ## Próximas ações
-- single-projeto.php
-- Imagens/copy reais
-- Mobile review
+- single-projeto.php (template individual)
+- Imagens e copy reais do cliente
+- Mobile review completo
