@@ -27,6 +27,7 @@
                style="display:block;object-fit:contain;">
         </a>
       </figure>
+      <a href="<?php echo esc_url(home_url('/')); ?>" class="site-header__pillLink">Home</a>
       <a href="<?php echo esc_url(home_url('/contato')); ?>" class="btn --cta --cta-default fw-500" aria-label="Fale Conosco">
         <span class="btn__bg" aria-hidden="true"></span>
         <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fale Conosco</span></span>
@@ -39,11 +40,9 @@
         <div class="site-header__pillBg" aria-hidden="true"></div>
         <?php
         $nav_items = [
-          ['url' => home_url('/'),          'label' => 'Home'],
           ['url' => home_url('/projetos'),  'label' => 'Projetos'],
           ['url' => home_url('/servicos'),  'label' => 'Serviços'],
           ['url' => home_url('/sobre'),     'label' => 'Sobre'],
-          ['url' => home_url('/equipe'),    'label' => 'Equipe'],
           ['url' => home_url('/novidades'), 'label' => 'Novidades'],
           ['url' => home_url('/contato'),   'label' => 'Contato'],
         ];
