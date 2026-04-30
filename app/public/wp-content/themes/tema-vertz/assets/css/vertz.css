@@ -827,6 +827,7 @@ figure {
 .site-header__center {
   position: absolute;
   left: 50%;
+  top:-10%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
