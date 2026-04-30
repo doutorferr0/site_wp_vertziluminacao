@@ -16,30 +16,25 @@
 <div data-windmill="container" data-ui="gform">
 <header class="site-header position-fixed z-9000 t-0 l-0 w-100 pointer-events-none">
 
-  <div class="site-header__wrap d-flex align-items-center">
+  <div class="site-header__wrap d-flex align-items-center justify-content-between">
 
-    <!-- ESQUERDA: CTA -->
-    <div class="site-header__left pointer-events-all">
+    <!-- PILL ESQUERDA: logo + fale conosco -->
+    <div class="site-header__pill site-header__pill--left d-flex align-items-center pointer-events-all">
+      <figure class="site-header__logoHeader m-0 p-0" aria-hidden="true">
+        <a class="d-block td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" tabindex="-1">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logoheader.png"
+               alt="Vertz Iluminação" loading="eager" decoding="async"
+               style="display:block;object-fit:contain;">
+        </a>
+      </figure>
       <a href="<?php echo esc_url(home_url('/contato')); ?>" class="btn --cta --cta-default fw-500" aria-label="Fale Conosco">
         <span class="btn__bg" aria-hidden="true"></span>
         <span class="btn__label" aria-hidden="true"><span>Fale Conosco</span><span>Fale Conosco</span></span>
       </a>
     </div>
 
-    <!-- CENTRO: Logo -->
-    <div class="site-header__center">
-      <figure class="site-header__logoHeader m-0 p-0" aria-hidden="true">
-        <a class="d-block td-none pointer-events-all" href="<?php echo esc_url(home_url('/')); ?>" rel="home" tabindex="-1">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logoheader.png"
-               alt="Vertz Iluminação"
-               loading="eager" decoding="async"
-               style="display:block;object-fit:contain;">
-        </a>
-      </figure>
-    </div>
-
-    <!-- DIREITA: Pill nav + burger -->
-    <div class="site-header__right d-flex align-items-center pointer-events-all">
+    <!-- PILL DIREITA: nav links + burger -->
+    <div class="site-header__pill site-header__pill--right d-flex align-items-center pointer-events-all">
       <nav class="site-header__pillNav d-none d-md-flex" aria-label="Menu principal">
         <div class="site-header__pillBg" aria-hidden="true"></div>
         <?php
@@ -57,7 +52,7 @@
         </a>
         <?php endforeach; ?>
       </nav>
-      <button class="site-header__burger position-relative m-0 p-0 d-md-none pointer-events-all" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+      <button class="site-header__burger position-relative m-0 p-0 d-md-none" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
         <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
     </div>
