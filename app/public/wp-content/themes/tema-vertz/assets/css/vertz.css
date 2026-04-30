@@ -705,7 +705,7 @@ figure {
   gap: clamp(0.5rem, 1vw, 0.8rem);
   padding: 2px 32px;
   width: calc(100% - 1rem);
-  height: 32px;
+  height: 38px;
   margin: 0 auto;
   border-radius: 999px;
   pointer-events: all;
@@ -849,8 +849,9 @@ figure {
 }
 
 .site-header__logoHeader img {
-  height: 22px;
+  height: 18px;
   width: auto;
+  max-width: 120px;
   display: block;
   object-fit: contain;
 }
