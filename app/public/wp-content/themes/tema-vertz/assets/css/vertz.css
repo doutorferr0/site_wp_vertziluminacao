@@ -849,9 +849,9 @@ figure {
 }
 
 .site-header__logoHeader img {
-  height: 18px;
+  height: 75px;
   width: auto;
-  max-width: 120px;
+  max-width: 180px;
   display: block;
   object-fit: contain;
 }
