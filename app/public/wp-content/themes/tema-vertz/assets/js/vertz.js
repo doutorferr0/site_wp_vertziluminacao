@@ -91,64 +91,14 @@
 
     var current = window.scrollY;
     var target  = window.scrollY;
-    var ease    = 0.048; // mais lento e suave
+    var ease    = 0.048;
     var running = false;
-    var snapTimer = null;
-
-    // Seções que fazem snap
-    function getSections() {
-      return Array.from(document.querySelectorAll('.pb-row-wrapper'));
-    }
-
-    // Encontra seção próxima do target — só snapa se estiver dentro de 35% do viewport
-    function getNearestSection(pos) {
-      var sections = getSections();
-      var threshold = window.innerHeight * 0.35;
-      var best = null, bestDist = Infinity;
-      sections.forEach(function(s) {
-        var top = s.getBoundingClientRect().top + pos;
-        var dist = Math.abs(top - pos);
-        if (dist < bestDist && dist < threshold) {
-          bestDist = dist;
-          best = top;
-        }
-      });
-      return best;
-    }
-
-    var snapTimer = null;
-    var isSnapping = false;
 
     window.addEventListener('wheel', function(e) {
       e.preventDefault();
       target += e.deltaY * 0.65;
       target = Math.max(0, Math.min(target, document.body.scrollHeight - window.innerHeight));
       if (!running) { running = true; raf(); }
-
-      // Snap suave após parar — threshold 40% viewport
-      clearTimeout(snapTimer);
-      snapTimer = setTimeout(function() {
-        var sections = document.querySelectorAll('.pb-row-wrapper');
-        var threshold = window.innerHeight * 0.40;
-        var best = null, bestDist = Infinity;
-        var snapPoints = [];
-        sections.forEach(function(s) {
-          var top  = s.getBoundingClientRect().top + target;
-          var mid  = top + (s.offsetHeight / 2) - (window.innerHeight / 2);
-          snapPoints.push(top);  // topo da seção
-          snapPoints.push(mid);  // meio da seção centralizado no viewport
-        });
-        snapPoints.forEach(function(pt) {
-          var dist = Math.abs(pt - target);
-          if (dist < bestDist && dist < threshold) { bestDist = dist; best = pt; }
-        });
-        if (best !== null) {
-          isSnapping = true;
-          target = Math.max(0, Math.min(best, document.body.scrollHeight - window.innerHeight));
-          if (!running) { running = true; raf(); }
-          setTimeout(function() { isSnapping = false; }, 1000);
-        }
-      }, 600);
     }, { passive: false });
 
     function raf() {
