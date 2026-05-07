@@ -817,7 +817,7 @@ figure {
 .site-header__pill--left {
   flex: 0 0 auto;
   padding: 0 35px;
-  gap: 20px;
+  gap: 5px;
 }
 
 .site-header__pill--right {
@@ -839,12 +839,12 @@ figure {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  margin-top: -5%;
+  margin-top: -3%;
   margin-left: -2%;
 }
 
 .site-header__logoHeader img {
-  height: 65px;
+  height: 62px;
   width: auto;
   max-width: 120px;
   display: block;
