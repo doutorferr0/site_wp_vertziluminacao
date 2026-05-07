@@ -16,8 +16,14 @@ function tema_vertz_scripts() {
         return file_exists( $filepath ) ? filemtime( $filepath ) : '1.0.0';
     };
 
+    // Metropolis via Fontsource CDN
+    wp_enqueue_style( 'metropolis-font',
+        'https://cdn.jsdelivr.net/npm/@fontsource/metropolis@5.0.13/index.css',
+        array(), null );
+
+    // Courier Prime + Cutive Mono via Google Fonts
     wp_enqueue_style( 'google-fonts',
-        'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap',
+        'https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&display=swap',
         array(), null );
 
     wp_enqueue_style( 'swiper',
@@ -26,7 +32,7 @@ function tema_vertz_scripts() {
 
     wp_enqueue_style( 'vertz-main',
         get_template_directory_uri() . '/assets/css/vertz.css',
-        array( 'google-fonts' ),
+        array( 'google-fonts', 'metropolis-font' ),
         $get_ver( get_template_directory() . '/assets/css/vertz.css' ) );
 
     // CSS de projetos — carregado só nas páginas de projeto
