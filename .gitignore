@@ -1,5 +1,6 @@
 # vendor (Carbon Fields — regenerar com composer install)
 vendor/
+composer.phar
 
 # Node
 node_modules/

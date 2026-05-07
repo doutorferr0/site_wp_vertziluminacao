@@ -1,15 +1,16 @@
 # next-task
 
 ## Foco
-Validar visualmente o header dual-pill e botões após últimas correções.
+Ambiente Docker estável. Retomar desenvolvimento do site.
 
 ## Critério de conclusão
-- Dois pills visíveis e proporcionais
-- Logo hero estático no hero da home
-- Texto dos botões sem efeito duplo/fantasma
-- FAB sempre visível
+- localhost:8080 carrega com CSS correto
+- gup funcionando
+- Carbon Fields ativo no WP Admin
 
 ## Próximas ações
-- single-projeto.php (template individual)
-- Imagens e copy reais do cliente
+- Adicionar imagens reais (logo, logoheader, logofooter, hero, projetos)
+- Copy real nas páginas
+- single-projeto.php — validar layout
 - Mobile review completo
+- Deploy na Hostinger
