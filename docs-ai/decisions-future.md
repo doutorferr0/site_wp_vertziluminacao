@@ -1,16 +1,24 @@
 # decisions-future
 
 ## Decisões abertas
-- Single projeto: layout ainda não definido (card focal ou página completa?)
-- Mobile: header dual-pill pode precisar de versão colapsada diferente
+- Single projeto: layout ainda não definido
+- Mobile: header dual-pill pode precisar de versão colapsada
 - Fontes: Inter atual, avaliar troca por fonte mais premium
+- Equipe: será subpágina do Sobre (não item separado no menu)
 
 ## Pendências
-- Imagens reais do cliente (logo, projetos, hero)
+- Imagens reais: logo.png, logoheader.png, logofooter.png, hero, projetos, parceiros
 - Copy final de todas as páginas
 - SEO básico (meta descriptions, OG tags)
 - Testes de performance (LCP, CLS)
+- Deploy na Hostinger
 
 ## Riscos
-- Logo hero com position:absolute some ao scrollar — comportamento intencional mas pode confundir
+- Logo hero some ao scrollar (position:absolute) — intencional
 - FAB sempre visível pode poluir em mobile — revisar
+- init.sql do Docker tem URLs corrigidas para localhost:8080 — ao fazer deploy na Hostinger precisa rodar Search & Replace nas URLs do banco
+
+## Ambiente
+- Docker: restart:unless-stopped — sobe automaticamente com Docker Desktop
+- Se containers não subirem: vertz-up
+- composer.phar não commitado — regenerar com: docker exec -it vertz_wp bash -c "cd /var/www/html/wp-content/themes/tema-vertz && curl -sS https://getcomposer.org/installer | php && php composer.phar install"
