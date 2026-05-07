@@ -1,79 +1,36 @@
-# ============================================================
-# WordPress Core — nunca versionar
-# ============================================================
-/app/public/wp-admin/
-/app/public/wp-includes/
-/app/public/wp-*.php
-/app/public/wp-config.php
-/app/public/index.php
-/app/public/.htaccess
-/app/public/xmlrpc.php
-/app/public/license.txt
-/app/public/readme.html
-/app/public/local-xdebuginfo.php
+# vendor (Carbon Fields — regenerar com composer install)
+vendor/
 
-# ============================================================
-# wp-content — só manter o nosso tema
-# ============================================================
-/app/public/wp-content/plugins/
-/app/public/wp-content/upgrade/
-/app/public/wp-content/backup/
-/app/public/wp-content/cache/
-/app/public/wp-content/uploads/
-/app/public/wp-content/languages/
-/app/public/wp-content/themes/twentytwenty*/
-/app/public/wp-content/themes/twentytwenty*/
-
-# ============================================================
-# Dentro do tema — ignorar dist/ e imagens pesadas
-# ============================================================
-/app/public/wp-content/themes/tema-vertz/dist/
-/app/public/wp-content/themes/tema-vertz/assets/images/
-
-# ============================================================
-# SQL — manter só para referência mas pesado, ignorar se quiser
-# ============================================================
-# /app/sql/
-
-# ============================================================
-# Node / Build
-# ============================================================
+# Node
 node_modules/
 .npm/
 *.log
 npm-debug.log*
 
-# ============================================================
 # OS
-# ============================================================
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# ============================================================
 # IDE
-# ============================================================
 .vscode/
 .idea/
 *.sublime-workspace
 
-# ============================================================
 # Env / Secrets
-# ============================================================
 .env
 .env.local
-.env.*.local
 wp-config.php
 
-# ============================================================
-# Oxc / Linting
-# ============================================================
-.oxlintrc.json   # não ignorar — queremos versionar a config
-# mas ignorar cache se existir:
-.oxc_cache/.claude/
+# Build / cache
+dist/
+.oxc_cache/
+.claude/
+
+# Imagens pesadas
+assets/images/
+
+# Misc
 *.bak
 package-lock.json
-.claude/
-app/sql/
-app/sql/
-app/public/wp-content/themes/tema-vertz/fiveserver.config.js
+fiveserver.config.js
