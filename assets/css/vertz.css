@@ -1,14 +1,14 @@
 /**
  * vertz.css — Vertz Iluminação
  * Sistema CSS próprio: grid 24 colunas, variáveis, componentes e utilitários.
- * Fontes via Google Fonts (Playfair Display + Inter + Cutive Mono).
+ * Fontes: Metropolis (Fontsource) + Courier Prime + Cutive Mono (Google Fonts).
  * Sem dependências externas de copyright.
  */
 
 /* ============================================================
    GOOGLE FONTS
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cutive+Mono&display=swap');
+/* Fontes carregadas via wp_enqueue_style em functions.php */
 
 
 /* ============================================================
@@ -39,8 +39,9 @@
   --color-accent:      #A52A2A;   /* destaque quente — títulos de seção, separadores, ícones premium */
 
   /* Tipografia */
-  --font-heading:      'Playfair Display', Georgia, serif;
-  --font-body:         'Inter', system-ui, sans-serif;
+  --font-body:         'Metropolis', system-ui, sans-serif;
+  --font-display:      'Courier Prime', ui-monospace, SFMono-Regular, monospace;
+  --font-heading:      var(--font-display); /* alias retrocompat */
   --font-mono:         'Cutive Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Header modular */
@@ -3058,7 +3059,7 @@ a, button, [role="button"] {
 
 /* Headline editorial */
 .servicos-decl__headline {
-  font-family: var(--ff-body, 'Inter', sans-serif);
+  font-family: var(--font-body);
   font-size: clamp(2rem, 5.5vw, 5rem);
   font-weight: 400;
   line-height: 1.04;
@@ -3153,7 +3154,7 @@ a, button, [role="button"] {
   opacity: .04;
   pointer-events: none;
   user-select: none;
-  font-family: var(--ff-body, 'Inter', sans-serif);
+  font-family: var(--font-body);
   z-index: 0;
 }
 
@@ -3730,6 +3731,16 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 }
 
 /* Links */
+/* Tipografia das pills do header */
+.site-header__pill--left .site-header__pillLink,
+.site-header__pill--left .btn,
+.site-header__pill--left .btn__label {
+  font-family: var(--font-body);
+}
+.site-header__pill--right .site-header__pillLink {
+  font-family: var(--font-display);
+}
+
 .site-header__pillLink {
   position: relative;
   z-index: 1;
