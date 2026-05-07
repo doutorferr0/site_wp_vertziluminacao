@@ -1709,9 +1709,9 @@ figure {
 
 .site-footer__colLabel {
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.45);
 }
@@ -2727,9 +2727,10 @@ a, button, [role="button"] {
 }
 
 .vertz-circle__label {
-  font-size: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.07em;
   color: var(--color-gray-600);
   margin-top: 0.3rem;
 }
@@ -2852,9 +2853,11 @@ a, button, [role="button"] {
 }
 
 .vertz-stat__label {
-  font-size: var(--fz-12);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   color: var(--color-gray-600);
   padding-top: 0.75rem;
   border-top: 1px solid var(--color-gray-300);
@@ -2980,10 +2983,10 @@ a, button, [role="button"] {
   align-items: center;
   padding: 0.55em 1.4em;
   font-family: var(--font-body);
-  font-size: var(--fz-12);
+  font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.05em;
   border-radius: 100px;
   border: 1.5px solid rgba(255,255,255,0.5);
   background: rgba(0,0,0,0.25);
@@ -3748,10 +3751,10 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 }
 
 .pb-row-gallery-btn__cta-link {
-  font-size: 0.75rem;
+  font-size: 13px;
   text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   color: var(--color-dark);
   text-decoration: none;
   border-bottom: 1px solid var(--color-dark);
