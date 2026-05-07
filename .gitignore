@@ -43,3 +43,7 @@ github-upload.vbs
 upload-github.bat
 CONTEXT.md
 style.css.bak
+
+# LocalWP resquícios
+app/
+conf/
