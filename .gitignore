@@ -34,3 +34,12 @@ assets/images/
 *.bak
 package-lock.json
 fiveserver.config.js
+
+# Arquivos de setup antigos
+GITHUB-SETUP-QUICK.txt
+github-upload.py
+GITHUB-UPLOAD.txt
+github-upload.vbs
+upload-github.bat
+CONTEXT.md
+style.css.bak
