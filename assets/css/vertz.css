@@ -479,11 +479,11 @@ figure {
 .h3 { font-size: 34px; line-height: 1.1;  letter-spacing: 0.04em; }
 .h4 { font-size: 26px; line-height: 1.1;  letter-spacing: 0.04em; }
 
-/* Sublabels / eyebrows — Metropolis, uppercase, wide tracking */
+/* Sublabels / eyebrows — Courier mono Regular (Kit-style) */
 .s1, .s2, .s3 {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.05em;
 }
 .s1 { font-size: 20px; line-height: 1.35; }
@@ -1055,12 +1055,12 @@ figure {
   cursor: pointer;
   border: none;
   background: transparent;
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 15px;
   line-height: 22.57px;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   overflow: hidden;
   border-radius: 100px;
   box-shadow:
@@ -2534,11 +2534,12 @@ a, button, [role="button"] {
 
 /* Título itálico */
 .pb-row-razoes__titulo {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 1.8rem;
-  font-style: bold;
   font-weight: 400;
-  line-height: 0.8;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
   color: var(--color-dark);
 }
 
@@ -2566,16 +2567,18 @@ a, button, [role="button"] {
 
 /* Texto */
 .pb-row-razoes__texto {
+  font-family: var(--font-display);
   font-size: 0.9rem;
-  line-height: 1.1;
+  line-height: 1.25;
   color: var(--color-dark);
 }
 
 .pb-row-razoes__acento {
+  font-family: var(--font-display);
   font-style: italic;
   font-size: 1.2rem;
   color: var(--color-accent);
-  font-weight: 500;
+  font-weight: 700;
 }
 
 /* zoom genérico removido — zoom específico por componente abaixo */
@@ -2853,9 +2856,9 @@ a, button, [role="button"] {
 }
 
 .vertz-stat__label {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-gray-600);
@@ -2983,8 +2986,9 @@ a, button, [role="button"] {
   align-items: center;
   padding: 0.55em 1.4em;
   font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border-radius: 100px;
@@ -3751,9 +3755,10 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 }
 
 .pb-row-gallery-btn__cta-link {
+  font-family: var(--font-display);
   font-size: 13px;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.05em;
   color: var(--color-dark);
   text-decoration: none;
@@ -3804,25 +3809,30 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 }
 
 /* Links */
-/* Tipografia das pills do header */
+/* Tipografia das pills do header — esquerda Metropolis (sério) */
 .site-header__pill--left .site-header__pillLink,
 .site-header__pill--left .btn,
 .site-header__pill--left .btn__label {
   font-family: var(--font-body);
+  font-weight: 500;
 }
 .site-header__pill--right .site-header__pillLink {
   font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  letter-spacing: 0.04em;
+  padding: 0.4rem 1rem;
 }
 
 .site-header__pillLink {
   position: relative;
   z-index: 1;
   display: inline-block;
-  padding: 0.22rem 0.8rem;
-  font-size: clamp(0.8rem, 0.95vw, 0.9rem);
-  font-weight: 600;
+  padding: 0.3rem 0.9rem;
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   color: rgba(255,255,255,0.85);
   text-decoration: none;
   border-radius: 999px;
