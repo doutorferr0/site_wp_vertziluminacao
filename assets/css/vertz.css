@@ -44,6 +44,13 @@
   --font-heading:      var(--font-display); /* alias retrocompat */
   --font-mono:         'Cutive Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
+  /* Espaçamento Kit (página) */
+  --space-page-x:      clamp(16px, 3vw, 32px);
+  --space-section-sm:  32px;
+  --space-section-md:  40px;
+  --space-section-lg:  60px;
+  --space-mobile:      16px;
+
   /* Header modular */
   --header-max-width: min(1200px, calc(100vw - 4rem));
   --header-padding-y: clamp(0.7rem, 1.12vw, 1.1rem);
@@ -455,6 +462,66 @@ figure {
    ============================================================ */
 .ff-body    { font-family: var(--font-body); }
 .ff-heading { font-family: var(--font-heading); }
+
+/* ============================================================
+   ESCALA TIPOGRÁFICA (estilo editorial — referência Kit)
+   ============================================================ */
+
+/* Headings — Courier Prime, uppercase, tight tracking */
+.h1, .h2, .h3, .h4 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 0;
+}
+.h1 { font-size: 52px; line-height: 1.1;  letter-spacing: 0.03em; }
+.h2 { font-size: 42px; line-height: 1.1;  letter-spacing: 0.03em; }
+.h3 { font-size: 34px; line-height: 1.1;  letter-spacing: 0.04em; }
+.h4 { font-size: 26px; line-height: 1.1;  letter-spacing: 0.04em; }
+
+/* Sublabels / eyebrows — Metropolis, uppercase, wide tracking */
+.s1, .s2, .s3 {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.s1 { font-size: 20px; line-height: 1.35; }
+.s2 { font-size: 15px; line-height: 1.5;  }
+.s3 { font-size: 13px; line-height: 1.35; }
+
+/* Body — Metropolis, normal case */
+.b1, .b2 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.b1 { font-size: 20px; line-height: 1.34; }
+.b2 { font-size: 15px; line-height: 1.5;  }
+
+/* Breadcrumb / micro-label — Cutive Mono */
+.breadcrumb {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* Mobile downscale (até 800px) */
+@media (max-width: 800px) {
+  .h1 { font-size: 46px; line-height: 1.1; }
+  .h2 { font-size: 34px; line-height: 1.2; letter-spacing: 0.01em; }
+  .h3 { font-size: 27px; line-height: 1.2; }
+  .h4 { font-size: 22px; line-height: 1.1; }
+  .s1 { font-size: 18px; }
+  .s2 { font-size: 15px; line-height: 1.33; letter-spacing: 0.04em; }
+  .s3 { font-size: 13px; line-height: 1.23; }
+  .b1 { font-size: 18px; line-height: 1.33; }
+  .b2 { font-size: 15px; line-height: 1.33; }
+  .breadcrumb { font-size: 11px; line-height: 1.36; }
+}
+
 
 /* Font sizes — mobile */
 .fz-10 { font-size: var(--fz-10); }
@@ -877,12 +944,13 @@ figure {
 
 /* header CTA: altura forçada */
 .site-header .btn.--cta.--cta-default {
-  padding: 0.6rem 1.2rem !important;
-  font-size: 0.8rem !important;
+  padding: 8px 24px 7px !important;
+  font-size: 13px !important;
   height: auto !important;
-  line-height: 1 !important;
-  border-radius: 10px;
-  opacity: 0.8;
+  line-height: 1.2 !important;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+  opacity: 0.85;
   transition: opacity 0.2s ease;
 }
 .site-header .btn.--cta.--cta-default:hover {
@@ -983,16 +1051,18 @@ figure {
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 0.6em 1.2em;
+  padding: 9px 40px 8px;
   cursor: pointer;
   border: none;
   background: transparent;
   font-family: var(--font-body);
-  font-size: var(--fz-12);
+  font-size: 15px;
+  line-height: 22.57px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 100px;
   box-shadow:
     0 1px 0 0 rgba(255,255,255,0.08) inset,
     0 -1px 0 0 rgba(0,0,0,0.25) inset,
@@ -3746,10 +3816,10 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   z-index: 1;
   display: inline-block;
   padding: 0.22rem 0.8rem;
-  font-size: clamp(0.85rem, 1vw, 0.95rem);
-  font-weight: 700;
+  font-size: clamp(0.8rem, 0.95vw, 0.9rem);
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   color: rgba(255,255,255,0.85);
   text-decoration: none;
   border-radius: 999px;
