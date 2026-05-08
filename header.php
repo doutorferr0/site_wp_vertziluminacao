@@ -22,7 +22,7 @@
     <div class="site-header__pill site-header__pill--left d-flex align-items-center pointer-events-all">
       <figure class="site-header__logoHeader m-0 p-0" aria-hidden="true">
         <a class="d-block td-none" href="<?php echo esc_url(home_url('/')); ?>" rel="home" tabindex="-1">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logoheader.png"
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logoheader.webp"
                alt="Vertz Iluminação" loading="eager" decoding="async"
                style="display:block;object-fit:contain;">
         </a>
