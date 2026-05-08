@@ -2568,7 +2568,7 @@ a, button, [role="button"] {
 /* Texto */
 .pb-row-razoes__texto {
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.25;
   color: var(--color-dark);
 }
