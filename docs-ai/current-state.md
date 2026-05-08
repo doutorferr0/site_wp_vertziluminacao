@@ -1,40 +1,41 @@
 # current-state
 
-## Fase atual
-Ambiente migrado para Docker. Header dual-pill funcional. Logo hero estático na home.
+## Tipografia
+- Fontes: Metropolis + Courier Prime + Cutive Mono (substituiu Inter+Playfair)
+- Variáveis CSS: --font-body (Metropolis), --font-display (Courier), --font-mono (Cutive); alias --font-heading → --font-display
+- Escala utility: .h1-.h4, .s1-.s3, .b1-.b2, .breadcrumb (escala Kit-style)
+- Tokens espaço: --space-page-x, --space-section-sm/md/lg, --space-mobile
+- ScaleY 1.06 vertical em Courier (.h1-.h4, razões, btn, labels)
+- Guard CSS: .ff-body .title-highlight força Metropolis (anula combo --font-heading)
+- Itálico Courier → Cutive Mono (única mistura permitida)
+- Pill esquerda do header: Metropolis 500 | Pill direita: Courier 400 maior+leve
 
-## Ambiente
-- Docker rodando: localhost:8080 (site), localhost:8081 (phpMyAdmin)
-- Tema montado como volume: /home/doutorferro/tema-vertz → /var/www/html/wp-content/themes/tema-vertz
-- Carbon Fields: composer install executado no container
-- Git inicializado em /home/doutorferro/tema-vertz, conectado ao GitHub
-- .gitignore: vendor/, composer.phar, assets/images/, arquivos de setup antigos
+## Legibilidade
+- --color-gray-600: #949699 → #6B6F73 (contraste WCAG AA 5.5:1)
+- --fz-13: 13px → 14px | --fz-14: 14px → 15px
+- p.fz-13/14: weight 500 + letter-spacing 0.005em
+
+## Botões
+- border-radius: 100px (pill); padding: 9px 40px 8px; font-size: 15px
+- Header CTA: 8px 24px 7px / 13px / pill
+- Courier 400 uppercase 0.04em
 
 ## Header (estado atual)
-- Dois pills independentes, mesma altura (38px)
-- Pill esquerda: logoheader.png + Home + Fale Conosco
+- Dois pills independentes, mesma altura
+- Pill esquerda: logoheader.webp + Home + Fale Conosco
 - Pill direita: Projetos / Serviços / Sobre / Novidades / Contato + burger mobile
-- backdrop-filter no ::before (evita bug position:fixed)
-- is-top: rgba(12,12,12,0.45) | is-scrolled: rgba(12,12,12,0.72)
-- Logo: height:18px, opacity:0.55, full no hover
-- Fale Conosco: opacity:0.6, full no hover
+- pillLink: weight 500, font-size clamp(0.95, 1.05rem), tracking 0.05em
+
+## Imagens
+- Todas convertidas para WebP via convert-webp.sh
+- Refs PHP atualizadas (.png/.jpg → .webp) em 7 templates, 32 substituições
+- <img> com loading + decoding + fetchpriority em todos templates principais
 
 ## Logo hero (home)
-- position:absolute dentro do hero (front-page.php)
-- left:2rem; top:37.5%; width:575px; z-index:5
-
-## Botões globais
-- border-radius: 6px, box-shadow 3 camadas (depth/3D)
-- btn__label: display:block; height/line-height:1.1em; overflow:hidden
+- position:absolute dentro do hero (front-page.php), left:2rem, top:37.5%, width:575px
 
 ## Scroll
 - LERP suave (ease:0.048), sem snap/ancoragem
-
-## FAB
-- Sempre visível, 60x60px
-
-## Swiper 9 Razões
-- freeMode + momentum, sem snap-back
 
 ## Páginas
 Home, Sobre, Serviços, Contato, Iluminação Técnica, Iluminação Decorativa,
@@ -45,6 +46,5 @@ Archive Projetos, Archive Novidades, Single Novidade, Single Projeto
 - novidade: título, editor, thumbnail, excerpt, categoria_novidade
 
 ## Footer
-- logofooter.png grande no topo
-- 3 colunas: Contato | Navegação (grid 2col) | Siga-nos
-- Linhas divisórias horizontais e verticais
+- logofooter.webp grande no topo
+- 3 colunas: Contato | Navegação | Siga-nos
