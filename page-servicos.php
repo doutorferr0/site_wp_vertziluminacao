@@ -232,7 +232,7 @@ $theme_uri = get_template_directory_uri();
           <div class="overflow-clip" style="border-radius:12px;">
             <!-- IMG: <?php echo esc_html($s['img']); ?> | <?php echo esc_html($s['ratio']); ?> -->
             <img
-              src="<?php echo esc_url( $theme_uri . '/assets/images/' . $s['img'] ); ?>"
+              src="<?php echo esc_url( $theme_uri . '/assets/images/' . $s['img'] ); ? loading="lazy" decoding="async">"
               alt="<?php echo esc_attr( $s['titulo'] ); ?> — Vertz Iluminação"
               loading="lazy" decoding="async"
               style="width:100%;aspect-ratio:<?php echo esc_attr($s['ratio']); ?>;object-fit:cover;display:block;transition:transform .8s ease;">
