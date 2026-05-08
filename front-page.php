@@ -69,7 +69,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
     <figure style="position:absolute;left:2rem;top:37.5%;width:575px;z-index:5;margin:0;padding:0;pointer-events:all;" role="banner">
       <a href="<?php echo esc_url(home_url('/')); ?>" style="display:block;">
         <img src="<?php echo esc_url($theme_uri); ?>/assets/images/logo/logo.png"
-             alt="Vertz Iluminação" loading="eager" decoding="async"
+             alt="Vertz Iluminação" loading="eager" decoding="async" fetchpriority="high"
              style="display:block;width:100%;height:auto;">
       </a>
     </figure>
@@ -120,7 +120,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
       <!-- Logo watermark — estático dentro do hero -->
       <div class="pb-row-hero__logo-watermark col-start-1 row-start-1" aria-hidden="true">
         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logo.png"
-             alt="" loading="eager" decoding="async">
+             alt="" loading="eager" decoding="async" fetchpriority="high">
       </div>
 
             <div class="pb-row-hero__scroll col-start-1 row-start-1 align-self-end position-relative overflow-clip" aria-hidden="true">
@@ -142,7 +142,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
             $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.png';
           ?>
           <div class="pb-row-partners__item">
-            <img src="<?php echo esc_url($src); ?>" alt="Parceiro <?php echo $i; ?>" loading="lazy">
+            <img src="<?php echo esc_url($src); ?>" alt="Parceiro <?php echo $i; ?>" loading="lazy" decoding="async" fetchpriority="low">
           </div>
           <?php endforeach; ?>
         </div>
@@ -395,7 +395,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
   <div class="pb-row-wrapper position-relative pt-50 pb-50 pt-md-70 pb-md-70 mt-0 mb-0" style="--zindex:9">
     <div class="pb-row pb-row-contact container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20" data-scroll data-scroll-offset="50px,0" data-module-delay>
       <div class="col-start-1 col-span-md-5 col-span-xl-10 position-relative overflow-clip" style="border-radius:12px;">
-        <img src="<?php echo esc_url($cta_foto); ?>" alt="Showroom Vertz Iluminação" loading="lazy" decoding="async" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
+        <img src="<?php echo esc_url($cta_foto); ?>" alt="Showroom Vertz Iluminação" loading="lazy" decoding="async" fetchpriority="low" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
       </div>
       <div class="col-start-1 col-start-md-7 col-span-md-6 col-span-xl-12 d-flex flex-column justify-content-center grid-gap-30 grid-gap-xl-40 pt-40 pt-md-0">
         <p class="fz-12 tt-uppercase m-0" style="letter-spacing:.15em;color:var(--color-gray-600)">Fale com a gente</p>
