@@ -41,7 +41,7 @@ $stats = !empty($stats_raw) ? $stats_raw : array(
           <div class="pb-row-hero__mediaSticky position-sticky t-0 l-0 w-100 overflow-clip"
             data-scroll data-scroll-target="#pb-row-hero-sobre" data-scroll-progress="easeInCubic">
             <!-- IMG: sobre-hero.jpg | 1920×1080 | 16/9 -->
-            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/sobre-hero.jpg"
+            <img src="<?php echo esc_url($theme_uri); ? loading="eager" decoding="async" fetchpriority="high">/assets/images/projetos/sobre-hero.jpg"
               alt="Vertz Iluminação — Sobre nós"
               loading="eager" decoding="async"
               style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
@@ -94,7 +94,7 @@ $stats = !empty($stats_raw) ? $stats_raw : array(
       <div class="overflow-clip" style="border-radius:16px;">
         <!-- IMG: sobre-missao.jpg | 1200×800 | 3/2 -->
         <img
-          src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/sobre-missao.jpg"
+          src="<?php echo esc_url($theme_uri); ? loading="lazy" decoding="async">/assets/images/projetos/sobre-missao.jpg"
           alt="Vertz Iluminação — Missão e Valores"
           loading="lazy" decoding="async"
           style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
@@ -118,7 +118,7 @@ $stats = !empty($stats_raw) ? $stats_raw : array(
       <div class="d-grid grid-column-1 grid-column-md-12 grid-gap-12 grid-gap-xl-20 mb-60 mb-md-80" data-scroll data-scroll-offset="60px,0" data-module-delay>
         <div class="col-start-1 col-span-md-5 col-span-xl-10 overflow-clip" style="border-radius:12px;">
           <!-- IMG: sobre-tecnica.jpg | 2/3 portrait | alta para dar contraste -->
-          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/servico-corporativo.jpg"
+          <img src="<?php echo esc_url($theme_uri); ? loading="lazy" decoding="async">/assets/images/projetos/servico-corporativo.jpg"
             alt="Iluminação técnica Vertz" loading="lazy" decoding="async"
             style="width:100%;aspect-ratio:2/3;object-fit:cover;display:block;">
         </div>
@@ -154,7 +154,7 @@ $stats = !empty($stats_raw) ? $stats_raw : array(
         </div>
         <div class="col-start-1 col-span-md-5 col-span-xl-10 order-md-2 overflow-clip" style="border-radius:12px;">
           <!-- IMG: servico-residencial.jpg | 4/3 landscape -->
-          <img src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/servico-residencial.jpg"
+          <img src="<?php echo esc_url($theme_uri); ? loading="lazy" decoding="async">/assets/images/projetos/servico-residencial.jpg"
             alt="Iluminação decorativa Vertz" loading="lazy" decoding="async"
             style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
         </div>
@@ -253,7 +253,7 @@ $stats = !empty($stats_raw) ? $stats_raw : array(
         data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:<?php echo $i; ?>">
         <!-- IMG: <?php echo esc_html($g['img']); ?> | <?php echo esc_html($g['ratio']); ?> portrait -->
         <img
-          src="<?php echo esc_url($theme_uri); ?>/assets/images/<?php echo esc_attr($g['img']); ?>"
+          src="<?php echo esc_url($theme_uri); ? loading="lazy" decoding="async" fetchpriority="low">/assets/images/<?php echo esc_attr($g['img']); ?>"
           alt="<?php echo esc_attr($g['label']); ?> — Vertz Iluminação"
           loading="lazy" decoding="async"
           style="width:100%;aspect-ratio:<?php echo esc_attr($g['ratio']); ?>;object-fit:cover;display:block;">
