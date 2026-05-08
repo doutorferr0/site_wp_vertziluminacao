@@ -631,11 +631,16 @@ figure {
 
 /* Stretch vertical sutil em Courier (letras "mais altas") */
 .h1, .h2, .h3, .h4,
-.pb-row-razoes__titulo {
+.pb-row-razoes__titulo,
+.pb-row-razoes__texto,
+.pb-row-razoes__acento {
   transform: scaleY(1.06);
   transform-origin: bottom;
 }
-.title-highlight.--font-heading {
+.title-highlight.--font-heading,
+.s1, .s2, .s3,
+.btn,
+.vertz-stat__label {
   display: inline-block;
   transform: scaleY(1.06);
   transform-origin: bottom;
