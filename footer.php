@@ -4,7 +4,7 @@
   <!-- Logo grande topo -->
   <div class="site-footer__logoWrap">
     <a href="<?php echo esc_url(home_url('/')); ?>" class="site-footer__logoLink">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logofooter.png"
+      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo/logofooter.webp"
            alt="Vertz Iluminação" loading="lazy" decoding="async"
            style="display:block;width:100%;height:auto;object-fit:contain;">
     </a>
