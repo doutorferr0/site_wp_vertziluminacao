@@ -22,7 +22,7 @@
   --color-bg:          #F4F1EA;   /* fundo principal — espaço branco quente */
   --color-surface:     #E3DDD6;   /* seções secundárias, cards, divisórias */
   --color-gray-300:    #E3DDD6;   /* bordas e linhas sutis */
-  --color-gray-600:    #949699;   /* textos de apoio, placeholders, ícones inativos */
+  --color-gray-600:    #6B6F73;   /* textos de apoio (AA: 5.5:1 em fundo claro) */
   --color-dark:        #2B2B2B;   /* tipografia principal — menos cansativo que #000 */
   --color-header-bg:   #18181A;   /* header e footer — blocos estruturais pesados */
   --color-white:       #ffffff;
@@ -66,8 +66,8 @@
   --fz-10:  0.625rem;
   --fz-11:  0.6875rem;
   --fz-12:  0.75rem;
-  --fz-13:  0.8125rem;
-  --fz-14:  0.875rem;
+  --fz-13:  0.875rem;    /* legibilidade: era 0.8125 (13px) → 14px */
+  --fz-14:  0.9375rem;   /* legibilidade: era 0.875 (14px) → 15px */
   --fz-16:  1rem;
   --fz-18:  1.125rem;
   --fz-20:  1.25rem;
@@ -528,6 +528,13 @@ figure {
 .fz-11 { font-size: var(--fz-11); }
 .fz-12 { font-size: var(--fz-12); }
 .fz-13 { font-size: var(--fz-13); }
+/* Legibilidade: parágrafos pequenos ganham peso e tracking levemente
+   abertos pra compensar tamanho reduzido (Metropolis em escala small). */
+p.fz-13, p.fz-14, p.fz-md-13, p.fz-md-14 {
+  font-weight: 500;
+  letter-spacing: 0.005em;
+}
+
 .fz-14 { font-size: var(--fz-14); }
 .fz-16 { font-size: var(--fz-16); }
 .fz-18 { font-size: var(--fz-18); }
