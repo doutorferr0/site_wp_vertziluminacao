@@ -605,11 +605,41 @@ figure {
 .td-none { text-decoration: none; }
 
 /* Font style via modificadores */
-.title-highlight.--font-heading  { font-family: var(--font-heading); }
-.title-highlight.--fs-italic     { font-style: italic; }
 .title-highlight                 { color: var(--color-primary); }
 .title-highlight.--color-accent  { color: var(--color-accent); }
 .title-highlight.--color-premium { color: var(--color-premium); }
+.title-highlight.--fs-italic     { font-style: italic; }
+
+/* Modificador Courier */
+.title-highlight.--font-heading  { font-family: var(--font-display); }
+
+/* Itálico em Courier → Cutive Mono (única mistura permitida) */
+.title-highlight.--font-heading.--fs-italic,
+.ff-heading.fs-italic,
+.ff-heading .fs-italic {
+  font-family: var(--font-mono);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Guarda: dentro de elemento Metropolis, highlight permanece Metropolis
+   mesmo c/ modificador --font-heading (regra: nunca misturar Metropolis+Courier) */
+.ff-body .title-highlight,
+.ff-body.title-highlight {
+  font-family: var(--font-body);
+}
+
+/* Stretch vertical sutil em Courier (letras "mais altas") */
+.h1, .h2, .h3, .h4,
+.pb-row-razoes__titulo {
+  transform: scaleY(1.06);
+  transform-origin: bottom;
+}
+.title-highlight.--font-heading {
+  display: inline-block;
+  transform: scaleY(1.06);
+  transform-origin: bottom;
+}
 
 
 /* ============================================================
