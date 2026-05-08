@@ -623,10 +623,19 @@ figure {
 }
 
 /* Guarda: dentro de elemento Metropolis, highlight permanece Metropolis
-   mesmo c/ modificador --font-heading (regra: nunca misturar Metropolis+Courier) */
+   mesmo c/ modificador --font-heading (regra: nunca misturar Metropolis+Courier).
+   !important neutraliza .title-highlight.--font-heading.--fs-italic (Cutive Mono). */
 .ff-body .title-highlight,
-.ff-body.title-highlight {
-  font-family: var(--font-body);
+.ff-body.title-highlight,
+.ff-body .title-highlight.--font-heading,
+.ff-body .title-highlight.--font-heading.--fs-italic {
+  font-family: var(--font-body) !important;
+}
+
+/* Anular stretch Courier quando guard ativa (Metropolis não estica) */
+.ff-body .title-highlight.--font-heading {
+  transform: none;
+  display: inline;
 }
 
 /* Stretch vertical sutil em Courier (letras "mais altas") */
