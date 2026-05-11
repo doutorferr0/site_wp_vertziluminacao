@@ -1727,7 +1727,7 @@ p.fz-13, p.fz-14, p.fz-md-13, p.fz-md-14 {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center right;
-  opacity: 0.08;
+  opacity: 0.15;
   pointer-events: none;
   transform: translateY(-50%);
   z-index: 0;
