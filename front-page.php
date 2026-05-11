@@ -135,11 +135,11 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
     <div class="pb-row pb-row-partners">
 
       <header class="pb-row-partners__header">
-        <h2 class="pb-row-partners__headline">Parceiros Nacionais</h2> 
+        <h2 class="pb-row-                ">Parceiros Nacionais</h2> 
          <p class="pb-row-partners__eyebrow">Confiança construída<br>junto às marcas líderes do setor</p>
       </header>
 
-      <div class="pb-row-partners__grid">
+      <div class="pb-row-partners__grid               ">
         <?php for ($i = 1; $i <= 13; $i++):
           $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
         ?>
