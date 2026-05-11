@@ -144,7 +144,6 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
           $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
         ?>
         <div class="pb-row-partners__item">
-          <span class="pb-row-partners__glow" aria-hidden="true"></span>
           <img src="<?php echo esc_url($src); ?>" alt="Parceiro nacional <?php echo $i; ?>" loading="lazy" decoding="async" fetchpriority="low">
         </div>
         <?php endfor; ?>
