@@ -3959,8 +3959,7 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 
 .pb-row-partners__eyebrow {
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 400;
+  font-size: clamp(2.5rem, 3rem, 4rem);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.55);
@@ -3972,8 +3971,7 @@ body:not(.home) .site-header.is-top .site-header__burger span {
 
 .pb-row-partners__headline {
   font-family: var(--font-body);
-  font-size: 40px;
-  font-weight: 400;
+  font-size: clamp(4rem, 8rem, 10rem);
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: rgba(255,255,255,0.92);
