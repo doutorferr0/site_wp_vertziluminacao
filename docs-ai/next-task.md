@@ -1,19 +1,25 @@
 # next-task
 
 ## Foco
-Validar conversão WebP local e limpar arquivos originais.
+Aplicar escala tipográfica utility (.h1-.h4, .s1-.s3, .b1-.b2) nos templates principais para padronizar hierarquia visual no padrão Kit-style.
 
 ## Objetivo
-Garantir que todas as páginas carregam imagens .webp sem 404, depois remover .png/.jpg duplicados.
+Substituir classes ad-hoc atuais (fz-* fw-* lh-* soltas) por classes semânticas da escala onde fizer sentido. Manter consistência visual entre páginas.
 
 ## Escopo
-1. git pull origin main (traz refs PHP atualizadas + ajustes tipografia/legibilidade)
-2. Hard reload no localhost:8080 e percorrer todas as páginas (Home, Sobre, Serviços, Iluminação Técnica/Decorativa, Contato, Projetos)
-3. DevTools → Network → Img: confirmar 200 em todos .webp
-4. Se OK: find . -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \) -delete em assets/images/
-5. gup
+1. front-page.php — títulos de seção, eyebrows, parágrafos hero
+2. page-sobre.php — hero, declarações, blocos de texto
+3. page-servicos.php — headlines, sublabels
+4. page-iluminacao-tecnica.php / page-iluminacao-decorativa.php — títulos
+5. page-contato.php — labels do form, headline
+
+Regras:
+- não tocar seção "10 Razões" (front-page L240-280)
+- preservar classes ff-body / ff-heading existentes onde definem família intencional
+- guard CSS já garante Metropolis em .ff-body .title-highlight
 
 ## Critério de conclusão
-- Zero 404 de imagem em todas as páginas
-- Apenas .webp em assets/images/ (exceto SVGs)
-- Site renderiza idêntico ao estado pré-conversão
+- Páginas auditadas usam .h1-.h4 em títulos H2/H3 principais
+- Eyebrows e labels usam .s2 ou .s3
+- Parágrafos de destaque usam .b1
+- Visual consistente entre templates
