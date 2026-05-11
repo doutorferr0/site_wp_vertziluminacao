@@ -131,9 +131,14 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
 
 
   <!-- SEÇÃO: PARCEIROS -->
-  <div class="pb-row-wrapper position-relative pt-40 pb-40 mt-0 mb-0" style="--zindex:8">
-    <div class="pb-row pb-row-partners container-fluid">
-      <p class="pb-row-partners__label">Parceiros selecionados</p>
+  <div class="pb-row-wrapper pb-row-partners-wrapper position-relative mt-0 mb-0" style="--zindex:8">
+    <div class="pb-row pb-row-partners">
+
+      <header class="pb-row-partners__header">
+        <p class="pb-row-partners__eyebrow">— Parceiros nacionais selecionados</p>
+        <h2 class="pb-row-partners__headline">Confiança construída<br>junto às marcas líderes do setor.</h2>
+      </header>
+
       <div class="pb-row-partners__track-wrap">
         <div class="pb-row-partners__track">
           <?php
@@ -142,11 +147,29 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
             $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
           ?>
           <div class="pb-row-partners__item">
-            <img src="<?php echo esc_url($src); ?>" alt="Parceiro <?php echo $i; ?>" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="<?php echo esc_url($src); ?>" alt="Parceiro nacional <?php echo $i; ?>" loading="lazy" decoding="async" fetchpriority="low">
           </div>
           <?php endforeach; ?>
         </div>
       </div>
+
+      <footer class="pb-row-partners__stats">
+        <div class="pb-row-partners__stat">
+          <span class="pb-row-partners__statNum">10<sup>+</sup></span>
+          <span class="pb-row-partners__statLabel">marcas</span>
+        </div>
+        <span class="pb-row-partners__statDiv"></span>
+        <div class="pb-row-partners__stat">
+          <span class="pb-row-partners__statNum">Brasil</span>
+          <span class="pb-row-partners__statLabel">cobertura nacional</span>
+        </div>
+        <span class="pb-row-partners__statDiv"></span>
+        <div class="pb-row-partners__stat">
+          <span class="pb-row-partners__statNum">2010</span>
+          <span class="pb-row-partners__statLabel">desde</span>
+        </div>
+      </footer>
+
     </div>
   </div>
 
