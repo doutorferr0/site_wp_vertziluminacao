@@ -27,9 +27,10 @@
 - pillLink: weight 500, font-size clamp(0.95, 1.05rem), tracking 0.05em
 
 ## Imagens
-- Todas convertidas para WebP via convert-webp.sh
+- Migração concluída: 100% WebP em assets/images/ (originais .png/.jpg purgados)
 - Refs PHP atualizadas (.png/.jpg → .webp) em 7 templates, 32 substituições
 - <img> com loading + decoding + fetchpriority em todos templates principais
+- Alias to_webp em ~/.zshrc para conversão de novas imagens
 
 ## Logo hero (home)
 - position:absolute dentro do hero (front-page.php), left:2rem, top:37.5%, width:575px
