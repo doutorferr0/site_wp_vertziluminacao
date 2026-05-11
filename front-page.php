@@ -139,23 +139,20 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
         <h2 class="pb-row-partners__headline">Confiança construída<br>junto às marcas líderes do setor.</h2>
       </header>
 
-      <div class="pb-row-partners__track-wrap">
-        <div class="pb-row-partners__track">
-          <?php
-          $partners = range(1, 10);
-          foreach (array_merge($partners, $partners) as $i):
-            $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
-          ?>
-          <div class="pb-row-partners__item">
-            <img src="<?php echo esc_url($src); ?>" alt="Parceiro nacional <?php echo $i; ?>" loading="lazy" decoding="async" fetchpriority="low">
-          </div>
-          <?php endforeach; ?>
+      <div class="pb-row-partners__grid">
+        <?php for ($i = 1; $i <= 13; $i++):
+          $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
+        ?>
+        <div class="pb-row-partners__item">
+          <span class="pb-row-partners__glow" aria-hidden="true"></span>
+          <img src="<?php echo esc_url($src); ?>" alt="Parceiro nacional <?php echo $i; ?>" loading="lazy" decoding="async" fetchpriority="low">
         </div>
+        <?php endfor; ?>
       </div>
 
       <footer class="pb-row-partners__stats">
         <div class="pb-row-partners__stat">
-          <span class="pb-row-partners__statNum">10<sup>+</sup></span>
+          <span class="pb-row-partners__statNum">13</span>
           <span class="pb-row-partners__statLabel">marcas</span>
         </div>
         <span class="pb-row-partners__statDiv"></span>
