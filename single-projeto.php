@@ -38,7 +38,7 @@ $next_post = get_adjacent_post( false, '', false, 'categoria_projeto' );
   <section class="pj-single__hero" aria-label="Capa do projeto">
     <?php if ( $hero_img ) : ?>
     <div class="pj-single__hero-bg">
-      <img src="<?php echo esc_url( $hero_img ); ? loading="eager" decoding="async" fetchpriority="high">"
+      <img src="<?php echo esc_url( $hero_img ); ?>"
            alt="<?php the_title_attribute(); ?>"
            class="pj-single__hero-img"
            loading="eager" decoding="async">
@@ -128,7 +128,7 @@ $next_post = get_adjacent_post( false, '', false, 'categoria_projeto' );
         $first = $galeria_raw[0]; ?>
       <div class="pj-single__col-img">
         <div class="pj-single__img-wrap">
-          <img src="<?php echo esc_url( $first['imagem'] ); ? loading="lazy" decoding="async">"
+          <img src="<?php echo esc_url( $first['imagem'] ); ?>"
                alt="<?php echo esc_attr( $first['legenda'] ?: get_the_title() ); ?>"
                loading="lazy" decoding="async"
                class="pj-single__img pj-lightbox-trigger"
@@ -155,7 +155,7 @@ $next_post = get_adjacent_post( false, '', false, 'categoria_projeto' );
       <div class="pj-single__gallery-col">
         <?php foreach ( $col_a as $item ) : ?>
         <div class="pj-single__gallery-item">
-          <img src="<?php echo esc_url( $item['imagem'] ); ? loading="lazy" decoding="async">"
+          <img src="<?php echo esc_url( $item['imagem'] ); ?>"
                alt="<?php echo esc_attr( $item['legenda'] ?: get_the_title() ); ?>"
                loading="lazy" decoding="async"
                class="pj-lightbox-trigger"
@@ -166,7 +166,7 @@ $next_post = get_adjacent_post( false, '', false, 'categoria_projeto' );
       <div class="pj-single__gallery-col">
         <?php foreach ( $col_b as $item ) : ?>
         <div class="pj-single__gallery-item">
-          <img src="<?php echo esc_url( $item['imagem'] ); ? loading="lazy" decoding="async">"
+          <img src="<?php echo esc_url( $item['imagem'] ); ?>"
                alt="<?php echo esc_attr( $item['legenda'] ?: get_the_title() ); ?>"
                loading="lazy" decoding="async"
                class="pj-lightbox-trigger"
