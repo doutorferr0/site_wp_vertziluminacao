@@ -267,14 +267,23 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
          <p class="pb-row-partners__eyebrow">Confiança construída junto às marcas líderes do setor</p>
       </header>
 
-      <div class="pb-row-partners__grid">
-        <?php for ($i = 1; $i <= 13; $i++):
-          $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
-        ?>
-        <div class="pb-row-partners__item">
-          <img src="<?php echo esc_url($src); ?>" alt="Parceiro nacional <?php echo $i; ?>" loading="lazy" decoding="async" fetchpriority="low">
+      <div class="pb-row-partners__wrap">
+        <div class="pb-row-partners__ticker">
+          <?php for ($i = 1; $i <= 13; $i++):
+            $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
+          ?>
+          <div class="pb-row-partners__partner">
+            <img src="<?php echo esc_url($src); ?>" alt="Parceiro nacional <?php echo $i; ?>" loading="lazy" decoding="async" fetchpriority="low" height="48" style="height:48px;width:auto;">
+          </div>
+          <?php endfor; ?>
+          <?php /* duplicata para loop infinito */ for ($i = 1; $i <= 13; $i++):
+            $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
+          ?>
+          <div class="pb-row-partners__partner" aria-hidden="true">
+            <img src="<?php echo esc_url($src); ?>" alt="" loading="lazy" decoding="async" fetchpriority="low" height="48" style="height:48px;width:auto;">
+          </div>
+          <?php endfor; ?>
         </div>
-        <?php endfor; ?>
       </div>
     </div>
   </div>
