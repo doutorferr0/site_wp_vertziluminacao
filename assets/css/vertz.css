@@ -1569,7 +1569,7 @@ p.fz-13, p.fz-14, p.fz-md-13, p.fz-md-14 {
   display: flex;
   align-items: center;
   gap: 4rem;
-  animation: ticker-scroll 40s linear infinite;
+  animation: ticker-scroll 65s linear infinite;
   width: max-content;
   padding: 1rem 0;
 }
