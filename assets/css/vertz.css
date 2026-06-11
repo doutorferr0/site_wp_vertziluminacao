@@ -1558,14 +1558,20 @@ p.fz-13, p.fz-14, p.fz-md-13, p.fz-md-14 {
    ============================================================ */
 .pb-row-partners__wrap {
   overflow: hidden;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: -2rem;
 }
 
 .pb-row-partners__ticker {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
-  animation: ticker-scroll 18s linear infinite;
+  gap: 4rem;
+  animation: ticker-scroll 40s linear infinite;
   width: max-content;
+  padding: 1rem 0;
 }
 
 .pb-row-partners__ticker:hover {
@@ -1576,13 +1582,20 @@ p.fz-13, p.fz-14, p.fz-md-13, p.fz-md-14 {
   flex-shrink: 0;
 }
 
+.pb-row-partners__partner img {
+  height: clamp(48px, 6vw, 80px);
+  width: auto;
+  object-fit: contain;
+  opacity: 0.75;
+}
+
 @keyframes ticker-scroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
 @media (min-width: 1280px) {
-  .pb-row-partners__ticker { gap: 3.75rem; }
+  .pb-row-partners__ticker { gap: 6rem; }
 }
 
 
