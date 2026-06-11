@@ -263,8 +263,8 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
     <div class="pb-row pb-row-partners">
 
       <header class="pb-row-partners__header">
-        <h2 class="pb-row-partners__headline">Parceiros Nacionais:</h2><br>
-         <p class="pb-row-partners__eyebrow">Confiança construída junto às marcas líderes do setor</p>
+        <h2 class="pb-row-partners__headline">Marcas Parceiras:</h2><br>
+         <p class="pb-row-partners__eyebrow">Confiança construída junto aos nomes líderes do setor</p>
       </header>
 
       <div class="pb-row-partners__wrap">
