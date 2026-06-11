@@ -1574,9 +1574,7 @@ p.fz-13, p.fz-14, p.fz-md-13, p.fz-md-14 {
   padding: 1rem 0;
 }
 
-.pb-row-partners__ticker:hover {
-  animation-play-state: paused;
-}
+/* hover não pausa — ticker sempre ativo */
 
 .pb-row-partners__partner {
   flex-shrink: 0;
