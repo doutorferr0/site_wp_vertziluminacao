@@ -1,4 +1,4 @@
-<?php get_header(); // Este arquivo É o header ?><!DOCTYPE html>
+<?php // Este arquivo É o header — carregado pelos templates via get_header() ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
