@@ -130,44 +130,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
   </div>
 
 
-  <!-- SEÇÃO: PARCEIROS -->
-  <div class="pb-row-wrapper pb-row-partners-wrapper position-relative mt-0 mb-0" style="--zindex:8">
-    <div class="pb-row pb-row-partners">
-
-      <header class="pb-row-partners__header">
-        <h2 class="pb-row-                ">Parceiros Nacionais</h2> 
-         <p class="pb-row-partners__eyebrow">Confiança construída<br>junto às marcas líderes do setor</p>
-      </header>
-
-      <div class="pb-row-partners__grid               ">
-        <?php for ($i = 1; $i <= 13; $i++):
-          $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
-        ?>
-        <div class="pb-row-partners__item">
-          <img src="<?php echo esc_url($src); ?>" alt="Parceiro nacional <?php echo $i; ?>" loading="lazy" decoding="async" fetchpriority="low">
-        </div>
-        <?php endfor; ?>
-      </div>
-
-      <footer class="pb-row-partners__stats">
-        <div class="pb-row-partners__stat">
-          <span class="pb-row-partners__statNum">13</span>
-          <span class="pb-row-partners__statLabel">marcas</span>
-        </div>
-        <span class="pb-row-partners__statDiv"></span>
-        <div class="pb-row-partners__stat">
-          <span class="pb-row-partners__statNum">Brasil</span>
-          <span class="pb-row-partners__statLabel">cobertura nacional</span>
-        </div>
-        <span class="pb-row-partners__statDiv"></span>
-        <div class="pb-row-partners__stat">
-          <span class="pb-row-partners__statNum">2010</span>
-          <span class="pb-row-partners__statLabel">desde</span>
-        </div>
-      </footer>
-
-    </div>
-  </div>
+  
 
   <?php /* SEÇÃO 2 REMOVIDA — conteúdo integrado na seção 3
 <!-- SEÇÃO 2: DECLARAÇÃO -->
@@ -291,6 +254,27 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
           <?php endforeach; ?>
         </div>
         <div class="swiper-scrollbar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO: PARCEIROS -->
+  <div class="pb-row-wrapper pb-row-partners-wrapper position-relative mt-0 mb-0" style="--zindex:8">
+    <div class="pb-row pb-row-partners">
+
+      <header class="pb-row-partners__header">
+        <h2 class="pb-row-partners__headline">Parceiros Nacionais:</h2><br>
+         <p class="pb-row-partners__eyebrow">Confiança construída junto às marcas líderes do setor</p>
+      </header>
+
+      <div class="pb-row-partners__grid">
+        <?php for ($i = 1; $i <= 13; $i++):
+          $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
+        ?>
+        <div class="pb-row-partners__item">
+          <img src="<?php echo esc_url($src); ?>" alt="Parceiro nacional <?php echo $i; ?>" loading="lazy" decoding="async" fetchpriority="low">
+        </div>
+        <?php endfor; ?>
       </div>
     </div>
   </div>

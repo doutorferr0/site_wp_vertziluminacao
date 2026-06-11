@@ -3954,35 +3954,43 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: clamp(3rem, 5vw, 4.5rem);
 }
 
 .pb-row-partners__eyebrow {
   font-family: var(--font-body);
-  font-size: clamp(2.5rem, 3rem, 4rem);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
-  margin: 0 0 1.25rem;
+  font-size: clamp(0.8rem, 1.2rem, 1.5rem);
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  
+  color: rgba(255, 255, 255, 0.279);
+  margin-bottom: 1.5rem;
   display: inline-block;
   transform: scaleY(1.06);
   transform-origin: bottom;
+  padding-bottom: 3rem;
+  padding-top: 1rem;
 }
 
-.pb-row-partners__headline {
+.pb-row-partners__headline{
   font-family: var(--font-body);
-  font-size: clamp(4rem, 8rem, 10rem);
+  font-size: clamp(3rem, 4rem, 5rem);
+  text-transform: uppercase;
+  font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.01em;
-  color: rgba(255,255,255,0.92);
-  margin: 0;
+  color: rgba(255, 255, 255, 0.812);
+  margin-bottom:-2rem;
+  padding-bottom: 0.5rem;
 }
 
 /* Grid 5/4/4 — quadro estático, sem divisórias, sem hover */
 .pb-row-partners__grid {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
-  margin: 0 calc(clamp(1.5rem, 4vw, 4rem) * -1);
+  margin-top: -2rem; /* Ou valor negativo para subir mais */
+  row-gap: 0.5rem;
+  margin-left: calc(clamp(1rem, 3vw, 3rem) * -1);
+  margin-right: calc(clamp(1rem, 3vw, 3rem) * -1)
 }
 
 /* Linha 1: 5 colunas */
@@ -3994,8 +4002,8 @@ body:not(.home) .site-header.is-top .site-header__burger span {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(0.8rem, 1vw, 1.5rem) clamp(0.8rem, 1vw, 1.5rem);
-  min-height: clamp(110px, 12vw, 160px);
+  padding: 0.5rem 1rem;
+  min-height: clamp(60px, 8vw, 100px);;
 }
 
 .pb-row-partners__item img {
