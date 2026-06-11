@@ -41,7 +41,7 @@ $stats = !empty($stats_raw) ? $stats_raw : array(
           <div class="pb-row-hero__mediaSticky position-sticky t-0 l-0 w-100 overflow-clip"
             data-scroll data-scroll-target="#pb-row-hero-sobre" data-scroll-progress="easeInCubic">
             <!-- IMG: sobre-hero.jpg | 1920×1080 | 16/9 -->
-            <img src="<?php echo esc_url($theme_uri); ? loading="eager" decoding="async" fetchpriority="high">/assets/images/projetos/sobre-hero.webp"
+            <img src="<?php echo esc_url($theme_uri); ?>/assets/images/projetos/sobre-hero.webp"
               alt="Vertz Iluminação — Sobre nós"
               loading="eager" decoding="async"
               style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">

@@ -216,7 +216,7 @@ $banner_img      = vf('contato_banner',  false, $theme_uri . '/assets/images/pro
   <div class="pb-row-wrapper position-relative pt-0 pb-0 mt-0 mb-0" style="--zindex:3">
     <figure class="m-0 overflow-clip" data-scroll data-scroll-offset="80px,0" data-module-delay>
       <img
-        src="<?php echo esc_url( $banner_img ); ? loading="lazy" decoding="async">"
+        src="<?php echo esc_url( $banner_img ); ?>"
         alt="Vertz Iluminação — Projetos que transformam"
         loading="lazy"
         decoding="async"
