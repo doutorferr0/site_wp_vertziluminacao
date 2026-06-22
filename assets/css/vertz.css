@@ -140,6 +140,10 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 body {
   font-family: var(--font-body);
   font-size: var(--fz-16);
@@ -4096,6 +4100,7 @@ body:not(.home) .site-header.is-top .site-header__burger span {
     flex-direction: column;
   }
 }
+
 
 
 
