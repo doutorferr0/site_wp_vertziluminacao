@@ -85,32 +85,6 @@
   }
 
 
-  /* ── SMOOTH SCROLL (LERP) ─────────────────────────── */
-  function initSmoothScroll() {
-    if ('ontouchstart' in window) return;
-
-    var current = window.scrollY;
-    var target  = window.scrollY;
-    var ease    = 0.048;
-    var running = false;
-
-    window.addEventListener('wheel', function(e) {
-      e.preventDefault();
-      target += e.deltaY * 0.65;
-      target = Math.max(0, Math.min(target, document.body.scrollHeight - window.innerHeight));
-      if (!running) { running = true; raf(); }
-    }, { passive: false });
-
-    function raf() {
-      current += (target - current) * ease;
-      if (Math.abs(target - current) < 0.5) {
-        current = target;
-        running = false;
-      }
-      window.scrollTo(0, current);
-      if (running) requestAnimationFrame(raf);
-    }
-  }
 
 
   /* HEADER POR MOUSE PROXIMITY */
@@ -710,7 +684,6 @@
     if (typeof Swiper !== 'undefined') {
       initGallerySwiper();
   initNavOverlay();
-  initSmoothScroll();
   initHeaderMouseProximity();
   initPillNav();
       initCardsSlider();
@@ -718,7 +691,6 @@
       window.addEventListener('load', function () {
         initGallerySwiper();
   initNavOverlay();
-  initSmoothScroll();
   initHeaderMouseProximity();
   initPillNav();
         initCardsSlider();
