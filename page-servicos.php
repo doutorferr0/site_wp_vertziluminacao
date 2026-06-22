@@ -82,7 +82,7 @@ $theme_uri = get_template_directory_uri();
     <div class="servicos-split__grid">
 
       <!-- PAINEL 01: Técnica -->
-      <div class="servicos-split__panel" data-num="01" data-scroll data-scroll-offset="60px,0" data-module-delay>
+      <div class="servicos-split__panel" data-num="1º" data-scroll data-scroll-offset="60px,0" data-module-delay>
         <div class="servicos-split__inner">
 
           <p class="servicos-split__tag">Iluminação Técnica</p>
@@ -109,9 +109,9 @@ $theme_uri = get_template_directory_uri();
           </ul>
 
           <div>
-            <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default">
-              <span class="btn__bg" aria-hidden="true"></span>
-              <span class="btn__label" aria-hidden="true"><span>Solicitar projeto técnico</span><span>Solicitar projeto técnico</span></span>
+            <a href="https://wa.me/5519999778710?text=Olá!%20Quero%20ver%20conversar%20com%20um%20especialista%20sobre%20um%20projeto%20técnico." target="_blank" rel="noopener" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark)">
+              <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary-hover);"></span>
+              <span class="btn__label" aria-hidden="true"><span>Quero solicitar um projeto técnico</span><span>Quero solicitar um projeto técnico</span></span>
             </a>
           </div>
 
@@ -119,7 +119,7 @@ $theme_uri = get_template_directory_uri();
       </div>
 
       <!-- PAINEL 02: Decorativa -->
-      <div class="servicos-split__panel" data-num="02" data-scroll data-scroll-offset="60px,0" data-module-delay style="--index:1">
+      <div class="servicos-split__panel" data-num="2º" data-scroll data-scroll-offset="60px,0" data-module-delay style="--index:1">
         <div class="servicos-split__inner">
 
           <p class="servicos-split__tag">Iluminação Decorativa</p>
@@ -148,7 +148,7 @@ $theme_uri = get_template_directory_uri();
           <div>
             <a href="https://wa.me/5519999778710?text=Olá!%20Quero%20ver%20luminárias%20decorativas%20no%20showroom%20da%20Vertz." target="_blank" rel="noopener" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark)">
               <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary-hover);"></span>
-              <span class="btn__label" aria-hidden="true"><span>Agendar visita ao showroom</span><span>Agendar visita ao showroom</span></span>
+              <span class="btn__label" aria-hidden="true"><span>Quero visitar o showroom</span><span>Quero visitar o showroom</span></span>
             </a>
           </div>
 
@@ -179,7 +179,6 @@ $theme_uri = get_template_directory_uri();
           [
             'titulo'  => 'Residencial de Alto Padrão',
             'desc'    => 'Do apartamento ao condomínio fechado — iluminação que combina conforto visual, eficiência energética e design para quem mora com intenção.',
-            'itens'   => ['Spots embutidos e trilhos','Sancas e perfis LED','Fachada e paisagismo','Automação residencial'],
             'img'     => 'servico-residencial.jpg',
             'ratio'   => '4/3',
             'i'       => 0,
@@ -187,7 +186,6 @@ $theme_uri = get_template_directory_uri();
           [
             'titulo'  => 'Comercial e Varejo',
             'desc'    => 'Luz que vende. Iluminação estratégica para lojas, showrooms e restaurantes que destacam produtos, criam atmosfera e aumentam o tempo de permanência.',
-            'itens'   => ['Spots ajustáveis de precisão','Iluminação de vitrine','Sistemas de cenas luminosas','Temperatura de cor dinâmica'],
             'img'     => 'servico-comercial.jpg',
             'ratio'   => '4/3',
             'i'       => 1,
@@ -195,7 +193,6 @@ $theme_uri = get_template_directory_uri();
           [
             'titulo'  => 'Corporativo e Escritório',
             'desc'    => 'Ambientes de trabalho que aumentam a produtividade. Reduzimos o consumo energético em até 80% com tecnologia LED certificada e controle inteligente.',
-            'itens'   => ['Luminárias com anti-ofuscamento','Controle de iluminância por sensor','Certificação LEED','Manutenção preventiva'],
             'img'     => 'servico-corporativo.jpg',
             'ratio'   => '4/3',
             'i'       => 2,
@@ -203,7 +200,6 @@ $theme_uri = get_template_directory_uri();
           [
             'titulo'  => 'Hotelaria e Gastronomia',
             'desc'    => 'A luz define a experiência do hóspede antes de qualquer palavra. Projetamos a iluminação que faz o ambiente contar a história da marca.',
-            'itens'   => ['Iluminação de recepção e lobby','Luz de quarto com dimmer','Ambientação de restaurante','Iluminação de fachada hoteleira'],
             'img'     => 'servico-especial.jpg',
             'ratio'   => '4/3',
             'i'       => 3,
@@ -211,7 +207,6 @@ $theme_uri = get_template_directory_uri();
           [
             'titulo'  => 'Projetos Especiais',
             'desc'    => 'Museus, galerias, hospitais, igrejas — qualquer espaço com demanda única. Trabalhamos em parceria com arquitetos para criar soluções de iluminação exclusivas.',
-            'itens'   => ['Iluminação museal (IRC > 97)','Galerias de arte','Ambientes hospitalares','Monumentos e fachadas públicas'],
             'img'     => 'servico-industrial.jpg',
             'ratio'   => '4/3',
             'i'       => 4,
@@ -219,7 +214,6 @@ $theme_uri = get_template_directory_uri();
           [
             'titulo'  => 'Consultoria para Arquitetos',
             'desc'    => 'Trabalhamos como parte da sua equipe, não como fornecedor. Especificação técnica, memorial, amostras físicas e acompanhamento de obra em cada projeto.',
-            'itens'   => ['Projeto luminotécnico (DIALux)','Memorial descritivo e quantitativo','Amostras e catálogos técnicos','Visitas de acompanhamento'],
             'img'     => 'servico-consultoria.jpg',
             'ratio'   => '4/3',
             'i'       => 5,
@@ -241,14 +235,6 @@ $theme_uri = get_template_directory_uri();
           <div class="d-grid grid-gap-12" style="border-top:1px solid var(--color-gray-300);padding-top:1.25rem;">
             <h3 class="fz-20 fz-xl-24 fw-400 ls--2 m-0"><?php echo esc_html($s['titulo']); ?></h3>
             <p class="fz-14 fz-xl-15 lh-150 m-0" style="color:var(--color-gray-600)"><?php echo esc_html($s['desc']); ?></p>
-            <div class="d-grid grid-gap-6">
-              <?php foreach($s['itens'] as $item): ?>
-              <p class="fz-12 lh-142 m-0 d-flex align-items-center grid-gap-8">
-                <span style="width:4px;height:4px;border-radius:50%;background:var(--color-accent);flex-shrink:0;"></span>
-                <?php echo esc_html($item); ?>
-              </p>
-              <?php endforeach; ?>
-            </div>
           </div>
 
         </article>
@@ -295,27 +281,33 @@ $theme_uri = get_template_directory_uri();
 
 
   <!-- ============================================================
-    SEÇÃO 6: MARCAS — Ticker de logos
+    SEÇÃO 6: PARCEIROS
   ============================================================ -->
-  <div class="pb-row-wrapper position-relative pt-60 pb-60 pt-md-80 pb-md-80 mt-0 mb-0" style="--zindex:6">
-    <div class="pb-row container-fluid mb-30 mb-md-50" data-scroll data-scroll-offset="60px,0" data-module-delay>
-      <p class="fz-12 tt-uppercase m-0" style="color:var(--color-gray-600);letter-spacing:0.15em;">Marcas que representamos</p>
-    </div>
-    <div class="pb-row-partners__wrap" style="overflow:hidden;">
-      <div class="pb-row-partners__ticker d-flex align-items-center" style="gap:4rem;animation:marquee-scroll 20s linear infinite;">
-        <?php for($i = 1; $i <= 5; $i++): ?>
-        <div class="pb-row-partners__partner flex-shrink-0" style="--index:<?php echo $i-1; ?>">
-          <!-- LOGO: logo-parceiro-0<?php echo $i; ?>.svg -->
-          <div style="width:120px;height:40px;background:var(--color-surface);border-radius:4px;display:flex;align-items:center;justify-content:center;">
-            <span style="font-size:var(--fz-10);color:var(--color-gray-600);text-transform:uppercase;">parceiro <?php echo $i; ?></span>
+  <div class="pb-row-wrapper pb-row-partners-wrapper position-relative mt-0 mb-0" style="--zindex:6">
+    <div class="pb-row pb-row-partners">
+
+      <header class="pb-row-partners__header">
+        <h2 class="pb-row-partners__headline">Marcas Parceiras:</h2><br>
+         <p class="pb-row-partners__eyebrow">Confiança construída junto aos nomes líderes do setor</p>
+      </header>
+
+      <div class="pb-row-partners__wrap">
+        <div class="pb-row-partners__ticker">
+          <?php for ($i = 1; $i <= 13; $i++):
+            $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
+          ?>
+          <div class="pb-row-partners__partner">
+            <img src="<?php echo esc_url($src); ?>" alt="Parceiro nacional <?php echo $i; ?>" loading="lazy" decoding="async" fetchpriority="low">
           </div>
+          <?php endfor; ?>
+          <?php /* duplicata para loop infinito */ for ($i = 1; $i <= 13; $i++):
+            $src = get_template_directory_uri() . '/assets/images/parceiros/parceiro' . $i . '.webp';
+          ?>
+          <div class="pb-row-partners__partner" aria-hidden="true">
+            <img src="<?php echo esc_url($src); ?>" alt="" loading="lazy" decoding="async" fetchpriority="low">
+          </div>
+          <?php endfor; ?>
         </div>
-        <?php endfor; ?>
-        <?php for($i = 1; $i <= 5; $i++): /* clone para loop */ ?>
-        <div class="pb-row-partners__partner flex-shrink-0" aria-hidden="true">
-          <div style="width:120px;height:40px;background:var(--color-surface);border-radius:4px;"></div>
-        </div>
-        <?php endfor; ?>
       </div>
     </div>
   </div>
