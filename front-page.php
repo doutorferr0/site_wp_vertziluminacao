@@ -108,7 +108,7 @@ $razoes = (!empty($razoes_raw)) ? $razoes_raw : array(
         </svg>
         <div class="vertz-circle__inner-ring" style="position:absolute;inset:0;width:100%;height:100%;">
           <svg id="vertz-inner-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-            <defs><path id="vertz-inner-path" d="M120,120 m-80,0 a80,80 0 1,0 160,0 a80,80 0 1,0 -160,0"/></defs>
+            <defs><path id="vertz-inner-path" d="M120,120 m-80,0 a80,80 0 1,0 160,0 a80,80 0 1,0 -160,0"/></defs>z
             <text id="vertz-date-text" font-size="11.5" font-family="inherit" fill="rgba(255,255,255,0.8)" font-weight="400" letter-spacing="3" stroke="rgba(0,0,0,0.35)" stroke-width="1.1" paint-order="stroke fill">
               <textPath href="#vertz-inner-path">--:-- ✦ --/--/----</textPath>
             </text>
