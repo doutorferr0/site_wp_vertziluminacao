@@ -113,7 +113,7 @@
       <input type="hidden" name="action" value="vertz_optin">
       <input type="text"  name="nome"  placeholder="Seu nome"   required class="pb-row-contato__input" autocomplete="name">
       <input type="email" name="email" placeholder="Seu e-mail" required class="pb-row-contato__input" autocomplete="email">
-      <select name="tipo" class="pb-row-contato__input pb-row-contato__select">
+      <select name="tipo" required class="pb-row-contato__input pb-row-contato__select">
         <option value="">Tipo de projeto</option>
         <option value="residencial">Residencial</option>
         <option value="comercial">Comercial</option>
@@ -121,6 +121,7 @@
         <option value="industrial">Industrial</option>
         <option value="consultoria">Consultoria / Projeto</option>
       </select>
+      <p class="site-lead__error" data-lead-error hidden></p>
       <button type="submit" class="btn --cta --cta-default" style="justify-content:center;width:100%;">
         <span class="btn__bg" aria-hidden="true"></span>
         <span class="btn__label" aria-hidden="true"><span>Solicitar orçamento</span><span>Solicitar orçamento</span></span>

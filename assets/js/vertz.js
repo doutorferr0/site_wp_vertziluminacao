@@ -327,15 +327,20 @@
   function initLeadCapture() {
     var panel = qs('#site-lead');
     if (!panel) return;
-    var SESSION_KEY = 'vertz_lead_shown';
-    if (sessionStorage.getItem(SESSION_KEY)) return;
+    var COOLDOWN_KEY = 'vertz_lead_next_allowed';
+    var COOLDOWN_MS  = 2 * 60 * 1000; // 2 minutos
     if (document.body.classList.contains('page-contato') ||
         window.location.pathname.indexOf('/contato') !== -1) return;
+
+    function canShow() {
+      var next = parseInt(localStorage.getItem(COOLDOWN_KEY), 10);
+      return !next || Date.now() >= next;
+    }
+
     var shown = false;
     function showPanel() {
-      if (shown) return;
+      if (shown || !canShow()) return;
       shown = true;
-      sessionStorage.setItem(SESSION_KEY, '1');
       panel.removeAttribute('hidden');
       requestAnimationFrame(function () {
         panel.classList.add('is-visible');
@@ -343,16 +348,20 @@
       });
     }
     function hidePanel() {
+      if (!shown) return;
+      shown = false;
+      localStorage.setItem(COOLDOWN_KEY, String(Date.now() + COOLDOWN_MS));
       panel.classList.remove('is-visible');
       panel.setAttribute('aria-hidden', 'true');
       panel.addEventListener('transitionend', function () { panel.setAttribute('hidden', ''); }, { once: true });
     }
-    var scrollTriggered = false;
+    var scrollArmed = false;
     window.addEventListener('scroll', function () {
-      if (scrollTriggered) return;
-      if ((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight >= 0.60) {
-        scrollTriggered = true;
-        setTimeout(showPanel, 600);
+      var ratio = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (ratio >= 0.60) {
+        if (!scrollArmed) { scrollArmed = true; setTimeout(showPanel, 600); }
+      } else {
+        scrollArmed = false;
       }
     }, { passive: true });
     document.addEventListener('mouseleave', function (e) { if (e.clientY <= 0) showPanel(); });
@@ -363,6 +372,30 @@
           !panel.contains(e.target) && !e.target.closest('.site-fab')) { hidePanel(); }
     });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hidePanel(); });
+
+    /* Validação do formulário */
+    var form     = qs('.site-lead__form', panel);
+    var errorBox = qs('[data-lead-error]', panel);
+    if (form && errorBox) {
+      form.addEventListener('submit', function (e) {
+        var nome  = form.elements['nome'].value.trim();
+        var email = form.elements['email'].value.trim();
+        var tipo  = form.elements['tipo'].value.trim();
+        var erro  = '';
+        if (!nome || !email || !tipo) {
+          erro = 'Preencha todos os campos.';
+        } else if (email.indexOf('@') === -1) {
+          erro = 'Informe um e-mail válido.';
+        }
+        if (erro) {
+          e.preventDefault();
+          errorBox.textContent = erro;
+          errorBox.removeAttribute('hidden');
+        } else {
+          errorBox.setAttribute('hidden', '');
+        }
+      });
+    }
   }
 
   /* FAB — aparece apenas quando header é visível */

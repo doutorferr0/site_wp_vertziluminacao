@@ -64,7 +64,7 @@ $theme_uri = get_template_directory_uri();
             Cada espaço tem uma função. Cada função exige uma luz específica. Combinamos projeto técnico rigoroso com curadoria estética de marcas exclusivas — para entregar ambientes que funcionam, impressionam e duram.
           </p>
           <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="servicos-decl__cta">
-            <span>Solicitar projeto</span>
+            <span>Fale conosco</span>
             <span class="servicos-decl__cta-arrow" aria-hidden="true">→</span>
           </a>
         </div>
@@ -168,7 +168,7 @@ $theme_uri = get_template_directory_uri();
       <header class="mb-50 mb-md-70 d-grid grid-column-md-12 grid-gap-12">
         <p class="fz-12 tt-uppercase m-0 mb-15" style="color:var(--color-gray-600);letter-spacing:0.15em;">Onde atuamos</p>
         <h2 class="col-start-1 col-span-md-8 ff-body fz-28 fz-md-40 fz-xl-52 fw-400 ls--3 m-0">
-          Projetos para cada <span class="title-highlight --font-heading --fs-italic">tipologia.</span>
+          Projetos para cada <span class="title-highlight --font-heading --fs-italic">necessidade.</span>
         </h2>
       </header>
 
@@ -329,10 +329,6 @@ $theme_uri = get_template_directory_uri();
           Envie o projeto do arquiteto, planta baixa ou simplesmente nos descreva o espaço. Em até 48 horas respondemos com uma proposta preliminar.
         </p>
         <div class="d-flex flex-column flex-md-row grid-gap-15">
-          <a href="<?php echo esc_url( home_url('/contato') ); ?>" class="btn --cta --cta-default" style="border-color:var(--color-white);color:var(--color-white);">
-            <span class="btn__bg" aria-hidden="true" style="background:var(--color-white);"></span>
-            <span class="btn__label" aria-hidden="true"><span>Solicitar orçamento</span><span style="color:var(--color-dark);">Solicitar orçamento</span></span>
-          </a>
           <a href="https://wa.me/5519999778710?text=Olá!%20Quero%20um%20orçamento%20de%20projeto%20luminotécnico." target="_blank" rel="noopener" class="btn --cta --cta-default" style="border-color:var(--color-primary);background:var(--color-primary);color:var(--color-dark);">
             <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary-hover);"></span>
             <span class="btn__label" aria-hidden="true"><span>WhatsApp direto</span><span>WhatsApp direto</span></span>

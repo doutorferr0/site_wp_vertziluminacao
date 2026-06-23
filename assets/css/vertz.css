@@ -2519,6 +2519,13 @@ p.fz-13, p.fz-14, p.fz-md-13, p.fz-md-14 {
   margin: 0;
 }
 
+.site-lead__error {
+  font-size: var(--fz-12);
+  color: #c0392b;
+  line-height: 1.4;
+  margin: 0;
+}
+
 
 /* ============================================================
    MOBILE — ajustes gerais de touch e legibilidade
