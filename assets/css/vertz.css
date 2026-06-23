@@ -760,6 +760,31 @@ p.fz-13, p.fz-14, p.fz-md-13, p.fz-md-14 {
   .mb-xl-130 { margin-bottom: var(--sp-130); }
 }
 
+/* --- FALTANTES: padding/margin referenciados nos templates --- */
+.pt-80  { padding-top: var(--sp-80); }
+.pt-100 { padding-top: var(--sp-100); }
+.pb-80  { padding-bottom: var(--sp-80); }
+.pb-100 { padding-bottom: var(--sp-100); }
+@media (min-width: 768px) {
+  .pt-md-100 { padding-top: var(--sp-100); }
+  .pt-md-130 { padding-top: var(--sp-130); }
+  .pb-md-100 { padding-bottom: var(--sp-100); }
+  .pb-md-130 { padding-bottom: var(--sp-130); }
+}
+@media (min-width: 1280px) {
+  .pt-xl-130 { padding-top: var(--sp-130); }
+  .pb-xl-130 { padding-bottom: var(--sp-130); }
+}
+.mt-0  { margin-top: 0; }
+.mb-0  { margin-bottom: 0; }
+.mb-8  { margin-bottom: var(--sp-8); }
+.mb-15 { margin-bottom: var(--sp-15); }
+.mb-24 { margin-bottom: var(--sp-24); }
+.mb-40 { margin-bottom: var(--sp-40); }
+@media (min-width: 768px) {
+  .mb-md-70 { margin-bottom: var(--sp-70); }
+}
+
 /* List */
 .list-none { list-style: none; }
 
@@ -3484,6 +3509,11 @@ a, button, [role="button"] {
 /* ------ SEÇÃO 4: SEGMENTOS — hover na imagem ------------- */
 .servicos-segmento img { will-change: transform; }
 .servicos-segmento:hover img { transform: scale(1.05); }
+.servicos-segmento .overflow-clip {
+  aspect-ratio: 4 / 3;
+  background: var(--color-surface);
+}
+.servicos-segmento .overflow-clip img { width: 100%; height: 100%; }
 
 /* ------ SEÇÃO 7: CTA FINAL — split sem sobreposição ------ */
 .servicos-cta {
