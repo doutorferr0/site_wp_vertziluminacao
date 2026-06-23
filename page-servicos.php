@@ -221,7 +221,7 @@ $theme_uri = get_template_directory_uri();
         ];
 
         foreach ($segmentos as $s): ?>
-        <article class="d-grid grid-gap-20" data-scroll data-scroll-offset="60px,0" data-module-delay style="--index:<?php echo $s['i'] % 3; ?>">
+        <article class="d-grid grid-gap-20 servicos-segmento" data-scroll data-scroll-offset="60px,0" data-module-delay style="--index:<?php echo $s['i'] % 3; ?>">
 
           <div class="overflow-clip" style="border-radius:12px;">
             <!-- IMG: <?php echo esc_html($s['img']); ?> | <?php echo esc_html($s['ratio']); ?> -->
@@ -258,7 +258,7 @@ $theme_uri = get_template_directory_uri();
         </h2>
       </header>
 
-      <div class="d-grid grid-column-1 grid-column-md-2 grid-column-xl-4 grid-gap-0">
+      <div class="servicos-metodo">
         <?php
         $processo = [
           ['num'=>'01','titulo'=>'Briefing','desc'=>'Entendemos o projeto, o espaço, quem vai habitar e o orçamento. Sem atalhos — é aqui que os projetos bem-feitos começam.','nota'=>'Sem custo. Presencial ou remoto.'],
@@ -267,11 +267,11 @@ $theme_uri = get_template_directory_uri();
           ['num'=>'04','titulo'=>'Entrega e Acompanhamento','desc'=>'Fornecemos os produtos, orientamos a instalação e fazemos visitas de acompanhamento. O projeto termina quando o ambiente está como projetado.','nota'=>'2 anos de garantia em todos os produtos.'],
         ];
         foreach ($processo as $i => $e): ?>
-        <div class="d-grid grid-gap-15" style="border-top:1px solid var(--color-gray-300);padding-top:2rem;padding-bottom:2rem;<?php echo $i < 3 ? 'padding-right:2rem;' : ''; ?>" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:<?php echo $i; ?>">
-          <span class="fz-11 tt-uppercase fw-700 d-block" style="color:var(--color-accent);letter-spacing:0.18em;"><?php echo esc_html($e['num']); ?></span>
-          <h3 class="fz-20 fz-xl-24 fw-400 ls--2 m-0"><?php echo esc_html($e['titulo']); ?></h3>
-          <p class="fz-14 fz-xl-15 lh-155 m-0" style="color:var(--color-gray-600)"><?php echo esc_html($e['desc']); ?></p>
-          <p class="fz-11 tt-uppercase fw-500 m-0" style="color:var(--color-dark);letter-spacing:0.08em;"><?php echo esc_html($e['nota']); ?></p>
+        <div class="servicos-metodo__step" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:<?php echo $i; ?>">
+          <span class="servicos-metodo__num"><?php echo esc_html($e['num']); ?></span>
+          <h3 class="servicos-metodo__title"><?php echo esc_html($e['titulo']); ?></h3>
+          <p class="servicos-metodo__desc"><?php echo esc_html($e['desc']); ?></p>
+          <p class="servicos-metodo__nota"><?php echo esc_html($e['nota']); ?></p>
         </div>
         <?php endforeach; ?>
       </div>
@@ -317,10 +317,10 @@ $theme_uri = get_template_directory_uri();
     SEÇÃO 7: CTA FINAL — Duplo, escuro, impactante
   ============================================================ -->
   <div class="pb-row-wrapper position-relative pt-100 pb-100 pt-md-130 pb-md-130 mt-0 mb-0" style="--zindex:7;background:var(--color-header-bg)">
-    <div class="pb-row container-fluid d-grid grid-column-md-12 grid-gap-12 grid-gap-xl-20"
+    <div class="pb-row container-fluid servicos-cta"
       data-scroll data-scroll-offset="80px,0" data-module-delay>
 
-      <div class="col-start-1 col-span-md-9 col-span-xl-16">
+      <div class="servicos-cta__main">
         <p class="fz-12 tt-uppercase m-0 mb-20" style="color:rgba(255,255,255,0.4);letter-spacing:0.15em;">Pronto para começar?</p>
         <h2 class="ff-body fz-32 fz-md-52 fz-xl-72 fw-400 ls--4 m-0 mb-15" style="color:var(--color-white)">
           Solicite seu<br><span class="title-highlight --font-heading --fs-italic" style="color:var(--color-primary)">projeto.</span>
@@ -337,7 +337,7 @@ $theme_uri = get_template_directory_uri();
       </div>
 
       <!-- Info contato lateral -->
-      <div class="col-start-1 col-start-md-11 col-span-md-2 col-span-xl-6 d-flex flex-column justify-content-center mt-60 mt-md-0" style="border-left:1px solid rgba(255,255,255,0.1);padding-left:2rem;">
+      <div class="servicos-cta__aside">
         <div class="mb-24">
           <p class="fz-11 tt-uppercase fw-500 m-0 mb-8" style="color:var(--color-primary);letter-spacing:0.12em;">Telefone</p>
           <a href="tel:+551932510501" class="fz-16 fw-400 m-0 d-block" style="color:rgba(255,255,255,0.7);text-decoration:none;">(19) 3251-0501</a>
