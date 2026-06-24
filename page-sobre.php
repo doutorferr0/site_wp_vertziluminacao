@@ -85,14 +85,17 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
 <style id="sobre-atelier-css">
 #page-sobre .sobre-atelier{ display:block; }
 #page-sobre .sobre-atelier__nav{ margin:0 0 var(--sp-40); }
-#page-sobre .sobre-atelier__navList{ list-style:none; margin:0; padding:0; display:flex; flex-flow:row wrap; gap:1.5rem 2rem; }
-#page-sobre .sobre-atelier__navLink{ display:flex; align-items:flex-start; gap:.7rem; text-decoration:none; color:var(--color-dark); opacity:.4; transition:opacity .4s cubic-bezier(.16,1,.3,1); }
-#page-sobre .sobre-atelier__navLink:hover{ opacity:.75; }
+#page-sobre .sobre-atelier__navList{ list-style:none; margin:0; padding:0; display:flex; flex-flow:row wrap; gap:1.1rem 2rem; }
+#page-sobre .sobre-atelier__navLink{ display:flex; align-items:baseline; gap:.7rem; text-decoration:none; color:var(--color-dark); opacity:.35; transition:opacity .4s cubic-bezier(.16,1,.3,1); }
+#page-sobre .sobre-atelier__navLink:hover{ opacity:.7; }
 #page-sobre .sobre-atelier__navLink.is-active{ opacity:1; }
-#page-sobre .sobre-atelier__navNum{ font-size:.7rem; letter-spacing:.1em; color:var(--color-accent); padding-top:.55em; flex:0 0 auto; }
-#page-sobre .sobre-atelier__navMain{ display:flex; flex-direction:column; gap:.2rem; }
-#page-sobre .sobre-atelier__navTitle{ font-size:clamp(1.5rem,2vw,2.15rem); font-weight:500; text-transform:uppercase; letter-spacing:.01em; line-height:1.02; }
-#page-sobre .sobre-atelier__navSub{ font-size:.7rem; text-transform:uppercase; letter-spacing:.12em; color:var(--color-gray-600); line-height:1.3; }
+#page-sobre .sobre-atelier__navNum{ font-size:.7rem; letter-spacing:.1em; color:var(--color-accent); flex:0 0 auto; padding-top:.35em; }
+#page-sobre .sobre-atelier__navTitle{ font-size:clamp(1.5rem,2vw,2.2rem); font-weight:500; text-transform:uppercase; letter-spacing:.01em; line-height:1.05; }
+#page-sobre .sobre-atelier__desc{ max-width:44ch; }
+#page-sobre .sobre-atelier__descItem{ display:none; }
+#page-sobre .sobre-atelier__descItem.is-active{ display:block; animation:sobreFade .5s cubic-bezier(.16,1,.3,1); }
+#page-sobre .sobre-atelier__descLead{ margin:0; font-size:.98rem; line-height:1.62; color:var(--color-gray-600); }
+@keyframes sobreFade{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
 #page-sobre .sobre-atelier__section{ scroll-margin-top:120px; padding-bottom:clamp(4rem,9vw,8rem); }
 #page-sobre .sobre-atelier__section:last-child{ padding-bottom:0; }
 #page-sobre .sobre-atelier__eyebrow{ margin:0 0 1rem; font-size:.72rem; font-weight:500; text-transform:uppercase; letter-spacing:.2em; color:var(--color-accent); }
@@ -105,9 +108,9 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
 #page-sobre .sobre-carousel__cap{ display:flex; flex-direction:column; gap:.4rem; margin-top:var(--sp-15); }
 
 @media (min-width:1024px){
-  #page-sobre .sobre-atelier{ display:grid; grid-template-columns:minmax(230px,300px) 1fr; column-gap:clamp(2.5rem,6vw,6rem); align-items:start; }
-  #page-sobre .sobre-atelier__nav{ position:sticky; top:0; height:100vh; display:flex; align-items:center; align-self:start; margin:0; }
-  #page-sobre .sobre-atelier__navList{ flex-direction:column; gap:1.7rem; width:100%; }
+  #page-sobre .sobre-atelier{ display:grid; grid-template-columns:minmax(240px,320px) 1fr; column-gap:clamp(2.5rem,6vw,6rem); align-items:start; }
+  #page-sobre .sobre-atelier__nav{ position:sticky; top:0; height:100vh; display:flex; flex-direction:column; justify-content:center; gap:2.6rem; align-self:start; margin:0; }
+  #page-sobre .sobre-atelier__navList{ flex-direction:column; gap:1.4rem; }
 }
 </style>
 
@@ -152,23 +155,22 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
           <li>
             <a class="sobre-atelier__navLink" href="#<?php echo esc_attr($s['id']); ?>">
               <span class="sobre-atelier__navNum"><?php echo esc_html($s['num']); ?></span>
-              <span class="sobre-atelier__navMain">
-                <span class="sobre-atelier__navTitle"><?php echo esc_html($s['titulo']); ?></span>
-                <span class="sobre-atelier__navSub"><?php echo esc_html($s['label']); ?></span>
-              </span>
+              <span class="sobre-atelier__navTitle"><?php echo esc_html($s['titulo']); ?></span>
             </a>
           </li>
           <?php endforeach; ?>
         </ul>
+        <div class="sobre-atelier__desc">
+          <?php foreach ($secoes as $s): ?>
+          <div class="sobre-atelier__descItem" data-desc="<?php echo esc_attr($s['id']); ?>">
+            <p class="sobre-atelier__descLead"><?php echo esc_html($s['texto']); ?></p>
+          </div>
+          <?php endforeach; ?>
+        </div>
       </aside>
       <div class="sobre-atelier__sections">
         <?php foreach ($secoes as $s): ?>
         <section id="<?php echo esc_attr($s['id']); ?>" class="sobre-atelier__section">
-          <header class="mb-30">
-            <p class="sobre-atelier__eyebrow"><?php echo esc_html($s['num']); ?> — <?php echo esc_html($s['label']); ?></p>
-            <h2 class="ff-body fz-28 fz-md-44 fz-xl-48 fw-400 lh-107 ls--3 m-0"><?php echo esc_html($s['titulo']); ?> <span class="title-highlight --font-heading --fs-italic"><?php echo esc_html($s['titulo_hl']); ?></span></h2>
-            <p class="sobre-atelier__lead"><?php echo esc_html($s['texto']); ?></p>
-          </header>
           <div class="sobre-carousel">
             <?php foreach ($s['slides'] as $sl): ?>
             <figure class="sobre-carousel__item">
@@ -252,7 +254,11 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
     var OFFSET = 120;
     function offTop(el){ var y=0; while(el){ y+=el.offsetTop; el=el.offsetParent; } return y; }
     var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
-    function setActive(id){ links.forEach(function(a){ a.classList.toggle('is-active', a.getAttribute('href') === '#' + id); }); }
+    var descItems = Array.prototype.slice.call(root.querySelectorAll('.sobre-atelier__descItem'));
+    function setActive(id){
+      links.forEach(function(a){ a.classList.toggle('is-active', a.getAttribute('href') === '#' + id); });
+      descItems.forEach(function(d){ d.classList.toggle('is-active', d.getAttribute('data-desc') === id); });
+    }
     links.forEach(function(a){
       a.addEventListener('click', function(e){
         var t = document.querySelector(a.getAttribute('href'));
