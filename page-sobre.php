@@ -2,11 +2,10 @@
 /**
  * Template Name: Sobre
  * page-sobre.php — Vertz Iluminação
- * Estrutura inspirada no ritmo editorial da L'Atelier (Font Barcelona):
- * hero → par de imagens → nav lateral sticky (scrollspy) + seções com carrossel → co-criação → CTA.
- * Conteúdo próprio Vertz. Header/footer/cores/regras do tema mantidos.
- * Nav/scrollspy/carrossel isolados neste template (escopo #page-sobre).
- * Scroll por offsetTop (imune aos transforms de parallax do tema). Carrossel = scroll-snap nativo.
+ * Inspirado no ritmo da L'Atelier (Font Barcelona): lista de tópicos sticky + descrição do ativo,
+ * galeria 1-a-1 (prev/próxima) por tópico, corpo compacto/quadrado. Conteúdo próprio Vertz.
+ * Nav/scrollspy/galeria isolados neste template (escopo #page-sobre).
+ * Scroll por offsetTop (imune aos transforms de parallax do tema).
  */
 get_header();
 $theme_uri = get_template_directory_uri();
@@ -32,7 +31,8 @@ $secoes = vf('sobre_secoes', false, array(
       array('img'=>'metodo-01.webp','tag'=>'Etapa 01','cap'=>'Briefing e leitura do espaço'),
       array('img'=>'metodo-02.webp','tag'=>'Etapa 02','cap'=>'Projeto luminotécnico (DIALux)'),
       array('img'=>'metodo-03.webp','tag'=>'Etapa 03','cap'=>'Proposta e quantitativo'),
-      array('img'=>'metodo-04.webp','tag'=>'Etapa 04','cap'=>'Entrega e acompanhamento'),
+      array('img'=>'metodo-04.webp','tag'=>'Etapa 04','cap'=>'Fornecimento de marcas exclusivas'),
+      array('img'=>'metodo-05.webp','tag'=>'Etapa 05','cap'=>'Entrega, acompanhamento e garantia'),
     ),
   ),
   array(
@@ -43,6 +43,7 @@ $secoes = vf('sobre_secoes', false, array(
       array('img'=>'trabalho-02.webp','tag'=>'Comercial','cap'=>'Varejo e showroom'),
       array('img'=>'trabalho-03.webp','tag'=>'Corporativo','cap'=>'Escritório e lobby'),
       array('img'=>'trabalho-04.webp','tag'=>'Hospitality','cap'=>'Hotelaria e gastronomia'),
+      array('img'=>'trabalho-05.webp','tag'=>'Áreas externas','cap'=>'Fachada e paisagismo'),
     ),
   ),
   array(
@@ -52,6 +53,8 @@ $secoes = vf('sobre_secoes', false, array(
       array('img'=>'equipe-01.webp','tag'=>'Projetos','cap'=>'Especialista luminotécnico'),
       array('img'=>'equipe-02.webp','tag'=>'Atendimento','cap'=>'Consultoria de showroom'),
       array('img'=>'equipe-03.webp','tag'=>'Curadoria','cap'=>'Seleção de marcas e coleções'),
+      array('img'=>'equipe-04.webp','tag'=>'Engenharia','cap'=>'Especificação técnica'),
+      array('img'=>'equipe-05.webp','tag'=>'Pós-venda','cap'=>'Suporte e acompanhamento'),
     ),
   ),
   array(
@@ -60,7 +63,9 @@ $secoes = vf('sobre_secoes', false, array(
     'slides'=>array(
       array('img'=>'showroom-01.webp','tag'=>'São Paulo','cap'=>'Alameda Casa Branca, 806 — Jd. Paulista'),
       array('img'=>'showroom-02.webp','tag'=>'Campinas','cap'=>'R. Antônio Lapa, 328 — Cambuí'),
-      array('img'=>'showroom-03.webp','tag'=>'Experiência','cap'=>'Marcas exclusivas ao vivo'),
+      array('img'=>'showroom-03.webp','tag'=>'Experiência','cap'=>'A luz comparada ao vivo'),
+      array('img'=>'showroom-04.webp','tag'=>'Marcas','cap'=>'Coleções exclusivas'),
+      array('img'=>'showroom-05.webp','tag'=>'Atendimento','cap'=>'Consultoria presencial'),
     ),
   ),
 ));
@@ -90,27 +95,30 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
 #page-sobre .sobre-atelier__navLink:hover{ opacity:.7; }
 #page-sobre .sobre-atelier__navLink.is-active{ opacity:1; }
 #page-sobre .sobre-atelier__navNum{ font-size:.7rem; letter-spacing:.1em; color:var(--color-accent); flex:0 0 auto; padding-top:.35em; }
-#page-sobre .sobre-atelier__navTitle{ font-size:clamp(1.5rem,2vw,2.2rem); font-weight:500; text-transform:uppercase; letter-spacing:.01em; line-height:1.05; }
-#page-sobre .sobre-atelier__desc{ max-width:44ch; }
+#page-sobre .sobre-atelier__navTitle{ font-size:clamp(1.35rem,1.8vw,2rem); font-weight:500; text-transform:uppercase; letter-spacing:.01em; line-height:1.05; }
+#page-sobre .sobre-atelier__desc{ max-width:42ch; }
 #page-sobre .sobre-atelier__descItem{ display:none; }
 #page-sobre .sobre-atelier__descItem.is-active{ display:block; animation:sobreFade .5s cubic-bezier(.16,1,.3,1); }
-#page-sobre .sobre-atelier__descLead{ margin:0; font-size:.98rem; line-height:1.62; color:var(--color-gray-600); }
+#page-sobre .sobre-atelier__descLead{ margin:0; font-size:.95rem; line-height:1.6; color:var(--color-gray-600); }
 @keyframes sobreFade{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
-#page-sobre .sobre-atelier__section{ scroll-margin-top:120px; padding-bottom:clamp(4rem,9vw,8rem); }
+#page-sobre .sobre-atelier__section{ scroll-margin-top:120px; padding-bottom:clamp(3.5rem,7vw,6.5rem); }
 #page-sobre .sobre-atelier__section:last-child{ padding-bottom:0; }
-#page-sobre .sobre-atelier__eyebrow{ margin:0 0 1rem; font-size:.72rem; font-weight:500; text-transform:uppercase; letter-spacing:.2em; color:var(--color-accent); }
-#page-sobre .sobre-atelier__lead{ margin:1.4rem 0 2.5rem; max-width:54ch; font-size:1.05rem; line-height:1.6; color:var(--color-gray-600); }
 
-#page-sobre .sobre-carousel{ display:flex; gap:clamp(.85rem,1.4vw,1.4rem); overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; margin:0; padding-bottom:.25rem; }
-#page-sobre .sobre-carousel::-webkit-scrollbar{ display:none; }
-#page-sobre .sobre-carousel__item{ flex:0 0 auto; width:clamp(250px,80vw,400px); scroll-snap-align:start; margin:0; }
-@media (min-width:768px){ #page-sobre .sobre-carousel__item{ width:clamp(340px,42%,480px); } }
-#page-sobre .sobre-carousel__cap{ display:flex; flex-direction:column; gap:.4rem; margin-top:var(--sp-15); }
+#page-sobre .sobre-gallery{ max-width:600px; }
+#page-sobre .sobre-gallery__stage{ position:relative; }
+#page-sobre .sobre-gallery__slide{ display:none; margin:0; }
+#page-sobre .sobre-gallery__slide.is-active{ display:block; animation:sobreFade .45s cubic-bezier(.16,1,.3,1); }
+#page-sobre .sobre-gallery__cap{ display:flex; flex-direction:column; gap:.3rem; margin-top:var(--sp-15); }
+#page-sobre .sobre-gallery__controls{ display:flex; align-items:center; gap:1rem; margin-top:1.25rem; }
+#page-sobre .sobre-gallery__btn{ width:2.75rem; height:2.75rem; border-radius:50%; border:1px solid var(--color-gray-300); background:transparent; color:var(--color-dark); font-size:1.05rem; line-height:1; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; transition:background .3s, color .3s, border-color .3s; }
+#page-sobre .sobre-gallery__btn:hover{ background:var(--color-dark); color:var(--color-white); border-color:var(--color-dark); }
+#page-sobre .sobre-gallery__counter{ font-size:.78rem; letter-spacing:.12em; color:var(--color-gray-600); font-variant-numeric:tabular-nums; }
 
 @media (min-width:1024px){
-  #page-sobre .sobre-atelier{ display:grid; grid-template-columns:minmax(240px,320px) 1fr; column-gap:clamp(2.5rem,6vw,6rem); align-items:start; }
-  #page-sobre .sobre-atelier__nav{ position:sticky; top:0; height:100vh; display:flex; flex-direction:column; justify-content:center; gap:2.6rem; align-self:start; margin:0; }
-  #page-sobre .sobre-atelier__navList{ flex-direction:column; gap:1.4rem; }
+  #page-sobre .sobre-atelier{ display:grid; grid-template-columns:minmax(230px,300px) 1fr; column-gap:clamp(2.5rem,5vw,5rem); align-items:start; }
+  #page-sobre .sobre-atelier__nav{ position:sticky; top:0; height:100vh; display:flex; flex-direction:column; justify-content:center; gap:2.4rem; align-self:start; margin:0; }
+  #page-sobre .sobre-atelier__navList{ flex-direction:column; gap:1.3rem; }
+  #page-sobre .sobre-gallery{ margin-inline:auto; }
 }
 </style>
 
@@ -141,12 +149,12 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
   <div class="pb-row-wrapper position-relative pt-0 pb-0 mt-0 mb-0" style="--zindex:2">
     <div class="pb-row container-fluid d-grid grid-column-1 grid-column-md-2 grid-gap-12 grid-gap-xl-20" data-scroll data-scroll-offset="80px,0" data-module-delay>
       <?php foreach ($intro_imgs as $i => $im): ?>
-      <figure class="m-0" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:<?php echo $i; ?>"><?php vertz_sobre_img($im['img'], $im['alt'], '3/4'); ?></figure>
+      <figure class="m-0" data-scroll data-scroll-offset="50px,0" data-module-delay style="--index:<?php echo $i; ?>"><?php vertz_sobre_img($im['img'], $im['alt'], '4/3'); ?></figure>
       <?php endforeach; ?>
     </div>
   </div>
 
-  <!-- SEÇÃO 3: ATELIER — nav lateral sticky + seções com carrossel -->
+  <!-- SEÇÃO 3: ATELIER — lista sticky + descrição do ativo + galeria 1-a-1 -->
   <div class="pb-row-wrapper position-relative pt-80 pb-80 pt-md-100 pb-md-100 pt-xl-130 pb-xl-130 mt-0 mb-0" style="--zindex:3">
     <div class="pb-row container-fluid sobre-atelier">
       <aside class="sobre-atelier__nav" aria-label="Seções desta página">
@@ -169,18 +177,25 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
         </div>
       </aside>
       <div class="sobre-atelier__sections">
-        <?php foreach ($secoes as $s): ?>
+        <?php foreach ($secoes as $s): $n = count($s['slides']); ?>
         <section id="<?php echo esc_attr($s['id']); ?>" class="sobre-atelier__section">
-          <div class="sobre-carousel">
-            <?php foreach ($s['slides'] as $sl): ?>
-            <figure class="sobre-carousel__item">
-              <?php vertz_sobre_img($img_dir . '/' . $sl['img'], $s['titulo'] . ' — ' . $sl['cap'], '4/5'); ?>
-              <figcaption class="sobre-carousel__cap">
-                <span class="fz-10 tt-uppercase fw-500" style="letter-spacing:.15em;color:var(--color-accent)"><?php echo esc_html($sl['tag']); ?></span>
-                <span class="fz-13 lh-142" style="color:var(--color-dark)"><?php echo esc_html($sl['cap']); ?></span>
-              </figcaption>
-            </figure>
-            <?php endforeach; ?>
+          <div class="sobre-gallery" data-gallery>
+            <div class="sobre-gallery__stage">
+              <?php foreach ($s['slides'] as $j => $sl): ?>
+              <figure class="sobre-gallery__slide<?php echo $j === 0 ? ' is-active' : ''; ?>">
+                <?php vertz_sobre_img($img_dir . '/' . $sl['img'], $s['titulo'] . ' — ' . $sl['cap'], '1/1'); ?>
+                <figcaption class="sobre-gallery__cap">
+                  <span class="fz-10 tt-uppercase fw-500" style="letter-spacing:.15em;color:var(--color-accent)"><?php echo esc_html($sl['tag']); ?></span>
+                  <span class="fz-14 lh-142" style="color:var(--color-dark)"><?php echo esc_html($sl['cap']); ?></span>
+                </figcaption>
+              </figure>
+              <?php endforeach; ?>
+            </div>
+            <div class="sobre-gallery__controls">
+              <button type="button" class="sobre-gallery__btn" data-prev aria-label="Imagem anterior">&#8592;</button>
+              <span class="sobre-gallery__counter"><span data-current>01</span> / <?php echo esc_html(str_pad($n, 2, '0', STR_PAD_LEFT)); ?></span>
+              <button type="button" class="sobre-gallery__btn" data-next aria-label="Próxima imagem">&#8594;</button>
+            </div>
           </div>
         </section>
         <?php endforeach; ?>
@@ -208,7 +223,7 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
       </div>
       <div class="col-start-1 col-start-md-7 col-start-xl-13 col-span-md-6 col-span-xl-11 d-grid grid-column-2 grid-gap-12 grid-gap-xl-20" style="margin-top:var(--sp-40);">
         <?php foreach ($cocria_imgs as $i => $im): ?>
-        <figure class="m-0" style="--index:<?php echo $i; ?>;<?php echo $i === 1 ? 'margin-top:var(--sp-40);' : ''; ?>"><?php vertz_sobre_img($im['img'], $im['alt'], '3/4'); ?></figure>
+        <figure class="m-0" style="--index:<?php echo $i; ?>;<?php echo $i === 1 ? 'margin-top:var(--sp-40);' : ''; ?>"><?php vertz_sobre_img($im['img'], $im['alt'], '1/1'); ?></figure>
         <?php endforeach; ?>
       </div>
     </div>
@@ -249,33 +264,52 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
   (function(){
     var root = document.getElementById('page-sobre');
     if (!root) return;
+
+    /* nav lateral: scrollspy + descrição do ativo + scroll por offsetTop */
     var links = Array.prototype.slice.call(root.querySelectorAll('.sobre-atelier__navLink'));
-    if (!links.length) return;
+    var descItems = Array.prototype.slice.call(root.querySelectorAll('.sobre-atelier__descItem'));
     var OFFSET = 120;
     function offTop(el){ var y=0; while(el){ y+=el.offsetTop; el=el.offsetParent; } return y; }
-    var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
-    var descItems = Array.prototype.slice.call(root.querySelectorAll('.sobre-atelier__descItem'));
     function setActive(id){
       links.forEach(function(a){ a.classList.toggle('is-active', a.getAttribute('href') === '#' + id); });
       descItems.forEach(function(d){ d.classList.toggle('is-active', d.getAttribute('data-desc') === id); });
     }
-    links.forEach(function(a){
-      a.addEventListener('click', function(e){
-        var t = document.querySelector(a.getAttribute('href'));
-        if (!t) return;
-        e.preventDefault();
-        window.scrollTo({ top: Math.max(0, offTop(t) - OFFSET), behavior: 'smooth' });
-        if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
-        setActive(t.id);
+    if (links.length){
+      var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+      links.forEach(function(a){
+        a.addEventListener('click', function(e){
+          var t = document.querySelector(a.getAttribute('href'));
+          if (!t) return;
+          e.preventDefault();
+          window.scrollTo({ top: Math.max(0, offTop(t) - OFFSET), behavior: 'smooth' });
+          if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
+          setActive(t.id);
+        });
       });
-    });
-    if ('IntersectionObserver' in window){
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){ if (en.isIntersecting) setActive(en.target.id); });
-      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-      sections.forEach(function(s){ io.observe(s); });
+      if ('IntersectionObserver' in window){
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(en){ if (en.isIntersecting) setActive(en.target.id); });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        sections.forEach(function(s){ io.observe(s); });
+      }
+      if (sections[0]) setActive(sections[0].id);
     }
-    if (sections[0]) setActive(sections[0].id);
+
+    /* galeria 1-a-1 por tópico: prev / próxima + contador */
+    Array.prototype.slice.call(root.querySelectorAll('[data-gallery]')).forEach(function(g){
+      var slides = Array.prototype.slice.call(g.querySelectorAll('.sobre-gallery__slide'));
+      if (slides.length < 2){ var c = g.querySelector('.sobre-gallery__controls'); if (c) c.style.display = 'none'; return; }
+      var cur = 0;
+      var counter = g.querySelector('[data-current]');
+      function show(i){
+        cur = (i + slides.length) % slides.length;
+        slides.forEach(function(s, k){ s.classList.toggle('is-active', k === cur); });
+        if (counter) counter.textContent = ('0' + (cur + 1)).slice(-2);
+      }
+      var p = g.querySelector('[data-prev]'), n = g.querySelector('[data-next]');
+      if (p) p.addEventListener('click', function(){ show(cur - 1); });
+      if (n) n.addEventListener('click', function(){ show(cur + 1); });
+    });
   })();
   </script>
 
