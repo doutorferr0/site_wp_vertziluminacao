@@ -70,6 +70,13 @@ $secoes = vf('sobre_secoes', false, array(
   ),
 ));
 
+$sec_links = array(
+  'metodo'   => array('txt'=>'Como projetamos', 'url'=>'/servicos'),
+  'trabalho' => array('txt'=>'Ver projetos realizados', 'url'=>'/projetos'),
+  'equipe'   => array('txt'=>'Fale com a equipe', 'url'=>'/contato'),
+  'showroom' => array('txt'=>'Agendar uma visita', 'url'=>'/contato'),
+);
+
 $cocria_label     = vf('sobre_cocria_label',     false, 'Vamos criar juntos');
 $cocria_titulo    = vf('sobre_cocria_titulo',    false, 'Cada projeto tem seu próprio ritmo,');
 $cocria_titulo_hl = vf('sobre_cocria_titulo_hl', false, 'olhar e linguagem.');
@@ -104,15 +111,29 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
 #page-sobre .sobre-atelier__section{ scroll-margin-top:120px; padding-bottom:clamp(3.5rem,7vw,6.5rem); }
 #page-sobre .sobre-atelier__section:last-child{ padding-bottom:0; }
 
-#page-sobre .sobre-gallery{ max-width:600px; }
-#page-sobre .sobre-gallery__stage{ position:relative; }
+#page-sobre .sobre-atelier__descMore{ display:inline-block; margin-top:1.1rem; font-size:.78rem; letter-spacing:.02em; color:var(--color-dark); text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
+#page-sobre .sobre-gallery{ max-width:640px; }
+#page-sobre .sobre-gallery__main{ display:flex; gap:.65rem; align-items:flex-start; }
+#page-sobre .sobre-gallery__stage{ position:relative; flex:1 1 auto; min-width:0; }
 #page-sobre .sobre-gallery__slide{ display:none; margin:0; }
 #page-sobre .sobre-gallery__slide.is-active{ display:block; animation:sobreFade .45s cubic-bezier(.16,1,.3,1); }
+#page-sobre .sobre-gallery__slide .overflow-clip img{ transition:transform .7s cubic-bezier(.16,1,.3,1); }
+#page-sobre .sobre-gallery__slide:hover .overflow-clip img{ transform:scale(1.035); }
 #page-sobre .sobre-gallery__cap{ display:flex; flex-direction:column; gap:.3rem; margin-top:var(--sp-15); }
+#page-sobre .sobre-gallery__thumbs{ flex:0 0 62px; display:flex; flex-direction:column; gap:.5rem; }
+#page-sobre .sobre-gallery__thumb{ flex:0 0 auto; width:62px; aspect-ratio:1/1; padding:0; border:0; border-radius:8px; overflow:hidden; cursor:pointer; background:var(--color-gray-100,#ededed); opacity:.4; transition:opacity .3s; }
+#page-sobre .sobre-gallery__thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+#page-sobre .sobre-gallery__thumb:hover{ opacity:.75; }
+#page-sobre .sobre-gallery__thumb.is-active{ opacity:1; outline:1.5px solid var(--color-dark); outline-offset:1px; }
 #page-sobre .sobre-gallery__controls{ display:flex; align-items:center; gap:1rem; margin-top:1.25rem; }
 #page-sobre .sobre-gallery__btn{ width:2.75rem; height:2.75rem; border-radius:50%; border:1px solid var(--color-gray-300); background:transparent; color:var(--color-dark); font-size:1.05rem; line-height:1; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; transition:background .3s, color .3s, border-color .3s; }
 #page-sobre .sobre-gallery__btn:hover{ background:var(--color-dark); color:var(--color-white); border-color:var(--color-dark); }
 #page-sobre .sobre-gallery__counter{ font-size:.78rem; letter-spacing:.12em; color:var(--color-gray-600); font-variant-numeric:tabular-nums; }
+@media (max-width:767px){
+  #page-sobre .sobre-gallery__main{ flex-direction:column; }
+  #page-sobre .sobre-gallery__thumbs{ flex:0 0 auto; flex-direction:row; overflow-x:auto; scrollbar-width:none; }
+  #page-sobre .sobre-gallery__thumb{ width:54px; }
+}
 
 @media (min-width:1024px){
   #page-sobre .sobre-atelier{ display:grid; grid-template-columns:minmax(230px,300px) 1fr; column-gap:clamp(2.5rem,5vw,5rem); align-items:start; }
@@ -172,6 +193,9 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
           <?php foreach ($secoes as $s): ?>
           <div class="sobre-atelier__descItem" data-desc="<?php echo esc_attr($s['id']); ?>">
             <p class="sobre-atelier__descLead"><?php echo esc_html($s['texto']); ?></p>
+            <?php if (!empty($sec_links[$s['id']])): $lk = $sec_links[$s['id']]; ?>
+            <a class="sobre-atelier__descMore" href="<?php echo esc_url(home_url($lk['url'])); ?>"><?php echo esc_html($lk['txt']); ?></a>
+            <?php endif; ?>
           </div>
           <?php endforeach; ?>
         </div>
@@ -180,16 +204,25 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
         <?php foreach ($secoes as $s): $n = count($s['slides']); ?>
         <section id="<?php echo esc_attr($s['id']); ?>" class="sobre-atelier__section">
           <div class="sobre-gallery" data-gallery>
-            <div class="sobre-gallery__stage">
-              <?php foreach ($s['slides'] as $j => $sl): ?>
-              <figure class="sobre-gallery__slide<?php echo $j === 0 ? ' is-active' : ''; ?>">
-                <?php vertz_sobre_img($img_dir . '/' . $sl['img'], $s['titulo'] . ' — ' . $sl['cap'], '1/1'); ?>
-                <figcaption class="sobre-gallery__cap">
-                  <span class="fz-10 tt-uppercase fw-500" style="letter-spacing:.15em;color:var(--color-accent)"><?php echo esc_html($sl['tag']); ?></span>
-                  <span class="fz-14 lh-142" style="color:var(--color-dark)"><?php echo esc_html($sl['cap']); ?></span>
-                </figcaption>
-              </figure>
-              <?php endforeach; ?>
+            <div class="sobre-gallery__main">
+              <div class="sobre-gallery__stage">
+                <?php foreach ($s['slides'] as $j => $sl): ?>
+                <figure class="sobre-gallery__slide<?php echo $j === 0 ? ' is-active' : ''; ?>">
+                  <?php vertz_sobre_img($img_dir . '/' . $sl['img'], $s['titulo'] . ' — ' . $sl['cap'], '1/1'); ?>
+                  <figcaption class="sobre-gallery__cap">
+                    <span class="fz-10 tt-uppercase fw-500" style="letter-spacing:.15em;color:var(--color-accent)"><?php echo esc_html($sl['tag']); ?></span>
+                    <span class="fz-14 lh-142" style="color:var(--color-dark)"><?php echo esc_html($sl['cap']); ?></span>
+                  </figcaption>
+                </figure>
+                <?php endforeach; ?>
+              </div>
+              <div class="sobre-gallery__thumbs" role="tablist" aria-label="Miniaturas">
+                <?php foreach ($s['slides'] as $j => $sl): ?>
+                <button type="button" class="sobre-gallery__thumb<?php echo $j === 0 ? ' is-active' : ''; ?>" data-thumb="<?php echo (int) $j; ?>" aria-label="<?php echo esc_attr($sl['cap']); ?>">
+                  <img src="<?php echo esc_url($img_dir . '/' . $sl['img']); ?>" alt="" loading="lazy" decoding="async">
+                </button>
+                <?php endforeach; ?>
+              </div>
             </div>
             <div class="sobre-gallery__controls">
               <button type="button" class="sobre-gallery__btn" data-prev aria-label="Imagem anterior">&#8592;</button>
@@ -295,20 +328,23 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
       if (sections[0]) setActive(sections[0].id);
     }
 
-    /* galeria 1-a-1 por tópico: prev / próxima + contador */
+    /* galeria 1-a-1 por tópico: prev / próxima + miniaturas + contador */
     Array.prototype.slice.call(root.querySelectorAll('[data-gallery]')).forEach(function(g){
       var slides = Array.prototype.slice.call(g.querySelectorAll('.sobre-gallery__slide'));
-      if (slides.length < 2){ var c = g.querySelector('.sobre-gallery__controls'); if (c) c.style.display = 'none'; return; }
+      var thumbs = Array.prototype.slice.call(g.querySelectorAll('.sobre-gallery__thumb'));
+      if (slides.length < 2){ var c = g.querySelector('.sobre-gallery__controls'); if (c) c.style.display = 'none'; if (thumbs.length < 2){ var th = g.querySelector('.sobre-gallery__thumbs'); if (th) th.style.display = 'none'; } return; }
       var cur = 0;
       var counter = g.querySelector('[data-current]');
       function show(i){
         cur = (i + slides.length) % slides.length;
         slides.forEach(function(s, k){ s.classList.toggle('is-active', k === cur); });
+        thumbs.forEach(function(tb, k){ tb.classList.toggle('is-active', k === cur); });
         if (counter) counter.textContent = ('0' + (cur + 1)).slice(-2);
       }
       var p = g.querySelector('[data-prev]'), n = g.querySelector('[data-next]');
       if (p) p.addEventListener('click', function(){ show(cur - 1); });
       if (n) n.addEventListener('click', function(){ show(cur + 1); });
+      thumbs.forEach(function(tb, k){ tb.addEventListener('click', function(){ show(k); }); });
     });
   })();
   </script>
