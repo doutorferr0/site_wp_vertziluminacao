@@ -5,7 +5,8 @@
  * Estrutura inspirada no ritmo editorial da L'Atelier (Font Barcelona):
  * hero → par de imagens → nav lateral sticky (scrollspy) + seções com carrossel → co-criação → CTA.
  * Conteúdo próprio Vertz. Header/footer/cores/regras do tema mantidos.
- * CSS e scrollspy da nav lateral isolados neste template (escopo #page-sobre).
+ * Nav/scrollspy/carrossel isolados neste template (escopo #page-sobre).
+ * Scroll por offsetTop (imune aos transforms de parallax do tema). Carrossel = scroll-snap nativo.
  */
 get_header();
 $theme_uri = get_template_directory_uri();
@@ -84,22 +85,27 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
 <style id="sobre-atelier-css">
 #page-sobre .sobre-atelier{ display:block; }
 #page-sobre .sobre-atelier__nav{ margin:0 0 var(--sp-40); }
-#page-sobre .sobre-atelier__navList{ list-style:none; margin:0; padding:0; display:flex; flex-flow:row wrap; gap:.75rem 1.75rem; }
-#page-sobre .sobre-atelier__navLink{ display:inline-flex; align-items:baseline; gap:.5rem; text-decoration:none; text-transform:uppercase; letter-spacing:.12em; font-size:.8125rem; line-height:1.1; color:var(--color-gray-400,#a8a298); transition:color .45s cubic-bezier(.16,1,.3,1); }
-#page-sobre .sobre-atelier__navLink:hover{ color:var(--color-dark); }
-#page-sobre .sobre-atelier__navLink.is-active{ color:var(--color-dark); }
-#page-sobre .sobre-atelier__navNum{ font-size:.7em; color:var(--color-accent); }
-#page-sobre .sobre-atelier__section{ scroll-margin-top:120px; padding-bottom:clamp(3.5rem,8vw,7rem); }
+#page-sobre .sobre-atelier__navList{ list-style:none; margin:0; padding:0; display:flex; flex-flow:row wrap; gap:1rem 1.75rem; }
+#page-sobre .sobre-atelier__navLink{ display:inline-flex; align-items:baseline; gap:.6rem; text-decoration:none; text-transform:uppercase; letter-spacing:.04em; line-height:1.2; font-size:clamp(1.2rem,1.6vw,1.65rem); font-weight:400; color:var(--color-dark); opacity:.38; transition:opacity .4s cubic-bezier(.16,1,.3,1), color .4s; }
+#page-sobre .sobre-atelier__navLink:hover{ opacity:1; }
+#page-sobre .sobre-atelier__navLink.is-active{ opacity:1; }
+#page-sobre .sobre-atelier__navNum{ font-size:.55em; letter-spacing:.1em; color:var(--color-accent); opacity:1; transform:translateY(-.15em); }
+#page-sobre .sobre-atelier__section{ scroll-margin-top:120px; padding-bottom:clamp(4rem,9vw,8rem); }
 #page-sobre .sobre-atelier__section:last-child{ padding-bottom:0; }
-#page-sobre .sobre-atelier__eyebrow{ margin:0 0 1rem; font-size:.6875rem; font-weight:500; text-transform:uppercase; letter-spacing:.18em; color:var(--color-accent); }
-#page-sobre .sobre-atelier__lead{ margin:1.25rem 0 2.25rem; max-width:46ch; font-size:.95rem; line-height:1.55; color:var(--color-gray-600); }
+#page-sobre .sobre-atelier__eyebrow{ margin:0 0 1rem; font-size:.72rem; font-weight:500; text-transform:uppercase; letter-spacing:.2em; color:var(--color-accent); }
+#page-sobre .sobre-atelier__lead{ margin:1.4rem 0 2.5rem; max-width:54ch; font-size:1.05rem; line-height:1.6; color:var(--color-gray-600); }
+
+#page-sobre .sobre-carousel{ display:flex; gap:clamp(.85rem,1.4vw,1.4rem); overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; margin:0; padding-bottom:.25rem; }
+#page-sobre .sobre-carousel::-webkit-scrollbar{ display:none; }
+#page-sobre .sobre-carousel__item{ flex:0 0 auto; width:clamp(250px,80vw,400px); scroll-snap-align:start; margin:0; }
+@media (min-width:768px){ #page-sobre .sobre-carousel__item{ width:clamp(340px,42%,480px); } }
+#page-sobre .sobre-carousel__cap{ display:flex; flex-direction:column; gap:.4rem; margin-top:var(--sp-15); }
+
 @media (min-width:1024px){
-  #page-sobre .sobre-atelier{ display:grid; grid-template-columns:minmax(190px,240px) 1fr; column-gap:clamp(2.5rem,6vw,6rem); align-items:start; }
-  #page-sobre .sobre-atelier__nav{ position:sticky; top:clamp(96px,12vh,140px); align-self:start; margin:0; }
-  #page-sobre .sobre-atelier__navList{ flex-direction:column; gap:1.1rem; }
-  #page-sobre .sobre-atelier__navLink{ font-size:.875rem; }
+  #page-sobre .sobre-atelier{ display:grid; grid-template-columns:minmax(210px,260px) 1fr; column-gap:clamp(2.5rem,6vw,6rem); align-items:start; }
+  #page-sobre .sobre-atelier__nav{ position:sticky; top:clamp(110px,13vh,150px); align-self:start; margin:0; }
+  #page-sobre .sobre-atelier__navList{ flex-direction:column; gap:1.4rem; }
 }
-@media (prefers-reduced-motion:no-preference){ html{ scroll-behavior:smooth; } }
 </style>
 
 <div class="single single-page" id="page-sobre">
@@ -157,20 +163,16 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
             <h2 class="ff-body fz-28 fz-md-44 fz-xl-48 fw-400 lh-107 ls--3 m-0"><?php echo esc_html($s['titulo']); ?> <span class="title-highlight --font-heading --fs-italic"><?php echo esc_html($s['titulo_hl']); ?></span></h2>
             <p class="sobre-atelier__lead"><?php echo esc_html($s['texto']); ?></p>
           </header>
-          <div class="pb-row-cards-slider__slider">
-            <div class="swiper-wrapper">
-              <?php foreach ($s['slides'] as $sl): ?>
-              <div class="swiper-slide">
-                <figure class="m-0">
-                  <?php vertz_sobre_img($img_dir . '/' . $sl['img'], $s['titulo'] . ' — ' . $sl['cap'], '3/4'); ?>
-                  <figcaption class="d-flex flex-column grid-gap-8" style="margin-top:var(--sp-15);">
-                    <span class="fz-10 tt-uppercase fw-500" style="letter-spacing:.15em;color:var(--color-accent)"><?php echo esc_html($sl['tag']); ?></span>
-                    <span class="fz-13 lh-142" style="color:var(--color-dark)"><?php echo esc_html($sl['cap']); ?></span>
-                  </figcaption>
-                </figure>
-              </div>
-              <?php endforeach; ?>
-            </div>
+          <div class="sobre-carousel">
+            <?php foreach ($s['slides'] as $sl): ?>
+            <figure class="sobre-carousel__item">
+              <?php vertz_sobre_img($img_dir . '/' . $sl['img'], $s['titulo'] . ' — ' . $sl['cap'], '4/5'); ?>
+              <figcaption class="sobre-carousel__cap">
+                <span class="fz-10 tt-uppercase fw-500" style="letter-spacing:.15em;color:var(--color-accent)"><?php echo esc_html($sl['tag']); ?></span>
+                <span class="fz-13 lh-142" style="color:var(--color-dark)"><?php echo esc_html($sl['cap']); ?></span>
+              </figcaption>
+            </figure>
+            <?php endforeach; ?>
           </div>
         </section>
         <?php endforeach; ?>
@@ -242,17 +244,16 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
     var links = Array.prototype.slice.call(root.querySelectorAll('.sobre-atelier__navLink'));
     if (!links.length) return;
     var OFFSET = 120;
+    function offTop(el){ var y=0; while(el){ y+=el.offsetTop; el=el.offsetParent; } return y; }
     var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
     function setActive(id){ links.forEach(function(a){ a.classList.toggle('is-active', a.getAttribute('href') === '#' + id); }); }
     links.forEach(function(a){
       a.addEventListener('click', function(e){
-        var id = a.getAttribute('href');
-        var t = id && id.charAt(0) === '#' ? document.querySelector(id) : null;
+        var t = document.querySelector(a.getAttribute('href'));
         if (!t) return;
         e.preventDefault();
-        var y = t.getBoundingClientRect().top + window.pageYOffset - OFFSET;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-        if (history.replaceState) history.replaceState(null, '', id);
+        window.scrollTo({ top: Math.max(0, offTop(t) - OFFSET), behavior: 'smooth' });
+        if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
         setActive(t.id);
       });
     });
