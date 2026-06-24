@@ -3,9 +3,10 @@
  * Template Name: Sobre
  * page-sobre.php — Vertz Iluminação
  * Estrutura inspirada no ritmo editorial da L'Atelier (Font Barcelona):
- * hero texto → par de imagens → menu âncora → seções texto + carrossel → co-criação → CTA.
+ * hero → par de imagens → nav lateral sticky (scrollspy) + seções com carrossel → co-criação → CTA.
  * Conteúdo próprio Vertz. Header/footer/cores/regras do tema mantidos.
- * Apenas classes/utilitárias confirmadas no vertz.css + tokens --sp-* inline nos vãos.
+ * Apenas classes/utilitárias confirmadas no vertz.css + tokens --sp-* inline.
+ * CSS e scrollspy da nav lateral isolados neste template (escopo #page-sobre).
  */
 get_header();
 $theme_uri = get_template_directory_uri();
@@ -77,7 +78,7 @@ $secoes = vf('sobre_secoes', false, array(
 
   array(
     'id'        => 'showroom',
-    'num'       => '04',
+    'num'        => '04',
     'label'     => 'Onde a luz acontece',
     'titulo'    => 'Showroom',
     'titulo_hl' => 'em São Paulo e Campinas.',
@@ -109,6 +110,41 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
      . 'style="width:100%;height:100%;object-fit:cover;display:block;"></div>';
 }
 ?>
+
+<style id="sobre-atelier-css">
+/* ── Nav lateral sticky + scrollspy (escopo da página Sobre) ── */
+#page-sobre .sobre-atelier{ display:block; }
+#page-sobre .sobre-atelier__nav{ margin:0 0 var(--sp-40); }
+#page-sobre .sobre-atelier__navList{ list-style:none; margin:0; padding:0; display:flex; flex-flow:row wrap; gap:.75rem 1.75rem; }
+#page-sobre .sobre-atelier__navLink{
+  display:inline-flex; align-items:baseline; gap:.5rem; text-decoration:none;
+  text-transform:uppercase; letter-spacing:.12em; font-size:.8125rem; line-height:1.1;
+  color:var(--color-gray-400,#a8a298);
+  transition:color .45s cubic-bezier(.16,1,.3,1);
+}
+#page-sobre .sobre-atelier__navLink:hover{ color:var(--color-dark); }
+#page-sobre .sobre-atelier__navLink.is-active{ color:var(--color-dark); }
+#page-sobre .sobre-atelier__navNum{ font-size:.7em; color:var(--color-accent); }
+#page-sobre .sobre-atelier__section{ scroll-margin-top:120px; padding-bottom:clamp(3.5rem,8vw,7rem); }
+#page-sobre .sobre-atelier__section:last-child{ padding-bottom:0; }
+#page-sobre .sobre-atelier__eyebrow{ margin:0 0 1rem; font-size:.6875rem; font-weight:500; text-transform:uppercase; letter-spacing:.18em; color:var(--color-accent); }
+#page-sobre .sobre-atelier__lead{ margin:1.25rem 0 2.25rem; max-width:46ch; font-size:.95rem; line-height:1.55; color:var(--color-gray-600); }
+
+@media (min-width:1024px){
+  #page-sobre .sobre-atelier{
+    display:grid; grid-template-columns:minmax(190px,240px) 1fr;
+    column-gap:clamp(2.5rem,6vw,6rem); align-items:start;
+  }
+  #page-sobre .sobre-atelier__nav{
+    position:sticky; top:clamp(96px,12vh,140px); align-self:start; margin:0;
+  }
+  #page-sobre .sobre-atelier__navList{ flex-direction:column; gap:1.1rem; }
+  #page-sobre .sobre-atelier__navLink{ font-size:.875rem; }
+}
+@media (prefers-reduced-motion:no-preference){
+  html{ scroll-behavior:smooth; }
+}
+</style>
 
 <div class="single single-page" id="page-sobre">
 
@@ -154,67 +190,58 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
   </div>
 
 
-  <!-- SEÇÃO 3: MENU ÂNCORA -->
-  <div class="pb-row-wrapper position-relative pt-80 pb-0 pt-md-100 mt-0 mb-0" style="--zindex:3">
-    <nav class="pb-row container-fluid" aria-label="Seções desta página">
-      <ul class="list-none m-0 p-0 d-flex flex-column flex-md-row grid-gap-20"
-        style="border-top:1px solid var(--color-gray-300);padding-top:var(--sp-24);flex-wrap:wrap;">
-        <?php foreach ($secoes as $s): ?>
-        <li>
-          <a href="#<?php echo esc_attr($s['id']); ?>"
-            class="fz-13 tt-uppercase fw-500 d-flex align-items-center grid-gap-10"
-            style="color:var(--color-dark);text-decoration:none;letter-spacing:0.1em;">
-            <span style="color:var(--color-accent);font-size:.7em;"><?php echo esc_html($s['num']); ?></span>
-            <span><?php echo esc_html($s['titulo']); ?></span>
-          </a>
-        </li>
-        <?php endforeach; ?>
-      </ul>
-    </nav>
-  </div>
+  <!-- SEÇÃO 3: ATELIER — nav lateral sticky (scrollspy) + seções com carrossel -->
+  <div class="pb-row-wrapper position-relative pt-80 pb-80 pt-md-100 pb-md-100 pt-xl-130 pb-xl-130 mt-0 mb-0" style="--zindex:3">
+    <div class="pb-row container-fluid sobre-atelier">
 
-
-  <!-- SEÇÕES 4–7: CATEGORIAS COM CARROSSEL -->
-  <?php foreach ($secoes as $k => $s): $z = 4 + $k; ?>
-  <section id="<?php echo esc_attr($s['id']); ?>"
-    class="pb-row-wrapper position-relative pt-80 pb-80 pt-md-100 pb-md-100 pt-xl-130 pb-xl-130 mt-0 mb-0"
-    style="--zindex:<?php echo $z; ?>;scroll-margin-top:96px;">
-
-    <!-- cabeçalho da seção: título + texto -->
-    <div class="pb-row container-fluid d-grid grid-column-md-12 grid-column-xl-24 grid-gap-12 grid-gap-xl-20 mb-40 mb-md-70"
-      data-scroll data-scroll-offset="80px,0" data-module-delay>
-      <div class="col-start-1 col-span-md-8 col-span-xl-13">
-        <p class="fz-11 tt-uppercase fw-500 m-0 mb-15" style="color:var(--color-accent);letter-spacing:0.18em;"><?php echo esc_html($s['num']); ?> — <?php echo esc_html($s['label']); ?></p>
-        <h2 class="ff-body fz-28 fz-md-44 fz-xl-48 fw-400 lh-107 ls--3 m-0">
-          <?php echo esc_html($s['titulo']); ?> <span class="title-highlight --font-heading --fs-italic"><?php echo esc_html($s['titulo_hl']); ?></span>
-        </h2>
-      </div>
-      <div class="col-start-1 col-start-md-9 col-start-xl-14 col-span-md-4 col-span-xl-9 d-flex flex-column justify-content-end" style="--index:1;margin-top:var(--sp-20);">
-        <p class="fz-14 fz-xl-16 lh-150 m-0" style="color:var(--color-gray-600)"><?php echo esc_html($s['texto']); ?></p>
-      </div>
-    </div>
-
-    <!-- carrossel horizontal (Swiper: pb-row-cards-slider) -->
-    <div class="pb-row container-fluid" data-scroll data-scroll-offset="60px,0" data-module-delay>
-      <div class="pb-row-cards-slider__slider">
-        <div class="swiper-wrapper">
-          <?php foreach ($s['slides'] as $j => $sl): ?>
-          <div class="swiper-slide">
-            <figure class="m-0">
-              <?php vertz_sobre_img($img_dir . '/' . $sl['img'], $s['titulo'] . ' — ' . $sl['cap'], '3/4'); ?>
-              <figcaption class="d-flex flex-column grid-gap-8" style="margin-top:var(--sp-15);">
-                <span class="fz-10 tt-uppercase fw-500" style="letter-spacing:.15em;color:var(--color-accent)"><?php echo esc_html($sl['tag']); ?></span>
-                <span class="fz-13 lh-142" style="color:var(--color-dark)"><?php echo esc_html($sl['cap']); ?></span>
-              </figcaption>
-            </figure>
-          </div>
+      <!-- lista de tópicos -->
+      <aside class="sobre-atelier__nav" aria-label="Seções desta página">
+        <ul class="sobre-atelier__navList">
+          <?php foreach ($secoes as $s): ?>
+          <li>
+            <a class="sobre-atelier__navLink" href="#<?php echo esc_attr($s['id']); ?>">
+              <span class="sobre-atelier__navNum"><?php echo esc_html($s['num']); ?></span>
+              <span class="sobre-atelier__navTxt"><?php echo esc_html($s['titulo']); ?></span>
+            </a>
+          </li>
           <?php endforeach; ?>
-        </div>
-      </div>
-    </div>
+        </ul>
+      </aside>
 
-  </section>
-  <?php endforeach; ?>
+      <!-- conteúdo das seções -->
+      <div class="sobre-atelier__sections">
+        <?php foreach ($secoes as $s): ?>
+        <section id="<?php echo esc_attr($s['id']); ?>" class="sobre-atelier__section">
+          <header class="mb-30">
+            <p class="sobre-atelier__eyebrow"><?php echo esc_html($s['num']); ?> — <?php echo esc_html($s['label']); ?></p>
+            <h2 class="ff-body fz-28 fz-md-44 fz-xl-48 fw-400 lh-107 ls--3 m-0">
+              <?php echo esc_html($s['titulo']); ?> <span class="title-highlight --font-heading --fs-italic"><?php echo esc_html($s['titulo_hl']); ?></span>
+            </h2>
+            <p class="sobre-atelier__lead"><?php echo esc_html($s['texto']); ?></p>
+          </header>
+
+          <!-- carrossel horizontal (Swiper: pb-row-cards-slider) -->
+          <div class="pb-row-cards-slider__slider">
+            <div class="swiper-wrapper">
+              <?php foreach ($s['slides'] as $sl): ?>
+              <div class="swiper-slide">
+                <figure class="m-0">
+                  <?php vertz_sobre_img($img_dir . '/' . $sl['img'], $s['titulo'] . ' — ' . $sl['cap'], '3/4'); ?>
+                  <figcaption class="d-flex flex-column grid-gap-8" style="margin-top:var(--sp-15);">
+                    <span class="fz-10 tt-uppercase fw-500" style="letter-spacing:.15em;color:var(--color-accent)"><?php echo esc_html($sl['tag']); ?></span>
+                    <span class="fz-13 lh-142" style="color:var(--color-dark)"><?php echo esc_html($sl['cap']); ?></span>
+                  </figcaption>
+                </figure>
+              </div>
+              <?php endforeach; ?>
+            </div>
+          </div>
+        </section>
+        <?php endforeach; ?>
+      </div>
+
+    </div>
+  </div>
 
 
   <!-- SEÇÃO 8: CO-CRIAÇÃO (CTA + par de imagens) -->
@@ -269,25 +296,4 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
             <span class="btn__label" aria-hidden="true"><span>Solicitar projeto</span><span style="color:var(--color-dark);">Solicitar projeto</span></span>
           </a>
           <a href="https://wa.me/<?php echo esc_attr($wa); ?>?text=Olá!%20Quero%20saber%20mais%20sobre%20a%20Vertz%20Iluminação." target="_blank" rel="noopener" class="btn --cta --cta-default" style="border-color:var(--color-primary);color:var(--color-primary);">
-            <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary);"></span>
-            <span class="btn__label" aria-hidden="true"><span>Falar no WhatsApp</span><span style="color:var(--color-dark);">Falar no WhatsApp</span></span>
-          </a>
-        </div>
-      </div>
-      <div class="col-start-1 col-start-md-9 col-span-md-4 d-flex flex-column justify-content-end" style="border-left:1px solid rgba(255,255,255,0.1);padding-left:2rem;margin-top:var(--sp-60);">
-        <div class="mb-30">
-          <p class="fz-11 tt-uppercase fw-500 m-0" style="color:var(--color-primary);letter-spacing:0.12em;margin-bottom:.625rem;">São Paulo</p>
-          <p class="fz-13 lh-150 m-0" style="color:rgba(255,255,255,0.55)">Alameda Casa Branca, 806<br>Jardim Paulista</p>
-        </div>
-        <div>
-          <p class="fz-11 tt-uppercase fw-500 m-0" style="color:var(--color-primary);letter-spacing:0.12em;margin-bottom:.625rem;">Campinas</p>
-          <p class="fz-13 lh-150 m-0" style="color:rgba(255,255,255,0.55)">R. Antônio Lapa, 328<br>Cambuí</p>
-        </div>
-        <p class="fz-12 m-0 mt-20" style="color:rgba(255,255,255,0.3)">Seg–Sex 9h–18h / Sáb 9h–13h</p>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /single single-page -->
-
-<?php get_footer(); ?>
+            <span class="btn__bg" aria-hidden="true" style="background:var(--color-primary);"></s
