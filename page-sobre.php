@@ -283,4 +283,11 @@ function vertz_sobre_img($src, $alt, $ratio = '3/4', $eager = false) {
           <p class="fz-11 tt-uppercase fw-500 m-0" style="color:var(--color-primary);letter-spacing:0.12em;margin-bottom:.625rem;">Campinas</p>
           <p class="fz-13 lh-150 m-0" style="color:rgba(255,255,255,0.55)">R. Antônio Lapa, 328<br>Cambuí</p>
         </div>
-        <p class="fz-12 m-0 mt-20" style="color:rgba(255,255,255,0.3)">Seg–Sex 9h–18h 
+        <p class="fz-12 m-0 mt-20" style="color:rgba(255,255,255,0.3)">Seg–Sex 9h–18h / Sáb 9h–13h</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /single single-page -->
+
+<?php get_footer(); ?>
