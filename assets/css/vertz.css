@@ -1782,17 +1782,11 @@ p.fz-13, p.fz-14, p.fz-md-13, p.fz-md-14 {
   padding: clamp(3rem, 6vw, 6rem) 0 clamp(2rem, 4vw, 4rem);
 }
 
-.site-footer__logoLink {
-  display: block;
-  max-width: 100%;
-}
-
-.site-footer__logoLink img {
+.site-footer__logoWrap img {
   width: 100%;
   max-height: 18vw;
   object-fit: contain;
   object-position: left;
-  opacity: 0.92;
 }
 
 .site-footer__divider {
@@ -1883,7 +1877,7 @@ p.fz-13, p.fz-14, p.fz-md-13, p.fz-md-14 {
   .site-footer__colBody--grid {
     grid-template-columns: 1fr;
   }
-  .site-footer__logoLink img {
+  .site-footer__logoWrap img {
     max-height: 40vw;
   }
 }
