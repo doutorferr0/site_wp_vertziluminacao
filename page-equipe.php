@@ -33,7 +33,7 @@ $membros = vf('equipe_membros', false, array(
 ?>
 
 <style id="equipe-css">
-#page-equipe .equipe-grid{ display:grid; grid-template-columns:1fr; gap:clamp(2.5rem,5vw,4.5rem) clamp(1.5rem,3vw,3rem); margin:0; padding:0; list-style:none; }
+#page-equipe .equipe-grid{ display:grid; grid-template-columns:1fr; row-gap:clamp(4rem,8vw,8rem); column-gap:clamp(1.5rem,3vw,3rem); margin:0; padding:0; list-style:none; }
 @media (min-width:600px){ #page-equipe .equipe-grid{ grid-template-columns:repeat(2,1fr); } }
 @media (min-width:992px){ #page-equipe .equipe-grid{ grid-template-columns:repeat(3,1fr); } }
 
@@ -47,7 +47,7 @@ $membros = vf('equipe_membros', false, array(
 #page-equipe .equipe-card__role{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:clamp(1rem,2vw,2rem); margin:0; font-weight:700; font-size:clamp(.85rem,1vw,1rem); line-height:1.35; color:var(--color-dark); background:var(--color-white,#fff); opacity:0; transition:opacity .45s cubic-bezier(.16,1,.3,1); pointer-events:none; }
 #page-equipe .equipe-card:hover .equipe-card__role{ opacity:1; }
 
-#page-equipe .equipe-card__name{ margin:var(--sp-20,1.25rem) 0 0; font-size:clamp(1.05rem,1.5vw,1.3rem); font-weight:400; line-height:1.15; color:var(--color-dark); min-height:1.15em; }
+#page-equipe .equipe-card__name{ margin:var(--sp-30,1.75rem) 0 0; font-size:clamp(1.05rem,1.5vw,1.3rem); font-weight:400; line-height:1.15; color:var(--color-dark); min-height:1.15em; }
 </style>
 
 <div class="single single-page" id="page-equipe">
