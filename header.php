@@ -43,6 +43,7 @@
           ['url' => home_url('/projetos'),  'label' => 'Projetos'],
           ['url' => home_url('/servicos'),  'label' => 'Serviços'],
           ['url' => home_url('/sobre'),     'label' => 'Sobre'],
+          ['url' => home_url('/equipe'),    'label' => 'Equipe'],
           ['url' => home_url('/novidades'), 'label' => 'Novidades'],
           ['url' => home_url('/contato'),   'label' => 'Contato'],
         ];
@@ -70,6 +71,7 @@
   </div>
 </div>
 <main class="flex-grow-1" role="main">
+
 
 
 
