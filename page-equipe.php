@@ -2,7 +2,8 @@
 /**
  * Template Name: Equipe
  * page-equipe.php — Vertz Iluminação
- * Padrão da aba "Team" da Triptyque: grid de cards quadrados (foto + cargo + nome).
+ * Padrão da aba "Team" da Triptyque: grid de cards quadrados (foto P&B + nome embaixo).
+ * HOVER: a foto some e aparece o CARGO em negrito centralizado no lugar da imagem.
  * 10 slots placeholder aguardando imagem + descrição (editar no array $membros).
  * Estilo isolado neste template (escopo #page-equipe). Só tokens existentes + inline.
  */
@@ -16,7 +17,7 @@ $hero_hl     = vf('equipe_hero_hl',     false, 'a sua luz.');
 $hero_intro  = vf('equipe_hero_intro',  false, 'Especialistas em luminotécnica, arquitetura e atendimento que traduzem cada espaço em luz. Conheça quem está por trás dos projetos da Vertz.');
 
 /* 10 slots placeholder — preencher 'img', 'nome' e 'cargo' depois.
-   'img' vazio mostra o placeholder visual (igual ao site enquanto não há foto). */
+   'cargo' = texto que aparece em negrito no hover. 'img' vazio mostra o placeholder. */
 $membros = vf('equipe_membros', false, array(
   array('img' => '', 'nome' => '', 'cargo' => ''),
   array('img' => '', 'nome' => '', 'cargo' => ''),
@@ -37,12 +38,16 @@ $membros = vf('equipe_membros', false, array(
 @media (min-width:1200px){ #page-equipe .equipe-grid{ grid-template-columns:repeat(4,1fr); } }
 
 #page-equipe .equipe-card{ display:flex; flex-direction:column; }
-#page-equipe .equipe-card__img{ position:relative; aspect-ratio:1/1; overflow:hidden; border-radius:12px; background:var(--color-gray-100,#ededed); }
-#page-equipe .equipe-card__img img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1); }
-#page-equipe .equipe-card:hover .equipe-card__img img{ transform:scale(1.04); }
+#page-equipe .equipe-card__img{ position:relative; aspect-ratio:1/1; overflow:hidden; background:var(--color-gray-100,#ededed); }
+#page-equipe .equipe-card__img img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1); transition:opacity .45s cubic-bezier(.16,1,.3,1); }
+#page-equipe .equipe-card:hover .equipe-card__img img{ opacity:0; }
 #page-equipe .equipe-card__ph{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--color-gray-600,#8a8a8a); }
-#page-equipe .equipe-card__role{ margin:var(--sp-15,1rem) 0 .15rem; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--color-gray-600,#8a8a8a); min-height:.9em; }
-#page-equipe .equipe-card__name{ margin:0; font-size:clamp(1rem,1.4vw,1.18rem); font-weight:500; line-height:1.15; color:var(--color-dark); min-height:1.15em; }
+
+/* overlay do hover: cargo em negrito no lugar da foto */
+#page-equipe .equipe-card__role{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:clamp(1rem,2vw,2rem); margin:0; font-weight:700; font-size:clamp(.85rem,1vw,1rem); line-height:1.35; color:var(--color-dark); background:var(--color-white,#fff); opacity:0; transition:opacity .45s cubic-bezier(.16,1,.3,1); pointer-events:none; }
+#page-equipe .equipe-card:hover .equipe-card__role{ opacity:1; }
+
+#page-equipe .equipe-card__name{ margin:var(--sp-15,1rem) 0 0; font-size:clamp(1rem,1.4vw,1.18rem); font-weight:400; line-height:1.15; color:var(--color-dark); min-height:1.15em; }
 </style>
 
 <div class="single single-page" id="page-equipe">
@@ -78,8 +83,8 @@ $membros = vf('equipe_membros', false, array(
             <?php else: ?>
               <span class="equipe-card__ph">Foto <?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
             <?php endif; ?>
+            <p class="equipe-card__role"><?php echo esc_html($cargo); ?></p>
           </div>
-          <p class="equipe-card__role"><?php echo esc_html($cargo); ?></p>
           <h2 class="equipe-card__name"><?php echo esc_html($nome); ?></h2>
         </li>
         <?php endforeach; ?>
